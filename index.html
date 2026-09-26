@@ -969,7 +969,7 @@ const filled=R=>Object.keys(R.jar).find(k=>R.jar[k]>=3);
 let actx=null;const PW={game:'anubis',R:null,stake:1,muted:false,info:false,sess:false,rc:false,rcPending:false,brk:null,rcMin:2,limit:0,s:null};
 function pwSessReset(){PW.s={start:Date.now(),lastRC:Date.now(),wagered:0,won:0,rounds:0,history:[]}}pwSessReset();
 const pwNet=()=>PW.s.won-PW.s.wagered;
-function tone(f,t=0,dur=.25,type='triangle',vol=.1){if(PW.muted||!actx)return;if(type==='square'||type==='sawtooth')vol*=.55;const o=actx.createOscillator(),g=actx.createGain(),n=actx.currentTime+t;o.type=type;o.frequency.setValueAtTime(f,n);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(vol,n+.02);g.gain.exponentialRampToValueAtTime(.0001,n+dur);o.connect(g).connect(actx.destination);o.start(n);o.stop(n+dur+.05)}
+function tone(f,t=0,dur=.25,type='triangle',vol=.1){if(PW.muted||!actx)return;if(actx.state!=='running'){try{actx.resume()}catch(e){}}if(type==='square'||type==='sawtooth')vol*=.55;const o=actx.createOscillator(),g=actx.createGain(),n=actx.currentTime+t;o.type=type;o.frequency.setValueAtTime(f,n);g.gain.setValueAtTime(0,n);g.gain.linearRampToValueAtTime(vol,n+.02);g.gain.exponentialRampToValueAtTime(.0001,n+dur);o.connect(g).connect(actx.destination);o.start(n);o.stop(n+dur+.05)}
 const pwWave=()=>PWG[PW.game].wave||'triangle';
 const sfx={tap:()=>tone(330,0,.12,pwWave(),.07),win:()=>[523,659,784,1046].forEach((f,i)=>tone(f,i*.07,.35,pwWave())),soft:()=>tone(880,0,.2,'sine',.08),big:()=>[392,494,587,784,988,1175].forEach((f,i)=>tone(f,i*.09,.6,'sine',.1)),bad:()=>{tone(196,0,.6,'sawtooth',.1);tone(147,.18,.8,'sawtooth',.1)},end:()=>[523,659,784,659,1046].forEach((f,i)=>tone(f,i*.12,.5,pwWave(),.1)),chime:()=>[660,880].forEach((f,i)=>tone(f,i*.15,.5,'sine',.08))};
 const unlockAudio=()=>{try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();actx.resume()}catch(_){}};
@@ -1293,7 +1293,7 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
   ${[['gallery','All screens','map'],['web','Web portal','card'],['ads','Ad network','trophy']].map(([v,l,i])=>`<button data-set="view" data-v="${v}" class="drow"><span>${ic(i,19)}</span>${l}</button>`).join('')}
   <div style="padding:20px 18px 0;font-size:11.5px;color:var(--ink3)">Concept demo · sample data</div></aside>`}
 function screenHTML(scr,live,mob){const t=themeFor(scr);
- return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&!['pwgame','social'].includes(scr)?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
+ return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&!['pwgame','social'].includes(scr)?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
 function phone(scr,live){return `<div class="phone"><span class="hw l" style="top:170px;height:34px"></span><span class="hw l" style="top:232px;height:62px"></span><span class="hw l" style="top:308px;height:62px"></span><span class="hw r" style="top:256px;height:98px"></span><div class="bezel">${screenHTML(scr,live)}</div></div>`}
 function fitBox(html,w,h,maxW,maxH,cls=''){const s=Math.min(1,maxW/w,maxH?maxH/h:1);return `<div class="fit ${cls}" style="width:${Math.round(w*s)}px;height:${Math.round(h*s)}px"><div class="inner" style="width:${w}px;height:${h}px;transform:scale(${s.toFixed(4)})">${html}</div></div>`}
 
@@ -1342,13 +1342,13 @@ function segs(){const mk=(id,opts,key)=>{document.getElementById(id).innerHTML=o
  mk('c-model',[['umbrella','Parent-led skin'],['endorsed','Endorsed hybrid'],['property','Property-first']],'model');
  mk('c-persona',[['A',`<span class="persona-dot" style="background:${PERS.A.dot}"></span>Winnie · Elite · WinStar`],['B',`<span class="persona-dot" style="background:${PERS.B.dot}"></span>Jordan · Premier · Artesian`]],'persona')}
 function availW(){return Math.max(300,(app.clientWidth||window.innerWidth-32))}
-const isMobile=()=>window.innerWidth>=280&&window.innerHeight>=400&&window.matchMedia('(max-width: 600px)').matches;
+const isMobile=()=>{const w=window.innerWidth,h=window.innerHeight;if(w<280||h<280)return false;const phoneScreen=Math.min(screen.width||w,screen.height||h)<=600&&matchMedia('(pointer: coarse)').matches;return phoneScreen||(h>=400&&matchMedia('(max-width: 600px)').matches)};
 function render(keepScroll){
  const oldBody=document.querySelector('#stage .body'),st=keepScroll&&oldBody?oldBody.scrollTop:0,oldDr=document.querySelector('#stage .drawer'),dst=oldDr?oldDr.scrollTop:0;
  segs();save();
  const mob=isMobile();document.body.className=mob?(S.view==='proto'?'m':'mw'):'';
- if(S.view==='proto'&&mob){const sc=window.innerWidth/390,off=(navigator.standalone||matchMedia('(display-mode: standalone)').matches)?0:40,h=Math.ceil(window.innerHeight/sc)+off;
-  app.innerHTML=`<div class="mwrap" id="stage">${screenHTML(S.screen,true,{s:sc.toFixed(4),h,off})}</div>`;
+ if(S.view==='proto'&&mob){const land=window.innerWidth>window.innerHeight,sc=land?window.innerHeight/800:window.innerWidth/390,off=(navigator.standalone||matchMedia('(display-mode: standalone)').matches)?0:40,h=Math.ceil(window.innerHeight/sc)+off,x=land?Math.max(0,Math.round((window.innerWidth-390*sc)/2)):0;
+  app.innerHTML=`<div class="mwrap" id="stage">${screenHTML(S.screen,true,{s:sc.toFixed(4),h,off,x})}</div>`;
   if(st){const b=document.querySelector('#stage .body');if(b)b.scrollTop=st}
   if(dst){const d=document.querySelector('#stage .drawer');if(d)d.scrollTop=dst}
   return}
@@ -1481,7 +1481,17 @@ setInterval(()=>{T.sess++;T.bonus=Math.max(0,T.bonus-1);T.sessPts+=Math.random()
  document.querySelectorAll('[data-tickn]').forEach(el=>{el.textContent=fmt(Math.floor(T[el.dataset.tickn]))})},1000);
 const tip=document.createElement('div');tip.className='ctip';document.body.appendChild(tip);
 document.addEventListener('mousemove',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return}tip.textContent=t.dataset.tip;tip.style.left=Math.min(e.clientX+14,window.innerWidth-tip.offsetWidth-8)+'px';tip.style.top=(e.clientY-40)+'px';tip.classList.add('on')});
-render=(orig=>function(k){orig(k);mountSocial()})(render);
+/* Game audio on phones: resume a paused context on every tap, and on game screens play a silent looping
+   <audio> (plus audioSession 'playback' where supported) so iPhone's silent switch doesn't mute Web Audio. */
+const GAME_SCREENS=['play','pwgame','social'];let keepAlive=null;
+function silentWavUrl(){const sr=8000,n=sr/2,b=new ArrayBuffer(44+n*2),v=new DataView(b),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i))};w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);return URL.createObjectURL(new Blob([b],{type:'audio/wav'}))}
+function audioKick(){if(!GAME_SCREENS.includes(S.screen))return;
+ try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+ try{actx=actx||new(window.AudioContext||window.webkitAudioContext)();if(actx.state!=='running')actx.resume();const src=actx.createBufferSource();src.buffer=actx.createBuffer(1,1,22050);src.connect(actx.destination);src.start(0)}catch(e){}
+ try{if(!keepAlive){keepAlive=new Audio(silentWavUrl());keepAlive.loop=true;keepAlive.setAttribute('playsinline','')}if(keepAlive.paused)keepAlive.play().catch(()=>{})}catch(e){}}
+['pointerdown','touchend','click'].forEach(ev=>document.addEventListener(ev,audioKick,{passive:true,capture:true}));
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&actx&&actx.state!=='running')actx.resume().catch(()=>{})});
+render=(orig=>function(k){orig(k);mountSocial();if(keepAlive&&!GAME_SCREENS.includes(S.screen))keepAlive.pause()})(render);
 render();
 </script>
 
