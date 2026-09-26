@@ -295,6 +295,12 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .pwb .pwstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.pwb .pwstats div{padding:10px;border-radius:12px;background:rgba(255,255,255,.06);text-align:left}.pwb .pwstats small{display:block;font-size:11px;color:var(--ink3)}.pwb .pwstats b{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
 .pwb .pt{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}.pwb .pt td{padding:6px 4px;border-bottom:1px solid var(--ln)}.pwb .pt svg{width:24px;height:24px}
 
+.lshost{inset:0;z-index:9999;background:#000;overflow:hidden}
+.lshost .lsrot{position:absolute;top:0;left:0;transform-origin:top left}
+.lshost iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+.lshost .lsclose{position:absolute;top:10px;left:10px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);z-index:2}
+.lshost .lshint{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(0,0,0,.72);color:#fff;font:700 16px var(--ui);pointer-events:none;}
+.lshost.portrait .lshint{display:flex}.lshost.hinted .lshint{display:none}
 @media (max-width:1100px){.proto{grid-template-columns:1fr;justify-items:center;gap:24px}.notes,.flow{position:static;max-width:560px;width:100%;padding-top:0}.flow{flex-direction:row;flex-wrap:wrap}.flow h3,.flow .hint{width:100%}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.35)}70%{box-shadow:0 0 0 16px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
@@ -430,7 +436,7 @@ const PATHS={
 function ic(n,s=20,w=1.8){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[n]}</svg>`}
 function kcard(p,w=350){const t=TIERS[p.tier];return `<div class="kc" style="--w:${w}px;--c1:${t.c1};--c2:${t.c2};--ink:${t.ink||'#fff'};width:${w}px;height:${Math.round(w*.63)}px"><span class="brand">CLUB PASSPORT</span><span class="tier">${t.n.toUpperCase()}</span><span class="word">PASSPORT</span><span class="no">${p.num||''}<br>${(p.name||'').toUpperCase()}</span><span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5"/><path d="m12 5.5 1.9 4.2 4.6.4-3.5 3 1.1 4.5L12 15.2l-4.1 2.4 1.1-4.5-3.5-3 4.6-.4z"/></svg></span></div>`}
 const FEAT={hotel:['bed','Hotel'],key:['key','Digital key'],finder:['map','Game finder'],order:['dine','Mobile ordering'],spa:['spa','Spa']};
-const NOTABS=['login','lock','join','pwgame'];
+const NOTABS=['login','lock','join','pwgame','social'];
 function themeFor(scr){if(NOTABS.includes(scr)||(S.model==='endorsed'&&scr!=='property'))return BRAND;const p=P[S.prop];return {bg:'#0A1324',acc:p.acc,onacc:p.onacc,hi:p.hi,tint:p.bg}}
 function themeStyle(t){return `--acc:${t.acc};--onacc:${t.onacc};--hi:${t.hi};${t.tint?`background:linear-gradient(180deg,${t.tint} 0,#0A1324 520px)`:''}`}
 
@@ -583,8 +589,8 @@ function wheel(){const seg=['50 pts','$5','2×','100 pts','$10','25 pts','$20','
  return {svg:`<svg width="260" height="260" viewBox="0 0 260 260"><circle cx="${c}" cy="${c}" r="${R+13}" fill="#8A6A2C"/><circle cx="${c}" cy="${c}" r="${R+11}" fill="#D9B970"/>${bulbs}<g id="wheel" style="transform-origin:${c}px ${c}px;transform:rotate(${S.rot}deg);transition:transform 3.4s cubic-bezier(.12,.8,.18,1)">${s}</g><circle cx="${c}" cy="${c}" r="26" fill="#0A1324" stroke="#D9B970" stroke-width="4"/><text x="${c}" y="${c+1}" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Montserrat" font-weight="900" font-size="13">CP</text></svg>`,seg}}
 SCR.play=()=>{const w=wheel();
  return `<div class="body" style="background:radial-gradient(120% 60% at 50% 0%,#1B2C52,transparent 70%)"><div class="topbar"><h1 class="t1">Play</h1><span class="chip" style="height:32px">${ic('trophy',15)} 14 entries</span></div>
-  <div class="px cap" style="margin:4px 0 16px">Pick & Win bonus games, a daily spin and more.</div>
-  ${frBanner()}<div class="sec" style="margin-top:4px"><h4>Pick & Win</h4><span class="cap">5 games</span></div><div class="px" style="display:flex;flex-direction:column;gap:10px">${pwLobby()}</div>
+  <div class="px cap" style="margin:4px 0 16px">Social casino, Pick & Win bonus games and a daily spin.</div>
+  ${richesBanner()}${frBanner()}<div class="sec" style="margin-top:4px"><h4>Pick & Win</h4><span class="cap">5 games</span></div><div class="px" style="display:flex;flex-direction:column;gap:10px">${pwLobby()}</div>
   <div class="sec"><h4>Daily games</h4></div>
   ${hourly()}
   <div class="px" style="font-size:12px;color:var(--ink3);margin-top:8px">Last hit 38 min ago: $963.40 to a Premier member at Riverwind.</div>
@@ -1163,6 +1169,43 @@ function profileRewards(){const d=S.prof[S.persona],rows=[['notif','Turn on noti
  return `<div class="sec"><h4>Earn points: complete your profile</h4><span class="cap">${left} left</span></div><div class="list">${rows.map(([k,l,s])=>{const on=d.has(k);return `<button data-act="profrow" data-k="${k}" class="li" style="width:100%;text-align:left"><span style="width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none;${on?'background:rgba(95,215,165,.16);color:#5FD7A5':'background:rgba(217,185,112,.14);color:#E9C77B'}">${ic(on?'check':'plus',16,2.6)}</span><div class="grow"><div class="k">${l}</div><div class="v">${on?'Done':s}</div></div><span style="font-size:12px;font-weight:700;color:${on?'var(--ink3)':'#E9C77B'}">${on?'Earned':'+1,000 pts'}</span></button>`}).join('')}</div>
   <div class="px cap" style="margin-top:8px">Each step also earns a free round in Pick & Win.</div>`}
 
+
+/* ================= WinStar Riches: social casino, always-landscape player ================= */
+const RICHES_URL='https://winstarplayerhub.gamucopia.com';
+const CAN_EMBED=!/claude/i.test(location.hostname);
+Object.assign(PATHS,{rotate:'<rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 3.6a9 9 0 0 1 10 0M17 20.4a9 9 0 0 1-10 0"/><path d="m15.2 1.9 1.8 1.7-1.7 1.8M8.8 22.1 7 20.4l1.7-1.8"/>'});
+NOTES.social={e:'Social casino',t:'WinStar Riches, always in landscape',d:'A featured social casino game (play for fun, no purchase necessary) opens full-screen inside the app. The game is turned into landscape automatically, so it works even when the phone is locked in portrait: players just turn the phone sideways.',aud:['Exec','Loyalty'],ivo:['#6 Social casino'],src:'<b>Game:</b> WinStar Riches by Gamucopia. On the Claude link it opens in a new tab, because that viewer blocks embedded sites. The phone link plays it inside the app.'};
+function richesBanner(){
+ const body=`<span class="photo" style="${bg('ws-globe')};position:absolute;inset:0;--shade:linear-gradient(115deg,rgba(42,12,78,.96) 0,rgba(42,12,78,.78) 48%,rgba(10,19,36,.1) 100%)"></span>
+  <span style="position:absolute;right:14px;top:14px;height:24px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.08em;background:#F6E1AC;color:#2A1F08;z-index:1">NEW</span>
+  <span style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:18px">
+   <span class="spon" style="color:#E9C77B">Social casino · Play for fun</span>
+   <span style="font-family:var(--disp);font-weight:900;font-style:italic;font-size:31px;line-height:1.05;letter-spacing:-.01em"><span style="background:linear-gradient(180deg,#FFF1B8,#E8B84A 55%,#B07A22);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.16em;margin-right:-.12em">WinStar</span> <span style="color:#8FD3FF">Riches</span></span>
+   <span style="font-size:12.5px;color:rgba(255,255,255,.82);max-width:230px;line-height:1.4">Free-to-play slots. No purchase necessary. Coins have no cash value.</span>
+   <span class="btn sm" style="margin-top:6px;background:#fff;color:#2A0C4E">${ic('rotate',15)} ${CAN_EMBED?'Play now':'Play now · opens in a new tab'}</span></span>`;
+ const st='position:relative;display:block;margin:0 20px 16px;width:calc(100% - 40px);min-height:190px;border-radius:24px;overflow:hidden;text-align:left;color:#fff;box-shadow:inset 0 0 0 1px rgba(233,199,123,.35)';
+ return CAN_EMBED?`<button data-act="socialopen" style="${st}" aria-label="Play WinStar Riches, social casino">${body}</button>`:`<a href="${RICHES_URL}" target="_blank" rel="noopener" style="${st};text-decoration:none">${body}</a>`}
+SCR.social=()=>`<div class="body" style="padding:0;background:#05030A;display:grid;place-items:center"><div style="text-align:center;color:rgba(255,255,255,.6);font-size:13px">Loading WinStar Riches…</div></div>`;
+let lsHost=null;
+function unmountSocial(){if(lsHost){lsHost.remove();lsHost=null}}
+function mountSocial(){
+ if(S.screen!=='social'||S.view!=='proto'||!CAN_EMBED){unmountSocial();return}
+ const mob=isMobile(),scr=document.querySelector('#stage .scr');
+ if(!mob&&!scr)return;
+ const parent=mob?document.body:scr;
+ if(!lsHost||lsHost.parentNode!==parent){
+  unmountSocial();
+  lsHost=document.createElement('div');lsHost.className='lshost';lsHost.style.position=mob?'fixed':'absolute';
+  lsHost.innerHTML=`<div class="lsrot"><iframe src="${RICHES_URL}" title="WinStar Riches" allow="autoplay; fullscreen; gamepad"></iframe><button class="lsclose" data-act="socialclose" aria-label="Close game">${ic('x',18,2.6)}</button></div><div class="lshint"><span>${ic('rotate',38,1.8)}</span>Turn your phone sideways to play</div>`;
+  parent.appendChild(lsHost);
+  const h=lsHost;setTimeout(()=>h.classList.add('hinted'),3200);
+ }
+ const W=mob?window.innerWidth:scr.clientWidth,H=mob?window.innerHeight:scr.clientHeight,portrait=H>W,r=lsHost.querySelector('.lsrot');
+ r.style.width=(portrait?H:W)+'px';r.style.height=(portrait?W:H)+'px';r.style.transform=portrait?'rotate(90deg) translateY(-100%)':'none';
+ lsHost.classList.toggle('portrait',portrait)}
+function landscapeFullscreen(){try{const el=document.documentElement;if(isMobile()&&el.requestFullscreen&&!document.fullscreenElement){el.requestFullscreen({navigationUI:'hide'}).then(()=>screen.orientation&&screen.orientation.lock?screen.orientation.lock('landscape'):null).catch(()=>{})}}catch(e){}}
+function exitLandscape(){try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}catch(e){}try{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}}
+
 /* ================= PHONE ================= */
 function sheetHTML(){const p=per();
  return `<div class="sheet" data-act="closesheet"><div class="pan" data-stop="1"><div class="grab"></div><div class="t2" style="margin:0 4px 14px">Switch property</div>
@@ -1181,7 +1224,7 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
   ${[['gallery','All screens','map'],['web','Web portal','card'],['ads','Ad network','trophy']].map(([v,l,i])=>`<button data-set="view" data-v="${v}" class="drow"><span>${ic(i,19)}</span>${l}</button>`).join('')}
   <div style="padding:20px 18px 0;font-size:11.5px;color:var(--ink3)">Concept demo · sample data</div></aside>`}
 function screenHTML(scr,live,mob){const t=themeFor(scr);
- return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&scr!=='pwgame'?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
+ return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&!['pwgame','social'].includes(scr)?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
 function phone(scr,live){return `<div class="phone"><span class="hw l" style="top:170px;height:34px"></span><span class="hw l" style="top:232px;height:62px"></span><span class="hw l" style="top:308px;height:62px"></span><span class="hw r" style="top:256px;height:98px"></span><div class="bezel">${screenHTML(scr,live)}</div></div>`}
 function fitBox(html,w,h,maxW,maxH,cls=''){const s=Math.min(1,maxW/w,maxH?maxH/h:1);return `<div class="fit ${cls}" style="width:${Math.round(w*s)}px;height:${Math.round(h*s)}px"><div class="inner" style="width:${w}px;height:${h}px;transform:scale(${s.toFixed(4)})">${html}</div></div>`}
 
@@ -1243,7 +1286,7 @@ function render(keepScroll){
  if(S.view==='proto'){const n=NOTES[S.screen],idx=SCREENS.findIndex(s=>s[0]===S.screen),narrow=window.innerWidth<1100,maxH=narrow?9999:Math.max(600,window.innerHeight-150);
   const glow=themeFor(S.screen).tint?P[S.prop].acc+'33':'rgba(156,195,245,.16)';
   app.innerHTML=`<div class="proto">
-   <aside class="notes"><span class="eyebrow">${n.e} · ${idx+1} of ${SCREENS.length}</span><h2>${n.t}</h2><p>${n.d}</p>
+   <aside class="notes"><span class="eyebrow">${n.e}${idx>=0?` · ${idx+1} of ${SCREENS.length}`:''}</span><h2>${n.t}</h2><p>${n.d}</p>
     <div class="tags">${n.aud.map(a=>`<span class="tag">${a}</span>`).join('')}${n.ivo.map(a=>`<span class="tag ivo">Beats Ivoree ${a}</span>`).join('')}</div><div class="src">${n.src}</div></aside>
    <div class="stage" id="stage" style="--glow:${glow}">${fitBox(phone(S.screen,true),414,868,Math.min(414,availW()),maxH)}</div>
    <nav class="flow"><h3>Demo flow</h3>${(()=>{let c=0;return FLOW.map(([g,items])=>`<div class="gh">${g}</div>`+items.map(([k,l])=>{c++;return `<button data-nav="${k}" aria-current="${S.screen===k}"><span class="k">${String(c).padStart(2,'0')}</span>${l}</button>`}).join('')).join('')})()}<div class="hint">Use ← → to step through. Everything in the phone is tappable.</div></nav></div>`;
@@ -1273,11 +1316,13 @@ document.addEventListener('click',e=>{
  const pf=e.target.closest('[data-pf]');if(pf){S.pfil=pf.dataset.pf;render();return}
  const a=e.target.closest('[data-act]');
  if(a){const act=a.dataset.act;
+  if(act==='socialclose'){exitLandscape();unmountSocial();go('play');return}
   if(act==='claim'){const id=a.dataset.id;S.claimed.has(id)?S.claimed.delete(id):S.claimed.add(id);render(true);if(S.claimed.has(id))setTimeout(()=>toast('Added to your wallet'),40);return}
   if(!a.closest('#stage'))return;
   if(act==='login'){go('home');setTimeout(()=>toast('Signed in with Face ID · 11 properties linked'),40)}
   else if(act==='sheet'){S.sheet=true;render(true)}
   else if(act==='closesheet'){S.sheet=false;S.drinkSheet=false;S.fund=null;S.fulfil=null;render(true)}
+  else if(act==='socialopen'){landscapeFullscreen();go('social')}
   else if(act==='chtap'){const c=CH[S.persona].find(x=>x[0]===a.dataset.id),pr=S.chp[S.persona];if(pr[c[0]]>=c[3])return;pr[c[0]]++;if(pr[c[0]]>=c[3])reward('Challenge complete!',`${c[1]}: +${fmt(c[5])} points and 1 free round in Pick & Win.`,c[5]);render(true)}
   else if(act==='modalclose'){S.modal=null;render(true)}
   else if(act==='modalplay'||act==='pwfree'){pwFreeRound()}
@@ -1365,6 +1410,7 @@ setInterval(()=>{T.sess++;T.bonus=Math.max(0,T.bonus-1);T.sessPts+=Math.random()
  document.querySelectorAll('[data-tickn]').forEach(el=>{el.textContent=fmt(Math.floor(T[el.dataset.tickn]))})},1000);
 const tip=document.createElement('div');tip.className='ctip';document.body.appendChild(tip);
 document.addEventListener('mousemove',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return}tip.textContent=t.dataset.tip;tip.style.left=Math.min(e.clientX+14,window.innerWidth-tip.offsetWidth-8)+'px';tip.style.top=(e.clientY-40)+'px';tip.classList.add('on')});
+render=(orig=>function(k){orig(k);mountSocial()})(render);
 render();
 </script>
 
