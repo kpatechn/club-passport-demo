@@ -300,7 +300,10 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .lshost iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
 .lshost .lsclose{position:absolute;top:10px;left:10px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.55);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);z-index:2}
 .lshost .lshint{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:rgba(0,0,0,.72);color:#fff;font:700 16px var(--ui);pointer-events:none;}
-.lshost.portrait .lshint{display:flex}.lshost.hinted .lshint{display:none}
+.lshost.portrait .lshint{display:flex}
+.lshost .lstip{position:absolute;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:none;align-items:center;gap:10px;padding:12px 12px 12px 14px;border-radius:16px;background:rgba(14,24,48,.94);color:#fff;font:500 13px/1.35 var(--ui);box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.14);z-index:3}
+.lshost .lstip button{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);color:#fff}
+.lshost.portrait.hinted .lstip{display:flex}.lshost.tipdone .lstip{display:none!important}.lshost.hinted .lshint{display:none}
 @media (max-width:1100px){.proto{grid-template-columns:1fr;justify-items:center;gap:24px}.notes,.flow{position:static;max-width:560px;width:100%;padding-top:0}.flow{flex-direction:row;flex-wrap:wrap}.flow h3,.flow .hint{width:100%}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.35)}70%{box-shadow:0 0 0 16px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
@@ -1172,6 +1175,8 @@ function profileRewards(){const d=S.prof[S.persona],rows=[['notif','Turn on noti
 
 /* ================= WinStar Riches: social casino, always-landscape player ================= */
 const RICHES_URL='https://winstarplayerhub.gamucopia.com';
+const RICHES_SRC=RICHES_URL+'/?embedded=clubpassport&orientation=landscape';
+const IS_IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const CAN_EMBED=!/claude/i.test(location.hostname);
 Object.assign(PATHS,{rotate:'<rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 3.6a9 9 0 0 1 10 0M17 20.4a9 9 0 0 1-10 0"/><path d="m15.2 1.9 1.8 1.7-1.7 1.8M8.8 22.1 7 20.4l1.7-1.8"/>'});
 NOTES.social={e:'Social casino',t:'WinStar Riches, always in landscape',d:'A featured social casino game (play for fun, no purchase necessary) opens full-screen inside the app. The game is turned into landscape automatically, so it works even when the phone is locked in portrait: players just turn the phone sideways.',aud:['Exec','Loyalty'],ivo:['#6 Social casino'],src:'<b>Game:</b> WinStar Riches by Gamucopia. On the Claude link it opens in a new tab, because that viewer blocks embedded sites. The phone link plays it inside the app.'};
@@ -1196,7 +1201,7 @@ function mountSocial(){
  if(!lsHost||lsHost.parentNode!==parent){
   unmountSocial();
   lsHost=document.createElement('div');lsHost.className='lshost';lsHost.style.position=mob?'fixed':'absolute';
-  lsHost.innerHTML=`<div class="lsrot"><iframe src="${RICHES_URL}" title="WinStar Riches" allow="autoplay; fullscreen; gamepad"></iframe><button class="lsclose" data-act="socialclose" aria-label="Close game">${ic('x',18,2.6)}</button></div><div class="lshint"><span>${ic('rotate',38,1.8)}</span>Turn your phone sideways to play</div>`;
+  lsHost.innerHTML=`<div class="lsrot"><iframe src="${RICHES_SRC}" title="WinStar Riches" allow="autoplay; fullscreen; gamepad"></iframe><button class="lsclose" data-act="socialclose" aria-label="Close game">${ic('x',18,2.6)}</button></div><div class="lshint"><span>${ic('rotate',38,1.8)}</span>Turn your phone sideways to play</div>${IS_IOS?`<div class="lstip" role="note"><span>${ic('lock',16,2.2)}</span><span>Game asking you to rotate? Turn off <b>Portrait Orientation Lock</b> in Control Center, then turn your phone.</span><button data-act="lstipclose" aria-label="Dismiss tip">${ic('x',14,2.6)}</button></div>`:''}`;
   parent.appendChild(lsHost);
   const h=lsHost;setTimeout(()=>h.classList.add('hinted'),3200);
  }
@@ -1386,6 +1391,7 @@ document.addEventListener('click',e=>{
  const a=e.target.closest('[data-act]');
  if(a){const act=a.dataset.act;
   if(act==='socialclose'){exitLandscape();unmountSocial();go('play');return}
+  if(act==='lstipclose'){if(lsHost)lsHost.classList.add('tipdone');return}
   if(act==='claim'){const id=a.dataset.id;S.claimed.has(id)?S.claimed.delete(id):S.claimed.add(id);render(true);if(S.claimed.has(id))setTimeout(()=>toast('Added to your wallet'),40);return}
   if(!a.closest('#stage'))return;
   if(act==='login'){go('home');setTimeout(()=>toast('Signed in with Face ID · 11 properties linked'),40)}
