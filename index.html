@@ -197,6 +197,21 @@ img{display:block}
 .browser .sheet{z-index:50}.browser .sheet>div{max-width:420px}.browser .toast{left:auto;right:28px;bottom:28px;width:380px}
 .pchip{height:36px;padding:0 16px;border-radius:99px;font-size:13px;font-weight:600;background:#132038;color:var(--mute);display:inline-flex;align-items:center;gap:7px}
 .pchip[aria-pressed="true"]{background:#F3F6FB;color:#0A1324}.pchat .msg.ai{background:#16233C}.pchat #cqin::placeholder{color:var(--faint)}
+.dstream{position:relative;height:218px;margin:4px 20px 0;border-radius:22px;background-size:cover;background-position:center}
+.dstream .dlights{position:absolute;inset:-20%;z-index:1;pointer-events:none;background:radial-gradient(38% 30% at 22% 8%,rgba(255,206,120,.32),transparent 70%),radial-gradient(38% 30% at 80% 0%,rgba(120,170,255,.28),transparent 70%);animation:dsweep 5s ease-in-out infinite alternate}
+@keyframes dsweep{from{transform:translateX(-6%) rotate(-3deg)}to{transform:translateX(6%) rotate(3deg)}}
+.dstream .dtop{position:absolute;left:12px;right:12px;top:12px;display:flex;align-items:center;gap:8px;z-index:2;color:#fff}
+.dlive{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;background:#E5322D;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em}
+.dlive i{width:6px;height:6px;border-radius:50%;background:#fff;animation:dpulse 1.2s infinite}@keyframes dpulse{50%{opacity:.25}}
+.dstream .dpill{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;background:rgba(0,0,0,.45);font-size:11.5px;font-weight:700}
+.dstream .dboard{position:absolute;left:12px;right:12px;top:52%;transform:translateY(-50%);z-index:2;text-align:center;color:#fff}
+.dstream .dsess{font-size:10.5px;font-weight:800;letter-spacing:.12em;color:#F6E1AC}
+.dstream .dwin{font-family:var(--disp);font-weight:800;font-size:30px;line-height:1.15;margin-top:6px;text-shadow:0 4px 20px rgba(0,0,0,.6)}
+.dstream .dwho{font-size:12.5px;opacity:.88;margin-top:2px}
+.dstream .droll{height:42px;overflow:hidden;margin-top:4px;-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.dstream .dlist{animation:droll .7s linear infinite}.dstream .dlist div{height:42px;line-height:42px;font-family:var(--disp);font-weight:800;font-size:28px}
+@keyframes droll{to{transform:translateY(-50%)}}
+.dstream .dlower{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px 14px;border-radius:0 0 22px 22px;font-size:12px;color:rgba(255,255,255,.85);background:linear-gradient(transparent,rgba(0,0,0,.55))}
 .pocard{border-radius:18px;overflow:hidden;background:#101B30;display:flex;flex-direction:column}
 .foot-note{max-width:1320px;margin:36px auto 0;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
 
@@ -390,9 +405,10 @@ const GAMES={
  A:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Red Hot Ruby Major',p:'winstar',loc:'Plaza A · Bank 3',img:'ms-games'},{k:'g3',n:'Lucky Ducky Mega',p:'riverwind',loc:'Main floor · Bank 22',hot:'Due by history',img:'lc-2'}],
  B:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Money Bags Major',p:'artesian',loc:'Casino floor · Bank 2',img:'ct-2'},{k:'g3',n:'Buffalo Run Grand',p:'treasure',loc:'East floor · Bank 7',img:'nc-floor'}]
 };
-const FLOW=[['Get started',[['join','Join Club Passport'],['login','Sign in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['convert','Convert an offer'],['wallet','Passport'],['tier','Tier']]],['House of brands',[['destinations','Destinations'],['property','Property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['playing','Playing now'],['meters','Live meters'],['wayfind','Wayfinding'],['stay','Stay & key'],['trip','Trip']]],['Engagement',[['play','Play'],['pwgame','Pick & Win round'],['challenges','Challenges'],['exchange','Marketplace'],['gift','Monthly gift']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account & RG']]]];
+const FLOW=[['Get started',[['join','Join Club Passport'],['login','Sign in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['convert','Convert an offer'],['wallet','Passport'],['tier','Tier']]],['House of brands',[['destinations','Destinations'],['property','Property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['playing','Playing now'],['meters','Live meters'],['wayfind','Wayfinding'],['stay','Stay & key'],['trip','Trip']]],['Engagement',[['play','Play'],['pwgame','Pick & Win round'],['drawing','Live drawing'],['challenges','Challenges'],['exchange','Marketplace'],['gift','Monthly gift']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account & RG']]]];
 const SCREENS=FLOW.flatMap(g=>g[1]);
 const NOTES={
+ drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
  homeUmb:{e:'Parent-led',t:'One app, eleven looks',d:'Swipe the photo at the top, or tap the arrows or dots. The whole app changes over to that property: colors, photos and logo, and Home fills with its offers, shows, promotions and dining. Club Passport stays at the top, and the tier, points and wallet stay the same everywhere.',aud:['Exec','GM','Brand'],src:'<b>Content:</b> dining, shows and promotions from each property website, captured Sep 26, 2026.'},
  login:{e:'Identity',t:'One login for all 11 properties',d:'A single phone number with OTP or Face ID replaces 11 separate app accounts. The same Club Passport identity signs guests in to every property website.',aud:['Exec','Loyalty'],src:'<b>Consolidates</b> sign-up, PIN + OTP, biometrics and Trust Device, which today vary by property.'},
  home:{e:'Personalized home',t:'The app knows where you are and who you are',d:'The feed leads with the player’s situation: in a stay, nearby, or planning a trip. Offers follow, nearest first, then destinations, live meters and games. Switch the brand model above to compare the three options. Tier progress sits under the wallet and leads with the next milestone. Tap it to open the tier screen.',aud:['Exec','GM','Loyalty'],src:'<b>Roadmap:</b> Personalized Home Screen, Points Tracker, Tailored Recommendations.'},
@@ -533,7 +549,7 @@ SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  }
  const offers=sortedOffers().slice(0,4).map(offerTile).join('');
  const keys=Object.keys(P).filter(k=>S.model==='endorsed'||k!==S.prop).sort((a,b)=>p.dist[a]-p.dist[b]).slice(0,7);
- return `<div class="body">${hero}${walletStrip()}${tierStrip()}${S.model==='umbrella'?propFeed(S.prop):''}${askBar()}${liveCard()}
+ return `<div class="body">${hero}${walletStrip()}${tierStrip()}${drHomeBar()}${S.model==='umbrella'?propFeed(S.prop):''}${askBar()}${liveCard()}
   <div style="margin-top:14px">${nowCard()}</div>
   <div style="margin-top:12px">${hourly()}</div>
   ${S.model==='umbrella'?'':`<div class="sec"><h4>Nearest offers first</h4><button data-go="offers">See all</button></div><div class="hs">${offers}</div>`}
@@ -723,9 +739,9 @@ function wheel(){const seg=['50 pts','$5','2×','100 pts','$10','25 pts','$20','
  const bulbs=Array.from({length:24},(_,i)=>{const a=i/24*2*Math.PI;return `<circle cx="${(c+(R+7)*Math.cos(a)).toFixed(1)}" cy="${(c+(R+7)*Math.sin(a)).toFixed(1)}" r="2.6" fill="#FFF3CF" style="animation:bulbs 1.4s ${i%2?'.7s':'0s'} infinite"/>`}).join('');
  return {svg:`<svg width="260" height="260" viewBox="0 0 260 260"><circle cx="${c}" cy="${c}" r="${R+13}" fill="#8A6A2C"/><circle cx="${c}" cy="${c}" r="${R+11}" fill="#D9B970"/>${bulbs}<g id="wheel" style="transform-origin:${c}px ${c}px;transform:rotate(${S.rot}deg);transition:transform 3.4s cubic-bezier(.12,.8,.18,1)">${s}</g><circle cx="${c}" cy="${c}" r="26" fill="#0A1324" stroke="#D9B970" stroke-width="4"/><text x="${c}" y="${c+1}" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-family="Montserrat" font-weight="900" font-size="13">CP</text></svg>`,seg}}
 SCR.play=()=>{const w=wheel();
- return `<div class="body" style="background:radial-gradient(120% 60% at 50% 0%,#1B2C52,transparent 70%)"><div class="topbar"><h1 class="t1">Play</h1><span class="chip" style="height:32px">${ic('trophy',15)} 14 entries</span></div>
+ return `<div class="body" style="background:radial-gradient(120% 60% at 50% 0%,#1B2C52,transparent 70%)"><div class="topbar"><h1 class="t1">Play</h1><button data-go="drawing" class="chip" style="height:32px">${ic('ticket',15)} ${drEntries()} drawing entries</button></div>
   <div class="px cap" style="margin:4px 0 16px">Social casino, Pick & Win bonus games and a daily spin.</div>
-  ${richesBanner()}${coveCard()}${frBanner()}<div class="sec" style="margin-top:4px"><h4>Pick & Win</h4><span class="cap">5 games</span></div><div class="px" style="display:flex;flex-direction:column;gap:10px">${pwLobby()}</div>
+  ${drBanner()}${richesBanner()}${coveCard()}${frBanner()}<div class="sec" style="margin-top:4px"><h4>Pick & Win</h4><span class="cap">5 games</span></div><div class="px" style="display:flex;flex-direction:column;gap:10px">${pwLobby()}</div>
   <div class="sec"><h4>Daily games</h4></div>
   ${hourly()}
   <div class="px" style="font-size:12px;color:var(--ink3);margin-top:8px">Last hit 38 min ago: $963.40 to a Premier member at Riverwind.</div>
@@ -1399,6 +1415,74 @@ function coveCard(){
    <span class="btn sm" style="margin-top:6px;background:#FFD24A;color:#3A2300">${live?`Play now ${ic('ext',14,2.4)}`:'Demo link expired'}</span></span>`;
  const st='position:relative;display:block;margin:0 20px 16px;width:calc(100% - 40px);min-height:184px;border-radius:24px;overflow:hidden;text-align:left;color:#fff;text-decoration:none;box-shadow:inset 0 0 0 1px rgba(255,217,138,.35)';
  return live?`<a href="${COVE_URL}" target="_blank" rel="noopener" style="${st}" aria-label="Play Wild Cove, opens in a new window">${body}</a>`:`<button data-act="coveexpired" style="${st}" aria-label="Wild Cove demo link expired">${body}</button>`}
+/* ---------- Live drawing: the Club Passport drawing streamed from WinStar, plus this week's property drawings ---------- */
+// The Club Passport drawing, prizes and entries are sample values. Property drawings are from their websites (Sep 27, 2026).
+Object.assign(PATHS,{live:'<circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M4.9 19.1a10 10 0 0 1 0-14.2"/>'});
+const DRAW={name:'Club Passport Fall Fortune',t0:Date.now()-(72*60+8)*1000,watching:2418,prize:'$2,500 cash',of:4,
+ sessions:[['6:00 PM','$1,000 Free Play',5,'done',['T. B*** · WinStar','R. N*** · Lakecrest','A. C*** · Riverwind','S. K*** · WinStar','J. W*** · Chisholm Trail']],
+  ['7:00 PM','$1,000 Free Play',5,'done',['M. L*** · Newcastle','D. H*** · WinStar','C. R*** · The Artesian','E. S*** · WinStar','P. G*** · Saltcreek']],
+  ['8:00 PM','$2,500 cash',4,'live',[]],['9:00 PM','$5,000 cash',2,'next',[]],['10:00 PM','$25,000 cash · grand prize',1,'next',[]]],
+ live:['K. M*** · Riverwind','D. T*** · WinStar','L. P*** · Newcastle'],
+ ticker:['A. R***','M. K***','J. D***','S. T***','B. W***','L. H***','C. M***','R. P***'],
+ entries:{A:[['winstar',42],['riverwind',8],['newcastle',6]],B:[['artesian',12],['treasure',4],['lakecrest',2]]}};
+const PDRAW=[['riverwind','Wild Card Blitz','Fri, Oct 2','Drawings 6:00–11:30 PM','A share of over $300K in cash, Bonus Play and prizes through October','9× entries on Mondays and Tuesdays'],
+ ['riverstar','Trick or Treasure','Fri, Oct 2','Hot seats every 15 min, 6:00–8:45 PM','$1,500 in Bonus Play. Grand prize about 9 PM: $300 Bonus Play and a Nintendo Switch 2','Must be present and playing'],
+ ['riverstar','Witches and Riches','Sat, Oct 3','Hot seats 6:00–9:30 PM','$1,800 in Bonus Play. Grand prize about 10 PM: $1,000 Bonus Play','Must be present and playing'],
+ ['riverwind','Battle of the Bridge','October','Earning entries now','A share of $27K cash, with Goldsby Gaming Center','Entries and points earned in October'],
+ ['riverwind','Moonlight Money Madness','Sat, Oct 31','Earning entries now','A share of $10K in Bonus Play on Halloween','Entries earned all October']];
+S.dr={A:{act:false,drawn:1,at:''},B:{act:false,drawn:1,at:''}};S.drRoll=false;S.drWin=null;S.drMiss=false;S.drRem=new Set();
+const drClock=()=>{const e=Math.floor((Date.now()-DRAW.t0)/1000);return `${Math.floor(e/3600)}:${String(Math.floor(e/60)%60).padStart(2,'0')}:${String(e%60).padStart(2,'0')}`};
+const drMe=()=>{const p=per();return `${p.first.charAt(0)}. ${p.name.split(' ').pop().charAt(0)}*** · ${P[p.home].n}`};
+const drEntries=()=>DRAW.entries[S.persona].reduce((a,b)=>a+b[1],0);
+function drWinners(){const d=S.dr[S.persona];return DRAW.live.concat([drMe()]).slice(0,d.drawn)}
+function drBanner(){const d=S.dr[S.persona],n=Math.min(d.drawn+1,DRAW.of);
+ return `<button data-go="drawing" style="margin:0 20px 14px;width:calc(100% - 40px);display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;text-align:left;color:#fff;background:linear-gradient(110deg,#3A0E16,#1A1030);box-shadow:inset 0 0 0 1px rgba(229,50,45,.45)">
+  <span class="photo" style="${bg('ws-show')};width:66px;height:46px;border-radius:10px;flex:none;--shade:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.45))"><span class="dlive" style="position:absolute;left:5px;top:5px;height:17px;font-size:9px;padding:0 5px"><i></i>LIVE</span></span>
+  <span style="flex:1;min-width:0"><span style="display:block;font-weight:800;font-size:14.5px">The Club Passport drawing is live</span><span style="display:block;font-size:12px;color:rgba(255,255,255,.72);margin-top:1px">${d.drawn>=DRAW.of?'Next draw 9:00 PM':`Draw ${n} of ${DRAW.of} · ${DRAW.prize}`} · ${fmt(DRAW.watching)} watching</span></span><span style="flex:none;opacity:.7">${ic('right',16)}</span></button>`}
+function drHomeBar(){const d=S.dr[S.persona];
+ return `<button data-go="drawing" style="margin:12px 20px 0;width:calc(100% - 40px);display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:16px;text-align:left;background:var(--el);box-shadow:inset 0 0 0 1px rgba(229,50,45,.35)"><span class="dlive" style="height:20px;font-size:10px;padding:0 7px;flex:none"><i></i>LIVE</span><span style="flex:1;min-width:0;font-size:13px"><b>Club Passport drawing</b><span style="color:var(--ink2)"> · ${d.act?`your ${drEntries()} entries are in`:`${drEntries()} entries to activate`}</span></span><span style="font-size:12.5px;font-weight:700;color:var(--hi);flex:none">Watch</span></button>`}
+SCR.drawing=()=>{const p=per(),d=S.dr[S.persona],here=p.home,ent=drEntries(),wins=drWinners(),done=d.drawn>=DRAW.of,last=wins[wins.length-1]||'',mine=done&&last===drMe();
+ const [who,where]=last.split(' · ');
+ const board=S.drRoll?`<div class="dsess">DRAWING WINNER ${Math.min(d.drawn+1,DRAW.of)} OF ${DRAW.of} · ${DRAW.prize.toUpperCase()}</div><div class="droll"><div class="dlist">${DRAW.ticker.concat(DRAW.ticker).map(n=>`<div>${n}</div>`).join('')}</div></div><div class="dwho">Drawing from active entries at all 11 properties</div>`
+  :`<div class="dsess">${done?`ALL ${DRAW.of} WINNERS DRAWN`:`WINNER ${d.drawn} OF ${DRAW.of}`} · ${DRAW.prize.toUpperCase()}</div><div class="dwin">${who}</div><div class="dwho">${where}${mine?' · <b style="color:#F6E1AC">That’s you!</b>':''}</div>`;
+ const stream=`<div class="dstream photo" style="${bg('ws-show')};--shade:linear-gradient(180deg,rgba(6,8,20,.6),rgba(6,8,20,.35) 45%,rgba(6,8,20,.88))"><span class="dlights"></span>
+   <div class="dtop"><span class="dlive"><i></i>LIVE</span><span class="dpill dclock">${drClock()}</span><span class="dpill" style="margin-left:auto">${ic('eye',13)} ${fmt(DRAW.watching)}</span></div>
+   <div class="dboard">${board}</div><div class="dlower"><b>${DRAW.name}</b> · Live from WinStar</div></div>`;
+ const status=d.act?`<span style="display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:#5FD7A5">${ic('check',14,2.6)} Your ${ent} entries are in this draw</span>`:`<span style="display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:#F2B84B">${ic('info',14)} Activate your entries to be drawn</span>`;
+ const miss=S.drMiss?`<div class="px" style="margin-top:10px"><div style="padding:12px 14px;border-radius:14px;background:rgba(242,184,75,.12);box-shadow:inset 0 0 0 1px rgba(242,184,75,.35);font-size:13px;line-height:1.45">Your name was drawn, but your entries weren’t activated, so the prize was redrawn. Activate before the 9:00 PM draw.</div></div>`:'';
+ const bars=DRAW.entries[S.persona].map(([k,v])=>`<div style="display:flex;align-items:center;gap:10px;font-size:12.5px"><span style="width:96px;color:var(--ink2)">${P[k].n}</span><div style="flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden"><i style="display:block;height:100%;width:${Math.round(v/ent*100)}%;background:${P[k].acc}"></i></div><b class="num" style="width:26px;text-align:right">${v}</b></div>`).join('');
+ const earn=[['gem','1 entry for every 100 points, at any property'],['crown',p.tier==='signature'||p.tier==='society'?'2× entries for Elite and Chairman (you get this)':'2× entries once you reach Elite'],['zap','5× entries on Tuesdays']].map(([i,t])=>`<div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:var(--hi)">${ic(i,14)}</span>${t}</div>`).join('');
+ const entries=`<div class="sec"><h4>Your entries</h4><span class="cap">This week</span></div><div class="list" style="padding:16px;display:flex;flex-direction:column;gap:12px">
+   <div style="display:flex;align-items:center;justify-content:space-between"><div><span class="num" style="font-family:var(--disp);font-weight:800;font-size:30px">${ent}</span> <span style="color:var(--ink2);font-size:13px">entries from ${DRAW.entries[S.persona].length} properties</span></div><span style="height:24px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.05em;${d.act?'background:rgba(46,189,133,.16);color:#5FD7A5':'background:rgba(242,184,75,.14);color:#F2B84B'}">${d.act?'ACTIVE':'NOT ACTIVE'}</span></div>
+   ${bars}
+   ${d.act?`<div style="display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(46,189,133,.1);font-size:12.5px;color:#9FE8C9">${ic('check',14,2.6)} Active for every drawing tonight. Activated at ${P[here].n}, ${d.at}.</div>`
+    :`<button class="btn" data-act="dract" style="width:100%">${ic('pin',16)} Activate at ${P[here].n}</button><div style="font-size:12px;color:var(--ink3);text-align:center;margin-top:-4px">You’re on property, so you can activate here. No kiosk line.</div>`}
+   <div style="display:flex;flex-direction:column;gap:7px;padding-top:10px;border-top:1px solid var(--ln)">${earn}</div></div>`;
+ const sess=DRAW.sessions.map(([t,prize,n,st,w],i)=>{const live=st==='live',ww=live?wins:w,rem=S.drRem.has('s'+i);
+  return `<div class="li" style="align-items:flex-start"><div style="width:72px;flex:none"><div style="font-weight:800;font-size:14px;white-space:nowrap">${t}</div>${live?`<span class="dlive" style="height:17px;font-size:9px;padding:0 5px;margin-top:4px"><i></i>LIVE</span>`:''}</div>
+   <div class="grow"><div class="k">${prize}</div><div class="v">${n} winner${n>1?'s':''}${ww.length?` · ${ww.slice(0,2).join(', ')}${ww.length>2?` +${ww.length-2}`:''}`:''}</div></div>
+   ${st==='done'?`<span style="font-size:12px;font-weight:700;color:var(--ink3)">Done</span>`:live?`<span class="num" style="font-size:12px;font-weight:700;color:#FF6B66">${Math.min(d.drawn,DRAW.of)} of ${n}</span>`:`<button data-act="drrem" data-k="s${i}" aria-label="Remind me" style="width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:${rem?'var(--acc)':'rgba(255,255,255,.07)'};color:${rem?'var(--onacc)':'var(--ink2)'}">${ic('bell',15)}</button>`}</div>`}).join('');
+ const prow=([k,name,date,time,prize,rule],i)=>{const q=P[k],rem=S.drRem.has('p'+i);
+  return `<div class="li" style="align-items:flex-start"><div style="width:52px;flex:none;padding:7px 0;border-radius:12px;text-align:center;background:${q.acc}26;color:${q.hi};font-size:11px;font-weight:800;line-height:1.25">${date.replace(', ','<br>')}</div>
+   <div class="grow"><div style="font-size:11.5px;font-weight:700;color:${q.hi}">${q.n}</div><div class="k">${name}</div><div class="v">${time}</div><div class="v" style="margin-top:3px">${prize}</div><div style="font-size:11.5px;color:var(--ink3);margin-top:3px">${rule}</div></div>
+   <button data-act="drrem" data-k="p${i}" aria-label="Remind me" style="width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;background:${rem?'var(--acc)':'rgba(255,255,255,.07)'};color:${rem?'var(--onacc)':'var(--ink2)'}">${ic('bell',15)}</button></div>`};
+ return `<div class="body">${head('Live drawing','play',`<span class="dlive"><i></i>LIVE</span>`)}
+  ${stream}
+  <div class="px" style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px">${status}<button class="btn sm line" data-act="drnext" style="flex:none">${done?'Replay':'Draw next winner'}</button></div>${miss}
+  ${entries}
+  <div class="sec"><h4>Tonight’s drawings</h4><span class="cap">$55,000 in prizes</span></div><div class="list">${sess}</div>
+  <div class="sec"><h4>This week at the properties</h4></div><div class="list">${PDRAW.slice(0,3).map(prow).join('')}</div>
+  <div class="sec"><h4>Earning entries now</h4></div><div class="list">${PDRAW.slice(3).map((r,i)=>prow(r,i+3)).join('')}</div>
+  <div class="px" style="margin-top:14px;font-size:11.5px;line-height:1.5;color:var(--ink3)">18+ with a valid ID. Club Passport drawing entries count from all 11 properties and are activated in the app on property. Winners have 5 minutes to claim, or the prize is redrawn. Prize values shown are samples. Property drawings follow each property’s official rules.</div></div>`};
+function drawWinHTML(){const left=Math.max(0,300-Math.floor((Date.now()-S.drWin.t)/1000));
+ return `<div class="sheet" style="align-items:flex-end"><div class="pan" data-stop="1" style="text-align:center;padding-top:14px"><div class="grab"></div>
+  <span style="width:68px;height:68px;border-radius:50%;display:inline-grid;place-items:center;background:radial-gradient(circle,#F6E1AC,#C9A45C);color:#2A1F08">${ic('trophy',32,1.8)}</span>
+  <div class="spon" style="color:var(--gold);margin-top:12px">You were drawn!</div><div style="font-family:var(--disp);font-weight:800;font-size:32px;margin-top:4px">${DRAW.prize}</div>
+  <div class="cap" style="margin-top:4px">Winner ${DRAW.of} of ${DRAW.of} · ${DRAW.name}</div>
+  <div style="display:inline-flex;align-items:center;gap:8px;margin:16px 0;padding:8px 14px;border-radius:99px;background:rgba(229,50,45,.14);color:#FF8A85;font-weight:700;font-size:13.5px">${ic('clock',15)} <span class="drcount num">${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}</span> left to claim</div>
+  <button class="btn" data-act="drclaim" style="width:100%;height:50px;background:linear-gradient(180deg,#F1D591,#C9A45C);color:#2A1F08">Claim my prize</button>
+  <div class="cap" style="margin-top:12px;line-height:1.45">Collect it at any WinStar cage with your ID. If it isn’t claimed in time, the prize is redrawn.</div></div></div>`}
+setInterval(()=>{document.querySelectorAll('.dclock').forEach(e=>e.textContent=drClock());const c=document.querySelector('#stage .drcount');if(c&&S.drWin){const l=Math.max(0,300-Math.floor((Date.now()-S.drWin.t)/1000));c.textContent=`${Math.floor(l/60)}:${String(l%60).padStart(2,'0')}`}},1000);
 SCR.social=()=>`<div class="body" style="padding:0;background:#05030A;display:grid;place-items:center"><div style="text-align:center;color:rgba(255,255,255,.6);font-size:13px">Loading WinStar Riches…</div></div>`;
 let lsHost=null;
 function unmountSocial(){if(lsHost){lsHost.remove();lsHost=null}}
@@ -1498,7 +1582,7 @@ function sheetHTML(){const p=per();
  return `<div class="sheet" data-act="closesheet"><div class="pan" data-stop="1"><div class="grab"></div><div class="t2" style="margin:0 4px 14px">Switch property</div>
   <div style="display:flex;flex-direction:column;gap:8px">${Object.keys(P).sort((a,b)=>p.dist[a]-p.dist[b]).map(k=>`<button data-act="setprop" data-p="${k}" class="photo" style="${bg(P[k].hero)};height:64px;border-radius:16px;${k===S.prop?'box-shadow:0 0 0 2px #fff':''};--shade:linear-gradient(90deg,rgba(5,10,20,.85),rgba(5,10,20,.45))"><div style="position:absolute;inset:0 16px;display:flex;align-items:center;justify-content:space-between">${lg(k,22)}<span style="font-size:12.5px;font-weight:600;color:rgba(255,255,255,.85)">${mi(p.dist[k])}</span></div></button>`).join('')}</div></div></div>`}
 const SB=`<div class="sb"><span>9:41</span><span class="isl"></span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5a9.6 9.6 0 0 1 6.6 2.6l1.1-1.2A11.2 11.2 0 0 0 8 .9 11.2 11.2 0 0 0 .3 3.9l1.1 1.2A9.6 9.6 0 0 1 8 2.5Zm0 3.2a6.4 6.4 0 0 1 4.3 1.7l1.1-1.2A8 8 0 0 0 8 4.1a8 8 0 0 0-5.4 2.1l1.1 1.2A6.4 6.4 0 0 1 8 5.7Zm0 3.2c.8 0 1.5.3 2 .8L8 11.9 6 9.7c.5-.5 1.2-.8 2-.8Z"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="18" height="9" rx="2.4" fill="currentColor"/><rect x="24.5" y="4.5" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></span></div>`;
-const SICON={join:'scan',login:'user',lock:'bell',home:'home',inbox:'inbox',offers:'tag',convert:'swap',wallet:'passport',tier:'crown',destinations:'compass',property:'pin',dining:'dine',shows:'ticket',hotels:'bed',challenges:'target',pwgame:'gem',playing:'dice',meters:'zap',wayfind:'nav',stay:'key',trip:'ticket',play:'trophy',exchange:'tag',gift:'gift',concierge:'spa',host:'msg',settings:'shield'};
+const SICON={drawing:'live',join:'scan',login:'user',lock:'bell',home:'home',inbox:'inbox',offers:'tag',convert:'swap',wallet:'passport',tier:'crown',destinations:'compass',property:'pin',dining:'dine',shows:'ticket',hotels:'bed',challenges:'target',pwgame:'gem',playing:'dice',meters:'zap',wayfind:'nav',stay:'key',trip:'ticket',play:'trophy',exchange:'tag',gift:'gift',concierge:'spa',host:'msg',settings:'shield'};
 function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
  return `<div class="drawer-bg${an}" data-act="menuclose"></div><aside class="drawer${an}" role="dialog" aria-label="Menu">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:60px 18px 14px"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><button data-act="menuclose" class="iconbtn" aria-label="Close menu">${ic('x',18,2.2)}</button></div>
@@ -1511,7 +1595,7 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
   ${[['gallery','All screens','map'],['web','Web portal','card'],['ads','Ad network','trophy']].map(([v,l,i])=>`<button data-set="view" data-v="${v}" class="drow"><span>${ic(i,19)}</span>${l}</button>`).join('')}
   <div style="padding:20px 18px 0;font-size:11.5px;color:var(--ink3)">Concept demo · sample data</div></aside>`}
 function screenHTML(scr,live,mob){const t=themeFor(scr);
- return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&!['pwgame','social'].includes(scr)?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
+ return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live&&!['pwgame','social'].includes(scr)?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.drinkSheet?drinkSheetHTML():''}${S.fund?fundSheetHTML():''}${S.fulfil!=null?fulfilHTML():''}${S.drWin&&scr==='drawing'?drawWinHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
 function phone(scr,live){return `<div class="phone"><span class="hw l" style="top:170px;height:34px"></span><span class="hw l" style="top:232px;height:62px"></span><span class="hw l" style="top:308px;height:62px"></span><span class="hw r" style="top:256px;height:98px"></span><div class="bezel">${screenHTML(scr,live)}</div></div>`}
 function fitBox(html,w,h,maxW,maxH,cls=''){const s=Math.min(1,maxW/w,maxH?maxH/h:1);return `<div class="fit ${cls}" style="width:${Math.round(w*s)}px;height:${Math.round(h*s)}px"><div class="inner" style="width:${w}px;height:${h}px;transform:scale(${s.toFixed(4)})">${html}</div></div>`}
 
@@ -1716,6 +1800,11 @@ document.addEventListener('click',e=>{
   else if(act==='prop'){S.prop=a.dataset.p;go('property')}
   else if(act==='ofil'){S.ofil=a.dataset.v;render(true)}
   else if(act==='opf'){S.opf=a.dataset.v;render(true)}
+  else if(act==='dract'){const d=S.dr[S.persona];d.act=true;d.at=new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});S.drMiss=false;render(true);toast(`${drEntries()} entries active for tonight’s drawings`)}
+  else if(act==='drnext'){const d=S.dr[S.persona];if(S.drRoll)return;if(d.drawn>=DRAW.of){d.drawn=1;S.drMiss=false;S.drWin=null;render(true);return}
+   S.drRoll=true;render(true);setTimeout(()=>{S.drRoll=false;d.drawn++;if(d.drawn>=DRAW.of){if(d.act)S.drWin={t:Date.now()};else S.drMiss=true}if(S.screen==='drawing')render(true)},1800)}
+  else if(act==='drclaim'){S.drWin=null;S.modal={title:`${DRAW.prize} is yours!`,sub:'Claimed in the app. Collect it at any WinStar cage with your ID tonight.',plain:true};render(true)}
+  else if(act==='drrem'){const k=a.dataset.k;S.drRem.has(k)?S.drRem.delete(k):S.drRem.add(k);render(true);if(S.drRem.has(k))toast('We’ll remind you 30 minutes before')}
   else if(act==='tb'){S.tb=a.dataset.v;render(true)}
   else if(act==='msopen'){const k=+a.dataset.k;S.msOpen=S.msOpen===k?null:k;render(true)}
   else if(act==='mspick'||act==='msclaim'){const k=+a.dataset.k,pp=per(),ch=act==='mspick'?MSCHOICE[pp.tier][+a.dataset.i]:null;S.ms[S.persona].add(k);S.msOpen=null;
