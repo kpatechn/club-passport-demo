@@ -12,6 +12,12 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script>
+if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>{
+ const first=!navigator.serviceWorker.controller;
+ navigator.serviceWorker.register('sw.js').then(()=>{if(first)navigator.serviceWorker.addEventListener('controllerchange',()=>{try{toast('Saved on this phone. The demo now works offline.')}catch(e){}},{once:true})}).catch(()=>{});
+});
+</script>
 <title>Club Passport App</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
