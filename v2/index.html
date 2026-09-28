@@ -212,6 +212,23 @@ img{display:block}
 .dstream .dlist{animation:droll .7s linear infinite}.dstream .dlist div{height:42px;line-height:42px;font-family:var(--disp);font-weight:800;font-size:28px}
 @keyframes droll{to{transform:translateY(-50%)}}
 .dstream .dlower{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px 14px;border-radius:0 0 22px 22px;font-size:12px;color:rgba(255,255,255,.85);background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.asktop{margin:14px 20px 0;width:calc(100% - 40px);height:46px;border-radius:23px;display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--el);box-shadow:inset 0 0 0 1px var(--ln);color:var(--ink3);font-size:14px;text-align:left}.asktop svg{color:var(--hi)}
+.psum{margin:12px 20px 0;padding:14px 14px 12px;border-radius:22px;background:var(--el);box-shadow:inset 0 0 0 1px var(--ln)}
+.psum-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left}
+.psum-card{width:46px;height:30px;border-radius:6px;flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.psum-stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:12px;padding:10px 0;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.psum-stats button{text-align:left;padding:0 4px;min-width:0}.psum-stats button+button{border-left:1px solid var(--ln);padding-left:12px}
+.psum-stats b{display:block;font-family:var(--disp);font-weight:800;font-size:17px;white-space:nowrap}.psum-stats span{display:flex;align-items:center;gap:4px;font-size:11.5px;color:var(--ink2)}
+.psum-next{display:block;width:100%;margin-top:11px;text-align:left}
+.psum-bar{display:block;height:5px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden}.psum-bar i{display:block;height:100%;border-radius:3px}
+.psum-nt{display:flex;justify-content:space-between;gap:10px;margin-top:7px;font-size:12.5px;color:var(--ink2)}.psum-nt>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.psum-nt b{color:var(--ink);font-weight:700}
+.rnow{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 20px;scroll-padding:0 20px;scrollbar-width:none}.rnow::-webkit-scrollbar{display:none}
+.rn-card{flex:0 0 calc(100% - 34px);scroll-snap-align:start;display:flex;align-items:center;gap:12px;padding:14px;border-radius:20px;background:var(--el);box-shadow:inset 0 0 0 1px var(--ln);text-align:left;min-height:86px}
+.rn-ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none}
+.rn-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.rn-t{display:flex;align-items:center;font-weight:800;font-size:14.5px;line-height:1.25}.rn-m{font-size:12.5px;color:var(--ink2);line-height:1.35}
+.rn-dot{width:8px;height:8px;border-radius:50%;background:#5FD7A5;box-shadow:0 0 0 3px rgba(95,215,165,.22);margin-right:8px;flex:none;animation:bulbs 1.2s infinite}
+.rn-cta{flex:none;height:32px;padding:0 13px;border-radius:99px;display:inline-flex;align-items:center;font-size:12.5px;font-weight:700;background:var(--acc);color:var(--onacc)}
+.rn-dots{display:flex;justify-content:center;gap:5px;margin-top:10px}.rn-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:width .25s}.rn-dots i.on{width:16px;background:var(--hi)}
 .pocard{border-radius:18px;overflow:hidden;background:#101B30;display:flex;flex-direction:column}
 .foot-note{max-width:1320px;margin:36px auto 0;color:var(--faint);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
 
@@ -411,7 +428,7 @@ const NOTES={
  drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
  homeUmb:{e:'Parent-led',t:'One app, eleven looks',d:'Swipe the photo at the top, or tap the arrows or dots. The whole app changes over to that property: colors, photos and logo, and Home fills with its offers, shows, promotions and dining. Club Passport stays at the top, and the tier, points and wallet stay the same everywhere.',aud:['Exec','GM','Brand'],src:'<b>Content:</b> dining, shows and promotions from each property website, captured Sep 26, 2026.'},
  login:{e:'Identity',t:'One login for all 11 properties',d:'A single phone number with OTP or Face ID replaces 11 separate app accounts. The same Club Passport identity signs guests in to every property website.',aud:['Exec','Loyalty'],src:'<b>Consolidates</b> sign-up, PIN + OTP, biometrics and Trust Device, which today vary by property.'},
- home:{e:'Personalized home',t:'The app knows where you are and who you are',d:'The feed leads with the player’s situation: in a stay, nearby, or planning a trip. Offers follow, nearest first, then destinations, live meters and games. Switch the brand model above to compare the three options. Tier progress sits under the wallet and leads with the next milestone. Tap it to open the tier screen.',aud:['Exec','GM','Loyalty'],src:'<b>Roadmap:</b> Personalized Home Screen, Points Tracker, Tailored Recommendations.'},
+ home:{e:'Personalized home',t:'The app knows where you are and who you are',d:'v2: Home leads with one compact Passport summary and a “Right now” stack of the most time-sensitive things (playing now, the live drawing, a reward to claim, a room that’s ready), most urgent first. Swipe the stack; everything else sits below or one tap away. The feed leads with the player’s situation: in a stay, nearby, or planning a trip. Offers follow, nearest first, then destinations, live meters and games. Switch the brand model above to compare the three options. Tier progress sits under the wallet and leads with the next milestone. Tap it to open the tier screen.',aud:['Exec','GM','Loyalty'],src:'<b>Roadmap:</b> Personalized Home Screen, Points Tracker, Tailored Recommendations.'},
  destinations:{e:'House of brands',t:'Eleven brands, each shown as itself',d:'Every property appears with its own logo, photography and colors. Cards are sorted by distance and show which services each property offers.',aud:['GM','Exec'],src:'<b>Roadmap:</b> Multi-Property Continuity, with property-aware entitlements and geo context.'},
  property:{e:'Property world',t:'Step inside a property, keep your status',d:'Each property page is fully branded. A Club Passport strip confirms the player’s tier is recognized there and lists the perks it unlocks at that property.',aud:['GM','Loyalty'],src:'<b>Roadmap:</b> Tier recognition across all properties.'},
  wallet:{e:'Mobile wallet',t:'One card, one Resort Wallet',d:'The Club Passport card sits next to the Resort Wallet, powered by Everi CashClub: the player’s own money for machines, dining, spa, shops and the hotel folio at all 11 properties. Rewards stay separate from cash. Tap Add funds.',aud:['Exec','Loyalty','GM'],src:'<b>Today:</b> Everi CashClub works at WinStar only. <b>Proposed:</b> one Resort Wallet across all 11 properties. The app never sees bank or card details.'},
@@ -537,8 +554,7 @@ SCR.login=()=>{const tiles=['ws-globe','ar-lobby','rw-show','ws-dining','lc-hero
   <div style="margin-top:auto;padding:0 0 26px"><div class="hs" style="gap:14px;align-items:center;opacity:.85">${logos}</div></div></div>`};
 SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  if(S.model==='endorsed'){
-  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px">${ic('pin',14)} ${p.where}</div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>
-   <div style="display:flex;justify-content:center;margin-top:20px"><button data-go="wallet">${kcard(p,350)}</button></div>${balances(p)}`;
+  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px">${ic('pin',14)} ${p.where}</div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>`;
  }else if(S.model==='umbrella'){
   hero=umbHero(p,t);
  }else{
@@ -549,14 +565,38 @@ SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  }
  const offers=sortedOffers().slice(0,4).map(offerTile).join('');
  const keys=Object.keys(P).filter(k=>S.model==='endorsed'||k!==S.prop).sort((a,b)=>p.dist[a]-p.dist[b]).slice(0,7);
- return `<div class="body">${hero}${walletStrip()}${tierStrip()}${drHomeBar()}${S.model==='umbrella'?propFeed(S.prop):''}${askBar()}${liveCard()}
-  <div style="margin-top:14px">${nowCard()}</div>
-  <div style="margin-top:12px">${hourly()}</div>
-  ${S.model==='umbrella'?'':`<div class="sec"><h4>Nearest offers first</h4><button data-go="offers">See all</button></div><div class="hs">${offers}</div>`}
+ // v2: one summary and one "Right now" stack instead of a card for everything
+ return `<div class="body">${hero}${askTop()}${S.model==='endorsed'?passSummary():''}${rightNow()}${S.model==='umbrella'?propFeed(S.prop):''}
+  ${S.model==='umbrella'?'':`<div class="sec"><h4>Offers for you</h4><button data-go="offers">See all</button></div><div class="hs">${offers}</div>`}
   <div class="sec"><h4>${S.model==='endorsed'?'Your destinations':'More destinations'}</h4><button data-go="destinations">All 11</button></div><div class="hs">${keys.map(k=>destTile(k)).join('')}</div>
   <div class="sec"><h4>Challenges</h4><button data-go="challenges">See all</button></div>${challengesTeaser()}
-  <div class="sec"><h4>Live on the floor</h4><button data-go="meters">Meters</button></div>${meterTeaser()}
-  <div style="margin-top:14px">${sponsored()}</div></div>`};
+  <div style="margin-top:18px">${sponsored()}</div></div>`};
+/* ---------- v2 Home: concierge search, Passport summary, "Right now" stack ---------- */
+function askTop(){return `<button data-go="concierge" class="asktop">${ic('spa',16)}<span>Ask the concierge anything</span></button>`}
+function passSummary(){const p=per(),t=TIERS[p.tier],M=MILES[p.tier],L=M?M.list:[],nx=L.find(m=>p.tp<m[0]),prevAt=M?(L.filter(m=>m[0]<=p.tp).pop()||[M.from])[0]:0;
+ const pct=nx?Math.round((p.tp-prevAt)/(nx[0]-prevAt)*100):100;
+ return `<div class="psum">
+  <button data-go="wallet" class="psum-top"><span class="psum-card" style="background:linear-gradient(135deg,${t.c1},${t.c2})"></span><span style="flex:1;min-width:0"><span style="display:block;font-weight:800;font-size:15px">${t.n} member</span><span style="display:block;font-size:12.5px;color:var(--ink2)">${fmt(p.tp)} tier points · all 11 properties</span></span><span style="color:var(--ink3)">${ic('right',16)}</span></button>
+  <div class="psum-stats"><button data-go="wallet"><b class="num">${fmt(p.pts)}</b><span>Points</span></button><button data-go="wallet"><b class="num">$${p.fp}</b><span>Free Play</span></button><button data-act="walreveal" aria-label="${S.walShow?'Hide':'Show'} wallet balance"><b class="num">${S.walShow?usd(WB()):'$ ••••'}</b><span>Wallet ${ic(S.walShow?'eyeoff':'eye',12)}</span></button></div>
+  ${nx?`<button data-go="tier" class="psum-next"><span class="psum-bar"><i style="width:${pct}%;background:${t.c1}"></i></span><span class="psum-nt"><span>Next: <b>${nx[2]}</b></span><span class="num" style="color:var(--hi);font-weight:800;flex:none">${fmt(nx[0]-p.tp)} to go</span></span></button>`:''}</div>`}
+// Most urgent first: live session, live drawing, a reward to claim, the stay, then the progressive
+function rnItems(){const p=per(),A1=S.persona==='A',d=S.dr[S.persona],M=MILES[p.tier],ready=M&&M.list.find(m=>p.tp>=m[0]&&!S.ms[S.persona].has(m[0])),it=[];
+ if(A1)it.push({go:'playing',tone:'#5FD7A5',icon:'dice',live:'dot',title:'Playing now',meta:`Machine ${LIVE.A.mach} · +<span data-tickn="sessPts">${fmt(Math.floor(T.sessPts))}</span> points · 2× for <span data-clock="bonus">${clk(T.bonus)}</span>`,cta:'View'});
+ it.push({go:'drawing',tone:'#FF6B66',icon:'live',live:'LIVE',title:'Live drawing',meta:d.drawn>=DRAW.of?'Club Passport drawing · next draw 9:00 PM':`Club Passport · draw ${d.drawn+1} of ${DRAW.of} · ${DRAW.prize} · ${d.act?'your entries are in':drEntries()+' entries to activate'}`,cta:'Watch'});
+ if(ready)it.push({go:'tier',tone:'#E9C77B',icon:'gift',title:'Milestone reward ready',meta:`${fmt(ready[0])} tier points · ${ready[4]?'choose Free Play, dining, points or more':ready[3]}`,cta:ready[4]?'Choose':'Claim'});
+ if(A1)it.push({go:'stay',tone:'#9CC3F5',icon:'key',title:'Room 1418 is ready',meta:'WinStar · check-out Sun 11 AM',cta:'Key'});
+ else it.push({go:'offers',tone:'#9CC3F5',icon:'bed',title:'Elite Weekend at WinStar',meta:'Oct 9–11 · 2× tier points · rooms from $89',cta:'View'});
+ it.push({go:'play',tone:'#E9C77B',icon:'zap',title:'Hourly progressive',meta:`<span class="num" data-tick="hourly">${usd(T.hourly)}</span> · must hit by $1,000`,cta:'Play'});
+ return it}
+function rightNow(){const it=rnItems();
+ return `<div class="sec"><h4>Right now</h4><span class="cap rn-count">1 of ${it.length}</span></div>
+  <div class="rnow">${it.map(x=>`<button data-go="${x.go}" class="rn-card"><span class="rn-ic" style="background:${x.tone}24;color:${x.tone}">${ic(x.icon,19)}</span><span class="rn-tx"><span class="rn-t">${x.live==='LIVE'?'<span class="dlive" style="height:17px;font-size:9px;padding:0 5px;margin-right:7px;flex:none"><i></i>LIVE</span>':x.live==='dot'?'<i class="rn-dot"></i>':''}<span>${x.title}</span></span><span class="rn-m">${x.meta}</span></span><span class="rn-cta">${x.cta}</span></button>`).join('')}</div>
+  <div class="rn-dots">${it.map((x,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>`}
+// Keep the dots and "1 of 5" in step with the swipe
+document.addEventListener('scroll',e=>{const c=e.target;if(!(c instanceof Element)||!c.classList.contains('rnow'))return;
+ const kids=[...c.children];let i=0,best=1e9;kids.forEach((k,j)=>{const dd=Math.abs(k.offsetLeft-c.offsetLeft-20-c.scrollLeft);if(dd<best){best=dd;i=j}});
+ const dots=c.nextElementSibling;if(dots)[...dots.children].forEach((d,j)=>d.classList.toggle('on',j===i));
+ const cnt=c.previousElementSibling&&c.previousElementSibling.querySelector('.rn-count');if(cnt)cnt.textContent=`${i+1} of ${kids.length}`},true);
 /* ---------- Parent-led: swipe between properties and the whole app changes over ---------- */
 // Dining, shows and promotions from each property website, captured Sep 26, 2026. WinStar uses DINE, SHOWS and DPROMO.
 const PX={
