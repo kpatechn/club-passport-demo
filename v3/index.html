@@ -475,6 +475,8 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .sugbox{margin-top:14px;padding:14px;border-radius:16px;background:var(--el);font-size:13px;line-height:1.45;color:var(--ink2)}
 .sugbox svg{flex:none;color:#F5C46B;margin-top:1px}
 .otp.pin{margin-top:8px;justify-content:flex-start}.otp.pin span{flex:none;width:58px;font-size:40px;line-height:1;padding-bottom:4px}
+.acct{display:flex;gap:10px;align-items:center;margin-top:16px;padding:12px 14px;border-radius:14px;background:rgba(95,215,165,.1);box-shadow:inset 0 0 0 1px rgba(95,215,165,.3);font-size:13.5px;line-height:1.4;color:var(--ink2,#93A1B7)}
+.acct>svg{flex:none;color:#5FD7A5}.acct b{color:var(--ink,#EEF2F8)}
 /* rows that reuse the list text styles */
 .upc .k,.tgr .k,.rule .k{font-size:14px;font-weight:600}.upc .v,.tgr .v{font-size:12.5px;color:var(--ink2)}
 .upc .grow,.tgr .grow,.rule .grow,.bigopt .grow,.opt .grow{flex:1;min-width:0}
@@ -1445,7 +1447,7 @@ Object.assign(PATHS,{
 // Guest contact details the sign-in screens show (sample data)
 Object.assign(PERS.A,{dobFull:'03 / 14 / 1979',email:'winnie.day@example.com',mobile:'(405) 555-0142',since:'2014',dob:'•• / •• / 1979'});
 Object.assign(PERS.B,{dobFull:'07 / 22 / 1986',email:'jordan.hale@example.com',mobile:'(580) 555-0199',since:'2019',dob:'•• / •• / 1986'});
-const SAM={dobFull:'04 / 12 / 1988',name:'Sam Carter',first:'Sam',tier:'circle',num:'3071 882 405',since:'2019',home:'riverwind',mobile:'(405) 555-0131',email:'sam.carter@example.com'};
+const SAM={dobFull:'04 / 12 / 1988',typedPhone:'(405) 555-0188',altEmail:'samcarter88@example.com',name:'Sam Carter',first:'Sam',tier:'circle',num:'3071 882 405',since:'2019',home:'riverwind',mobile:'(405) 555-0131',email:'sam.carter@example.com'};
 const maskPh=x=>'***-***-'+x.mobile.slice(-4),maskEm=x=>x.email.charAt(0)+'***@'+x.email.split('@')[1];
 const fut=(t='Future phase')=>`<span class="fut">${t}</span>`;
 const fld=(l,v,o={})=>`<div class="fld"><span>${l}</span><span class="fv${o.ph?' ph':''}">${o.icon?ic(o.icon,16):''}<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v}</span>${o.caret?'<i class="caret"></i>':''}${o.lock?`<span class="lockv">${ic('lock',13)}</span>`:''}</span></div>`;
@@ -1517,7 +1519,7 @@ const CMLOCK={trips:[0,0,1],acct:[1,1,1]};
 const cmInit=fav=>({offers:[1,1,1],events:[1,0,1],draw:[1,0,1],deals:[0,0,1],jackpot:[1,0,0],trips:[1,1,1],acct:[1,1,1],props:'fav',pick:new Set(fav),freq:1,quiet:1,geo:0});
 
 /* ---------- v3 state ---------- */
-const doorFresh=()=>({faceOn:true,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
+const doorFresh=()=>({idType:'email',idEmpty:false,idErr:false,cardFirst:false,faceOn:true,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
 function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),trusted:{A:false,B:false},hasPw:{A:false,B:true},passkeys:{A:[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}],B:[]},pk:null,pwf:null,rc:{step:'menu',h:[]},
  stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
@@ -1556,6 +1558,9 @@ function doorVerified(){const d=S.door;d.fill=false;d.methods=false;d.err=null;
 function doorDone(msg){S.door=doorFresh();go('home');setTimeout(()=>toast(msg),40)}
 const demoRow=(act,cur,opts)=>`<div class="demo"><span>Demo</span>${opts.map(([v,l])=>`<button data-act="${act}" data-v="${v}" aria-pressed="${cur===v}">${l}</button>`).join('')}</div>`;
 const errT=t=>`<div class="errt">${ic('info',15)}<span>${t}</span></div>`;
+// What the guest typed on the first screen, and the account number shown as its last 4 digits
+const typedId=d=>d.who==='new'||d.sam?(d.idType==='phone'?SAM.typedPhone:SAM.email):(d.idType==='phone'?per().mobile:per().email);
+const last4=x=>x.num.replace(/\s/g,'').slice(-4);
 // The 4-digit casino PIN, shown as dots
 const pinBox=bad=>`<div class="otp pin">${[0,1,2,3].map(()=>`<span class="${bad?'bad':'on'}">•</span>`).join('')}</div>`;
 const pinHelpHTML=d=>d.pinHelp?`<div class="note" style="margin-top:14px">${ic('info',16)}<span>PINs are reset at any player services desk or self-service kiosk, with a photo ID. Then come back and finish here.</span></div><button data-act="dnext" data-v="inperson" style="display:block;margin:12px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Find player services</button>`:`<button data-act="dpinhelp" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Forgot your PIN?</button>`;
@@ -1578,14 +1583,16 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
  const opt=(act,v,i,t,s)=>`<button class="bigopt" data-act="${act}"${v?` data-v="${v}"`:''}><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`;
  let b='';
- if(st==='start')b=`${h1('Sign in or join','One account for the app and all 11 property websites.')}
-  ${fld('Email or mobile number',d.who==='new'||d.sam?SAM.email:p.email,{caret:1})}
+ if(st==='start'){const val=d.idEmpty?'':typedId(d);b=`${h1('Sign in or join','One account for the app and all 11 property websites.')}
+  <div class="fld"><span>Email or mobile number</span><span class="fv${d.idErr?' bad':''}" data-act="didfill">${val?`<span style="flex:1">${val}</span><i class="caret"></i><button data-act="didclear" aria-label="Clear" style="color:var(--ink3);display:flex;margin-left:8px">${ic('x',16,2.4)}</button>`:'<i class="caret" style="margin-left:0"></i><span style="flex:1;color:var(--ink3);font-weight:500;margin-left:6px">Email or mobile number</span>'}</span></div>
+  ${d.idErr?errT('Enter your email or mobile number to continue.'):''}
+  <div style="display:flex;justify-content:space-between;gap:10px;margin-top:10px"><button data-act="didtype" style="font-size:13px;font-weight:700;color:var(--hi)">${d.idType==='phone'?'Use my email instead':'Use my mobile number instead'}</button><button data-act="dcardstart" style="font-size:13px;font-weight:700;color:var(--hi)">Use my card number</button></div>
   <div class="demo"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="dwho" data-v="${k}" aria-pressed="${d.who===k&&!d.sam}">${l}</button>`).join('')}</div>
-  <button class="btn" data-act="dgo" style="width:100%;height:52px;margin-top:16px">Continue</button>
+  <button class="btn" data-act="dgo" aria-disabled="${!val}" style="width:100%;height:52px;margin-top:16px;${val?'':'opacity:.4'}">Continue</button>
   <div class="ordiv"><span>or</span></div>
   <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey</button>
   <div style="display:flex;justify-content:center;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button></div>
-  <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`;
+  <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}
  else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}
   <div class="fld"><span>Password</span><span class="fv${d.err==='pw'?' bad':''}"><span style="flex:1">••••••••••••</span><i class="caret"></i></span></div>
   ${d.err==='pw'?errT('That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.'):''}
@@ -1593,18 +1600,18 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <button class="btn line" data-act="dcode" style="width:100%;height:48px;margin-top:10px">${ic('msg',16)} Text me a code instead</button>
   <div style="display:flex;justify-content:center;margin-top:16px"><button data-act="dforgot" style="font-size:13px;font-weight:700;color:var(--hi)">Forgot password?</button></div>
   ${demoRow('derr',d.err,[['pw','Wrong password'],['locked','Too many tries']])}`;
- else if(st==='code'){const claim=d.who==='claim',to=d.m==='email'?maskEm(id):d.newph?'(580) ***-**77':maskPh(id);
+ else if(st==='code'){const claim=d.who==='claim',tp=d.emailStep&&d.idType==='phone',to=tp?'***-***-'+SAM.typedPhone.slice(-4):d.m==='email'?maskEm(id):d.newph?'(580) ***-**77':maskPh(id);
   const meth=[['sms','msg',`Text ${maskPh(id)}`],['email','mail',`Email ${maskEm(id)}`]].concat(claim?[]:[['app','shield','Authenticator app']]);
-  b=`${h1(d.emailStep?'Confirm your email':'Enter the code',d.m==='app'?'Open your authenticator app for the 6-digit code.':`We sent a 6-digit code to ${to}${claim&&d.m==='sms'&&!d.newph?', the mobile number on the player account':''}.`)}
+  b=`${h1(d.emailStep?(tp?'Confirm your mobile number':'Confirm your email'):'Enter the code',d.m==='app'?'Open your authenticator app for the 6-digit code.':`We sent a 6-digit code to ${to}${claim&&d.m==='sms'&&!d.newph&&!d.emailStep?', the mobile number on the player account':''}.`)}
   ${d.pwDone?`<div class="why">${ic('shield',16)}<span><b>New iPhone.</b> Your password was right. A code confirms this phone is yours.</span></div>`:''}
   ${d.risk?`<div class="why">${ic('pin',16)}<span><b>New location.</b> This sign-in is from Dallas, TX, so we’re checking it’s you. Trusted devices don’t skip this.</span></div>`:''}
-  ${claim&&!d.newph&&!d.emailStep?`<div class="why">${ic('shield',16)}<span>Your date of birth and PIN matched. We show account details only after this code, so nobody can look up someone else’s membership.</span></div>`:''}
+  ${claim&&!d.newph&&!d.emailStep?`<div class="why">${ic('shield',16)}<span>Your date of birth and PIN matched. Full account details appear after this code, so nobody can look up someone else’s membership.</span></div>`:''}
   ${otpBox(d.fill,d.err==='wrong')}
   ${d.err==='wrong'?errT('That code doesn’t match. 2 tries left.'):d.err==='expired'?errT('That code expired after 10 minutes. We sent a new one.'):''}
   ${d.fill?`<div class="cap" style="text-align:center;margin-top:14px;color:#7FE3B8;font-weight:600">${ic('check',13,2.6)} Verifying</div>`:`<button class="autofill" data-act="dfill">${ic(d.m==='email'?'mail':d.m==='app'?'shield':'msg',15)} ${d.m==='email'?'From Mail':d.m==='app'?'Paste':'From Messages'}: <b>${d.err==='expired'?'607 254':'482 913'}</b></button>`}
   ${d.m==='email'&&!d.fill?`<div class="note" style="margin-top:12px">${ic('mail',16)}<span>Or tap the sign-in link in the email. It opens the app and signs you in.</span></div>`:''}
   ${d.methods?`<div class="opts">${meth.map(([k,i,t])=>`<button class="opt" data-act="dm" data-v="${k}" aria-pressed="${d.m===k}"><span class="rad"></span><span class="oi">${ic(i,18)}</span><span class="grow"><b>${t}</b></span></button>`).join('')}</div>`:''}
-  <div style="display:flex;justify-content:center;gap:14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" style="color:var(--hi)">Resend code</button><span style="color:var(--ink3)">|</span>${d.emailStep?'':'<button data-act="dmethods" style="color:var(--hi)">Use a different method</button>'}</div>
+  <div style="display:flex;justify-content:center;gap:14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" style="color:var(--hi)">Resend code</button>${d.emailStep?'':'<span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button>'}</div>
   ${claim&&!d.newph&&!d.emailStep&&d.via!=='phone'?`<button data-act="dnophone" style="display:block;margin:12px auto 0;font-size:13px;font-weight:700;color:var(--hi)">I don’t have this phone anymore</button>`:''}
   <div class="cap" style="text-align:center;margin-top:14px;color:var(--ink3)">The code fills in and checks itself. Codes last 10 minutes.</div>
   ${demoRow('derr',d.err,[['wrong','Wrong code'],['expired','Expired'],['locked','Too many tries']])}`}
@@ -1635,16 +1642,17 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">Go to my account</button>
   ${d.more?`<div class="list" style="margin:14px 0 0"><button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('pwd',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>`
    :`<button data-act="dmore" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">More options</button>`}`}
- else if(st==='played')b=`${h1('Welcome! Let’s find you',`There’s no online account for ${SAM.email} yet.`)}
+ else if(st==='played')b=`${h1('Welcome! Let’s find you',`There’s no online account for ${typedId(d)} yet.`)}
   <div style="font-weight:700;font-size:16px;margin-top:22px">Have you played at a Chickasaw Nation casino?</div>
   ${opt('dnext','find','card','Yes, I have a player’s card','We’ll find it in a few seconds')}${opt('dnext','join','plus','No, I’m new here','Join the list for a first-visit offer')}
   <div class="note" style="margin-top:14px">${ic('info',16)}<span>Many guests gave us a different email or number at the casino, so a card holder is never treated as new.</span></div>`;
  else if(st==='find')b=d.who==='claim'?`${h1('Let’s confirm it’s you another way','Then we’ll send codes to your new number.')}
   ${opt('dm','email','mail','Email me a code instead',maskEm(p))}${opt('dnext','card','card','Use my card number','The number on your casino card')}${opt('dnext','inperson','pin','Help me in person','At any of our casinos, with a photo ID')}`
   :`${h1('Let’s find your account','Pick whatever’s easiest.')}
-  ${opt('dnext','phone','phone','Try my mobile number','The one you gave us at the casino')}${opt('dnext','card','card','Enter my card number','With your date of birth and casino PIN')}${opt('dnext','inperson','pin','I don’t have my card or PIN','Verify in person at any of our casinos')}`;
+  ${d.idType==='phone'?opt('dnext','phone','mail','Try my email address','The one you gave us at the casino'):opt('dnext','phone','phone','Try my mobile number','The one you gave us at the casino')}${opt('dnext','card','card','Enter my card number','With your date of birth and casino PIN')}${opt('dnext','inperson','pin','I don’t have my card or PIN','Verify in person at any of our casinos')}`;
  else if(st==='pin'){const left=3-d.perr;
   b=`${h1('Confirm it’s you','Enter your date of birth and the 4-digit PIN you use at our casinos.')}
+  <div class="acct">${ic('card',18)}<span>We found <b>account ending in ${last4(id)}</b>. Confirm it’s yours.</span></div>
   <div class="fld"><span>Date of birth</span><span class="fv${d.perr?' bad':''}">${id.dobFull}</span></div>
   <div class="fld"><span>Casino PIN</span></div>${pinBox(d.perr>0)}
   ${d.perr?errT(`That date of birth and PIN don’t match our records. ${left} ${left===1?'try':'tries'} left.`):''}
@@ -1656,23 +1664,25 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">The date of birth and PIN didn’t match 3 times, so claiming this account online is paused for 24 hours. Player services at any of our casinos can help right away, with a photo ID.</div>
   <button class="btn" data-act="dnext" data-v="inperson" style="width:100%;height:50px;margin-top:20px">Find player services</button>
   <button data-act="dreset" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Back to start</button>`;
- else if(st==='phone')b=`${h1('Try your mobile number','The one you may have given us at the casino.')}
-  <div class="fld"><span>Mobile number</span><span class="fv${d.phErr?' bad':''}"><span style="flex:1">${SAM.mobile}</span><i class="caret"></i></span></div>
-  ${d.phErr?errT('No player account uses that number. Try your card number instead.'):''}
+ else if(st==='phone'){const em=d.idType==='phone'; // they typed a mobile, so try the email, and the other way round
+  b=`${h1(em?'Try your email address':'Try your mobile number','The one you may have given us at the casino.')}
+  <div class="fld"><span>${em?'Email address':'Mobile number'}</span><span class="fv${d.phErr?' bad':''}"><span style="flex:1">${em?SAM.altEmail:SAM.mobile}</span><i class="caret"></i></span></div>
+  ${d.phErr?errT(`No player account uses that ${em?'email':'number'}. Try your card number instead.`):''}
   <button class="btn" data-act="dphone" style="width:100%;height:52px;margin-top:16px">Continue</button>
   ${d.phErr?`<button class="btn line" data-act="dnext" data-v="card" style="width:100%;height:46px;margin-top:10px">Use my card number</button>`:''}
-  ${demoRow('dpherr',d.phDemo,[['found','Match found'],['none','No match']])}`;
+  ${demoRow('dpherr',d.phDemo,[['found','Match found'],['none','No match']])}`}
  else if(st==='card'){const only=d.pinOk,left=3-d.perr; // lost phone: date of birth and PIN were already checked
   b=`${h1(only?'Enter your card number':'Enter your card details',only?'The number on your Club Passport or casino card.':'Your card number, date of birth and the 4-digit PIN you use at our casinos.')}
   ${fld('Card number',only?id.num:SAM.num,{caret:1})}
   ${only?'':`<div class="fld"><span>Date of birth</span><span class="fv${d.perr?' bad':''}">${SAM.dobFull}</span></div><div class="fld"><span>Casino PIN</span></div>${pinBox(d.perr>0)}${d.perr?errT(`That card, date of birth and PIN don’t match our records. ${left} ${left===1?'try':'tries'} left.`):''}`}
   <button class="btn" data-act="dcard" style="width:100%;height:52px;margin-top:16px">Continue</button>
   ${only?'':pinHelpHTML(d)+demoRow('dpinerr',d.pinDemo,[['ok','Matches'],['wrong','No match'],['lock','3 wrong tries']])}`}
- else if(st==='addemail')b=`<div class="done-ic">${ic('check',40,2.6)}</div>
+ else if(st==='addemail'){const tp=d.idType==='phone';
+  b=`<div class="done-ic">${ic('check',40,2.6)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">We found your account</h1>
-  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">Sign in with <b style="color:var(--ink)">${SAM.email}</b> from now on? We’ll send a code to confirm it and add it to your player account.</div>
-  <button class="btn" data-act="daddemail" style="width:100%;height:52px;margin-top:22px">${ic('mail',18)} Add my email</button>
-  <button data-act="dskipemail" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Skip. I’ll sign in with my mobile number</button>`;
+  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">Sign in with <b style="color:var(--ink)">${typedId(d)}</b> from now on? We’ll send a code to confirm it and add it to your player account.</div>
+  <button class="btn" data-act="daddemail" style="width:100%;height:52px;margin-top:22px">${ic(tp?'phone':'mail',18)} ${tp?'Add my mobile number':'Add my email'}</button>
+  <button data-act="dskipemail" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Skip for now</button>`}
  else if(st==='newph')b=`${h1('Add your new mobile number','Your card matched your player account. Codes will go to this number from now on.')}${fld('New mobile number','(580) 555-0177',{caret:1})}
   <button class="btn" data-act="dnewph" style="width:100%;height:52px;margin-top:16px">Send code</button>
   <div class="cap" style="margin-top:12px;color:var(--ink3)">We’ll let you know at your email and your old number.</div>`;
@@ -1997,8 +2007,12 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
  const later=m=>setTimeout(()=>toast(m),40);
  switch(act){
   // sign in or join
-  case 'dwho':S.door.who=v;S.door.sam=false;render(true);return true;
-  case 'dgo':{const d=S.door;d.m='sms';d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
+  case 'dwho':S.door.who=v;S.door.sam=false;S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
+  case 'didclear':S.door.idEmpty=true;render(true);return true;
+  case 'didfill':if(S.door.idEmpty){S.door.idEmpty=false;S.door.idErr=false;render(true)}return true;
+  case 'didtype':S.door.idType=S.door.idType==='phone'?'email':'phone';S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
+  case 'dcardstart':{const d=S.door;d.who='new';d.cardFirst=true;stepTo(d,'card');return true}
+  case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m='sms';d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
   case 'dpw':{const d=S.door;if(d.err==='pw'){d.err=null;render(true);return true}d.pwDone=true;d.m='sms';stepTo(d,'code');return true}
   case 'dcode':S.door.pwDone=false;S.door.m='sms';S.door.err=null;stepTo(S.door,'code');return true;
   case 'dforgot':S.rc={step:'pw',h:['menu']};go('recover');return true;
@@ -2025,10 +2039,10 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dpin':case 'dcard':{const d=S.door;
    if(act==='dcard'&&d.pinOk){stepTo(d,'newph');return true}
    if(d.pinDemo==='wrong'){d.perr++;if(d.perr>=3){d.perr=0;stepTo(d,'pinlock')}else render(true);return true}
-   d.perr=0;d.pinOk=true;d.m='sms';if(act==='dcard'){d.who='claim';d.sam=true;d.via='card'}stepTo(d,'code');return true}
+   d.perr=0;d.pinOk=true;d.m='sms';if(act==='dcard'){d.who='claim';d.sam=true;d.via=d.cardFirst?null:'card'}stepTo(d,'code');return true}
   case 'dpherr':S.door.phDemo=v;S.door.phErr=false;render(true);return true;
   case 'dphone':{const d=S.door;if(d.phDemo==='none'){d.phErr=true;render(true);return true}d.who='claim';d.sam=true;d.via='phone';d.phErr=false;stepTo(d,'pin');return true}
-  case 'daddemail':{const d=S.door;d.emailStep=true;d.m='email';stepTo(d,'code');return true}
+  case 'daddemail':{const d=S.door;d.emailStep=true;d.m=d.idType==='phone'?'sms':'email';stepTo(d,'code');return true}
   case 'dskipemail':stepTo(S.door,'welcome');return true;
   case 'dwallet':toast('Added to Apple Wallet. Show it at any player services desk.');return true;
   case 'daddph':S.door.addPh=true;render(true);return true;
@@ -2294,31 +2308,32 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
  let b='';
  const id=m.sam?SAM:p,ph=maskPh(id),demo=`<div class="demo" style="margin-top:14px"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="wwho" data-v="${k}" aria-pressed="${m.who===k}">${l}</button>`).join('')}</div>`;
  const big=(act,v,t)=>`<button class="wsec" data-act="${act}"${v?` data-v="${v}"`:''} style="text-align:left;padding:0 16px">${t}</button>`;
- if(m.step==='start')b=`${head('Sign in or join','One account for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v">${m.who==='new'||m.sam?SAM.email:p.email}</span></div>${k==='winstar'&&m.who!=='new'?`<div class="why" style="margin-top:12px">${ic('swap',16)}<span><b>Used to sign in to winstar.com?</b> Use the same email. Your winstar.com login is now your Club Passport.</span></div>`:''}${demo}
+ if(m.step==='start')b=`${head('Sign in or join','One account for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v">${m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)}</span></div><div class="wlinks" style="justify-content:space-between;margin-top:8px"><button data-act="wtype">${m.idType==='phone'?'Use my email instead':'Use my mobile number instead'}</button><button data-act="wcardstart">Use my card number</button></div>${k==='winstar'&&m.who!=='new'?`<div class="why" style="margin-top:12px">${ic('swap',16)}<span><b>Used to sign in to winstar.com?</b> Use the same email. Your winstar.com login is now your Club Passport.</span></div>`:''}${demo}
   <button class="wprim" data-act="wgo" style="${acc}">Continue</button><div class="ordiv"><span>or</span></div>
   <button class="wsec" data-act="wqr">${ic('qr',15)} Sign in with your phone</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey</button>
   <div class="wlinks"><button data-act="wstep" data-v="trouble">Trouble signing in?</button></div>`;
  else if(m.step==='pw')b=`${head('Enter your password',`Signing in as ${p.email}`)}<div class="wf">Password<span class="v">••••••••••••</span></div>
   <button class="wprim" data-act="wpw" style="${acc}">Sign in</button><button class="wsec" data-act="wcode">Text me a code instead</button>`;
- else if(m.step==='code')b=`${head(m.confirmEmail?'Confirm your email':'Enter the code',`We sent a 6-digit code to ${m.email?maskEm(id):ph}${m.who==='claim'&&!m.email?', the mobile number on the player account':''}.`)}
+ else if(m.step==='code')b=`${head(m.confirmEmail?(m.idType==='phone'?'Confirm your mobile number':'Confirm your email'):'Enter the code',`We sent a 6-digit code to ${m.confirmEmail&&m.idType==='phone'?'***-***-'+SAM.typedPhone.slice(-4):m.email?maskEm(id):ph}${m.who==='claim'&&!m.email?', the mobile number on the player account':''}.`)}
   ${m.pwDone?`<div class="why">${ic('shield',16)}<span><b>New browser.</b> Your password was right. A code confirms it’s you.</span></div>`:''}
   <div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div><div class="wchk"><i>${ic('check',12,3)}</i>Trust this browser for 30 days</div>
   <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend">Resend code</button><span style="color:var(--faint)">|</span><button data-act="wemail">Email me instead</button></div>`;
  else if(m.step==='welcome')b=`${head(`Welcome back, ${id.first}`,`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app.`)}<div style="display:flex;justify-content:center;margin-top:16px">${kcard(id,260)}</div>
   <button class="wprim" data-act="wdone" style="${acc}">Go to my account</button><div class="wlinks"><button data-act="waddpw">Add a password (optional)</button></div>`;
- else if(m.step==='played')b=`${head('Welcome! Let’s find you',`There’s no online account for ${SAM.email} yet.`)}<div style="font-weight:700;margin-top:18px">Have you played at a Chickasaw Nation casino?</div>
+ else if(m.step==='played')b=`${head('Welcome! Let’s find you',`There’s no online account for ${m.idType==='phone'?SAM.typedPhone:SAM.email} yet.`)}<div style="font-weight:700;margin-top:18px">Have you played at a Chickasaw Nation casino?</div>
   ${big('wstep','card','Yes, I have a player’s card')}${big('wstep','join','No, I’m new here')}`;
  else if(m.step==='card')b=`${head('Let’s find your account','Your mobile number or card number, plus your date of birth and the 4-digit PIN you use at our casinos.')}
-  <div class="demo" style="margin-top:14px;border-style:solid;border-color:var(--line2)"><span style="color:var(--mute)">Find by</span><button data-act="wby" data-v="phone" aria-pressed="${m.by!=='card'}">Mobile number</button><button data-act="wby" data-v="card" aria-pressed="${m.by==='card'}">Card number</button></div>
-  <div class="wf">${m.by==='card'?'Card number':'Mobile number'}<span class="v">${m.by==='card'?SAM.num:SAM.mobile}</span></div>
+  <div class="demo" style="margin-top:14px;border-style:solid;border-color:var(--line2)"><span style="color:var(--mute)">Find by</span><button data-act="wby" data-v="phone" aria-pressed="${m.by!=='card'}">${m.idType==='phone'?'Email':'Mobile number'}</button><button data-act="wby" data-v="card" aria-pressed="${m.by==='card'}">Card number</button></div>
+  <div class="wf">${m.by==='card'?'Card number':m.idType==='phone'?'Email':'Mobile number'}<span class="v">${m.by==='card'?SAM.num:m.idType==='phone'?SAM.altEmail:SAM.mobile}</span></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">Date of birth<span class="v">${SAM.dobFull}</span></div><div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div></div>
   <button class="wprim" data-act="wcard" style="${acc}">Continue</button>${big('wstep','inperson','I don’t have my card or PIN')}
   <div class="wlinks"><button data-act="wpinhelp">Forgot your PIN?</button></div>`;
  else if(m.step==='pin')b=`${head('Confirm it’s you','Enter your date of birth and the 4-digit PIN you use at our casinos.')}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">Date of birth<span class="v">${p.dobFull}</span></div><div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div></div>
+  <div class="acct">${ic('card',18)}<span>We found <b>account ending in ${last4(id)}</b>. Confirm it’s yours.</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">Date of birth<span class="v">${id.dobFull}</span></div><div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div></div>
   <button class="wprim" data-act="wpin" style="${acc}">Continue</button><div class="wlinks"><button data-act="wpinhelp">Forgot your PIN?</button></div>`;
- else if(m.step==='addemail')b=`${head('We found your account',`Sign in with ${SAM.email} from now on? We’ll send a code to confirm it and add it to your player account.`)}
-  <button class="wprim" data-act="waddemail" style="${acc}">Add my email</button><button class="wsec" data-act="wstep" data-v="welcome">Skip. I’ll use my mobile number</button>`;
+ else if(m.step==='addemail')b=`${head('We found your account',`Sign in with ${m.idType==='phone'?SAM.typedPhone:SAM.email} from now on? We’ll send a code to confirm it and add it to your player account.`)}
+  <button class="wprim" data-act="waddemail" style="${acc}">${m.idType==='phone'?'Add my mobile number':'Add my email'}</button><button class="wsec" data-act="wstep" data-v="welcome">Skip. I’ll use my mobile number</button>`;
  else if(m.step==='inperson')b=`${head('Let’s verify you in person','Show a photo ID at player services at any Chickasaw Nation casino. Linking your account takes a few minutes.')}<div class="pc" style="background:#16233C;margin-top:16px;padding:16px;display:flex;gap:14px;align-items:center"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div style="color:var(--mute);font-size:12.5px">Show this at the desk</div><div style="font-weight:800;font-size:20px">CP-48213</div><div style="color:var(--mute);font-size:12px;margin-top:2px">We’ll text you when it’s linked. No new account was created.</div></div></div><button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
  else if(m.step==='join')b=`${head('Join the list','We’ll email you an offer for your first visit.')}<div class="wf">Email<span class="v">${SAM.email}</span></div><div class="wf">First name (optional)<span class="v">Sam</span></div><div class="wchk"><i>${ic('check',12,3)}</i>Email me offers and news. I’m 21 or older.</div><button class="wprim" data-act="wstep" data-v="jthanks" style="${acc}">Join</button><p style="font-size:12px;color:var(--mute);margin:12px 0 0">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</p>`;
  else if(m.step==='jthanks')b=`${head('Check your email',`Tap the link we sent to ${SAM.email} to confirm. Your first-visit offer is in the same email.`)}<button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
@@ -2446,10 +2461,12 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wpw':S.webModal.pwDone=true;S.webModal.step='code';render(true);return true;
   case 'wcode':S.webModal.pwDone=false;S.webModal.step='code';render(true);return true;
   case 'wemail':S.webModal.email=1;render(true);toast('Code sent by email');return true;
-  case 'wverify':{const m=S.webModal;S.webTrusted=true;if(m.who==='claim'){m.step=m.sam&&!m.confirmEmail?'addemail':'welcome';render(true)}else webSignedIn();return true}
-  case 'waddemail':{const m=S.webModal;m.confirmEmail=true;m.email=1;m.step='code';render(true);return true}
+  case 'wverify':{const m=S.webModal;S.webTrusted=true;if(m.who==='claim'){m.step=m.sam&&!m.confirmEmail&&!m.cardFirst?'addemail':'welcome';render(true)}else webSignedIn();return true}
+  case 'waddemail':{const m=S.webModal;m.confirmEmail=true;m.email=m.idType==='phone'?0:1;m.step='code';render(true);return true}
   case 'wpin':S.webModal.step='code';render(true);return true;
   case 'wby':S.webModal.by=v;render(true);return true;
+  case 'wtype':S.webModal.idType=S.webModal.idType==='phone'?'email':'phone';render(true);return true;
+  case 'wcardstart':{const m=S.webModal;m.who='new';m.by='card';m.cardFirst=true;m.step='card';render(true);return true}
   case 'wpinhelp':toast('PINs are reset at any player services desk or kiosk, with a photo ID');return true;
   case 'wcard':{const m=S.webModal;m.who='claim';m.sam=true;m.email=0;m.step='code';render(true);return true}
   case 'wtrouble':{const m=S.webModal;if(v==='code'){m.who='ret';m.email=1;m.pwDone=false;m.step='code'}else{m.who='new';m.step='card'}render(true);return true}
@@ -2506,15 +2523,18 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['pksign','Sign in with a passkey','App. E','App'],
  ['pknone','No passkey on this phone: use email or phone','App. E','App'],
  ['pkcreate','Create a passkey after signing in with a code','App. E','App'],
- ['claim','Card holder, first time online: date of birth and casino PIN, a code to the phone on file, then “Welcome back”','App. A, C','App'],
+ ['required','The first screen needs an email or mobile number before Continue works','App. B','App'],
+ ['claim','Card holder, first time online: “account ending in 7890”, date of birth and PIN, a code, then “Welcome back”','App. A, C','App'],
+ ['cardfirst','Starts with the card number: card, date of birth and PIN, then a code to the phone on file','App. C','App'],
  ['pinwrong','Wrong date of birth or PIN, with tries left','App. C, E','App'],
  ['pinlock','Three wrong tries: online claiming pauses for 24 hours','App. C, E','App'],
  ['pinforgot','Forgot the casino PIN: reset at player services','App. C, F','App'],
  ['nophone','Card holder without the phone on file: email code or card number, then a new number','App. C, F','App'],
- ['notfound','Not found but has played: try the mobile number, then date of birth and PIN','App. A, C, F','App'],
+ ['notfound','Typed an email that isn’t found: try the mobile number, then date of birth and PIN','App. A, C, F','App'],
+ ['notfoundph','Typed a mobile number that isn’t found: try the email address instead','App. A, C, F','App'],
  ['phnone','Mobile number not found: try the card number','App. C, F','App'],
  ['cardnum','Not found: card number, date of birth and PIN, then add the email as the sign-in','App. C, F','App'],
- ['addemail','Found by mobile or card: confirm the email they typed and make it their sign-in','App. C','App'],
+ ['addemail','Found another way: confirm the email or mobile they typed and make it their sign-in','App. C','App'],
  ['inperson','Can’t verify online: verify at a casino, reference saved to Wallet','4.3, App. A','App'],
  ['join','New guest joins the list, with no player account created','App. D, 4.11','App'],
  ['joinerr','Join errors: bad email, under 21, already on the list','App. D','App'],
@@ -2556,12 +2576,15 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'pksign':return login('A',false,{},()=>{S.pk={mode:'signin',step:'ask',from:'door'}});
   case 'pknone':return login('B',false,{},()=>{S.pk={mode:'signin',step:'ask',from:'door'}});
   case 'pkcreate':return login('B',false,{step:'faster',h:['start','pw','code']},()=>{S.passkeys.B=[]});
+  case 'required':return login('A',false,{idEmpty:true,idErr:true});
   case 'claim':return login('A',false,{who:'claim'});
+  case 'cardfirst':return login('A',false,{who:'new',cardFirst:true,step:'card',h:['start']});
   case 'nophone':return login('A',false,{who:'claim',step:'code',h:['start','pin'],pinOk:true});
   case 'pinwrong':return login('A',false,{who:'claim',step:'pin',h:['start'],pinDemo:'wrong',perr:1});
   case 'pinlock':return login('A',false,{who:'claim',step:'pinlock',h:['start','pin']});
   case 'pinforgot':return login('A',false,{who:'claim',step:'pin',h:['start'],pinHelp:true});
   case 'notfound':return login('A',false,{who:'new',step:'phone',h:['start','played','find']});
+  case 'notfoundph':return login('A',false,{who:'new',idType:'phone',step:'phone',h:['start','played','find']});
   case 'phnone':return login('A',false,{who:'new',step:'phone',h:['start','played','find'],phDemo:'none',phErr:true});
   case 'cardnum':return login('A',false,{who:'new',step:'card',h:['start','played','find']});
   case 'addemail':return login('A',false,{who:'claim',sam:true,via:'card',pinOk:true,step:'addemail',h:['start','played','find','card','code']});
