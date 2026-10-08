@@ -768,7 +768,7 @@ const GAMES={
  A:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Red Hot Ruby Major',p:'winstar',loc:'Plaza A · Bank 3',img:'ms-games'},{k:'g3',n:'Lucky Ducky Mega',p:'riverwind',loc:'Main floor · Bank 22',hot:'Due by history',img:'lc-2'}],
  B:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Money Bags Major',p:'artesian',loc:'Casino floor · Bank 2',img:'ct-2'},{k:'g3',n:'Buffalo Run Grand',p:'treasure',loc:'East floor · Bank 7',img:'nc-floor'}]
 };
-const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in or join'],['recover','Trouble signing in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['wallet','Passport'],['tier','Tier'],['drawing','Live drawing']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Home property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['trip','Trip'],['meters','Live meters']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account'],['security','Sign-in & security'],['password','Password'],['comms','Messages & alerts']]]];
+const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in or join'],['guest','Look around first'],['gbook','Book as a guest'],['recover','Trouble signing in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['wallet','Passport'],['tier','Tier'],['drawing','Live drawing']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Home property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['trip','Trip'],['meters','Live meters']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account'],['security','Sign-in & security'],['password','Password'],['comms','Messages & alerts']]]];
 const SCREENS=FLOW.flatMap(g=>g[1]);
 const NOTES={
  drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
@@ -835,7 +835,7 @@ const PATHS={
 function ic(n,s=20,w=1.8){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[n]}</svg>`}
 function kcard(p,w=350){const t=TIERS[p.tier];return `<div class="kc" style="--w:${w}px;--c1:${t.c1};--c2:${t.c2};--ink:${t.ink||'#fff'};width:${w}px;height:${Math.round(w*.63)}px"><span class="brand">CLUB PASSPORT</span><span class="tier">${t.n.toUpperCase()}</span><span class="word">PASSPORT</span><span class="no">${p.num||''}<br>${(p.name||'').toUpperCase()}</span><span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5"/><path d="m12 5.5 1.9 4.2 4.6.4-3.5 3 1.1 4.5L12 15.2l-4.1 2.4 1.1-4.5-3.5-3 4.6-.4z"/></svg></span></div>`}
 const FEAT={hotel:['bed','Hotel'],spa:['spa','Spa']};
-const NOTABS=['moving','login','mfa','claim','recover','book','lock','pwgame','social'];
+const NOTABS=['moving','login','guest','gbook','mfa','claim','recover','book','lock','pwgame','social'];
 function themeFor(scr){if(NOTABS.includes(scr)||(S.model==='endorsed'&&scr!=='property'))return BRAND;const p=P[S.prop];return {bg:'#0A1324',acc:p.acc,onacc:p.onacc,hi:p.hi,tint:p.bg}}
 function themeStyle(t){return `--acc:${t.acc};--onacc:${t.onacc};--hi:${t.hi};${t.tint?`background:linear-gradient(180deg,${t.tint} 0,#0A1324 520px)`:''}`}
 
@@ -1461,9 +1461,9 @@ function stepBack(o,exit){if(o.h&&o.h.length){o.step=o.h.pop();render()}else go(
 
 /* ---------- requirement tags shown in the presenter notes ---------- */
 const REQ={'4.1':'Loyalty website','4.2':'Property websites','4.3':'Login and account access','4.4':'Logged-in experience','4.5':'Offers','4.6':'Preferred property and availability','4.7':'Booking and transactions','4.8':'App','4.9':'Push and communications','4.10':'Analytics','4.11':'Data and system of record','4.12':'Migration','A':'Appendix A · Authentication journey','B':'Appendix B · Login paths','C':'Appendix C · Known guest','D':'Appendix D · Prospect capture','E':'Appendix E · MFA and step-up','F':'Appendix F · Account recovery','5':'Open decision'};
-const SREQ={moving:['4.12'],login:['4.3','A','B','C','D','E','4.8','4.11'],password:['4.3','E','B'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],meters:['5'],trip:['4.4','4.7'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
+const SREQ={moving:['4.12'],login:['4.3','A','B','C','D','E','4.8','4.11'],guest:['4.1','4.8','4.6'],gbook:['4.1','4.7'],password:['4.3','E','B'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],meters:['5'],trip:['4.4','4.7'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
 // m = first release, f = future phase, mf = both
-const SPHASE={moving:'m',login:'m',password:'m',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'m',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
+const SPHASE={moving:'m',login:'m',guest:'m',gbook:'m',password:'m',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'m',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
 function reqTags(id){const r=SREQ[id],ph=SPHASE[id];
  if(!r||!r.length)return `<div class="rqs"><span class="rq bx">Beyond the requirements document</span></div>`;
  return `<div class="rqs">${r.map(k=>`<span class="rq" title="${REQ[k]}">${/^\d/.test(k)&&k!=='5'?'Req '+k:k==='5'?'Open decision':'App. '+k} · ${k==='5'?'see Coverage':REQ[k].replace(/^Appendix . · /,'')}</span>`).join('')}${ph&&ph.includes('m')?'<span class="rq ph">First release</span>':''}${ph&&ph.includes('f')?'<span class="rq fu">Includes future phase</span>':''}</div>`}
@@ -1591,7 +1591,7 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <button class="btn" data-act="dgo" aria-disabled="${!val}" style="width:100%;height:52px;margin-top:16px;${val?'':'opacity:.4'}">Continue</button>
   <div class="ordiv"><span>or</span></div>
   <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey</button>
-  <div style="display:flex;justify-content:center;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button></div>
+  <div style="display:flex;justify-content:center;gap:18px;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button><span style="color:var(--ink3)">·</span><button data-act="dguest" style="font-size:13.5px;font-weight:700;color:var(--hi)">Look around first</button></div>
   <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}
  else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}
   <div class="fld"><span>Password</span><span class="fv${d.err==='pw'?' bad':''}"><span style="flex:1">••••••••••••</span><i class="caret"></i></span></div>
@@ -2002,6 +2002,58 @@ Object.assign(NOTES,{
  comms:{e:'Communications',t:'One set of choices, one shared limit',d:'Guests choose topics by channel (push, text, email), which properties they hear from and how often. The limit covers all 11 properties together, so nobody gets the same offer three times. Security notices are always on. Arrival alerts are a future phase.',aud:['Marketing','Loyalty','Compliance'],src:'<b>Requirement 4.9.</b> Open decision: whether preferences are enterprise-wide, by property, by channel or a mix, and where consent is stored. This shows a mix.'}
 });
 
+/* ---------- Signed out: look around first (requirement 4.1.3) and book with a nudge to sign in (4.1.4) ---------- */
+const GFAQ=[['Do my points work at every property?','Yes. Points, tier credit and Free Play work at all 11 Chickasaw Nation destinations.'],['How do I get a card?','Show a photo ID at player services at any of our casinos. It takes about five minutes.'],['I already have a card. How do I sign in?','Tap Sign in or join and enter the email or mobile you gave us at the casino. We’ll do the rest.'],['Can I book without an account?','Yes. Book rooms, tables, shows and spa as a guest. Sign in for member rates and to earn points.']];
+const EXPK=[['hotel','bed','Rooms','Member rates when you sign in'],['dining','dine','Dining','Reserve a table'],['shows','ticket','Shows','Tickets and presales'],['spa','spa','Spa','Treatments and packages']];
+// What a guest can book, by property: [title, place, photo, when, guest price, member benefit, short label, button]
+function expFor(k,kind){const n=P[k].n,ws=k==='winstar',ar=k==='artesian';
+ return {hotel:{t:'Book a room',place:ws?'WinStar World Casino Hotel':n+' Hotel',img:ws?'ws-stay':P[k].hero,when:'Fri, Oct 9 – Sun, Oct 11 · 2 adults',guest:ws?'$219 a night':'$149 a night',member:ws?'$159 a night, resort fee waived for Premier and up':'Member rate, $119 a night',lab:'Stay',cta:'Book a room'},
+  dining:{t:'Reserve a table',place:ws?'Kirby’s Prime Steakhouse':ar?'Springs at The Artesian':n+' Grill',img:ws?'d-kirbys':ar?'ar-lobby':'ws-dining',when:'Sat, Oct 10 · 7:00 PM · 2 guests',guest:'No deposit',member:'Your dining offers apply when you pay',lab:'Table',cta:'Reserve a table'},
+  shows:{t:'Get show tickets',place:ws?'Tom Jones · Lucas Oil Live':'Live music at '+n,img:ws?'e-tomjones':'rw-show',when:'Fri, Oct 16 · 8:00 PM · 2 seats',guest:ws?'$89 each':'$35 each',member:'Member presale seats, before general sale',lab:'Tickets',cta:'Get tickets'},
+  spa:{t:'Book a spa treatment',place:ws?'The Spa at WinStar':ar?'The Artesian Spa':n+' Spa',img:ws?'ws-spa':ar?'ar-hero':'ws-spa',when:'Sat, Oct 10 · 2:00 PM · 50-minute massage',guest:'$160',member:'Up to 20% off, depending on your tier',lab:'Treatment',cta:'Book a treatment'}}[kind]}
+SCR.guest=()=>{const order=['circle','select','signature','society'];
+ return `<div class="body" style="padding-bottom:40px">
+  <div class="topbar"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><span style="width:38px"></span></div>
+  <div class="photo" style="${bg('ws-globe')};height:210px;margin:8px 20px 0;border-radius:24px;--shade:linear-gradient(180deg,rgba(5,10,20,.1),rgba(5,10,20,.88))"><div style="position:absolute;left:18px;right:18px;bottom:16px"><div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#E9C77B">THE CHICKASAW NATION LOYALTY PROGRAM</div><div style="font-size:26px;font-weight:800;line-height:1.1;color:#fff;margin-top:6px">One account.<br>Eleven destinations.</div></div></div>
+  <div class="px" style="margin-top:12px"><div class="note">${ic('user',16)}<span>You’re looking around without signing in. <button data-act="gsignin" style="font-weight:700;color:var(--hi)">Sign in or join</button> for your offers and points.</span></div></div>
+  <div class="sec"><h4>How it works</h4></div>
+  <div class="list">${[['gem','Earn everywhere','Points and tier credit at all 11 properties'],['crown','One tier, recognized everywhere','Base, Premier, Elite and Chairman'],['gift','Redeem anywhere','Free Play, dining, stays and more']].map(([i,t,d])=>`<div class="li"><span style="color:var(--hi)">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${d}</div></div></div>`).join('')}</div>
+  <div class="sec"><h4>Tiers & benefits</h4></div>
+  <div class="hs">${order.map(k=>`<div style="width:220px;padding:14px;border-radius:20px;background:var(--el)">${kcard({tier:k},192)}<div style="font-weight:800;margin-top:10px">${TIERS[k].n}</div><div class="cap">${TIERS[k].line}</div><div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">${TBEN[k].slice(0,3).map(([bi,l])=>`<div style="display:flex;gap:8px;font-size:12.5px;line-height:1.35"><span style="color:var(--hi);flex:none">${ic(bi,14)}</span>${l}</div>`).join('')}</div></div>`).join('')}</div>
+  <div class="sec"><h4>Plan a visit</h4><span class="cap">No account needed</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 20px">${EXPK.map(([k,i,t,s])=>`<button data-act="gbook" data-v="${k}" style="text-align:left;padding:14px;border-radius:18px;background:var(--el)"><span style="color:var(--hi)">${ic(i,20)}</span><div style="font-weight:700;margin-top:8px">${t}</div><div class="cap">${s}</div></button>`).join('')}</div>
+  <div class="sec"><h4>Eleven destinations</h4><span class="cap">Opens each website</span></div>
+  <div class="list">${Object.keys(P).map(k=>`<a class="li" href="${PROP_URL[k]||'#'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><span class="photo" style="${bg(P[k].hero)};width:52px;height:52px;border-radius:12px;flex:none"></span><div class="grow"><div style="margin-bottom:3px">${lg(k,15)}</div><div class="v">${P[k].city}, OK</div></div><span style="color:var(--ink3);display:flex;align-items:center;gap:4px;font-size:12px">Website ${ic('ext',13,2.2)}</span></a>`).join('')}</div>
+  <div class="px" style="margin-top:16px"><div class="note">${ic('lock',16)}<span><b style="color:var(--ink)">Your offers are waiting.</b> Personal offers depend on your account, so they show after you sign in.</span></div></div>
+  <div class="sec"><h4>Questions</h4></div>
+  <div class="list">${GFAQ.map(([q,a],i)=>`<button class="li" data-act="gfaq" data-v="${i}" style="width:100%;text-align:left;flex-direction:column;align-items:stretch;gap:6px"><span style="display:flex;justify-content:space-between;gap:10px"><span class="k">${q}</span><span style="color:var(--ink3)">${ic(S.gfaq===i?'x':'plus',15,2.2)}</span></span>${S.gfaq===i?`<span class="v" style="line-height:1.45">${a}</span>`:''}</button>`).join('')}</div>
+  <div class="px cap" style="margin-top:14px;color:var(--ink3)">Must be 21 or older. Gambling problem? Call 1-800-522-4700.</div>
+  <div class="px" style="margin-top:16px"><button class="btn" data-act="gsignin" style="width:100%;height:52px">Sign in or join</button></div></div>`};
+SCR.gbook=()=>{if(!S.gb)S.gb={k:'hotel',step:'nudge'};const g=S.gb,x=expFor('winstar',g.k);
+ const card=`<div class="photo" style="${bg(x.img)};height:140px;margin:6px 20px 0;border-radius:20px;--shade:linear-gradient(90deg,rgba(5,10,20,.88),rgba(5,10,20,.2))"><div style="position:absolute;left:16px;right:16px;bottom:14px"><div style="font-weight:800;font-size:17px;color:#fff">${x.place}</div><div style="font-size:12.5px;color:rgba(255,255,255,.8)">${x.when}</div></div></div>`;
+ let b='';
+ if(g.step==='nudge')b=`<div class="px" style="margin-top:4px"><h1 class="t1">${x.t}</h1></div>${card}
+  <div style="margin:16px 20px 0;padding:16px;border-radius:20px;background:linear-gradient(140deg,rgba(156,195,245,.14),var(--el) 70%);box-shadow:inset 0 0 0 1px rgba(156,195,245,.25)"><div style="font-weight:800;font-size:16px">Sign in for member rates and your offers</div>
+   <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">${[x.member,'Your offers apply automatically','Earn points and tier credit on this booking','Your details fill in, nothing to type'].map(t=>`<div style="display:flex;gap:8px;font-size:13px;line-height:1.35"><span style="color:#5FD7A5;flex:none">${ic('check',15,2.6)}</span>${t}</div>`).join('')}</div>
+   <button class="btn" data-act="gsignin" style="width:100%;height:50px;margin-top:14px">Sign in or join</button></div>
+  <div class="px"><button class="btn line" data-act="gguest" style="width:100%;height:48px;margin-top:12px">Continue as a guest</button>
+  <div class="cap" style="text-align:center;margin-top:10px;color:var(--ink3)">Guest price: ${x.guest}. No account needed.</div></div>`;
+ else if(g.step==='form')b=`<div class="px" style="margin-top:4px"><h1 class="t1">Your details</h1><div class="cap" style="margin-top:4px">Booking as a guest · ${x.place}</div>
+  ${fld('Full name','Alex Morgan')}${fld('Email','alex.morgan@example.com')}${fld('Mobile','(214) 555-0162')}
+  <div class="sum" style="margin:16px 0 0"><div><span>${x.lab}</span><b>${x.when}</b></div><div><span>Price</span><b>${x.guest}</b></div></div>
+  <div class="note" style="margin-top:12px">${ic('info',16)}<span>Guest bookings don’t earn points. Sign in before you confirm to get member rates and earn on this booking.</span></div>
+  <button class="btn" data-act="gconfirm" style="width:100%;height:52px;margin-top:16px">Confirm booking</button>
+  <button data-act="gsignin" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Sign in instead</button></div>`;
+ else b=`<div class="px" style="text-align:center"><div class="done-ic">${ic('check',40,2.6)}</div><h1 class="t1" style="margin-top:18px">You’re booked</h1><div class="cap" style="font-size:14px;margin-top:6px">${x.place} · ${x.when}</div>
+  <div style="display:inline-block;margin-top:14px;padding:10px 16px;border-radius:12px;background:var(--el);font-family:var(--disp);font-weight:800;letter-spacing:.06em">G-4471925</div>
+  <div class="cap" style="margin-top:12px">Confirmation sent to a***@example.com.</div></div>
+  <div style="margin:18px 20px 0;padding:16px;border-radius:20px;background:var(--el)"><div style="font-weight:800">Want points for this?</div><div class="cap" style="margin-top:4px;line-height:1.45">Join or sign in within 30 days and we’ll add this booking to your Club Passport.</div><button class="btn" data-act="gsignin" style="width:100%;height:46px;margin-top:12px">Sign in or join</button></div>
+  <div class="px"><button data-act="gdone" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Back to look around</button></div>`;
+ return `<div class="body">${g.step==='done'?'<div class="topbar"><span style="height:38px"></span></div>':backBar('gback')}${b}</div>`};
+Object.assign(NOTES,{
+ guest:{e:'Look around first',t:'The program, without signing in',d:'From the sign-in screen, “Look around first” shows how Club Passport works, the four tiers and their benefits, all 11 destinations with links to their websites, and answers to common questions. Personal offers wait behind sign-in. Guests can plan a visit from here too.',aud:['Marketing','Loyalty','Exec'],src:'<b>Requirement 4.1.3:</b> loyalty education and links to property websites without logging in. <b>4.6:</b> personalized offers require login.'},
+ gbook:{e:'Book as a guest',t:'Signing in is encouraged, not required',d:'Booking a room, table, show or spa without an account first shows what signing in adds: member rates, offers, points and details filled in. Guests can continue without an account, and are invited to join afterwards so the booking can count.',aud:['Marketing','GM','Loyalty'],src:'<b>Requirement 4.1.4:</b> guests encouraged, but not required, to log in when booking hotels, activities or other experiences. The same choice appears on the property websites.'}});
+
 /* ---------- v3 taps inside the phone. Returns true when the tap was handled. ---------- */
 function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
  const later=m=>setTimeout(()=>toast(m),40);
@@ -2050,7 +2102,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'djerr':S.door.jerr=v==='ok'?null:v;render(true);return true;
   case 'djoin':{const d=S.door;if(d.jerr==='email'||!d.age21){toast(d.age21?'Check the email address':'You must be 21 or older to join');return true}stepTo(d,d.jerr==='dup'?'dup':'joined');return true}
   case 'dnoop':return true;
-  case 'dexplore':S.door=doorFresh();go('destinations');return true;
+  case 'dexplore':S.door=doorFresh();go('guest');return true;
   case 'dreset':S.door=doorFresh();render();return true;
   case 'dother':S.trusted[P1]=false;clearTimeout(S.fidT);S.fidT=null;S.door=doorFresh();render();return true;
   case 'dpasskey':S.pk={mode:'signin',step:'ask',from:'door'};render(true);return true;
@@ -2076,6 +2128,15 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'pwdone':{const b=S.pwf.back;S.pwf=null;go(b);return true}
   case 'signout':S.trusted[P1]=false;S.door=doorFresh();go('login');later('Signed out. Sign in with a code, Face ID or your passkey.');return true;
   case 'notme':toast('Signed out everywhere and the new iPhone removed. Change your password or add a passkey next.');return true;
+  // signed out: look around and book as a guest
+  case 'dguest':S.door=doorFresh();go('guest');return true;
+  case 'gsignin':S.door=doorFresh();S.gb=null;go('login');return true;
+  case 'gbook':S.gb={k:v,step:'nudge'};go('gbook');return true;
+  case 'gguest':S.gb.step='form';render();return true;
+  case 'gconfirm':S.gb.step='done';render();later('Booked as a guest');return true;
+  case 'gdone':S.gb=null;go('guest');return true;
+  case 'gback':if(S.gb&&S.gb.step==='form'){S.gb.step='nudge';render()}else{S.gb=null;go('guest')}return true;
+  case 'gfaq':S.gfaq=S.gfaq===+v?-1:+v;render(true);return true;
   // the home-property tab
   case 'hometab':S.prop=prefProp();S.opf=null;go('property');return true;
   // recovery
@@ -2131,7 +2192,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
 
 /* ================= PHONE ================= */
 const SB=`<div class="sb"><span>9:41</span><span class="isl"></span><span class="ic"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5a9.6 9.6 0 0 1 6.6 2.6l1.1-1.2A11.2 11.2 0 0 0 8 .9 11.2 11.2 0 0 0 .3 3.9l1.1 1.2A9.6 9.6 0 0 1 8 2.5Zm0 3.2a6.4 6.4 0 0 1 4.3 1.7l1.1-1.2A8 8 0 0 0 8 4.1a8 8 0 0 0-5.4 2.1l1.1 1.2A6.4 6.4 0 0 1 8 5.7Zm0 3.2c.8 0 1.5.3 2 .8L8 11.9 6 9.7c.5-.5 1.2-.8 2-.8Z"/></svg><svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="18" height="9" rx="2.4" fill="currentColor"/><rect x="24.5" y="4.5" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg></span></div>`;
-const SICON={drawing:'live',moving:'swap',login:'user',mfa:'shield',claim:'user',recover:'key',password:'key',offer:'tag',book:'bed',preferred:'star',security:'shield',comms:'bell',lock:'bell',home:'home',inbox:'inbox',offers:'tag',wallet:'passport',tier:'crown',destinations:'compass',property:'pin',dining:'dine',shows:'ticket',hotels:'bed',meters:'zap',trip:'ticket',concierge:'spa',host:'msg',settings:'shield'};
+const SICON={drawing:'live',moving:'swap',login:'user',mfa:'shield',claim:'user',recover:'key',password:'key',guest:'compass',gbook:'bed',offer:'tag',book:'bed',preferred:'star',security:'shield',comms:'bell',lock:'bell',home:'home',inbox:'inbox',offers:'tag',wallet:'passport',tier:'crown',destinations:'compass',property:'pin',dining:'dine',shows:'ticket',hotels:'bed',meters:'zap',trip:'ticket',concierge:'spa',host:'msg',settings:'shield'};
 function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
  return `<div class="drawer-bg${an}" data-act="menuclose"></div><aside class="drawer${an}" role="dialog" aria-label="Menu">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:60px 18px 14px"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><button data-act="menuclose" class="iconbtn" aria-label="Close menu">${ic('x',18,2.2)}</button></div>
@@ -2276,6 +2337,7 @@ function propertySite(k){const q=P[k],p=per(),t=TIERS[p.tier],inn=S.webIn,ws=k==
     <div style="margin-top:12px;font-size:13.5px;color:#fff;display:flex;align-items:center;gap:8px">${inn?`<span style="color:#7FE3B8">${ic('check',15,2.6)}</span> Club Passport rates for ${p.first} · ${fee()?t.n+': resort fee waived':'member rates'}${offs.some(o=>OX[o.id].how==='book')?' · 1 offer for these dates':''}`:`${ic('crown',15)} Sign in with Club Passport for member rates and your offers. You can also book as a guest.`}</div></div>
    ${inn?`<div class="ps-strip" style="background:rgba(255,255,255,.06)"><span class="wm" style="font-size:12px">CLUB PASSPORT</span><span>Welcome back, <b>${p.first}</b> · ${t.n} · ${fmt(p.pts)} points</span><button data-act="ppanel" style="margin-left:auto;font-weight:700;color:${q.hi}">${offs.length} ${q.n} ${offs.length===1?'offer':'offers'} →</button></div>`:''}
    <div class="ps-sec"><h3>${ws?'Tonight at WinStar':'Discover '+q.n}</h3><div class="ps-grid">${tiles.map(([im,n,s])=>`<div class="ps-tile"><div class="photo" style="${bg(im)}"></div><div class="t"><b>${n}</b><span>${s}</span></div></div>`).join('')}</div></div>
+   <div class="ps-sec" style="padding-top:0"><h3>Plan your visit</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">${[['dining','dine'],['shows','ticket'],['spa','spa']].map(([kind,i])=>{const x=expFor(k,kind);return `<div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)"><span style="flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:${q.acc}22;color:${q.acc}">${ic(i,20)}</span><div style="flex:1;min-width:0"><b style="display:block;font-size:14px">${x.t}</b><span style="font-size:12px;color:var(--mute)">${x.place}</span>${inn?`<span style="display:block;font-size:11.5px;color:#7FE3B8;margin-top:2px">${ic('check',11,2.6)} Member perks apply</span>`:''}</div><button class="oact" data-act="wexp" data-v="${kind}" style="margin:0;flex:none;background:${q.acc};color:${q.onacc}">${x.cta}</button></div>`}).join('')}</div></div>
    <div class="ps-band" style="background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px ${q.acc}55"><span class="wm" style="font-size:16px">CLUB PASSPORT</span><span style="flex:1;font-size:14px;color:rgba(255,255,255,.8)">Your card works here and at all 11 Chickasaw Nation destinations. Earn and redeem everywhere.</span><button data-act="wfull" data-v="tier" style="font-weight:700;color:${q.hi}">Benefits · Program rules · FAQ</button></div>
   </section>${panel}`}
 
@@ -2344,6 +2406,22 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
  else if(m.step==='passkey')b=S.passkeys[S.persona].length?`${head('Sign in with a passkey','Choose where your passkey is saved.')}${big('wpkuse','mac','This Mac (iCloud Keychain)')}${big('wpkuse','phone','iPhone, iPad or Android phone')}<div class="wlinks"><button data-act="wstep" data-v="start">Use email or phone instead</button></div>`
   :`${head('No passkey found','There’s no passkey for clubpassport.demo on this browser or your phone yet. Sign in with your email or phone, then create one in the app.')}<button class="wprim" data-act="wstep" data-v="start" style="${acc}">Use email or phone</button>`;
  else if(m.step==='pkface')b=`${head(m.pkPhone?'Use your phone':'Touch ID',m.pkPhone?'Scan the code with your phone’s camera, then confirm with Face ID.':'Touch the sensor to sign in to clubpassport.demo with your passkey.')}<div style="display:flex;justify-content:center;margin-top:18px">${m.pkPhone?`<div style="background:#fff;padding:10px;border-radius:14px">${qr('CP-PASSKEY',25,5)}</div>`:`<div class="faceid" style="color:var(--sky)">${ic('key',46,1.6)}</div>`}</div><div style="text-align:center;color:var(--mute);font-size:13px;margin-top:10px">Waiting…</div>`;
+ else if(m.step==='exp'||m.step==='expguest'||m.step==='expmember'||m.step==='expdone'){const x=expFor(k||'winstar',m.kind),t=TIERS[p.tier];
+  const pic=`<div class="photo" style="${bg(x.img)};height:120px;border-radius:14px;margin:24px 0 12px;--shade:linear-gradient(90deg,rgba(5,10,20,.85),rgba(5,10,20,.2))"><div style="position:absolute;left:14px;bottom:10px"><b style="display:block;font-size:15px">${x.place}</b><span style="font-size:12px;color:rgba(255,255,255,.8)">${x.when}</span></div></div>`;
+  if(m.step==='exp')b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button>${pic}<h3>${x.t}</h3>
+   <div class="pc" style="background:#16233C;margin-top:12px;padding:16px"><b>Sign in for member rates and your offers</b><div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;font-size:13px;color:var(--mute)">${[x.member,'Your offers apply automatically','Earn points and tier credit','Your details fill in, nothing to type'].map(s=>`<span style="display:flex;gap:8px"><span style="color:#5FD7A5">${ic('check',14,2.6)}</span>${s}</span>`).join('')}</div>
+   <button class="wprim" data-act="wexpsignin" style="${acc}">Sign in or join</button></div>
+   <button class="wsec" data-act="wstep" data-v="expguest">Continue as a guest</button><p style="font-size:12px;color:var(--mute);text-align:center;margin:10px 0 0">Guest price: ${x.guest}. No account needed.</p>`;
+  else if(m.step==='expguest')b=`${head('Your details',`Booking as a guest · ${x.place}`)}<div class="wf">Full name<span class="v">Alex Morgan</span></div><div class="wf">Email<span class="v">alex.morgan@example.com</span></div><div class="wf">Mobile<span class="v">(214) 555-0162</span></div>
+   <table class="tbl" style="margin-top:14px"><tr><td style="color:var(--mute)">${x.lab}</td><td class="r">${x.when}</td></tr><tr><td style="color:var(--mute)">Price</td><td class="r">${x.guest}</td></tr></table>
+   <p style="font-size:12.5px;color:var(--mute);margin:12px 0 0">Guest bookings don’t earn points. Sign in before you confirm to get member rates and earn on this booking.</p>
+   <button class="wprim" data-act="wstep" data-v="expdone" style="${acc}">Confirm booking</button><div class="wlinks"><button data-act="wexpsignin">Sign in instead</button></div>`;
+  else if(m.step==='expmember')b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button>${pic}<h3>${x.t}</h3><div class="sub">Filled in from your Club Passport.</div>
+   <div class="carried" style="margin-top:12px">${[`${p.name} · ${t.n} · card ${p.num}`,x.member,'Your offers apply automatically','Earns points and tier credit'].map(s=>`<span>${ic('check',14,2.6)} ${s}</span>`).join('')}</div>
+   <button class="wprim" data-act="wexpdone" style="${acc}">Confirm</button>`;
+  else b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button><div style="text-align:center;padding-top:20px"><div class="done-ic" style="margin:0 auto">${ic('check',40,2.6)}</div><h3 style="margin-top:16px">You’re booked</h3><div class="sub">${x.place} · ${x.when}</div>
+   <p style="font-size:13px;color:var(--mute);margin:14px 0 0">${m.member?'It’s in the Club Passport app, and the points will post after your visit.':'Join or sign in within 30 days and we’ll add this booking to your Club Passport.'}</p>
+   <button class="wprim" data-act="wclose" style="${acc}">Done</button></div>`}
  else if(m.step==='trouble')b=`${head('Trouble signing in?','Choose what’s going on.')}${big('wtrouble','code','Email me a sign-in code')}${big('wtrouble','card','I can’t find my account')}${big('wstep','inperson','Help me in person')}`;
  else if(m.step==='offer'){const o=OFFERS[S.persona].find(z=>z.id===m.id),x=OX[o.id],oq=P[o.p],bk=S.booked[S.persona];
   b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button><div class="photo" style="${bg(o.img)};height:170px;border-radius:16px;margin:26px 0 14px;--shade:linear-gradient(180deg,rgba(5,10,20,.2),rgba(5,10,20,.8))"><div style="position:absolute;left:14px;top:12px">${lg(o.p,20)}</div><div style="position:absolute;left:16px;bottom:10px;font-family:var(--disp);font-weight:800;font-size:34px">${o.v}</div></div>
@@ -2417,13 +2495,13 @@ function analyticsView(){const sc={all:1,winstar:.46,riverwind:.12,artesian:.06}
 /* ================= COVERAGE: every requirement area and where the prototype shows it ================= */
 // [id, area, what it asks for, phase, [screen or view ids], status]
 const COV=[
- ['4.1','Loyalty website','The main site for program information, joining, sign-in, benefits and tiers. Education and property links without signing in; account details after.','First release',['w:loyalty','w:account','tier'],'Shown'],
+ ['4.1','Loyalty website','The main site for program information, joining, sign-in, benefits and tiers. Education and property links without signing in; account details after.','First release',['w:loyalty','guest','w:account','tier'],'Shown'],
  ['4.2','Property websites','Each property site keeps its own brand, with consistent Club Passport sign-in, account, offers and program rules, styled to the property.','First release',['w:winstar','w:artesian'],'Shown'],
  ['4.3','Login and account access','One sign-in across the sites and app. Known guests claim their account against ACSC/Engage; prospects never create a player record; unverified guests go to a casino; MFA, step-up and recovery work the same on web and app.','First release',['login','recover','security','password','w:signin'],'Shown'],
  ['4.4','Logged-in experience','Status, tier, benefits, offers, points, tier progress, drawing entries, upcoming reservations, communication preferences and host contact.','First release',['home','tier','wallet','host','comms','w:account'],'Shown'],
  ['4.5','Offers','Offers first after sign-in. Only active, eligible offers; redeemed ones labeled. Ranked by nearest expiry, then property and type, with pinning. Search, filter, sort, details and terms, digital redemption, and booking straight from an offer. Hide or decline and host contact later.','First release; hide and host in a future phase',['offers','offer','home','w:offers'],'Shown'],
  ['4.6','Preferred property and availability','Preferred property from rated days (6 months, then 18 months, then latest trip) unless the guest picks one. Favorites. Trip dates improve relevance. Expired items removed. Alternatives when something is unavailable.','First release; alternatives in a future phase',['preferred','offers','book','destinations'],'Shown'],
- ['4.7','Booking and transactions','A seamless handoff from an offer to the booking engine, with the guest, offer eligibility and dates carried over. Results lead with the selected property. Cross-property booking later.','First release handoff; unified booking in a future phase',['offer','book','hotels','w:book'],'Shown'],
+ ['4.7','Booking and transactions','A seamless handoff from an offer to the booking engine, with the guest, offer eligibility and dates carried over. Results lead with the selected property. Cross-property booking later.','First release handoff; unified booking in a future phase',['offer','book','gbook','hotels','w:book','w:winstar'],'Shown'],
  ['4.8','App','Account summary on Home, card number and benefits, biometric sign-in, property content, preferred property first, reservations, hotel booking and host contact.','First release',['home','wallet','login','destinations','property','trip'],'Shown'],
  ['4.9','Push and communications','Push for offers, events and reminders, coordinated across properties with a frequency cap. Guests manage their preferences. Location and trip-based messages later.','First release; location-based in a future phase',['lock','comms','inbox'],'Shown'],
  ['4.10','Analytics and reporting','Journeys, drop-off and conversion across web and app, cross-domain, signed in and anonymous, linked to bookings and play. Enterprise and property views.','First release',['v:analytics'],'Shown with sample data'],
@@ -2465,6 +2543,9 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'waddemail':{const m=S.webModal;m.confirmEmail=true;m.email=m.idType==='phone'?0:1;m.step='code';render(true);return true}
   case 'wpin':S.webModal.step='code';render(true);return true;
   case 'wby':S.webModal.by=v;render(true);return true;
+  case 'wexp':S.webModal={step:S.webIn?'expmember':'exp',kind:v,where:S.site==='property'?S.psite:null};render(true);return true;
+  case 'wexpsignin':{const m=S.webModal;S.webModal={step:'start',who:'ret',where:m.where,resume:m.kind};render(true);return true}
+  case 'wexpdone':S.webModal.member=true;S.webModal.step='expdone';render(true);return true;
   case 'wtype':S.webModal.idType=S.webModal.idType==='phone'?'email':'phone';render(true);return true;
   case 'wcardstart':{const m=S.webModal;m.who='new';m.by='card';m.cardFirst=true;m.step='card';render(true);return true}
   case 'wpinhelp':toast('PINs are reset at any player services desk or kiosk, with a photo ID');return true;
@@ -2506,10 +2587,15 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
    S.view='proto';go(v);window.scrollTo({top:0});return true}
  }
  return false}
-function webSignedIn(){const m=S.webModal;S.webModal=null;S.webIn=true;if(S.site==='loyalty')S.portal='overview';render();setTimeout(()=>toast(m&&m.where?`Signed in. Your ${P[m.where].n} rates and offers are showing.`:'Signed in on all 11 Chickasaw Nation sites'),40)}
+function webSignedIn(){const m=S.webModal;S.webModal=null;S.webIn=true;if(S.site==='loyalty')S.portal='overview';
+ // Signed in partway through a booking: back to it, now with member details
+ if(m&&m.resume){S.webModal={step:'expmember',kind:m.resume,where:m.where};render();setTimeout(()=>toast('Signed in. Your member rates and details are filled in.'),40);return}
+ render();setTimeout(()=>toast(m&&m.where?`Signed in. Your ${P[m.where].n} rates and offers are showing.`:'Signed in on all 11 Chickasaw Nation sites'),40)}
 
 /* ---------- every sign-in and join path, for the Coverage checklist: [id, path, requirement, where] ---------- */
 const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carried over','4.12','App'],
+ ['guest','Look around without signing in: the program, tiers, destinations with website links, FAQ','4.1.3','App'],
+ ['gbook','Book as a guest: signing in encouraged, not required','4.1.4','App'],
  ['trusted','Returning guest on a trusted iPhone: Face ID signs in by itself','App. E','App'],
  ['fidfail','Face ID doesn’t recognize the guest: try again, or use a code','App. E','App'],
  ['code','Returning guest on a new phone: a code that fills in and checks itself','App. B, E','App'],
@@ -2555,6 +2641,7 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['webpk','Website: sign in with a passkey','App. E','Web'],
  ['websso','Signed in once, recognized on every property website','4.2, 4.3','Web'],
  ['webjoin','Website: join the list','App. D','Web'],
+ ['webexp','Website: book dining, shows or spa signed out, sign in partway and keep going','4.1.4','Web'],
  ['webmig','Existing winstar.com login moves to Club Passport','4.12','Web']];
 function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
  const as=P1=>{if(S.persona!==P1){S.persona=P1;S.prop=PERS[P1].home;v3Reset(true)}};
@@ -2563,6 +2650,8 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
  const web=setup=>{S.view='web';S.pPanel=false;S.wbk=null;S.webModal=null;setup();render();window.scrollTo({top:0})};
  switch(id){
   case 'mig':return app('moving',()=>{as('A');S.trusted.A=false});
+  case 'guest':return app('guest');
+  case 'gbook':return app('gbook',()=>{S.gb={k:'hotel',step:'nudge'}});
   case 'trusted':return login('A',true);
   case 'fidfail':return login('A',true,{fid:'fail'});
   case 'code':return login('A',false,{step:'code',h:['start']});
@@ -2606,6 +2695,7 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'webqr':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'qr',who:'ret',where:null}});
   case 'webpk':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'passkey',who:'ret',where:null}});
   case 'websso':return web(()=>{S.webIn=true;S.site='property';S.psite='winstar';S.pPanel=true});
+  case 'webexp':return web(()=>{S.site='property';S.psite='winstar';S.webIn=false;S.webModal={step:'exp',kind:'dining',where:'winstar'}});
   case 'webjoin':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'start',who:'new',where:null}});
   case 'webmig':return web(()=>{S.site='property';S.psite='winstar';S.webIn=false;S.webModal={step:'start',who:'ret',where:'winstar'}});
  }}
