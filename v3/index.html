@@ -707,6 +707,16 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
  .ctab td{border:0;padding:4px 0}
  .cov h1{font-size:24px}
 }
+
+/* guest mode: personal pages */
+.gate .gart{display:flex;justify-content:center;position:relative;margin-top:14px}
+.gart .gic{width:78px;height:78px;border-radius:24px;display:grid;place-items:center;background:rgba(156,195,245,.12);color:var(--hi);box-shadow:0 0 0 8px rgba(156,195,245,.05)}
+.gart.card .gk{filter:grayscale(.7) brightness(.62)}
+.gart .glk{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(10,19,36,.78);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.22)}
+.gart .gqr{background:#fff;padding:10px;border-radius:16px;display:inline-flex}
+.gcode{text-align:center;font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:.1em;margin-top:12px}
+.gjoin{margin:12px 20px 0;padding:16px;border-radius:20px;background:linear-gradient(140deg,rgba(156,195,245,.16),var(--el) 70%);box-shadow:inset 0 0 0 1px rgba(156,195,245,.25)}
+.drow .glock{margin-left:auto;color:var(--ink3);display:flex;opacity:.8}
 .psum-stats{grid-template-columns:repeat(4,1fr)}.psum-stats b{font-size:15.5px}
 </style>
 
@@ -768,7 +778,7 @@ const GAMES={
  A:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Red Hot Ruby Major',p:'winstar',loc:'Plaza A · Bank 3',img:'ms-games'},{k:'g3',n:'Lucky Ducky Mega',p:'riverwind',loc:'Main floor · Bank 22',hot:'Due by history',img:'lc-2'}],
  B:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Money Bags Major',p:'artesian',loc:'Casino floor · Bank 2',img:'ct-2'},{k:'g3',n:'Buffalo Run Grand',p:'treasure',loc:'East floor · Bank 7',img:'nc-floor'}]
 };
-const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in or join'],['guest','Look around first'],['gbook','Book as a guest'],['recover','Trouble signing in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['wallet','Passport'],['tier','Tier'],['drawing','Live drawing']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Home property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['trip','Trip'],['meters','Live meters']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account'],['security','Sign-in & security'],['password','Password'],['comms','Messages & alerts']]]];
+const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in or join'],['guest','Continue as a guest'],['gbook','Book as a guest'],['recover','Trouble signing in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['wallet','Passport'],['tier','Tier'],['drawing','Live drawing']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Home property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['trip','Trip'],['meters','Live meters']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account'],['security','Sign-in & security'],['password','Password'],['comms','Messages & alerts']]]];
 const SCREENS=FLOW.flatMap(g=>g[1]);
 const NOTES={
  drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
@@ -835,7 +845,7 @@ const PATHS={
 function ic(n,s=20,w=1.8){return `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[n]}</svg>`}
 function kcard(p,w=350){const t=TIERS[p.tier];return `<div class="kc" style="--w:${w}px;--c1:${t.c1};--c2:${t.c2};--ink:${t.ink||'#fff'};width:${w}px;height:${Math.round(w*.63)}px"><span class="brand">CLUB PASSPORT</span><span class="tier">${t.n.toUpperCase()}</span><span class="word">PASSPORT</span><span class="no">${p.num||''}<br>${(p.name||'').toUpperCase()}</span><span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5"/><path d="m12 5.5 1.9 4.2 4.6.4-3.5 3 1.1 4.5L12 15.2l-4.1 2.4 1.1-4.5-3.5-3 4.6-.4z"/></svg></span></div>`}
 const FEAT={hotel:['bed','Hotel'],spa:['spa','Spa']};
-const NOTABS=['moving','login','guest','gbook','mfa','claim','recover','book','lock','pwgame','social'];
+const NOTABS=['moving','login','gbook','mfa','claim','recover','book','lock','pwgame','social'];
 function themeFor(scr){if(NOTABS.includes(scr)||(S.model==='endorsed'&&scr!=='property'))return BRAND;const p=P[S.prop];return {bg:'#0A1324',acc:p.acc,onacc:p.onacc,hi:p.hi,tint:p.bg}}
 function themeStyle(t){return `--acc:${t.acc};--onacc:${t.onacc};--hi:${t.hi};${t.tint?`background:linear-gradient(180deg,${t.tint} 0,#0A1324 520px)`:''}`}
 
@@ -951,11 +961,11 @@ SCR.destinations=()=>{const p=per();
  const list=Object.keys(P).sort((a,b)=>p.dist[a]-p.dist[b]).map(k=>{const q=P[k],fs=Object.keys(q.f).filter(f=>FEAT[f]).slice(0,3);
   return `<button data-act="prop" data-p="${k}" class="photo" style="${bg(q.hero)};display:block;width:100%;height:188px;border-radius:24px;text-align:left;--shade:linear-gradient(180deg,rgba(5,10,20,.35) 0,rgba(5,10,20,0) 35%,rgba(5,10,20,.85) 100%)">
    <span class="glass" style="position:absolute;right:12px;top:12px;height:28px;padding:0 11px;border-radius:99px;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff">${ic('pin',13)} ${mi(p.dist[k])}</span>
-   ${p.home===k?`<span style="position:absolute;left:12px;top:12px;height:28px;padding:0 11px;border-radius:99px;display:inline-flex;align-items:center;font-size:12px;font-weight:700;background:#fff;color:#0A1324">Your home</span>`:''}
+   ${(S.gm?S.gPref:p.home)===k?`<span style="position:absolute;left:12px;top:12px;height:28px;padding:0 11px;border-radius:99px;display:inline-flex;align-items:center;font-size:12px;font-weight:700;background:#fff;color:#0A1324">Your home</span>`:''}
    <div style="position:absolute;left:16px;right:16px;bottom:14px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px"><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">${lg(k,30)}<span style="font-size:12.5px;color:rgba(255,255,255,.8);font-weight:600">${q.city}, OK</span></div>
    <div style="display:flex;gap:6px">${fs.map(f=>`<span class="glass" title="${FEAT[f][1]}" style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff">${ic(FEAT[f][0],15)}</span>`).join('')}</div></div></button>`}).join('');
  return `<div class="body"><div class="topbar" style="padding-bottom:0"><h1 class="t1">Destinations</h1><span class="iconbtn">${ic('search',19)}</span></div>
-  <div class="px cap" style="margin:6px 0 18px">Your ${TIERS[p.tier].n} status is recognized at all 11.</div>
+  <div class="px cap" style="margin:6px 0 18px">${S.gm?'One card and one tier, recognized at all 11.':`Your ${TIERS[p.tier].n} status is recognized at all 11.`}</div>
   <div class="px" style="display:flex;flex-direction:column;gap:14px">${list}</div></div>`};
 SCR.property=()=>{const p=per(),k=S.prop,q=P[k],t=TIERS[p.tier];
  const perks={circle:['Member pricing at restaurants','Birthday Free Play'],select:['Priority line at the cage','10% off dining','Birthday Free Play'],signature:['Priority valet and hotel check-in','Lounge access','20% off spa and dining'],society:['An executive host','Suite upgrades','Private events']}[p.tier];
@@ -964,12 +974,13 @@ SCR.property=()=>{const p=per(),k=S.prop,q=P[k],t=TIERS[p.tier];
  const pics=[q.hero,...q.pics].slice(0,3);
  return `<div class="body">
   <div class="photo" style="${bg(q.hero)};height:430px;--shade:linear-gradient(180deg,rgba(5,10,20,.55) 0,rgba(5,10,20,.05) 30%,rgba(5,10,20,.45) 64%,#0A1324 100%)">
-   <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between"><button data-go="destinations" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button><span class="glass" style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:99px;color:#fff"><span class="wm" style="font-size:10px">CLUB PASSPORT</span><span style="font-size:12.5px;font-weight:600">${t.n}</span></span></div>
+   <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between"><button data-go="destinations" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button><${S.gm?'button data-act="gsignin"':'span'} class="glass" style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:99px;color:#fff"><span class="wm" style="font-size:10px">CLUB PASSPORT</span><span style="font-size:12.5px;font-weight:600">${S.gm?'Sign in':t.n}</span></${S.gm?'button':'span'}></div>
    <div style="position:absolute;left:20px;right:20px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">${lg(k,62)}<div style="font-size:15px;color:#fff;font-weight:600">${q.tag}</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">${q.city}, OK · ${mi(p.dist[k])}</div></div></div>
   <div style="display:grid;grid-template-columns:repeat(${acts.length},1fr);gap:8px;margin:4px 20px 0">${acts.map(a=>`<button ${a[3]?`data-go="${a[3]}"`:''} style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;border-radius:18px;background:var(--el);font-size:12px;font-weight:600"><span style="color:${q.hi}">${ic(a[0],22)}</span>${a[1]}</button>`).join('')}</div>
-  <div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard(p,86)}<div style="flex:1"><div style="font-weight:700">${t.n} is recognized here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${perks.map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div></div></div>
+  ${S.gm?`<div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard({tier:'circle'},86)}<div style="flex:1"><div style="font-weight:700">Members get more here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${['Member pricing at restaurants','Points on play, dining and stays','Offers picked for you'].map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div><div style="display:flex;gap:14px;margin-top:10px;font-size:13px;font-weight:700"><button data-act="gjoin" data-v="property" style="color:var(--hi)">Join, it’s free</button><button data-act="glink" data-v="property" style="color:var(--hi)">Link my account</button></div></div></div>`:''}
+  ${S.gm?'':`<div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard(p,86)}<div style="flex:1"><div style="font-weight:700">${t.n} is recognized here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${perks.map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div></div></div>`}
   <div class="sec"><h4>Offers here</h4></div>
-  ${offs.length?`<div class="list">${offs.map(offerRow).join('')}</div>`:`<div class="list"><div class="li"><div class="grow v">No offers here right now. You'll get an alert when one opens up.</div></div></div>`}
+  ${S.gm?`<div class="list"><div class="li"><span style="color:var(--ink3)">${ic('lock',18)}</span><div class="grow v">Your offers here show after you sign in.</div><button class="rowbtn" data-act="gsignin">Sign in</button></div></div>`:offs.length?`<div class="list">${offs.map(offerRow).join('')}</div>`:`<div class="list"><div class="li"><div class="grow v">No offers here right now. You'll get an alert when one opens up.</div></div></div>`}
   <div class="sec"><h4>Experiences</h4></div>
   <div class="hs">${pics.map((ph,i)=>`<div class="photo" style="${bg(ph)};width:230px;height:150px;border-radius:20px"><div style="position:absolute;left:14px;bottom:12px;color:#fff;font-weight:700;font-size:14px">${['Tonight on property','Dining & lounges','Stay & play'][i]}</div></div>`).join('')}</div></div>`};
 function qr(seed,n=25,px=6){let h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;const rnd=()=>{h^=h<<13;h>>>=0;h^=h>>17;h^=h<<5;h>>>=0;return h/4294967296};let r='';
@@ -1409,7 +1420,7 @@ SCR.dining=()=>{if(S.prop!=='winstar')return propOnly('Dining');const cats=['All
    <div style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:12.5px;color:var(--ink2)"><span style="display:inline-flex;align-items:center;gap:5px">${ic('pin',14)} ${r.loc}</span><span style="display:inline-flex;align-items:center;gap:5px;color:${r.hrs?'#7FE3B8':'var(--ink3)'}">${ic('clock',14)} ${r.hrs?'Open today '+r.hrs:'See today’s hours'}</span></div>
    <div style="display:flex;gap:8px;margin-top:12px">${r.res?`<button class="btn sm" data-act="dres" data-v="${r.n}">Reserve</button>`:''}<a class="btn sm line" href="${r.url}" target="_blank" rel="noopener" style="text-decoration:none">Menu & details</a></div></div></div>`).join('')}</div>
   <div class="px cap" style="margin-top:14px;font-size:11.5px;color:var(--ink3)">From winstar.com. Hours and menus can change.</div></div>`};
-SCR.shows=()=>{if(S.prop!=='winstar')return propOnly('Shows');const perk=['signature','society'].includes(per().tier);let m='';
+SCR.shows=()=>{if(S.prop!=='winstar')return propOnly('Shows');const perk=!S.gm&&['signature','society'].includes(per().tier);let m='';
  return `<div class="body">${head('Shows','property',lg('winstar',16))}
   <div class="photo" style="${bg('rw-show')};margin:4px 20px 0;height:130px;border-radius:22px;--shade:linear-gradient(90deg,rgba(5,10,20,.85),rgba(5,10,20,.3))"><div style="position:absolute;left:16px;bottom:14px"><div class="spon" style="color:#F6E1AC">Live at WinStar</div><div style="font-weight:800;font-size:22px;color:#fff">Lucas Oil Live</div><div style="font-size:12.5px;color:rgba(255,255,255,.8)">Concerts and headliners all year</div></div></div>
   ${perk?`<div style="margin:12px 20px 0;display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:16px;background:rgba(175,196,58,.12);box-shadow:inset 0 0 0 1px rgba(175,196,58,.35)"><span style="color:#C9DB5A">${ic('crown',18)}</span><span style="font-size:13px"><b>${TIERS[per().tier].n} perk:</b> presale access to Lucas Oil Live shows.</span></div>`:''}
@@ -1461,9 +1472,9 @@ function stepBack(o,exit){if(o.h&&o.h.length){o.step=o.h.pop();render()}else go(
 
 /* ---------- requirement tags shown in the presenter notes ---------- */
 const REQ={'4.1':'Loyalty website','4.2':'Property websites','4.3':'Login and account access','4.4':'Logged-in experience','4.5':'Offers','4.6':'Preferred property and availability','4.7':'Booking and transactions','4.8':'App','4.9':'Push and communications','4.10':'Analytics','4.11':'Data and system of record','4.12':'Migration','A':'Appendix A · Authentication journey','B':'Appendix B · Login paths','C':'Appendix C · Known guest','D':'Appendix D · Prospect capture','E':'Appendix E · MFA and step-up','F':'Appendix F · Account recovery','5':'Open decision'};
-const SREQ={moving:['4.12'],login:['4.3','A','B','C','D','E','4.8','4.11'],guest:['4.1','4.8','4.6'],gbook:['4.1','4.7'],password:['4.3','E','B'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],meters:['5'],trip:['4.4','4.7'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
+const SREQ={moving:['4.12'],login:['4.3','A','B','C','D','E','4.8','4.11'],guest:['4.1','4.8','4.5'],ggate:['4.1','4.3','C','D'],gbook:['4.1','4.7'],password:['4.3','E','B'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],meters:['5'],trip:['4.4','4.7'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
 // m = first release, f = future phase, mf = both
-const SPHASE={moving:'m',login:'m',guest:'m',gbook:'m',password:'m',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'m',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
+const SPHASE={moving:'m',login:'m',guest:'m',ggate:'m',gbook:'m',password:'m',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'m',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
 function reqTags(id){const r=SREQ[id],ph=SPHASE[id];
  if(!r||!r.length)return `<div class="rqs"><span class="rq bx">Beyond the requirements document</span></div>`;
  return `<div class="rqs">${r.map(k=>`<span class="rq" title="${REQ[k]}">${/^\d/.test(k)&&k!=='5'?'Req '+k:k==='5'?'Open decision':'App. '+k} · ${k==='5'?'see Coverage':REQ[k].replace(/^Appendix . · /,'')}</span>`).join('')}${ph&&ph.includes('m')?'<span class="rq ph">First release</span>':''}${ph&&ph.includes('f')?'<span class="rq fu">Includes future phase</span>':''}</div>`}
@@ -1509,7 +1520,7 @@ const RATED={A:{m6:[['winstar',14],['riverwind',3],['newcastle',2]],m18:[['winst
  B:{m6:[['artesian',9],['treasure',9],['lakecrest',2]],m18:[['artesian',22],['treasure',17],['lakecrest',4]],last:['treasure','Sep 27']}};
 function autoPref(){const r=RATED[S.persona],top=a=>a[0][1]>a[1][1]?a[0][0]:null,k6=top(r.m6),k18=top(r.m18);
  if(k6)return {k:k6,rule:1};if(k18)return {k:k18,rule:2};return {k:r.last[0],rule:3}}
-const prefProp=()=>S.prefSel[S.persona]||autoPref().k;
+const prefProp=()=>S.gm?(S.gPref||'winstar'):S.prefSel[S.persona]||autoPref().k;
 // Preferred first, then favorites, then by distance
 const propOrder=keys=>{const d=per().dist,pf=prefProp(),fv=S.favs[S.persona];return keys.slice().sort((a,b)=>(a===pf?-1:b===pf?1:0)||(fv.has(b)-fv.has(a))||d[a]-d[b])};
 
@@ -1524,7 +1535,7 @@ function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webT
  stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
  cm:{A:cmInit(['winstar','riverwind']),B:cmInit(['artesian','treasure'])},site:'loyalty',wextra:[],webIn:false,webTrusted:false,webModal:null,psite:'winstar',pPanel:false,faq:0,wbk:null,wOffer:null,
- anScope:'all',anCh:'all',anVis:'all'},k)}
+ anScope:'all',anCh:'all',anVis:'all',gm:false,gNext:null,gProspect:false,gPref:null,gcq:[],gb:null},k)}
 v3Reset();
 
 /* ================= v3 screens ================= */
@@ -1550,12 +1561,12 @@ SCR.moving=()=>{const p=per(),t=TIERS[p.tier],w=P.winstar;
 const DOORWHO=[['ret','Returning'],['claim','First time online'],['new','New guest']];
 const doorId=()=>S.door.sam||S.door.who==='new'?SAM:per();
 // On a trusted iPhone, Face ID runs as the app opens
-function doorAuto(){if(S.view!=='proto'||S.screen!=='login'||!S.trusted[S.persona]||S.door.step!=='start'||S.door.fid||S.pk||S.fidT)return;
- S.fidT=setTimeout(()=>{S.fidT=null;if(S.view==='proto'&&S.screen==='login'&&S.trusted[S.persona]&&S.door.step==='start'&&!S.door.fid&&!S.pk){go('home');setTimeout(()=>toast('Signed in with Face ID'),40)}},1800)}
+function doorAuto(){if(S.view!=='proto'||S.screen!=='login'||S.gm||!S.trusted[S.persona]||S.door.step!=='start'||S.door.fid||S.pk||S.fidT)return;
+ S.fidT=setTimeout(()=>{S.fidT=null;if(S.view==='proto'&&S.screen==='login'&&S.trusted[S.persona]&&S.door.step==='start'&&!S.door.fid&&!S.pk){go(gOut());setTimeout(()=>toast('Signed in with Face ID'),40)}},1800)}
 function doorVerified(){const d=S.door;d.fill=false;d.methods=false;d.err=null;
  // Found by mobile or card number: after the phone code, the email they typed becomes their sign-in
  if(d.who==='claim'){if(d.emailStep){d.emailStep=false;d.emailAdded=true;stepTo(d,'welcome')}else stepTo(d,d.via&&!d.emailAdded?'addemail':'welcome')}else if(S.trusted[S.persona])doorDone('Signed in');else stepTo(d,'faster')}
-function doorDone(msg){S.door=doorFresh();go('home');setTimeout(()=>toast(msg),40)}
+function doorDone(msg){S.door=doorFresh();go(gOut());setTimeout(()=>toast(msg),40)}
 const demoRow=(act,cur,opts)=>`<div class="demo"><span>Demo</span>${opts.map(([v,l])=>`<button data-act="${act}" data-v="${v}" aria-pressed="${cur===v}">${l}</button>`).join('')}</div>`;
 const errT=t=>`<div class="errt">${ic('info',15)}<span>${t}</span></div>`;
 // What the guest typed on the first screen, and the account number shown as its last 4 digits
@@ -1571,7 +1582,7 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
    <div style="position:absolute;inset:-20px -40px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:rotate(-8deg)">${tiles.map(t=>`<div style="${bg(t)};background-size:cover;background-position:center;height:124px;border-radius:16px"></div>`).join('')}</div>
    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,36,.35) 0,rgba(10,19,36,.6) 55%,#0A1324 100%)"></div>
    <div style="position:absolute;left:24px;bottom:10px"><div class="wm" style="font-size:${h>300?46:34}px;color:#fff;line-height:.95">CLUB<br>PASSPORT</div><div style="font-family:var(--disp);font-weight:600;font-size:11.5px;letter-spacing:.24em;color:rgba(255,255,255,.75);margin-top:8px">ONE ACCOUNT · 11 DESTINATIONS</div></div></div>`;
- if(S.trusted[S.persona]&&st==='start')return `<div class="body" style="padding-bottom:0;display:flex;flex-direction:column">${hero(400)}
+ if(S.trusted[S.persona]&&st==='start'&&!S.gm)return `<div class="body" style="padding-bottom:0;display:flex;flex-direction:column">${hero(400)}
   <div style="padding:14px 24px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px">
    <div class="faceid${d.fid?' bad':''}" style="width:84px;height:84px;margin:4px auto 6px">${ic('face',46,1.6)}</div>
    ${d.fid?`<div style="font-size:21px;font-weight:800;letter-spacing:-.02em">Face ID didn’t recognize you</div><div class="cap" style="font-size:13.5px">Try again, or sign in with a code instead.</div>
@@ -1583,16 +1594,16 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
  const opt=(act,v,i,t,s)=>`<button class="bigopt" data-act="${act}"${v?` data-v="${v}"`:''}><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`;
  let b='';
- if(st==='start'){const val=d.idEmpty?'':typedId(d);b=`${h1('Sign in or join','One account for the app and all 11 property websites.')}
+ if(st==='start'){const val=d.idEmpty?'':typedId(d);b=`${d.link?h1('Link your account','Enter the email or mobile number you gave us at the casino. We’ll find your player account.'):h1('Sign in or join','One account for the app and all 11 property websites.')}
   <div class="fld"><span>Email or mobile number</span><span class="fv${d.idErr?' bad':''}" data-act="didfill">${val?`<span style="flex:1">${val}</span><i class="caret"></i><button data-act="didclear" aria-label="Clear" style="color:var(--ink3);display:flex;margin-left:8px">${ic('x',16,2.4)}</button>`:'<i class="caret" style="margin-left:0"></i><span style="flex:1;color:var(--ink3);font-weight:500;margin-left:6px">Email or mobile number</span>'}</span></div>
   ${d.idErr?errT('Enter your email or mobile number to continue.'):''}
   <div style="display:flex;justify-content:space-between;gap:10px;margin-top:10px"><button data-act="didtype" style="font-size:13px;font-weight:700;color:var(--hi)">${d.idType==='phone'?'Use my email instead':'Use my mobile number instead'}</button><button data-act="dcardstart" style="font-size:13px;font-weight:700;color:var(--hi)">Use my card number</button></div>
   <div class="demo"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="dwho" data-v="${k}" aria-pressed="${d.who===k&&!d.sam}">${l}</button>`).join('')}</div>
   <button class="btn" data-act="dgo" aria-disabled="${!val}" style="width:100%;height:52px;margin-top:16px;${val?'':'opacity:.4'}">Continue</button>
-  <div class="ordiv"><span>or</span></div>
-  <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey</button>
-  <div style="display:flex;justify-content:center;gap:18px;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button><span style="color:var(--ink3)">·</span><button data-act="dguest" style="font-size:13.5px;font-weight:700;color:var(--hi)">Look around first</button></div>
-  <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}
+  ${d.link?'':`<div class="ordiv"><span>or</span></div>
+  <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey</button>`}
+  <div style="display:flex;justify-content:center;gap:18px;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button><span style="color:var(--ink3)">·</span><button data-act="dguest" style="font-size:13.5px;font-weight:700;color:var(--hi)">${S.gm?'Not now':'Continue as a guest'}</button></div>
+  ${d.link?'':`<button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}`}
  else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}
   <div class="fld"><span>Password</span><span class="fv${d.err==='pw'?' bad':''}"><span style="flex:1">••••••••••••</span><i class="caret"></i></span></div>
   ${d.err==='pw'?errT('That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.'):''}
@@ -1639,7 +1650,7 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${d.faceOn?'Opens the app with a glance on this iPhone':'Off. You’ll sign in with a code or passkey.'}</div></div><button class="tg" role="switch" aria-checked="${d.faceOn}" data-act="dfacetg" aria-label="Face ID"></button></div>
    ${pk?`<div class="tgr"><span style="color:#5FD7A5">${ic('key',20)}</span><div class="grow"><div class="k">Passkey saved</div><div class="v">Sign in with Face ID here and on our websites</div></div><span style="color:#5FD7A5">${ic('check',18,2.6)}</span></div>`
    :`<button class="tgr" data-act="dpkcreate" data-v="welcome" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('key',20)}</span><div class="grow"><div class="k">Create a passkey</div><div class="v">Sign in with Face ID on our websites too</div></div>${ic('right',16)}</button>`}</div>
-  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">Go to my account</button>
+  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">${S.gm&&gName(S.gNext)?'Continue to '+gName(S.gNext):'Go to my account'}</button>
   ${d.more?`<div class="list" style="margin:14px 0 0"><button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('pwd',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>`
    :`<button data-act="dmore" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">More options</button>`}`}
  else if(st==='played')b=`${h1('Welcome! Let’s find you',`There’s no online account for ${typedId(d)} yet.`)}
@@ -1706,13 +1717,13 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">${st==='dup'?`We’ve sent your first-visit offer to ${SAM.email} again. No new account was created.`:`Tap the link we sent to ${SAM.email} to confirm. Your first-visit offer is in the same email.`}</div>
   <div class="list" style="margin:20px 0 0">${[['pin','When you visit','Show a photo ID at player services, at any of our 11 casinos'],['card','A few minutes later','You get your Club Passport card, and the app signs you in']].map(([i,a,s])=>`<div class="li"><span style="color:var(--hi)">${ic(i,19)}</span><div class="grow"><div class="k">${a}</div><div class="v">${s}</div></div></div>`).join('')}</div>
   ${st==='joined'?`<button class="btn line" data-act="dnext" data-v="confirmed" style="width:100%;height:46px;margin-top:16px">${ic('mail',16)} Demo: open the email link</button>`:''}
-  <button class="btn" data-act="dexplore" style="width:100%;height:50px;margin-top:12px">Explore the 11 destinations</button>
+  <button class="btn" data-act="dexplore" style="width:100%;height:50px;margin-top:12px">${S.gm&&gName(S.gNext)?'Back to '+gName(S.gNext):'Explore the app'}</button>
   <button data-act="dreset" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Done</button>`;
  else if(st==='confirmed')b=`<div class="done-ic">${ic('check',40,2.6)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">You’re confirmed, Sam</h1>
   <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">Your first-visit offer is saved. Bring a photo ID to player services and it goes straight onto your new card.</div>
   <div class="photo" style="${bg('ws-gaming')};height:130px;margin-top:18px;border-radius:20px;--shade:linear-gradient(90deg,rgba(5,10,20,.9),rgba(5,10,20,.2))"><div style="position:absolute;left:16px;top:50%;transform:translateY(-50%)"><div style="font-family:var(--disp);font-weight:800;font-size:30px;color:#fff">$20</div><div style="font-size:13.5px;color:#fff;font-weight:700">First-visit Free Play</div><div style="font-size:12px;color:rgba(255,255,255,.8)">At any of our 11 casinos · 30 days</div></div></div>
-  <button class="btn" data-act="dexplore" style="width:100%;height:50px;margin-top:18px">Explore the 11 destinations</button>`;
+  <button class="btn" data-act="dexplore" style="width:100%;height:50px;margin-top:18px">${S.gm&&gName(S.gNext)?'Back to '+gName(S.gNext):'Explore the app'}</button>`;
  return st==='start'?`<div class="body" style="padding-bottom:40px">${hero(220)}<div class="px" style="margin-top:14px">${b}</div></div>`
   // No going back once the code is verified
   :`<div class="body">${['faster','welcome','joined','dup','confirmed','locked','pinlock','addemail'].includes(st)?'<div class="topbar"><span style="height:38px"></span></div>':backBar('dback')}<div class="px" style="margin-top:6px">${b}</div></div>`};
@@ -2002,7 +2013,8 @@ Object.assign(NOTES,{
  comms:{e:'Communications',t:'One set of choices, one shared limit',d:'Guests choose topics by channel (push, text, email), which properties they hear from and how often. The limit covers all 11 properties together, so nobody gets the same offer three times. Security notices are always on. Arrival alerts are a future phase.',aud:['Marketing','Loyalty','Compliance'],src:'<b>Requirement 4.9.</b> Open decision: whether preferences are enterprise-wide, by property, by channel or a mix, and where consent is stored. This shows a mix.'}
 });
 
-/* ---------- Signed out: look around first (requirement 4.1.3) and book with a nudge to sign in (4.1.4) ---------- */
+/* ---------- Guest mode: the app before signing in (requirement 4.1.3), booking with a nudge to sign in (4.1.4),
+   and personal pages that ask the guest to join or link their account ---------- */
 const GFAQ=[['Do my points work at every property?','Yes. Points, tier credit and Free Play work at all 11 Chickasaw Nation destinations.'],['How do I get a card?','Show a photo ID at player services at any of our casinos. It takes about five minutes.'],['I already have a card. How do I sign in?','Tap Sign in or join and enter the email or mobile you gave us at the casino. We’ll do the rest.'],['Can I book without an account?','Yes. Book rooms, tables, shows and spa as a guest. Sign in for member rates and to earn points.']];
 const EXPK=[['hotel','bed','Rooms','Member rates when you sign in'],['dining','dine','Dining','Reserve a table'],['shows','ticket','Shows','Tickets and presales'],['spa','spa','Spa','Treatments and packages']];
 // What a guest can book, by property: [title, place, photo, when, guest price, member benefit, short label, button]
@@ -2013,9 +2025,9 @@ function expFor(k,kind){const n=P[k].n,ws=k==='winstar',ar=k==='artesian';
   spa:{t:'Book a spa treatment',place:ws?'The Spa at WinStar':ar?'The Artesian Spa':n+' Spa',img:ws?'ws-spa':ar?'ar-hero':'ws-spa',when:'Sat, Oct 10 · 2:00 PM · 50-minute massage',guest:'$160',member:'Up to 20% off, depending on your tier',lab:'Treatment',cta:'Book a treatment'}}[kind]}
 SCR.guest=()=>{const order=['circle','select','signature','society'];
  return `<div class="body" style="padding-bottom:40px">
-  <div class="topbar"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><span style="width:38px"></span></div>
+  <div class="topbar"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><button class="chip" data-act="gsignin" style="height:34px">${ic('user',15)} Sign in</button></div>
   <div class="photo" style="${bg('ws-globe')};height:210px;margin:8px 20px 0;border-radius:24px;--shade:linear-gradient(180deg,rgba(5,10,20,.1),rgba(5,10,20,.88))"><div style="position:absolute;left:18px;right:18px;bottom:16px"><div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#E9C77B">THE CHICKASAW NATION LOYALTY PROGRAM</div><div style="font-size:26px;font-weight:800;line-height:1.1;color:#fff;margin-top:6px">One account.<br>Eleven destinations.</div></div></div>
-  <div class="px" style="margin-top:12px"><div class="note">${ic('user',16)}<span>You’re looking around without signing in. <button data-act="gsignin" style="font-weight:700;color:var(--hi)">Sign in or join</button> for your offers and points.</span></div></div>
+  <div class="px" style="margin-top:12px">${S.gProspect?`<button class="note" data-go="wallet" style="width:100%;text-align:left">${ic('card',16)}<span><b style="color:var(--ink)">You’re on the list, ${SAM.first}.</b> Show your code and a photo ID at player services to get your card. <span style="font-weight:700;color:var(--hi)">Show my code</span></span></button>`:`<div class="note">${ic('user',16)}<span>You’re browsing as a guest. <button data-act="gsignin" style="font-weight:700;color:var(--hi)">Sign in or join</button> for your offers and points.</span></div>`}</div>
   <div class="sec"><h4>How it works</h4></div>
   <div class="list">${[['gem','Earn everywhere','Points and tier credit at all 11 properties'],['crown','One tier, recognized everywhere','Base, Premier, Elite and Chairman'],['gift','Redeem anywhere','Free Play, dining, stays and more']].map(([i,t,d])=>`<div class="li"><span style="color:var(--hi)">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${d}</div></div></div>`).join('')}</div>
   <div class="sec"><h4>Tiers & benefits</h4></div>
@@ -2029,7 +2041,7 @@ SCR.guest=()=>{const order=['circle','select','signature','society'];
   <div class="list">${GFAQ.map(([q,a],i)=>`<button class="li" data-act="gfaq" data-v="${i}" style="width:100%;text-align:left;flex-direction:column;align-items:stretch;gap:6px"><span style="display:flex;justify-content:space-between;gap:10px"><span class="k">${q}</span><span style="color:var(--ink3)">${ic(S.gfaq===i?'x':'plus',15,2.2)}</span></span>${S.gfaq===i?`<span class="v" style="line-height:1.45">${a}</span>`:''}</button>`).join('')}</div>
   <div class="px cap" style="margin-top:14px;color:var(--ink3)">Must be 21 or older. Gambling problem? Call 1-800-522-4700.</div>
   <div class="px" style="margin-top:16px"><button class="btn" data-act="gsignin" style="width:100%;height:52px">Sign in or join</button></div></div>`};
-SCR.gbook=()=>{if(!S.gb)S.gb={k:'hotel',step:'nudge'};const g=S.gb,x=expFor('winstar',g.k);
+SCR.gbook=()=>{if(!S.gb)S.gb={k:'hotel',p:'winstar',step:'nudge'};const g=S.gb,x=expFor(g.p||'winstar',g.k);
  const card=`<div class="photo" style="${bg(x.img)};height:140px;margin:6px 20px 0;border-radius:20px;--shade:linear-gradient(90deg,rgba(5,10,20,.88),rgba(5,10,20,.2))"><div style="position:absolute;left:16px;right:16px;bottom:14px"><div style="font-weight:800;font-size:17px;color:#fff">${x.place}</div><div style="font-size:12.5px;color:rgba(255,255,255,.8)">${x.when}</div></div></div>`;
  let b='';
  if(g.step==='nudge')b=`<div class="px" style="margin-top:4px"><h1 class="t1">${x.t}</h1></div>${card}
@@ -2048,10 +2060,93 @@ SCR.gbook=()=>{if(!S.gb)S.gb={k:'hotel',step:'nudge'};const g=S.gb,x=expFor('win
   <div style="display:inline-block;margin-top:14px;padding:10px 16px;border-radius:12px;background:var(--el);font-family:var(--disp);font-weight:800;letter-spacing:.06em">G-4471925</div>
   <div class="cap" style="margin-top:12px">Confirmation sent to a***@example.com.</div></div>
   <div style="margin:18px 20px 0;padding:16px;border-radius:20px;background:var(--el)"><div style="font-weight:800">Want points for this?</div><div class="cap" style="margin-top:4px;line-height:1.45">Join or sign in within 30 days and we’ll add this booking to your Club Passport.</div><button class="btn" data-act="gsignin" style="width:100%;height:46px;margin-top:12px">Sign in or join</button></div>
-  <div class="px"><button data-act="gdone" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Back to look around</button></div>`;
+  <div class="px"><button data-act="gdone" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Done</button></div>`;
  return `<div class="body">${g.step==='done'?'<div class="topbar"><span style="height:38px"></span></div>':backBar('gback')}${b}</div>`};
+
+// Pages with a member's own data. A guest sees what members get there, then joins or links their account.
+const GATE={
+ wallet:{n:'Passport',tab:1,i:'passport',h:'Your card, on your phone',d:'Tap or scan it at any of our 11 casinos. Points, Free Play and tier stay up to date.',pts:[['card','One digital card for all 11 destinations'],['gem','Points, Free Play and comp dollars in one place'],['wallet','Add it to Apple Wallet']]},
+ tier:{n:'Tier',i:'crown',h:'Your tier and progress',d:'One tier, recognized at all 11 destinations.',pts:[['crown','Tier points from play, dining and stays'],['star','How close you are to the next tier'],['gift','Benefits at every property']]},
+ inbox:{n:'Inbox',i:'bell',h:'Messages meant for you',d:'Offers, booking confirmations and notes from your host, in one place.',pts:[['tag','New offers as soon as they’re yours'],['bed','Booking confirmations and reminders'],['msg','Messages from your host']]},
+ drawing:{n:'Live drawing',i:'gift',h:'Your drawing entries',d:'Earn entries as you play, then watch the drawing live in the app.',pts:[['ticket','Entries earned from play'],['bell','An alert when the drawing starts'],['check','See right away if you won']]},
+ trip:{n:'Trip',i:'bed',h:'Your trips in one place',d:'Rooms, tables and shows you’ve booked, at any of our destinations.',pts:[['bed','Hotel, dining and show bookings together'],['clock','Check-in and check-out times'],['plus','Guest bookings added once you join']]},
+ meters:{n:'Live meters',i:'chart',h:'Jackpots for the games you play',d:'Live progressive meters, starting with your favorite games.',pts:[['chart','Live meters at every casino'],['star','Your favorite games first'],['bell','An alert when a jackpot climbs']]},
+ host:{n:'Your host',i:'user',h:'A host who knows you',d:'Hosts look after Elite and Chairman members at every property.',pts:[['msg','Message or call your host'],['bed','Help with rooms, dinner and shows'],['crown','Recognized at all 11 destinations']]},
+ settings:{n:'Account',i:'user',h:'Your account',d:'Your profile, how you sign in, and how we contact you.',pts:[['user','Profile and home property'],['shield','Sign-in, passkeys and Face ID'],['bell','Messages and alerts, your way']]},
+ offer:{n:'Offer',i:'tag',h:'Offers picked for you',d:'Personal offers depend on your play, so they show once you’re a member.',pts:[['tag','Free Play, dining, stays and spa'],['star','Featured first, then ending soonest'],['bed','Book straight from an offer']]}};
+Object.assign(GATE,{security:{...GATE.settings,n:'Sign-in & security'},password:{...GATE.settings,n:'Password'},comms:{...GATE.settings,n:'Messages & alerts'},book:{...GATE.offer,n:'Book'}});
+const gName=k=>k==='offers'?'Offers':GATE[k]?GATE[k].n:'';
+function gateHTML(k){const g=GATE[k];
+ const top=g.tab?`<div class="topbar" style="padding-bottom:0"><h1 class="t1">${g.n}</h1><span style="width:38px"></span></div>`:head(g.n,'guest');
+ // Joined online but no card yet: the card is issued at player services
+ if(S.gProspect)return `<div class="body">${top}<div class="px gate"><div class="gart"><span class="gqr">${qr('CP-48213',21,5)}</span></div>
+  <div class="gcode num">CP-48213</div>
+  <h1 class="t1" style="text-align:center;font-size:25px;margin-top:14px">You’re on the list, ${SAM.first}</h1>
+  <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">Show this code and a photo ID at player services at any of our casinos. Your card is ready in a few minutes, and your ${g.n==='Passport'?'Passport':g.n.toLowerCase()} fills in here.</div>
+  <button class="btn" data-go="destinations" style="width:100%;height:50px;margin-top:20px">${ic('pin',17)} Find player services</button>
+  <button class="btn line" data-act="glink" data-v="${k}" style="width:100%;height:46px;margin-top:10px">Already have a card? Link it</button></div></div>`;
+ const art=k==='wallet'?`<div class="gart card"><span class="gk">${kcard({tier:'circle'},250)}</span><span class="glk">${ic('lock',20,2.2)}</span></div>`:`<div class="gart"><span class="gic">${ic(g.i,32)}</span></div>`;
+ return `<div class="body">${top}<div class="px gate">${art}
+  <h1 class="t1" style="text-align:center;font-size:25px;margin-top:18px">${g.h}</h1>
+  <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">${g.d}</div></div>
+  <div class="list" style="margin-top:18px">${g.pts.map(([i,t])=>`<div class="li"><span style="color:var(--hi)">${ic(i,19)}</span><div class="grow"><div class="k">${t}</div></div></div>`).join('')}</div>
+  <div class="px" style="margin-top:18px">
+   <button class="btn" data-act="gjoin" data-v="${k}" style="width:100%;height:52px">Join Club Passport, it’s free</button>
+   <button class="btn line" data-act="glink" data-v="${k}" style="width:100%;height:48px;margin-top:10px">Already a member? Link your account</button>
+   <button data-act="glogin" data-v="${k}" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Have an online account? Sign in</button>
+   <div class="cap" style="text-align:center;margin-top:14px;color:var(--ink3);line-height:1.45">Joining is free. Your card is issued at player services, with a photo ID.</div></div></div>`}
+
+// Offers for guests: promotions open to everyone, and what joining unlocks
+const GPROMO=[['winstar','hotel','ws-stay','Weekend rooms from $149','WinStar World Casino Hotel · Fri–Sun'],['winstar','shows','e-tomjones','Tom Jones, on sale now','Fri, Oct 16 · Lucas Oil Live'],['artesian','spa','ar-hero','Spa Tuesdays: 20% off','The Artesian Spa'],['riverwind','dining','ws-dining','Date night at Riverwind','Dinner for two, Fridays and Saturdays']];
+function guestOffers(){
+ const top=S.gProspect?`<div class="photo" style="${bg('ws-gaming')};height:150px;margin:12px 20px 0;border-radius:22px;--shade:linear-gradient(90deg,rgba(5,10,20,.92),rgba(5,10,20,.2))"><div style="position:absolute;left:16px;top:16px;bottom:14px;right:16px;display:flex;flex-direction:column;justify-content:space-between"><span class="spon" style="color:#F6E1AC">Your first-visit offer</span><div><div style="font-family:var(--disp);font-weight:800;font-size:30px;color:#fff">$20 Free Play</div><div style="font-size:12.5px;color:rgba(255,255,255,.85)">Loads onto your card at player services. Code CP-48213.</div></div></div></div>`
+  :`<div class="gjoin"><div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--hi);margin-top:2px">${ic('lock',20)}</span><div style="flex:1"><div style="font-weight:800">Your offers show once you’re a member</div><div class="cap" style="margin-top:3px;line-height:1.4">Free Play, dining, stays and spa, picked for you. New members get $20 Free Play on their first visit.</div></div></div>
+   <div style="display:flex;gap:8px;margin-top:12px"><button class="btn" data-act="gjoin" data-v="offers" style="flex:1;height:44px">Join, it’s free</button><button class="btn line" data-act="glink" data-v="offers" style="flex:1;height:44px">Link my account</button></div></div>`;
+ return `<div class="body"><div class="topbar" style="padding-bottom:0"><h1 class="t1">Offers</h1><span style="width:38px"></span></div>${top}
+  <div class="sec"><h4>Open to everyone</h4><span class="cap">No account needed</span></div>
+  <div class="px" style="display:flex;flex-direction:column;gap:12px">${GPROMO.map(([k,kind,img,t,s])=>`<button data-act="gbook" data-v="${kind}" data-p="${k}" class="photo" style="${bg(img)};display:block;width:100%;height:150px;border-radius:22px;text-align:left;--shade:linear-gradient(180deg,rgba(5,10,20,.05) 25%,rgba(5,10,20,.9))"><span style="position:absolute;left:16px;right:16px;bottom:14px;display:block">${lg(k,15)}<span style="display:block;font-weight:800;font-size:17px;color:#fff;margin-top:6px">${t}</span><span style="display:block;font-size:12.5px;color:rgba(255,255,255,.82)">${s}</span></span></button>`).join('')}</div></div>`}
+
+// Concierge for guests: help planning a visit, without anything from an account
+const GCQ=[['weekend','What’s on this weekend?','At WinStar, Tom Jones plays Lucas Oil Live on Friday, Oct 16 at 8 PM, and Kirby’s Prime Steakhouse has tables Saturday from 5. Want me to start a booking?'],['late','Where can I eat late?','Mickey Mantle’s at WinStar serves until 11:30 PM. At Riverwind, the grill is open until midnight on Fridays and Saturdays.'],['card','How do I get a card?','Join here in the app, then show a photo ID at player services at any of our casinos. It takes about five minutes, and your first visit comes with $20 Free Play.'],['near','Which casino is closest?','WinStar in Thackerville is closest to the Dallas–Fort Worth area, and Riverwind in Norman to Oklahoma City. Destinations lists all 11 by distance.']];
+function guestConcierge(){const log=S.gcq,ai=h=>`<div class="cqai" style="display:flex;gap:8px;align-items:flex-end"><span style="width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#4287EA,#8A97AB);color:#fff">${ic('spa',15)}</span><div class="msg ai">${h}</div></div>`;
+ return `<div class="body" style="padding-bottom:220px">${head('Concierge','guest')}
+  <div class="px" style="display:flex;flex-direction:column;gap:12px">${ai('Hi! I can help you plan a visit to any of our 11 destinations: rooms, dinner, shows and the spa. <b>Sign in</b> and I’ll use your offers, tier and bookings too.')}
+   ${log.map(id=>{const q=GCQ.find(x=>x[0]===id);return `<div class="msg me">${q[1]}</div>${ai(q[2])}`}).join('')}</div></div>
+  <div style="position:absolute;left:0;right:0;bottom:88px;padding:18px 0 12px;background:linear-gradient(180deg,rgba(10,19,36,0),#0A1324 30%);z-index:24">
+   <div style="display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 16px 10px">${GCQ.filter(q=>!log.includes(q[0])).map(([id,q])=>`<button class="chip" data-act="gcq" data-v="${id}" style="height:32px;font-size:12.5px;flex:none">${q}</button>`).join('')}</div>
+   <div style="padding:0 16px"><button class="btn line" data-act="gsignin" style="width:100%;height:44px">${ic('user',16)} Sign in for help with your account</button></div></div>`}
+
+// Home property for guests: saved on this phone, carried into the account on joining
+function guestPreferred(){const cur=prefProp(),q=P[cur],p=per();
+ return `<div class="body">${head('Your home property','guest')}
+  <div class="px cap" style="margin:-2px 0 14px;font-size:13px;line-height:1.45">Pick the property you visit most. It gets its own tab at the bottom of the app. We save it on this phone and add it to your account when you join.</div>
+  <div class="photo" style="${bg(q.hero)};height:150px;margin:0 20px;border-radius:22px;--shade:linear-gradient(90deg,rgba(5,10,20,.88),rgba(5,10,20,.25))"><div style="position:absolute;left:18px;top:18px;bottom:16px;display:flex;flex-direction:column;justify-content:space-between">${lg(cur,24)}<div><div style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)">Home property</div><div style="font-size:19px;font-weight:800;color:#fff">${S.gPref?'Chosen by you':'Pick yours below'}</div></div></div></div>
+  <div class="sec"><h4>All properties</h4></div>
+  <div class="list">${Object.keys(P).sort((x,y)=>p.dist[x]-p.dist[y]).map(k=>`<div class="li" style="padding:10px 16px"><button data-act="gpref" data-p="${k}" style="display:flex;align-items:center;gap:12px;flex:1;min-width:0;text-align:left"><span class="radio ${cur===k?'on':''}"></span><span style="flex:1;min-width:0">${lg(k,16)}<span class="cap" style="display:block;margin-top:4px">${P[k].city} · ${mi(p.dist[k])}</span></span></button></div>`).join('')}</div></div>`}
+
+// Guest mode replaces personal pages and member versions; everything else works as it is
+for(const k of Object.keys(GATE)){const f=SCR[k];SCR[k]=()=>S.gm?gateHTML(k):f()}
+{const f=SCR.home;SCR.home=()=>S.gm?SCR.guest():f()}
+{const f=SCR.offers;SCR.offers=()=>S.gm?guestOffers():f()}
+{const f=SCR.concierge;SCR.concierge=()=>S.gm?guestConcierge():f()}
+{const f=SCR.preferred;SCR.preferred=()=>S.gm?guestPreferred():f()}
+// Hotels: guests book with the sign-in nudge
+{const f=SCR.hotels;SCR.hotels=()=>{if(!S.gm||S.prop!=='winstar')return f();if(!S.gb||S.gb.k!=='hotel')S.gb={k:'hotel',p:'winstar',step:'nudge',from:'property'};return SCR.gbook()}}
+// Home is the guest home while in guest mode
+go=(f=>function(scr){if(S.gm&&scr==='home')scr='guest';return f(scr)})(go);
+tabs=(f=>function(scr){return f(scr==='guest'?'home':scr)})(tabs);
+// The menu: a guest card instead of the member's, and a lock on personal pages
+drawerHTML=(f=>function(){let h=f();if(!S.gm)return h;
+ h=h.replace(/<button data-nav="settings" style="[\s\S]*?<\/button>/,`<button data-nav="settings" style="margin:0 14px;width:calc(100% - 28px);display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;background:rgba(255,255,255,.06);text-align:left"><span class="av">${ic('user',18)}</span><div style="flex:1;min-width:0"><div style="font-weight:700">${S.gProspect?SAM.first+' · on the list':'Guest'}</div><div class="cap">${S.gProspect?'Get your card at player services':'Join or link your account'}</div></div>${ic('right',16)}</button>`);
+ for(const k of Object.keys(GATE))h=h.replace(new RegExp(`(<button data-nav="${k}" class="drow"[^>]*>[\\s\\S]*?)</button>`),`$1<span class="glock">${ic('lock',14,2.2)}</span></button>`);
+ return h})(drawerHTML);
+// Presenter navigation: "Continue as a guest" turns guest mode on; other flow steps show the member app
+function gFlow(k){if(k==='guest')S.gm=true;else if(k!=='gbook'){S.gm=false;S.gNext=null}}
+// Leaving guest mode after signing in or linking: back to the page they wanted
+function gOut(){const n=S.gm&&S.gNext||'home';S.gm=false;S.gNext=null;S.gProspect=false;return n}
 Object.assign(NOTES,{
- guest:{e:'Look around first',t:'The program, without signing in',d:'From the sign-in screen, “Look around first” shows how Club Passport works, the four tiers and their benefits, all 11 destinations with links to their websites, and answers to common questions. Personal offers wait behind sign-in. Guests can plan a visit from here too.',aud:['Marketing','Loyalty','Exec'],src:'<b>Requirement 4.1.3:</b> loyalty education and links to property websites without logging in. <b>4.6:</b> personalized offers require login.'},
+ guest:{e:'Continue as a guest',t:'The whole app, before signing in',d:'“Continue as a guest” on the sign-in screen opens the app with its tabs. Home explains the program, the four tiers and their benefits, the 11 destinations with links to their websites, and common questions. Destinations, property pages, dining, shows, hotels and concierge all work without an account. Pages with a member’s own data ask the guest to join or link their account. The app remembers guest mode, so next time it opens straight in.',aud:['Marketing','Loyalty','Exec'],src:'<b>Requirement 4.1.3:</b> loyalty education and links to property websites without logging in. <b>4.5:</b> personal offers show after login.'},
+ ggate:{e:'Guest mode',t:'Join or link, where it matters',d:'Personal pages (Passport, Tier, Inbox, Live drawing, Trip, Live meters, Your host and Account) show what members get there, then two choices: join Club Passport, or link an existing player account with email or mobile, date of birth, casino PIN and a code. After linking, the guest lands on the page they wanted. Joining online adds them to the list; the card itself comes from player services, with a photo ID, and the page then shows the code to bring.',aud:['Loyalty','Marketing','CNIT'],src:'<b>Requirement 4.3:</b> a known guest can start claiming their account from any app entry point. <b>Appendix D:</b> an online sign-up never creates a player record in ACSC or Engage.'},
  gbook:{e:'Book as a guest',t:'Signing in is encouraged, not required',d:'Booking a room, table, show or spa without an account first shows what signing in adds: member rates, offers, points and details filled in. Guests can continue without an account, and are invited to join afterwards so the booking can count.',aud:['Marketing','GM','Loyalty'],src:'<b>Requirement 4.1.4:</b> guests encouraged, but not required, to log in when booking hotels, activities or other experiences. The same choice appears on the property websites.'}});
 
 /* ---------- v3 taps inside the phone. Returns true when the tap was handled. ---------- */
@@ -2084,7 +2179,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dmore':S.door.more=true;render(true);return true;
   case 'dwelcome':{const on=S.door.faceOn;S.trusted[P1]=on;S.secFace=on;doorDone(S.door.sam?`Card linked. The demo continues as ${per().first}.`:on?'Your Club Passport is ready':'Your Club Passport is ready. Face ID is off.');return true}
   case 'dnext':stepTo(S.door,v);return true;
-  case 'dback':{const d=S.door;d.err=null;if(d.h.length)stepBack(d,'login');else{d.step='start';render()}return true}
+  case 'dback':{const d=S.door;d.err=null;if(d.h.length)stepBack(d,'login');else if(S.gm&&S.gNext){const n=S.gNext;S.door=doorFresh();S.gNext=null;go(n)}else{d.step='start';render()}return true}
   // date of birth and casino PIN: 3 tries, then online claiming pauses
   case 'dpinerr':{const d=S.door;d.pinDemo=v;if(v==='lock'){d.perr=0;stepTo(d,'pinlock');return true}d.perr=v==='wrong'?1:0;render(true);return true}
   case 'dpinhelp':S.door.pinHelp=true;render(true);return true;
@@ -2100,10 +2195,10 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'daddph':S.door.addPh=true;render(true);return true;
   case 'dage':S.door.age21=!S.door.age21;render(true);return true;
   case 'djerr':S.door.jerr=v==='ok'?null:v;render(true);return true;
-  case 'djoin':{const d=S.door;if(d.jerr==='email'||!d.age21){toast(d.age21?'Check the email address':'You must be 21 or older to join');return true}stepTo(d,d.jerr==='dup'?'dup':'joined');return true}
+  case 'djoin':{const d=S.door;if(d.jerr==='email'||!d.age21){toast(d.age21?'Check the email address':'You must be 21 or older to join');return true}S.gProspect=true;stepTo(d,d.jerr==='dup'?'dup':'joined');return true}
   case 'dnoop':return true;
-  case 'dexplore':S.door=doorFresh();go('guest');return true;
-  case 'dreset':S.door=doorFresh();render();return true;
+  case 'dexplore':{const n=S.gm&&S.gNext;S.door=doorFresh();S.gm=true;S.gNext=null;go(n||'guest');return true}
+  case 'dreset':if(S.gm&&S.gNext){const n=S.gNext;S.door=doorFresh();S.gNext=null;go(n)}else{S.door=doorFresh();render()}return true;
   case 'dother':S.trusted[P1]=false;clearTimeout(S.fidT);S.fidT=null;S.door=doorFresh();render();return true;
   case 'dpasskey':S.pk={mode:'signin',step:'ask',from:'door'};render(true);return true;
   case 'dpkcreate':S.pk={mode:'create',step:'ask',from:v==='welcome'?'welcome':'door'};render(true);return true;
@@ -2129,13 +2224,19 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'signout':S.trusted[P1]=false;S.door=doorFresh();go('login');later('Signed out. Sign in with a code, Face ID or your passkey.');return true;
   case 'notme':toast('Signed out everywhere and the new iPhone removed. Change your password or add a passkey next.');return true;
   // signed out: look around and book as a guest
-  case 'dguest':S.door=doorFresh();go('guest');return true;
+  case 'dguest':{const n=S.gm&&S.gNext;S.door=doorFresh();S.gm=true;S.gNext=null;go(n||'guest');return true}
+  // from a personal page: join, link an existing player account, or sign in; then back to that page
+  case 'gjoin':S.gNext=v;S.door=Object.assign(doorFresh(),{who:'new',step:'join'});go('login');return true;
+  case 'glink':S.gNext=v;S.door=Object.assign(doorFresh(),{who:'claim',link:true});go('login');return true;
+  case 'glogin':S.gNext=v;S.door=doorFresh();go('login');return true;
+  case 'gpref':S.gPref=a.dataset.p;S.prop=a.dataset.p;render(true);later(`${P[a.dataset.p].n} is your home property on this phone`);return true;
+  case 'gcq':if(!S.gcq.includes(v))S.gcq.push(v);render(true);setTimeout(()=>{const b=document.querySelector('#stage .body');if(b)b.scrollTop=b.scrollHeight},30);return true;
   case 'gsignin':S.door=doorFresh();S.gb=null;go('login');return true;
-  case 'gbook':S.gb={k:v,step:'nudge'};go('gbook');return true;
+  case 'gbook':S.gb={k:v,p:a.dataset.p||'winstar',step:'nudge',from:S.screen==='gbook'?'guest':S.screen};go('gbook');return true;
   case 'gguest':S.gb.step='form';render();return true;
   case 'gconfirm':S.gb.step='done';render();later('Booked as a guest');return true;
-  case 'gdone':S.gb=null;go('guest');return true;
-  case 'gback':if(S.gb&&S.gb.step==='form'){S.gb.step='nudge';render()}else{S.gb=null;go('guest')}return true;
+  case 'gdone':{const f=S.gb&&S.gb.from;S.gb=null;go(f||'guest');return true}
+  case 'gback':if(S.gb&&S.gb.step==='form'){S.gb.step='nudge';render()}else{const f=S.gb&&S.gb.from;S.gb=null;go(f||'guest')}return true;
   case 'gfaq':S.gfaq=S.gfaq===+v?-1:+v;render(true);return true;
   // the home-property tab
   case 'hometab':S.prop=prefProp();S.opf=null;go('property');return true;
@@ -2144,7 +2245,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'rcfill':S.rc.fill=true;render(true);return true;
   case 'rcback':stepBack(S.rc,'login');return true;
   case 'rcexit':go('login');return true;
-  case 'rcdone':S.trusted[P1]=true;go('home');later('Signed in to all 11 properties');return true;
+  case 'rcdone':S.trusted[P1]=true;go(gOut());later('Signed in to all 11 properties');return true;
   // offers
   case 'oopen':S.offer=a.dataset.id;S.tc=false;go('offer');return true;
   case 'tc':S.tc=!S.tc;render(true);return true;
@@ -2594,8 +2695,11 @@ function webSignedIn(){const m=S.webModal;S.webModal=null;S.webIn=true;if(S.site
 
 /* ---------- every sign-in and join path, for the Coverage checklist: [id, path, requirement, where] ---------- */
 const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carried over','4.12','App'],
- ['guest','Look around without signing in: the program, tiers, destinations with website links, FAQ','4.1.3','App'],
+ ['guest','Continue as a guest: the app and its tabs before signing in, with the program, tiers, destinations and FAQ','4.1.3','App'],
  ['gbook','Book as a guest: signing in encouraged, not required','4.1.4','App'],
+ ['ggate','Guest opens a personal page (Passport): join or link their account','4.1.3','App'],
+ ['glink','Guest links their player account from Passport, then lands back on Passport','App. C','App'],
+ ['gjoin','Guest joins from a personal page: on the list, card at player services','App. D','App'],
  ['trusted','Returning guest on a trusted iPhone: Face ID signs in by itself','App. E','App'],
  ['fidfail','Face ID doesn’t recognize the guest: try again, or use a code','App. E','App'],
  ['code','Returning guest on a new phone: a code that fills in and checks itself','App. B, E','App'],
@@ -2645,13 +2749,16 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['webmig','Existing winstar.com login moves to Club Passport','4.12','Web']];
 function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
  const as=P1=>{if(S.persona!==P1){S.persona=P1;S.prop=PERS[P1].home;v3Reset(true)}};
- const app=(scr,setup)=>{S.view='proto';S.webModal=null;S.pk=null;S.stepup=null;if(setup)setup();go(scr);window.scrollTo({top:0})};
+ const app=(scr,setup)=>{S.view='proto';S.webModal=null;S.pk=null;S.stepup=null;S.gm=false;S.gNext=null;S.gProspect=false;if(setup)setup();go(scr);window.scrollTo({top:0})};
  const login=(P1,trusted,door,extra)=>app('login',()=>{as(P1);S.trusted[P1]=trusted;S.door=fresh(door);if(extra)extra()});
  const web=setup=>{S.view='web';S.pPanel=false;S.wbk=null;S.webModal=null;setup();render();window.scrollTo({top:0})};
  switch(id){
   case 'mig':return app('moving',()=>{as('A');S.trusted.A=false});
-  case 'guest':return app('guest');
-  case 'gbook':return app('gbook',()=>{S.gb={k:'hotel',step:'nudge'}});
+  case 'guest':return app('guest',()=>{S.gm=true});
+  case 'gbook':return app('gbook',()=>{S.gm=true;S.gb={k:'hotel',p:'winstar',step:'nudge'}});
+  case 'ggate':return app('wallet',()=>{S.gm=true});
+  case 'glink':return app('login',()=>{as('A');S.gm=true;S.gNext='wallet';S.trusted.A=false;S.door=fresh({who:'claim',link:true})});
+  case 'gjoin':return app('login',()=>{S.gm=true;S.gNext='wallet';S.door=fresh({who:'new',step:'join'})});
   case 'trusted':return login('A',true);
   case 'fidfail':return login('A',true,{fid:'fail'});
   case 'code':return login('A',false,{step:'code',h:['start']});
@@ -2718,10 +2825,10 @@ function render(keepScroll){
   if(st){const b=document.querySelector('#stage .body');if(b)b.scrollTop=st}
   if(dst){const d=document.querySelector('#stage .drawer');if(d)d.scrollTop=dst}
   return}
- if(S.view==='proto'){const n=(S.screen==='home'&&S.model==='umbrella'&&NOTES.homeUmb)||NOTES[S.screen],idx=SCREENS.findIndex(s=>s[0]===S.screen),narrow=window.innerWidth<1100,maxH=narrow?9999:Math.max(600,window.innerHeight-150);
+ if(S.view==='proto'){const n=(S.gm&&(GATE[S.screen]?NOTES.ggate:S.screen==='hotels'&&S.prop==='winstar'?NOTES.gbook:null))||(S.screen==='home'&&S.model==='umbrella'&&NOTES.homeUmb)||NOTES[S.screen],idx=SCREENS.findIndex(s=>s[0]===S.screen),narrow=window.innerWidth<1100,maxH=narrow?9999:Math.max(600,window.innerHeight-150);
   const glow=themeFor(S.screen).tint?P[S.prop].acc+'33':'rgba(156,195,245,.16)';
   app.innerHTML=`<div class="proto">
-   <aside class="notes"><span class="eyebrow">${n.e}${idx>=0?` · ${idx+1} of ${SCREENS.length}`:''}</span><h2>${n.t}</h2>${reqTags(S.screen)}<p>${n.d}</p>
+   <aside class="notes"><span class="eyebrow">${n.e}${idx>=0?` · ${idx+1} of ${SCREENS.length}`:''}</span><h2>${n.t}</h2>${reqTags(S.gm&&GATE[S.screen]?'ggate':S.screen)}<p>${n.d}</p>
     <div class="tags">${n.aud.map(a=>`<span class="tag">${a}</span>`).join('')}</div><div class="src">${n.src}</div></aside>
    <div class="stage" id="stage" style="--glow:${glow}">${fitBox(phone(S.screen,true),414,868,Math.min(414,availW()),maxH)}</div>
    <nav class="flow"><h3>Demo flow</h3>${(()=>{let c=0;return FLOW.map(([g,items])=>`<div class="gh">${g}</div>`+items.map(([k,l])=>{c++;return `<button data-nav="${k}" aria-current="${S.screen===k}"><span class="k">${String(c).padStart(2,'0')}</span>${l}</button>`}).join('')).join('')})()}<div class="hint">Use ← → to step through. Everything in the phone is tappable.</div></nav></div>`;
@@ -2746,7 +2853,7 @@ function go(scr){S.screen=scr;S.sheet=false;S.fund=null;S.menu=false;render()}
 document.addEventListener('click',e=>{
  if(e.target.closest('[data-stop]')&&!e.target.closest('[data-act]'))return;
  const set=e.target.closest('[data-set]');if(set){const k=set.dataset.set;S[k]=set.dataset.v;if(k==='view'){S.menu=false;window.scrollTo({top:0})}if(k==='persona'){S.prop=PERS[S.persona].home;S.claimed.clear();S.spun=null;S.rot=0;S.scratch=false;S.keyOpen=false;S.drink=null;S.issue=false;S.chatBooked=false;S.converted=false;S.convSel=0;S.giftDone=false;S.giftProp=null;S.read=new Set();S.fund=null;S.folioPaid=false;S.gift={stage:'offer',prop:null,slot:0};S.addrEdit=false;S.fulfil=null;S.modal=null;v3Reset(true)}if(k==='model'){S.prop=PERS[S.persona].home;if(S.view==='gallery'){S.view='proto';S.screen='home';window.scrollTo({top:0})}}render();return}
- const nav=e.target.closest('[data-nav]');if(nav){go(nav.dataset.nav);return}
+ const nav=e.target.closest('[data-nav]');if(nav){if(!nav.closest('#stage'))gFlow(nav.dataset.nav);go(nav.dataset.nav);return}
  const op=e.target.closest('[data-open]');if(op){S.view='proto';go(op.dataset.open);window.scrollTo({top:0});return}
  const pt=e.target.closest('[data-pt]');if(pt){S.portal=pt.dataset.pt;render();return}
  const pf=e.target.closest('[data-pf]');if(pf){S.pfil=pf.dataset.pf;render();return}
@@ -2799,7 +2906,7 @@ document.addEventListener('click',e=>{
   return}
  const g=e.target.closest('[data-go]');if(g&&g.closest('#stage')){go(g.dataset.go)}
 });
-document.addEventListener('keydown',e=>{if(e.target.id==='osearch'||e.target.id==='wsearch'){if(e.key==='Enter'){e.preventDefault();S.oq=e.target.value;render(true)}return}if(e.target.id==='cqin'){if(e.key==='Enter'){e.preventDefault();cqSend(e.target.value)}return}if(e.target.matches&&e.target.matches('input,textarea,select'))return;if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.open){S.view='proto';go(e.target.dataset.open);return}if(S.view!=='proto')return;const i=SCREENS.findIndex(s=>s[0]===S.screen);if(e.key==='ArrowRight'&&i<SCREENS.length-1)go(SCREENS[i+1][0]);if(e.key==='ArrowLeft'&&i>0)go(SCREENS[i-1][0])});
+document.addEventListener('keydown',e=>{if(e.target.id==='osearch'||e.target.id==='wsearch'){if(e.key==='Enter'){e.preventDefault();S.oq=e.target.value;render(true)}return}if(e.target.id==='cqin'){if(e.key==='Enter'){e.preventDefault();cqSend(e.target.value)}return}if(e.target.matches&&e.target.matches('input,textarea,select'))return;if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.open){S.view='proto';go(e.target.dataset.open);return}if(S.view!=='proto')return;const i=SCREENS.findIndex(s=>s[0]===S.screen);if(e.key==='ArrowRight'&&i<SCREENS.length-1){gFlow(SCREENS[i+1][0]);go(SCREENS[i+1][0])}if(e.key==='ArrowLeft'&&i>0){gFlow(SCREENS[i-1][0]);go(SCREENS[i-1][0])}});
 let rz;window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(!S.spinning)render(true)},150)});
 setInterval(()=>{T.hourly+=Math.random()*.9;if(T.hourly>999.2)T.hourly=250+Math.random()*20;T.g1+=Math.random()*14;T.g2+=Math.random()*.6;T.g3+=Math.random()*1.4;
  document.querySelectorAll('[data-tick]').forEach(el=>{const v=T[el.dataset.tick];if(v!=null)el.textContent=usd(v)})},160);
