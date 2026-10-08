@@ -449,6 +449,10 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .upc+.upc{border-top:1px solid var(--ln)}
 .upc .ui{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(156,195,245,.12);color:var(--hi);flex:none}
 .psum-no{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink3);margin-top:2px;letter-spacing:.04em}
+/* sign in or join */
+.ordiv{display:flex;align-items:center;gap:12px;margin:14px 0;font-size:12px;font-weight:600;color:#93A1B7}
+.ordiv::before,.ordiv::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12)}
+.wcard .why{color:var(--mute)}.wcard .why>svg{color:var(--sky)}.wcard .why b{color:#EEF2F8}
 /* rows that reuse the list text styles */
 .upc .k,.tgr .k,.rule .k{font-size:14px;font-weight:600}.upc .v,.tgr .v{font-size:12.5px;color:var(--ink2)}
 .upc .grow,.tgr .grow,.rule .grow,.bigopt .grow,.opt .grow{flex:1;min-width:0}
@@ -741,13 +745,13 @@ const GAMES={
  A:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Red Hot Ruby Major',p:'winstar',loc:'Plaza A · Bank 3',img:'ms-games'},{k:'g3',n:'Lucky Ducky Mega',p:'riverwind',loc:'Main floor · Bank 22',hot:'Due by history',img:'lc-2'}],
  B:[{k:'g1',n:'Golden Stampede Grand',p:'winstar',loc:'Plaza C · Bank 14',hot:'90-day high',img:'ws-gaming'},{k:'g2',n:'Money Bags Major',p:'artesian',loc:'Casino floor · Bank 2',img:'ct-2'},{k:'g3',n:'Buffalo Run Grand',p:'treasure',loc:'East floor · Bank 7',img:'nc-floor'}]
 };
-const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in'],['mfa','Verify it’s you'],['claim','Find my account'],['recover','Account recovery'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['convert','Convert an offer'],['wallet','Passport'],['tier','Tier']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['playing','Playing now'],['meters','Live meters'],['wayfind','Wayfinding'],['stay','Stay & key'],['trip','Trip']]],['Engagement',[['play','Play'],['pwgame','Pick & Win round'],['drawing','Live drawing'],['sponsor','Partner perk'],['challenges','Challenges'],['exchange','Marketplace'],['gift','Monthly gift']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account & RG'],['security','Sign-in & security'],['comms','Messages & alerts']]]];
+const FLOW=[['Get started',[['moving','Moving from a property app'],['login','Sign in or join'],['recover','Trouble signing in'],['lock','Notifications']]],['Everyday',[['home','Home'],['inbox','Inbox'],['offers','Offers'],['offer','Offer details'],['book','Book from an offer'],['convert','Convert an offer'],['wallet','Passport'],['tier','Tier']]],['House of brands',[['destinations','Destinations'],['preferred','Preferred property'],['property','Property'],['dining','Dining'],['shows','Shows'],['hotels','Hotels']]],['On property',[['playing','Playing now'],['meters','Live meters'],['wayfind','Wayfinding'],['stay','Stay & key'],['trip','Trip']]],['Engagement',[['play','Play'],['pwgame','Pick & Win round'],['drawing','Live drawing'],['sponsor','Partner perk'],['challenges','Challenges'],['exchange','Marketplace'],['gift','Monthly gift']]],['Service',[['concierge','Concierge'],['host','Your host'],['settings','Account & RG'],['security','Sign-in & security'],['comms','Messages & alerts']]]];
 const SCREENS=FLOW.flatMap(g=>g[1]);
 const NOTES={
  sponsor:{e:'Partners',t:'Sponsor perks players actually want',d:'Partners such as the Dallas Cowboys and Pepsi fund member perks: ticket drawings, double points, fuel discounts. Players activate a perk in one tap, and every view and activation is counted in the ad network, so partners see what they paid for.',aud:['Exec','Marketing','Sales'],src:'<b>Sample placements:</b> the perks and terms are illustrations for discussion, not agreements. Partner names are shown as text; logos would come from each partner. Chickasaw Travel Stop and Bedré Fine Chocolate are Chickasaw Nation businesses. Dallas Cowboys Bar & Grill happy hour is from winstar.com.'},
  drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
  homeUmb:{e:'Parent-led',t:'One app, eleven looks',d:'Swipe the photo at the top, or tap the arrows or dots. The whole app changes over to that property: colors, photos and logo, and Home fills with its offers, shows, promotions and dining. Club Passport stays at the top, and the tier, points and wallet stay the same everywhere.',aud:['Exec','GM','Brand'],src:'<b>Content:</b> dining, shows and promotions from each property website, captured Sep 26, 2026.'},
- login:{e:'Sign-in',t:'One sign-in: a password or a code, then Face ID',d:'Guests sign in with their email or mobile number and either a password or a one-time code. On a new device they confirm with a code and can trust the device for 30 days; after that, Face ID is all they need. Tap Sign in to see the check, then come back here to see Face ID. The same sign-in works on every property website.',aud:['Exec','Loyalty','IT'],src:'<b>Matches</b> the sample login screens in Appendix B. A player ID and PIN can help claim an account but are never the only way to sign in. <b>Vendor to confirm:</b> MFA method, risk rules and passkeys.'},
+ login:{e:'Sign in or join',t:'One front door for everyone',d:'Guests type their email or mobile number and the app works out the rest. Returning: a code that fills itself in (Jordan set a password, so he sees that first). First time online with a card: a code to the phone on the player account, then “Welcome back”. New: “Played with us before?”, then a card scan or a short join form. Use the Demo switch for the three paths. After a code sign-in, turn on Face ID, then open Sign in or join again: Face ID signs in by itself.',aud:['Exec','Loyalty','IT'],src:'<b>Appendices A–E.</b> Names and tiers appear only after the code, so nobody can look up someone else’s membership. Appendix C checks the match before the code, so CNIT should agree to this order. Passwords are optional; passkeys stay on the roadmap.'},
  home:{e:'Personalized home',t:'Account summary first, then offers',d:'v3: Home opens with the account summary the requirements ask for: tier, tier points, reward points, progress to the next tier, drawing entries and card number. Offers come straight after, featured first and then ending soonest, followed by the “Right now” stack and upcoming reservations. The greeting shows the preferred property. Switch the brand model above to compare the three options.',aud:['Exec','GM','Loyalty'],src:'<b>Requirements:</b> the default view after sign-in (4.8) and offers prominent after sign-in (4.5). Balances and offers would come from ACSC/Engage.'},
  destinations:{e:'House of brands',t:'Eleven brands, each shown as itself',d:'Every property appears with its own logo, photography and colors. Cards are sorted by distance and show which services each property offers.',aud:['GM','Exec'],src:'<b>Roadmap:</b> Multi-Property Continuity, with property-aware entitlements and geo context.'},
  property:{e:'Property world',t:'Step inside a property, keep your status',d:'Each property page is fully branded. A Club Passport strip confirms the player’s tier is recognized there and lists the perks it unlocks at that property.',aud:['GM','Loyalty'],src:'<b>Roadmap:</b> Tier recognition across all properties.'},
@@ -1934,9 +1938,9 @@ function stepBack(o,exit){if(o.h&&o.h.length){o.step=o.h.pop();render()}else go(
 
 /* ---------- requirement tags shown in the presenter notes ---------- */
 const REQ={'4.1':'Loyalty website','4.2':'Property websites','4.3':'Login and account access','4.4':'Logged-in experience','4.5':'Offers','4.6':'Preferred property and availability','4.7':'Booking and transactions','4.8':'App','4.9':'Push and communications','4.10':'Analytics','4.11':'Data and system of record','4.12':'Migration','A':'Appendix A · Authentication journey','B':'Appendix B · Login paths','C':'Appendix C · Known guest','D':'Appendix D · Prospect capture','E':'Appendix E · MFA and step-up','F':'Appendix F · Account recovery','5':'Open decision'};
-const SREQ={moving:['4.12'],login:['4.3','B','E','4.8'],mfa:['4.3','B','E'],claim:['4.3','A','C','D','4.11'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],convert:['4.5'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],playing:['5'],meters:['5'],wayfind:['4.8'],stay:['4.8'],trip:['4.4','4.7'],play:['5'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
+const SREQ={moving:['4.12'],login:['4.3','A','B','C','D','E','4.8','4.11'],recover:['4.3','F'],lock:['4.9'],home:['4.8','4.4','4.5'],inbox:['4.9'],offers:['4.5','4.6'],offer:['4.5','4.7'],book:['4.7','4.6'],convert:['4.5'],wallet:['4.8','4.4','5'],tier:['4.4','4.1'],destinations:['4.8','4.6'],preferred:['4.6','4.8'],property:['4.8','4.2'],dining:['4.8'],shows:['4.8','4.6'],hotels:['4.7','4.8'],playing:['5'],meters:['5'],wayfind:['4.8'],stay:['4.8'],trip:['4.4','4.7'],play:['5'],drawing:['4.4'],concierge:['4.6'],host:['4.4','4.8'],settings:['4.4','4.11'],security:['4.3','E','4.11'],comms:['4.9','4.4']};
 // m = first release, f = future phase, mf = both
-const SPHASE={moving:'m',login:'mf',mfa:'m',claim:'m',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'mf',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
+const SPHASE={moving:'m',login:'mf',recover:'m',home:'m',offers:'m',offer:'mf',book:'mf',preferred:'m',security:'mf',comms:'mf',wallet:'m',tier:'m',host:'m',trip:'m',hotels:'m',concierge:'f',destinations:'m',property:'m'};
 function reqTags(id){const r=SREQ[id],ph=SPHASE[id];
  if(!r||!r.length)return `<div class="rqs"><span class="rq bx">Beyond the requirements document</span></div>`;
  return `<div class="rqs">${r.map(k=>`<span class="rq" title="${REQ[k]}">${/^\d/.test(k)&&k!=='5'?'Req '+k:k==='5'?'Open decision':'App. '+k} · ${k==='5'?'see Coverage':REQ[k].replace(/^Appendix . · /,'')}</span>`).join('')}${ph&&ph.includes('m')?'<span class="rq ph">First release</span>':''}${ph&&ph.includes('f')?'<span class="rq fu">Includes future phase</span>':''}</div>`}
@@ -1992,8 +1996,9 @@ const CMLOCK={trips:[0,0,1],acct:[1,1,1]};
 const cmInit=fav=>({offers:[1,1,1],events:[1,0,1],draw:[1,0,1],deals:[0,0,1],jackpot:[1,0,0],trips:[1,1,1],acct:[1,1,1],props:'fav',pick:new Set(fav),freq:1,quiet:1,geo:0});
 
 /* ---------- v3 state ---------- */
-function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{si:'pw',remember:true,trusted:{A:false,B:false},mfa:{step:0,m:'sms',back:'login',fill:false},cl:{step:'find',path:'known',alt:'match',who:'me',pw:'pw',h:[]},rc:{step:'menu',h:[]},
- stepup:null,newMobile:{A:null,B:null},secPwless:false,secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
+const doorFresh=()=>({who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false});
+function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),trusted:{A:false,B:false},rc:{step:'menu',h:[]},
+ stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
  cm:{A:cmInit(['winstar','riverwind']),B:cmInit(['artesian','treasure'])},site:'loyalty',wextra:[],webIn:false,webTrusted:false,webModal:null,psite:'winstar',pPanel:false,faq:0,wbk:null,wOffer:null,
  anScope:'all',anCh:'all',anVis:'all'},k)}
@@ -2014,145 +2019,124 @@ SCR.moving=()=>{const p=per(),t=TIERS[p.tier],w=P.winstar;
    <button class="btn" data-act="movego" style="width:100%;height:50px;margin-top:16px">Open Club Passport</button>
    <div class="cap" style="text-align:center;margin-top:10px;color:var(--ink3)">The WinStar app stops working Jan 31, 2027. Your winstar.com sign-in moves over too.</div></div></div>`};
 
-// Sign in: password or one-time code, then Face ID on a trusted device
-SCR.login=()=>{const p=per(),tr=S.trusted[S.persona],pw=S.si==='pw';
+// Sign in or join: one front door. The email or mobile number decides what comes next, so guests never have to
+// know whether they have an online account. Returning guests get a code (or their password, if they set one);
+// card holders new to the app get a code on the phone from their player account, and only then see their name;
+// new guests are asked whether they've played before.
+const HASPW={A:false,B:true}; // Jordan set a password; Winnie signs in with codes
+const DOORWHO=[['ret','Returning'],['claim','First time online'],['new','New guest']];
+const doorId=()=>S.door.sam||S.door.who==='new'?SAM:per();
+// On a trusted iPhone, Face ID runs as the app opens
+function doorAuto(){if(S.view!=='proto'||S.screen!=='login'||!S.trusted[S.persona]||S.fidT)return;
+ S.fidT=setTimeout(()=>{S.fidT=null;if(S.view==='proto'&&S.screen==='login'&&S.trusted[S.persona]){go('home');setTimeout(()=>toast('Signed in with Face ID'),40)}},1800)}
+function doorVerified(){const d=S.door;d.fill=false;d.methods=false;stepTo(d,d.who==='claim'?'welcome':'faster')}
+function doorDone(msg){S.door=doorFresh();go('home');setTimeout(()=>toast(msg),40)}
+function scanFrame(inner){return `<div style="margin-top:22px;height:230px;border-radius:24px;background:#05090F;position:relative;overflow:hidden;display:grid;place-items:center">${inner}
+   <span style="position:absolute;left:32px;right:32px;top:48%;height:2px;background:#9CC3F5;box-shadow:0 0 12px #9CC3F5"></span>
+   ${[['left','top'],['right','top'],['left','bottom'],['right','bottom']].map(([x,y])=>`<span style="position:absolute;${x}:22px;${y}:22px;width:32px;height:32px;border-${x}:3px solid #9CC3F5;border-${y}:3px solid #9CC3F5;border-radius:${y==='top'?(x==='left'?'10px 0 0 0':'0 10px 0 0'):(x==='left'?'0 0 0 10px':'0 0 10px 0')}"></span>`).join('')}</div>`}
+const idScanHTML=()=>scanFrame(`<div style="width:240px;height:150px;border-radius:14px;background:linear-gradient(135deg,#E8ECF2,#C4CCD8);padding:14px;display:flex;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)"><span style="width:62px;height:80px;border-radius:8px;background:#9AA6B8;display:grid;place-items:center;color:#E8ECF2">${ic('user',36,1.6)}</span><span style="flex:1;display:flex;flex-direction:column;gap:7px;padding-top:4px">${[70,90,55,80,40].map(w=>`<i style="display:block;height:7px;width:${w}%;border-radius:4px;background:#A9B3C3"></i>`).join('')}</span></div>`);
+const cardScanHTML=()=>scanFrame(`<div style="box-shadow:0 10px 30px rgba(0,0,0,.5);border-radius:14px">${kcard({tier:SAM.tier,num:SAM.num,name:SAM.name},250)}</div>`);
+SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId();
  const tiles=['ws-globe','ar-lobby','rw-show','ws-dining','lc-hero','ms-games','wb-hero','ws-spa','tv-hero','ct-hero','nc-floor','ws-pool'];
- const logos=Object.keys(P).map(k=>`<span style="flex:none;height:40px;padding:0 6px;display:grid;place-items:center">${lg(k,18)}</span>`).join('');
+ const logos=`<div class="hs" style="gap:14px;align-items:center;opacity:.8">${Object.keys(P).map(k=>`<span style="flex:none;height:40px;padding:0 6px;display:grid;place-items:center">${lg(k,18)}</span>`).join('')}</div>`;
  const hero=h=>`<div style="position:relative;height:${h}px;flex:none;overflow:hidden">
    <div style="position:absolute;inset:-20px -40px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;transform:rotate(-8deg)">${tiles.map(t=>`<div style="${bg(t)};background-size:cover;background-position:center;height:124px;border-radius:16px"></div>`).join('')}</div>
    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,19,36,.35) 0,rgba(10,19,36,.6) 55%,#0A1324 100%)"></div>
    <div style="position:absolute;left:24px;bottom:10px"><div class="wm" style="font-size:${h>300?46:34}px;color:#fff;line-height:.95">CLUB<br>PASSPORT</div><div style="font-family:var(--disp);font-weight:600;font-size:11.5px;letter-spacing:.24em;color:rgba(255,255,255,.75);margin-top:8px">ONE ACCOUNT · 11 DESTINATIONS</div></div></div>`;
- if(tr)return `<div class="body" style="padding-bottom:0;display:flex;flex-direction:column">${hero(400)}
-  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:12px">
-   <div style="font-size:25px;font-weight:800;letter-spacing:-.02em">Welcome back, ${p.first}</div>
-   <div class="cap" style="font-size:13.5px;margin-top:-4px">This iPhone is trusted until Nov 6, so Face ID is all you need.</div>
-   <button class="btn" data-act="faceid" style="height:54px;font-size:15px">${ic('face',20)} Sign in with Face ID</button>
-   <button data-act="untrust" style="font-size:13.5px;font-weight:700;color:var(--hi)">Use a password or code instead</button></div>
-  <div style="margin-top:auto;padding:0 0 26px"><div class="hs" style="gap:14px;align-items:center;opacity:.8">${logos}</div></div></div>`;
- return `<div class="body" style="padding-bottom:40px">${hero(220)}
-  <div class="px" style="margin-top:14px"><div style="font-size:23px;font-weight:800;letter-spacing:-.02em">Sign in to your account</div>
-   <div class="cap" style="margin-top:3px">One sign-in for the app and all 11 property websites.</div>
-   <div class="dseg2" style="margin-top:14px"><button data-act="simode" data-v="pw" aria-pressed="${pw}">Password</button><button data-act="simode" data-v="code" aria-pressed="${!pw}">Email me a code</button></div>
-   ${fld('Email or mobile number',p.email)}
-   ${pw?fld('Password','••••••••••••',{caret:1}):''}
-   ${chkrow(S.remember,'Remember this device','siremember')}
-   <button class="btn" data-act="${pw?'signin':'sicode'}" style="width:100%;height:50px;margin-top:16px">${pw?'Sign in':'Send me a code'}</button>
-   <button class="btn line" data-act="claimstart" style="width:100%;height:46px;margin-top:10px">First time online? Find my account</button>
-   <div style="display:flex;justify-content:center;gap:14px;margin-top:14px;font-size:13px;font-weight:600"><button data-act="rcopen" data-k="pw" style="color:var(--hi)">Forgot password?</button><span style="color:var(--ink3)">|</span><button data-act="rcopen" data-k="user" style="color:var(--hi)">Forgot username?</button></div>
-   ${pw?'':`<div class="note" style="margin-top:14px">${ic('key',16)}<span>Passkeys will replace codes on phones that support them. ${fut()}</span></div>`}
-   <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Use the WinStar or Riverwind app today? Your account, card and points come with you.</span></button></div></div>`};
-
-// Verify your identity (Appendix B and E): pick a method, enter the code, trust the device
-SCR.mfa=()=>{const p=per(),m=S.mfa;
- const meth=[['sms','msg',`Text message to ${maskPh(p)}`,'Get a code by text'],['email','mail',`Email to ${maskEm(p)}`,'Get a code by email'],['app','shield','Authenticator app','Get a code from your authenticator app']];
- if(m.step===0)return `<div class="body">${backBar('mfaback')}<div class="px" style="margin-top:6px">
-  <h1 class="t1">Verify your identity</h1><div class="cap" style="margin-top:6px;font-size:14px">Choose how you’d like to get your one-time code.</div>
-  <div class="why">${ic('shield',16)}<span><b>Why now?</b> You’re signing in on a new iPhone. We ask for a code when something is different, like a new device, a new location or several wrong passwords.</span></div>
-  <div class="opts">${meth.map(([k,i,t,s])=>`<button class="opt" data-act="mfam" data-v="${k}" aria-pressed="${m.m===k}"><span class="rad"></span><span class="oi">${ic(i,18)}</span><span class="grow"><b>${t}</b><span>${s}</span></span></button>`).join('')}</div>
-  ${chkrow(S.remember,'Remember this device for 30 days','siremember')}
-  <button class="btn" data-act="mfasend" style="width:100%;height:50px;margin-top:16px">Continue</button></div></div>`;
- const dest=m.m==='sms'?maskPh(p):maskEm(p);
- return `<div class="body">${backBar('mfaback')}<div class="px" style="margin-top:6px">
-  <h1 class="t1">Enter verification code</h1><div class="cap" style="margin-top:6px;font-size:14px">${m.m==='app'?'Open your authenticator app and enter the 6-digit code for Club Passport.':`We sent a 6-digit code to ${dest}.`}</div>
-  ${otpBox(m.fill)}
-  ${m.fill?'':`<button class="autofill" data-act="mfafill">${ic(m.m==='sms'?'msg':m.m==='email'?'mail':'shield',15)} ${m.m==='sms'?'From Messages':m.m==='email'?'From Mail':'Paste'}: <b>482 913</b></button>`}
-  ${chkrow(S.remember,'Trust this device','siremember')}
-  <button class="btn" data-act="mfaok" style="width:100%;height:50px;margin-top:16px">Verify & continue</button>
-  <div style="display:flex;justify-content:center;gap:14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="mfaresend" style="color:var(--hi)">Resend code</button><span style="color:var(--ink3)">|</span><button data-act="mfadiff" style="color:var(--hi)">Use a different method</button></div>
-  <button data-act="mfaexit" style="display:block;margin:12px auto 0;font-size:13px;color:var(--ink2)">Back to sign in</button></div></div>`};
-
-// Find my account (Appendix A, C and D): known guests claim their account; prospects only leave their details
-const CLT={known:5,me:5,sam:7,inperson:4,prospect:5};
-function clWho(){return S.cl.who==='sam'?SAM:per()}
-SCR.claim=()=>{const c=S.cl,st=c.step,p=per(),w=clWho(),known=c.path==='known',n=CLT[c.br||c.path]||5;
- const top=backBar('clback',stepDots(Math.max(n,c.h.length+1),c.h.length));
+ if(S.trusted[S.persona])return `<div class="body" style="padding-bottom:0;display:flex;flex-direction:column">${hero(400)}
+  <div style="padding:14px 24px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px">
+   <div class="faceid" style="width:84px;height:84px;margin:4px auto 6px">${ic('face',46,1.6)}</div>
+   <div style="font-size:23px;font-weight:800;letter-spacing:-.02em">Welcome back, ${p.first}</div><div class="cap" style="font-size:13.5px">Face ID is signing you in</div>
+   <button data-act="dother" style="margin-top:12px;font-size:13.5px;font-weight:700;color:var(--hi)">Not ${p.first}? Use another account</button></div>
+  <div style="margin-top:auto;padding:0 0 26px">${logos}</div></div>`;
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
+ const opt=(act,v,i,t,s)=>`<button class="bigopt" data-act="${act}"${v?` data-v="${v}"`:''}><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`;
  let b='';
- if(st==='find')b=`${h1('Find my account','Play at a Chickasaw Nation casino? Enter the email or mobile number you gave us, and we’ll find your player account so you can use it online.')}
-  ${fld('Email or mobile number',known?p.email:SAM.email)}
-  <div class="demo"><span>Demo</span><button data-act="clpath" data-v="known" aria-pressed="${known}">Known guest</button><button data-act="clpath" data-v="new" aria-pressed="${!known}">Not found</button></div>
-  <button class="btn" data-act="clnext" data-v="${known?'match':'played'}" style="width:100%;height:50px;margin-top:16px">Continue</button>
-  <div class="note" style="margin-top:14px">${ic('card',16)}<span>Your player ID and PIN can help us find you, but you’ll sign in with your email or mobile number.</span></div>`;
- else if(st==='match'){const hid=w.name.split(' ').map(x=>x.charAt(0)+'*'.repeat(x.length-1)).join(' ');
-  b=`${h1('Is this you?',c.who==='sam'?'We found a player account using your player ID and date of birth.':'We found a player account that matches.')}
-  <div class="matchcard">${kcard({tier:w.tier,num:'···· ··· '+w.num.slice(-3),name:hid},120)}<div style="flex:1;min-width:0"><div style="font-weight:800;font-size:16px">${hid}</div><div class="cap" style="margin-top:3px">${TIERS[w.tier].n} member since ${w.since}</div><div class="cap">Card ending ${w.num.slice(-3)}</div><div style="margin-top:8px">${lg(w.home,16)}</div></div></div>
-  <button class="btn" data-act="clnext" data-v="verify" style="width:100%;height:50px;margin-top:18px">Yes, that’s me</button>
-  <button class="btn line" data-act="clnext" data-v="played" style="width:100%;height:46px;margin-top:10px">No, that’s not me</button>`}
- else if(st==='verify')b=`${h1('Confirm it’s you',`We texted a code to the mobile number on your player account, ${maskPh(w)}.`)}
-  ${otpBox(c.fill)}${c.fill?'':`<button class="autofill" data-act="clfill">${ic('msg',15)} From Messages: <b>482 913</b></button>`}
-  <button class="btn" data-act="clnext" data-v="create" style="width:100%;height:50px;margin-top:16px">Verify</button>
-  <button data-act="clnext" data-v="inperson" style="display:block;margin:14px auto 0;font-size:13px;font-weight:600;color:var(--hi)">That’s not my number anymore</button>`;
- else if(st==='create')b=`${h1('Create your sign-in','You’ll use this on the app and every property website.')}
-  ${fld('Sign in with',w.email,{icon:'mail'})}
-  <div class="dseg2" style="margin-top:14px"><button data-act="clpw" data-v="pw" aria-pressed="${c.pw==='pw'}">Use a password</button><button data-act="clpw" data-v="code" aria-pressed="${c.pw==='code'}">No password</button></div>
-  ${c.pw==='pw'?`${fld('Create a password','••••••••••••••',{caret:1})}<div class="strength"><i></i><i></i><i></i><i style="background:rgba(255,255,255,.12)"></i></div><div class="cap" style="margin-top:6px">Strong · 12+ characters, not used on another site</div>`:`<div class="note" style="margin-top:14px">${ic('mail',16)}<span>We’ll send a one-time code to your email or phone each time you sign in on a new device.</span></div>`}
-  <div class="list" style="margin:16px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">Open the app with a glance on this iPhone</div></div><button class="tg" role="switch" aria-checked="true" aria-label="Face ID"></button></div></div>
-  <button class="btn" data-act="clnext" data-v="ready" style="width:100%;height:50px;margin-top:16px">Finish</button>`;
- else if(st==='ready')b=`<div style="display:flex;justify-content:center;margin-top:6px">${kcard(w,320)}</div>
-  <h1 class="t1" style="text-align:center;margin-top:20px">Your account is ready, ${w.first}</h1>
-  <div class="list" style="margin:18px 0 0">${['Offers, points and tier at all 11 properties','The same sign-in on the app and every property website','Face ID on this iPhone'].map(x=>`<div class="li"><span style="color:#5FD7A5">${ic('check',18,2.6)}</span><div class="grow k">${x}</div></div>`).join('')}</div>
-  <button class="btn" data-act="cldone" style="width:100%;height:50px;margin-top:18px">Go to Home</button>`;
- else if(st==='played')b=`${h1('We couldn’t find that account',`No account matches ${SAM.email}.`)}
-  <div class="why">${ic('info',16)}<span><b>That doesn’t mean you’re new.</b> Many guests gave us a different email or phone number at the casino.</span></div>
-  <div style="font-weight:700;font-size:16px;margin-top:20px">Have you played at a Chickasaw Nation casino before?</div>
-  <button class="bigopt" data-act="clnext" data-v="alt" data-br="sam"><span class="oi">${ic('card',20)}</span><span class="grow"><b>Yes, I have a player’s card</b><span>We’ll try your player ID and other details</span></span>${ic('right',16)}</button>
-  <button class="bigopt" data-act="clnext" data-v="alt" data-br="sam"><span class="oi">${ic('info',20)}</span><span class="grow"><b>I’m not sure</b><span>We’ll look a little further</span></span>${ic('right',16)}</button>
-  <button class="bigopt" data-act="clnext" data-v="prospect" data-br="prospect"><span class="oi">${ic('plus',20)}</span><span class="grow"><b>No, I’m new</b><span>Leave your details and we’ll send a first-visit offer</span></span>${ic('right',16)}</button>`;
- else if(st==='alt')b=`${h1('Let’s try other details','Any of these help us find your player account.')}
-  ${fld('Player ID (on your card)','3071 882 405')}${fld('Last name','Carter')}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${fld('Date of birth','04 / 12 / 1988')}${fld('ZIP code','73069')}</div>
-  <div class="demo"><span>Demo</span><button data-act="clalt" data-v="match" aria-pressed="${c.alt==='match'}">Match found</button><button data-act="clalt" data-v="none" aria-pressed="${c.alt==='none'}">Can’t verify</button></div>
-  <button class="btn" data-act="clnext" data-v="${c.alt==='match'?'match':'inperson'}" data-br="${c.alt==='match'?'sam':'inperson'}" style="width:100%;height:50px;margin-top:16px">Search again</button>`;
+ if(st==='start')b=`${h1('Sign in or join','One account for the app and all 11 property websites.')}
+  ${fld('Email or mobile number',d.who==='new'?SAM.email:p.email,{caret:1})}
+  <div class="demo"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="dwho" data-v="${k}" aria-pressed="${d.who===k}">${l}</button>`).join('')}</div>
+  <button class="btn" data-act="dgo" style="width:100%;height:52px;margin-top:16px">Continue</button>
+  <div class="ordiv"><span>or</span></div>
+  <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey ${fut()}</button>
+  <div style="display:flex;justify-content:center;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button></div>
+  <button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`;
+ else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}${fld('Password','••••••••••••',{caret:1})}
+  <button class="btn" data-act="dpw" style="width:100%;height:52px;margin-top:16px">Sign in</button>
+  <button class="btn line" data-act="dcode" style="width:100%;height:48px;margin-top:10px">${ic('msg',16)} Text me a code instead</button>
+  <div style="display:flex;justify-content:center;margin-top:16px"><button data-go="recover" style="font-size:13px;font-weight:700;color:var(--hi)">Forgot password?</button></div>`;
+ else if(st==='code'){const to=d.m==='email'?maskEm(id):maskPh(id),claim=d.who==='claim';
+  const meth=[['sms','msg',`Text ${maskPh(id)}`],['email','mail',`Email ${maskEm(id)}`]].concat(claim?[]:[['app','shield','Authenticator app']]);
+  b=`${h1(claim&&d.sam?'We found a card':'Enter the code',d.m==='app'?'Open your authenticator app for the 6-digit code.':`We sent a 6-digit code to ${to}${claim&&d.m==='sms'?', the mobile number on the player account':''}.`)}
+  ${d.pwDone?`<div class="why">${ic('shield',16)}<span><b>New iPhone.</b> Your password was right. A code confirms this phone is yours.</span></div>`:''}
+  ${claim?`<div class="why">${ic('shield',16)}<span>We show account details only after the code, so nobody can look up someone else’s membership.</span></div>`:''}
+  ${otpBox(d.fill)}
+  ${d.fill?`<div class="cap" style="text-align:center;margin-top:14px;color:#7FE3B8;font-weight:600">${ic('check',13,2.6)} Verifying</div>`:`<button class="autofill" data-act="dfill">${ic(d.m==='email'?'mail':d.m==='app'?'shield':'msg',15)} ${d.m==='email'?'From Mail':d.m==='app'?'Paste':'From Messages'}: <b>482 913</b></button>`}
+  ${d.m==='email'&&!d.fill?`<div class="note" style="margin-top:12px">${ic('mail',16)}<span>Or tap the sign-in link in the email. It opens the app and signs you in.</span></div>`:''}
+  ${d.methods?`<div class="opts">${meth.map(([k,i,t])=>`<button class="opt" data-act="dm" data-v="${k}" aria-pressed="${d.m===k}"><span class="rad"></span><span class="oi">${ic(i,18)}</span><span class="grow"><b>${t}</b></span></button>`).join('')}</div>`:''}
+  <div style="display:flex;justify-content:center;gap:14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" style="color:var(--hi)">Resend code</button><span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button></div>
+  <div class="cap" style="text-align:center;margin-top:14px;color:var(--ink3)">The code fills in and checks itself. This iPhone is then remembered for 30 days.</div>`}
+ else if(st==='faster')b=`<div class="faceid" style="animation:none;margin-top:30px">${ic('face',54,1.6)}</div>
+  <h1 class="t1" style="text-align:center;margin-top:10px">Sign in faster next time</h1>
+  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.45">Turn on Face ID and the app opens straight to your account. No codes on this iPhone.</div>
+  <button class="btn" data-act="dface" style="width:100%;height:52px;margin-top:24px">${ic('face',18)} Turn on Face ID</button>
+  <button data-act="dskip" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Not now</button>`;
+ else if(st==='welcome')b=`<div style="display:flex;justify-content:center;margin-top:6px">${kcard(id,300)}</div>
+  <h1 class="t1" style="text-align:center;margin-top:18px">Welcome back, ${id.first}</h1>
+  <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">Your ${TIERS[id.tier].n} card is on this iPhone now, and the same sign-in works on every property website.</div>
+  <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">Open the app with a glance</div></div><button class="tg" role="switch" aria-checked="true" aria-label="Face ID"></button></div>
+   <button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('key',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes and Face ID work without one.</div></div>${ic('right',16)}</button></div>
+  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">Go to my account</button>`;
+ else if(st==='played')b=`${h1('Welcome! Let’s find you',`There’s no online account for ${SAM.email} yet.`)}
+  <div style="font-weight:700;font-size:16px;margin-top:22px">Have you played at a Chickasaw Nation casino?</div>
+  ${opt('dnext','find','card','Yes, I have a player’s card','We’ll find it in a few seconds')}${opt('dnext','join','plus','No, I’m new here','Join the list for a first-visit offer')}
+  <div class="note" style="margin-top:14px">${ic('info',16)}<span>Many guests gave us a different email or number at the casino, so a card holder is never treated as new.</span></div>`;
+ else if(st==='find')b=`${h1('Let’s find your card','Pick whatever’s easiest.')}
+  ${opt('dtryph','','phone','Try my mobile number',SAM.mobile)}${opt('dscan','','card','Scan my player’s card','The barcode on the back')}${opt('dscanid','','scan','Scan my driver’s license','We match it to your player account')}${opt('dnext','inperson','pin','I don’t have either with me','Verify in person at any of our casinos')}`;
+ else if(st==='scan')b=`${h1(d.scanId?'Scan your driver’s license':'Scan your player’s card','Hold it inside the frame.')}${d.scanId?idScanHTML():cardScanHTML()}
+  <button class="btn" data-act="dscanned" style="width:100%;height:52px;margin-top:20px">${ic('scan',18)} Scan</button>
+  <div class="cap" style="text-align:center;margin-top:12px;color:var(--ink3)">${d.scanId?'Your ID is checked securely and never stored on your phone.':'We only read the card number.'}</div>`;
  else if(st==='inperson'){const near=Object.keys(P).sort((a,z)=>p.dist[a]-p.dist[z]).slice(0,3);
   b=`<div class="done-ic" style="background:rgba(156,195,245,.12);color:var(--hi);box-shadow:0 0 0 8px rgba(156,195,245,.05)">${ic('user',38)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">Let’s verify you in person</h1>
-  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">We couldn’t verify your account online. Bring a photo ID to player services at any Chickasaw Nation casino, and we’ll link your account in a few minutes.</div>
+  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">Show a photo ID at player services at any Chickasaw Nation casino. Linking your account takes a few minutes.</div>
   <div class="list" style="margin:18px 0 0">${near.map(k=>`<div class="li">${lg(k,18)}<div class="grow" style="text-align:right"><div class="k">${mi(p.dist[k])}</div><div class="v">Player services · open 24/7</div></div></div>`).join('')}</div>
-  <div class="matchcard" style="margin-top:12px"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div class="cap">Show this at the desk</div><div style="font-weight:800;font-size:18px;margin-top:2px">CP-48213</div><div class="cap" style="margin-top:2px">We haven’t created a new account, so your history stays in one place.</div></div></div>
-  <button class="btn" data-act="cldir" data-v="${near[0]}" style="width:100%;height:50px;margin-top:16px">Directions to ${P[near[0]].n}</button>`}
- else if(st==='prospect'){const near=Object.keys(P).sort((a,z)=>p.dist[a]-p.dist[z]).slice(0,3),pp=c.pp||near[0];
-  b=`${h1('Tell us about you','No player account yet? Leave your details and we’ll send you an offer for your first visit.')}
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${fld('First name','Sam')}${fld('Last name','Carter')}</div>
-  ${fld('Email (required)',SAM.email)}${fld('Mobile (optional)',SAM.mobile)}
-  <div style="font-size:12.5px;font-weight:600;color:var(--ink2);margin-top:14px">Where will you visit first?</div>
-  <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">${near.map(k=>`<button class="chip" data-act="clpp" data-v="${k}" aria-pressed="${pp===k}">${P[k].n}</button>`).join('')}</div>
-  ${chkrow(1,'Email me offers and news','clnoop')}${chkrow(0,'Text me too','clnoop')}${chkrow(1,'I’m 21 or older','clnoop')}
-  <button class="btn" data-act="clnext" data-v="pverify" style="width:100%;height:50px;margin-top:16px">Continue</button>`}
- else if(st==='pverify')b=`${h1('Check your email',`We sent a 6-digit code to ${SAM.email}.`)}
-  ${otpBox(c.fill)}${c.fill?'':`<button class="autofill" data-act="clfill">${ic('mail',15)} From Mail: <b>482 913</b></button>`}
-  <button class="btn" data-act="clnext" data-v="thanks" style="width:100%;height:50px;margin-top:16px">Verify email</button>`;
- else if(st==='thanks')b=`<div class="done-ic">${ic('check',40,2.6)}</div>
-  <h1 class="t1" style="text-align:center;margin-top:18px">You’re on the list, Sam</h1>
-  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">We’ve emailed you an offer for your first visit.</div>
-  <div class="sec" style="margin:24px 0 12px"><h4 style="font-size:16px">What happens next</h4></div>
-  <div class="list" style="margin:0">${[['mail','Today','Your first-visit offer arrives by email'],['pin','When you visit','Show a photo ID at player services, at any of our 11 casinos'],['card','In about 5 minutes','You get your Club Passport card, and the app signs you in']].map(([i,a,d])=>`<div class="li"><span style="color:var(--hi)">${ic(i,19)}</span><div class="grow"><div class="k">${a}</div><div class="v">${d}</div></div></div>`).join('')}</div>
-  <button class="btn" data-act="cldone" data-v="login" style="width:100%;height:50px;margin-top:18px">Done</button>`;
- return `<div class="body">${top}<div class="px" style="margin-top:8px">${b}</div></div>`};
+  <div class="matchcard" style="margin-top:12px"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div class="cap">Show this at the desk</div><div style="font-weight:800;font-size:18px;margin-top:2px">CP-48213</div><div class="cap" style="margin-top:2px">We’ll text you when it’s linked. No new account was created.</div></div></div>
+  <button class="btn" data-act="dwallet" style="width:100%;height:50px;margin-top:16px">${ic('wallet',18)} Add to Apple Wallet</button>`}
+ else if(st==='join')b=`${h1('Join the list','We’ll email you an offer for your first visit.')}
+  ${fld('Email',SAM.email)}${fld('First name (optional)','Sam')}
+  ${d.addPh?fld('Mobile for texts (optional)',SAM.mobile,{caret:1}):`<button data-act="daddph" style="margin-top:14px;font-size:13.5px;font-weight:700;color:var(--hi)">+ Add a mobile number for texts</button>`}
+  ${chkrow(1,'Email me offers and news. I’m 21 or older.','dnoop')}
+  <button class="btn" data-act="dnext" data-v="joined" style="width:100%;height:52px;margin-top:16px">Join</button>
+  <div class="cap" style="margin-top:12px;color:var(--ink3);line-height:1.45">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</div>`;
+ else if(st==='joined')b=`<div class="done-ic">${ic('mail',36)}</div>
+  <h1 class="t1" style="text-align:center;margin-top:18px">Check your email</h1>
+  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">Tap the link we sent to ${SAM.email} to confirm. Your first-visit offer is in the same email.</div>
+  <div class="list" style="margin:20px 0 0">${[['pin','When you visit','Show a photo ID at player services, at any of our 11 casinos'],['card','A few minutes later','You get your Club Passport card, and the app signs you in']].map(([i,a,s])=>`<div class="li"><span style="color:var(--hi)">${ic(i,19)}</span><div class="grow"><div class="k">${a}</div><div class="v">${s}</div></div></div>`).join('')}</div>
+  <button class="btn" data-act="dexplore" style="width:100%;height:50px;margin-top:18px">Explore the 11 destinations</button>
+  <button data-act="dreset" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Done</button>`;
+ return st==='start'?`<div class="body" style="padding-bottom:40px">${hero(220)}<div class="px" style="margin-top:14px">${b}</div></div>`
+  // No going back once the code is verified
+  :`<div class="body">${['faster','welcome','joined'].includes(st)?'<div class="topbar"><span style="height:38px"></span></div>':backBar('dback')}<div class="px" style="margin-top:6px">${b}</div></div>`};
 
 // Account recovery (Appendix F): forgot password, lost phone, can't match the account
 SCR.recover=()=>{const p=per(),r=S.rc,st=r.step;
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
  let b='';
- if(st==='menu')b=`${h1('Get back into your account','Choose what’s going on.')}
-  ${[['pw','key','I forgot my password','Reset it with a code to your email or phone'],['lost','device','I can’t get my code','Lost phone, new number or no access to email'],['match','user','I can’t find my account','We’ll help you find it, or verify you in person']].map(([k,i,t,s])=>`<button class="bigopt" data-act="rcnext" data-v="${k}"><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`).join('')}
-  <div class="note" style="margin-top:16px">${ic('info',16)}<span>Your username is the email or mobile number on your account.</span></div>`;
- else if(st==='pw')b=`${h1('Reset your password','Enter your email or mobile number and we’ll send reset instructions if we find a matching account.')}
+ if(st==='menu')b=`${h1('Trouble signing in?','Choose what’s going on.')}
+  ${[['lost','device','I can’t get my code','New phone or number, or no access to my email'],['match','user','I can’t find my account','We’ll look further, or help you in person'],['pw','key','I forgot my password','Sign in with a code instead, then set a new one if you like']].map(([k,i,t,s])=>`<button class="bigopt" data-act="rcnext" data-v="${k}"><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`).join('')}
+  <div class="note" style="margin-top:16px">${ic('pin',16)}<span>Player services at any of our casinos can always help in person, with a photo ID.</span></div>`;
+ else if(st==='pw')b=`${h1('Forgot your password?','No problem. We’ll send a code so you can sign in, then you can set a new password or skip it.')}
   ${fld('Email or mobile number',p.email)}
-  <button class="btn" data-act="rcnext" data-v="pwcode" style="width:100%;height:50px;margin-top:16px">Send reset instructions</button>
+  <button class="btn" data-act="rcnext" data-v="pwcode" style="width:100%;height:50px;margin-top:16px">Send me a code</button>
   <button class="btn line" data-act="rcnext" data-v="lost" style="width:100%;height:46px;margin-top:10px">Try another recovery method</button>
   <div class="note" style="margin-top:14px">${ic('info',16)}<span>For your security, we never say whether an account exists.</span></div>`;
- else if(st==='user')b=`${h1('Forgot your username?','It’s the email or mobile number on your account. Enter either one and we’ll send a reminder to the other.')}
-  ${fld('Mobile number',p.mobile)}
-  <button class="btn" data-act="rcnext" data-v="userdone" style="width:100%;height:50px;margin-top:16px">Send a reminder</button>`;
- else if(st==='userdone')b=`<div class="done-ic">${ic('mail',36)}</div><h1 class="t1" style="text-align:center;margin-top:18px">Check your email</h1>
-  <div class="cap" style="text-align:center;margin-top:8px;font-size:14px">If we found an account, we sent your username to ${maskEm(p)}.</div>
-  <button class="btn" data-act="rcexit" style="width:100%;height:50px;margin-top:22px">Back to sign in</button>`;
  else if(st==='pwcode'||st==='ecode'||st==='ncode'){const to=st==='ncode'?'(580) ***-**77':st==='ecode'?maskEm(p):maskPh(p);
   b=`${h1('Enter the code',`We sent a 6-digit code to ${to}.`)}${otpBox(r.fill)}${r.fill?'':`<button class="autofill" data-act="rcfill">${ic(st==='ecode'?'mail':'msg',15)} ${st==='ecode'?'From Mail':'From Messages'}: <b>482 913</b></button>`}
   <button class="btn" data-act="rcnext" data-v="${st==='pwcode'?'newpw':st==='ecode'?'newph':'restored'}" style="width:100%;height:50px;margin-top:16px">Verify</button>`}
  else if(st==='newpw')b=`${h1('Set a new password')}${fld('New password','••••••••••••••',{caret:1})}<div class="strength"><i></i><i></i><i></i><i></i></div>${fld('Confirm new password','••••••••••••••')}
   <div class="list" style="margin:16px 0 0">${['At least 12 characters','Not one you’ve used before'].map(x=>`<div class="li"><span style="color:#5FD7A5">${ic('check',16,2.6)}</span><div class="grow v" style="color:var(--ink)">${x}</div></div>`).join('')}</div>
-  <button class="btn" data-act="rcnext" data-v="pwdone" style="width:100%;height:50px;margin-top:16px">Save and sign in</button>`;
+  <button class="btn" data-act="rcnext" data-v="pwdone" style="width:100%;height:50px;margin-top:16px">Save and sign in</button>
+  <button data-act="rcdone" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Skip, I’ll use codes</button>`;
  else if(st==='pwdone'||st==='restored')b=`<div class="done-ic">${ic('check',40,2.6)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">${st==='pwdone'?'Password updated':'You’re back in'}</h1>
   <div class="cap" style="text-align:center;margin-top:8px;font-size:14px;line-height:1.5">${st==='pwdone'?`You’re signed in. We sent a notice to ${maskEm(p)} in case this wasn’t you.`:`Codes now go to (580) ***-**77. We let you know at ${maskEm(p)} and your old number, which can no longer get codes.`}</div>
@@ -2171,10 +2155,6 @@ SCR.recover=()=>{const p=per(),r=S.rc,st=r.step;
  else if(st==='newph')b=`${h1('Add your new mobile number','We’ll send codes here from now on.')}${fld('New mobile number','(580) 555-0177',{caret:1})}
   <button class="btn" data-act="rcnext" data-v="ncode" style="width:100%;height:50px;margin-top:16px">Send code</button>`;
  return `<div class="body">${backBar('rcback')}<div class="px" style="margin-top:6px">${b}</div></div>`};
-function idScanHTML(){return `<div style="margin-top:22px;height:230px;border-radius:24px;background:#05090F;position:relative;overflow:hidden;display:grid;place-items:center">
-   <div style="width:240px;height:150px;border-radius:14px;background:linear-gradient(135deg,#E8ECF2,#C4CCD8);padding:14px;display:flex;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.5)"><span style="width:62px;height:80px;border-radius:8px;background:#9AA6B8;display:grid;place-items:center;color:#E8ECF2">${ic('user',36,1.6)}</span><span style="flex:1;display:flex;flex-direction:column;gap:7px;padding-top:4px">${[70,90,55,80,40].map(w=>`<i style="display:block;height:7px;width:${w}%;border-radius:4px;background:#A9B3C3"></i>`).join('')}</span></div>
-   <span style="position:absolute;left:32px;right:32px;top:48%;height:2px;background:#9CC3F5;box-shadow:0 0 12px #9CC3F5"></span>
-   ${[['left','top'],['right','top'],['left','bottom'],['right','bottom']].map(([x,y])=>`<span style="position:absolute;${x}:22px;${y}:22px;width:32px;height:32px;border-${x}:3px solid #9CC3F5;border-${y}:3px solid #9CC3F5;border-radius:${y==='top'?(x==='left'?'10px 0 0 0':'0 10px 0 0'):(x==='left'?'0 0 0 10px':'0 0 10px 0')}"></span>`).join('')}</div>`}
 
 // Offer details: dates, eligibility, how it's redeemed, terms, and the booking path for hotel offers
 SCR.offer=()=>{const all=OFFERS[S.persona],o=all.find(q=>q.id===S.offer)||rankOffers(all)[0],x=OX[o.id],q=P[o.p],p=per(),c=S.claimed.has(o.id),t=TIERS[p.tier],A1=S.persona==='A',bkd=S.booked[S.persona];
@@ -2266,8 +2246,8 @@ SCR.security=()=>{const p=per(),mob=S.newMobile[S.persona]||p.mobile,A1=S.person
  const tg=(k,l,s)=>`<div class="tgr"><div class="grow"><div class="k">${l}</div>${s?`<div class="v">${s}</div>`:''}</div><button class="tg" role="switch" aria-checked="${!!S[k]}" data-act="sectg" data-k="${k}" aria-label="${l.replace(/<[^>]+>/g,'')}"></button></div>`;
  return `<div class="body">${head('Sign-in & security','settings')}
   <div class="sec" style="margin-top:12px"><h4>How you sign in</h4></div>
-  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}${row('key','Password','Changed 3 months ago','password')}</div>
-  <div class="list" style="margin-top:10px">${tg('secPwless','Sign in with a code instead of a password')}${tg('secFace','Face ID','Open the app with a glance on this iPhone')}<div class="tgr"><div class="grow"><div class="k">Passkey ${fut()}</div><div class="v">Sign in without a password or code</div></div></div></div>
+  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}${HASPW[S.persona]?row('key','Password','Changed 3 months ago','password'):`<div class="li"><span style="color:var(--ink2)">${ic('key',19)}</span><div class="grow"><div class="v">Password</div><div class="k">Not set · you sign in with codes and Face ID</div></div><button class="rowbtn" data-act="stepup" data-f="password">Add</button></div>`}</div>
+  <div class="list" style="margin-top:10px">${tg('secFace','Face ID','Open the app with a glance on this iPhone')}<div class="tgr"><div class="grow"><div class="k">Passkey ${fut()}</div><div class="v">Sign in without a password or code</div></div></div></div>
   <div class="sec"><h4>Verification codes</h4></div>
   <div class="list">${[['msg','Text message',`···· ${mob.slice(-4)} · default`],['mail','Email',maskEm(p)],['shield','Authenticator app','Not set up']].map(([i,l,v],j)=>`<div class="li"><span style="color:var(--ink2)">${ic(i,19)}</span><div class="grow"><div class="k">${l}</div><div class="v">${v}</div></div>${j===2?'<button class="rowbtn" data-act="secauth">Set up</button>':''}</div>`).join('')}</div>
   <div class="sec"><h4>Trusted devices</h4><button data-act="signoutall">Sign out everywhere</button></div>
@@ -2359,9 +2339,7 @@ function sheetHTML(){const p=per(),pf=prefProp(),fv=S.favs[S.persona];
 /* ---------- presenter notes for the v3 screens ---------- */
 Object.assign(NOTES,{
  moving:{e:'Moving over',t:'From the WinStar app to Club Passport',d:'When the WinStar or Riverwind app updates for the last time, it hands guests over to Club Passport with their card, tier, points, saved offers and Face ID already in place. Their winstar.com sign-in moves too. Tap Open Club Passport.',aud:['Exec','Loyalty','IT'],src:'<b>Requirement 4.12:</b> a plan on day one to retire the property apps and move app and web users to the new system. The Jan 31, 2027 date is a placeholder.'},
- mfa:{e:'Verification',t:'A code when something looks different',d:'A new device, a new location or several wrong passwords trigger a one-time code by text, email or authenticator app. Guests can trust the device for 30 days. Tap the code suggestion to fill it in.',aud:['IT','Loyalty'],src:'<b>Appendix E:</b> risk-based authentication, lockout and rate limiting. The vendor proposes the challenge rules and MFA platform; CNDC sets the outcomes and controls.'},
- claim:{e:'Find my account',t:'Known guests claim, new guests aren’t turned away',d:'Guests enter their email or phone. If we find them, they confirm with a code and create a sign-in. If not, we ask whether they’ve played before: yes leads to other details such as a player ID, then player services if needed; no leads to a short interest form. Use the Demo switch to try both paths.',aud:['Exec','Loyalty','IT','Compliance'],src:'<b>Appendices A, C and D.</b> Identity is checked against ACSC/Engage. The interest form creates a prospect record only, never a player record in ACSC or Engage. A guest who says they’ve played is never treated as new.'},
- recover:{e:'Recovery',t:'Back in, without calling anyone',d:'Three ways back: forgot password, can’t get a code (email, authenticator app or a photo ID check), and can’t find the account. Every path ends with a notice to the guest’s other contact details, and player services is always the fallback.',aud:['IT','Loyalty'],src:'<b>Appendix F.</b> The vendor designs the recovery steps and proofing rules, keeping secure tokens, lockout controls, audit trails and assisted recovery.'},
+ recover:{e:'Recovery',t:'Trouble signing in? One link',d:'One link replaces forgot password, forgot username and lost phone. Can’t get a code: get one by email or an authenticator app, or scan a photo ID, then add the new number. Can’t find the account: back to the front door’s card search. Forgot password: sign in with a code, then set a new one or skip it. Every path notifies the guest’s other contact details.',aud:['IT','Loyalty'],src:'<b>Appendix F.</b> The vendor designs the recovery steps and proofing rules, keeping secure tokens, lockout controls, audit trails and assisted recovery. There is no separate username: it is the email or mobile number.'},
  offer:{e:'Offer details',t:'Everything about an offer, and how to use it',d:'Dates, why the guest has it, the offer code, how to redeem it and the full terms. Free Play loads to the card automatically, credits are shown at the outlet, and hotel offers go straight to booking. Hiding an offer and asking the host about it are tagged as a future phase.',aud:['Loyalty','GM','Marketing'],src:'<b>Requirement 4.5:</b> details with terms, digital redemption or a clear, auditable path, and booking without extra steps. Each property approves its own offers.'},
  book:{e:'Booking',t:'From offer to booked, nothing re-entered',d:'Book now hands the guest to the property’s booking engine with their name, Club Passport number, tier, offer code, eligible dates and rate filled in. Pick a room, review and confirm. Choose the sold-out dates to see alternatives ranked by dates, distance and favorites, a future phase.',aud:['Exec','GM','Loyalty','IT'],src:'<b>Requirement 4.7</b> and the hotel offer-to-reservation diagram, steps 1–12. Booking stays in each property’s reservation system for launch; cross-property booking is a future phase.'},
  preferred:{e:'Preferred property',t:'Picked from visits, changed by the guest',d:'We pick the preferred property from rated days: the most in the last 6 months, then the last 18 months if tied, then the most recent trip. Switch to Jordan to see the tie-break. Guests can choose another and star favorites. It changes what shows first, never which offers they get.',aud:['Loyalty','GM'],src:'<b>Requirement 4.6</b> hierarchy, applied the same way on the websites and in the app.'},
@@ -2373,37 +2351,35 @@ Object.assign(NOTES,{
 function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
  const later=m=>setTimeout(()=>toast(m),40);
  switch(act){
-  // sign in
-  case 'simode':S.si=v;render(true);return true;
-  case 'siremember':S.remember=!S.remember;render(true);return true;
-  case 'signin':if(S.trusted[P1]){go('home');later('Signed in to all 11 properties')}else{S.mfa={step:0,m:'sms',back:'login',fill:false};go('mfa')}return true;
-  case 'sicode':S.mfa={step:1,m:'email',back:'login',fill:false};go('mfa');return true;
-  case 'faceid':go('home');later('Signed in with Face ID · all 11 properties');return true;
-  case 'untrust':S.trusted[P1]=false;render();return true;
-  case 'mfam':S.mfa.m=v;render(true);return true;
-  case 'mfasend':S.mfa.step=1;S.mfa.fill=false;render();return true;
-  case 'mfafill':S.mfa.fill=true;render(true);return true;
-  case 'mfaresend':toast('New code sent');return true;
-  case 'mfadiff':S.mfa.step=0;S.mfa.fill=false;render();return true;
-  case 'mfaback':if(S.mfa.step===1&&S.mfa.back==='login'&&S.si==='pw'){S.mfa.step=0;render()}else go(S.mfa.back||'login');return true;
-  case 'mfaexit':go('login');return true;
-  case 'mfaok':if(S.remember)S.trusted[P1]=true;go('home');later(S.remember?'Signed in. This iPhone is trusted for 30 days.':'Signed in to all 11 properties');return true;
+  // sign in or join
+  case 'dwho':S.door.who=v;S.door.sam=false;render(true);return true;
+  case 'dgo':{const d=S.door;d.m='sms';d.pwDone=false;stepTo(d,d.who==='new'?'played':d.who==='ret'&&HASPW[P1]?'pw':'code');return true}
+  case 'dpw':S.door.pwDone=true;S.door.m='sms';stepTo(S.door,'code');return true;
+  case 'dcode':S.door.pwDone=false;S.door.m='sms';stepTo(S.door,'code');return true;
+  case 'dfill':S.door.fill=true;render(true);setTimeout(()=>{if(S.screen==='login'&&S.door.step==='code'&&S.door.fill)doorVerified()},800);return true;
+  case 'dmethods':S.door.methods=!S.door.methods;render(true);return true;
+  case 'dm':S.door.m=v;S.door.methods=false;S.door.fill=false;render(true);toast(v==='app'?'Open your authenticator app':`New code sent by ${v==='email'?'email':'text'}`);return true;
+  case 'dresend':toast('New code sent');return true;
+  case 'dface':S.trusted[P1]=true;doorDone('Face ID is on. Next time, just open the app.');return true;
+  case 'dskip':doorDone('Signed in to all 11 properties');return true;
+  case 'daddpw':toast('Add one anytime in Sign-in & security');return true;
+  case 'dwelcome':S.trusted[P1]=true;doorDone(S.door.sam?`Card linked. The demo continues as ${per().first}.`:'Your Club Passport is ready');return true;
+  case 'dnext':stepTo(S.door,v);return true;
+  case 'dback':{const d=S.door;if(d.h.length)stepBack(d,'login');else{d.step='start';render()}return true}
+  case 'dtryph':toast(`No online account for ${SAM.mobile} either. Try scanning your card.`);return true;
+  case 'dscan':S.door.scanId=false;stepTo(S.door,'scan');return true;
+  case 'dscanid':S.door.scanId=true;stepTo(S.door,'scan');return true;
+  case 'dscanned':{const d=S.door;d.who='claim';d.sam=true;d.m='sms';stepTo(d,'code');return true}
+  case 'dwallet':toast('Added to Apple Wallet. Show it at any player services desk.');return true;
+  case 'daddph':S.door.addPh=true;render(true);return true;
+  case 'dnoop':return true;
+  case 'dexplore':S.door=doorFresh();go('destinations');return true;
+  case 'dreset':S.door=doorFresh();render();return true;
+  case 'dother':S.trusted[P1]=false;clearTimeout(S.fidT);S.fidT=null;S.door=doorFresh();render();return true;
+  case 'dpasskey':toast('Passkeys are on the roadmap. Codes and Face ID work today.');return true;
   case 'movego':S.trusted[P1]=true;go('login');later('Your WinStar sign-in moved over');return true;
-  // find my account
-  case 'claimstart':S.cl={step:'find',path:'known',alt:'match',who:'me',pw:'pw',h:[]};go('claim');return true;
-  case 'clpath':S.cl.path=v;S.cl.who=v==='known'?'me':'sam';S.cl.br=null;render(true);return true;
-  case 'clalt':S.cl.alt=v;render(true);return true;
-  case 'clpw':S.cl.pw=v;render(true);return true;
-  case 'clpp':S.cl.pp=v;render(true);return true;
-  case 'clnoop':return true;
-  case 'clfill':S.cl.fill=true;render(true);return true;
-  case 'clnext':{const c=S.cl;c.fill=false;if(a.dataset.br){c.br=a.dataset.br;if(a.dataset.br==='sam')c.who='sam'}if(v==='played')c.who='sam';stepTo(c,v);return true}
-  case 'clback':stepBack(S.cl,'login');return true;
-  case 'cldone':if(v==='login'){go('login');return true}S.trusted[P1]=true;go('home');later(S.cl.who==='sam'?'Account claimed. The demo continues as '+per().first+'.':'Welcome to Club Passport online');return true;
-  case 'cldir':toast(`Directions to ${P[v].n} sent to Maps`);return true;
   // recovery
-  case 'rcopen':S.rc={step:v==='user'?'user':'pw',h:[]};go('recover');return true;
-  case 'rcnext':if(v==='match'){S.cl={step:'played',path:'new',alt:'match',who:'sam',pw:'pw',h:['find']};go('claim');return true}S.rc.fill=false;stepTo(S.rc,v);return true;
+  case 'rcnext':if(v==='match'){S.door=Object.assign(doorFresh(),{who:'new',step:'find',h:['start','played']});go('login');return true}S.rc.fill=false;stepTo(S.rc,v);return true;
   case 'rcfill':S.rc.fill=true;render(true);return true;
   case 'rcback':stepBack(S.rc,'login');return true;
   case 'rcexit':go('login');return true;
@@ -2551,17 +2527,17 @@ function websites(){const cur=S.site==='loyalty'?'loyalty':S.psite;
 // Signed out: program information, tiers, destinations and help, with sign-in in the same place on every site
 function loyaltyPublic(){const order=['circle','select','signature','society'],tiles=['ws-globe','ar-lobby','rw-show','ws-dining','lc-hero','ms-games','wb-hero','ws-spa','tv-hero','ct-hero','nc-floor','ws-pool','rs-hero','sc-hero','ms-hero','wb-hotel','ar-hero','rw-hero'];
  const need={circle:'Where every member starts',select:'5,000 tier points',signature:'15,000 tier points',society:'By invitation'};
- const faqs=[['I already have a player’s card. How do I use it online?','Choose Find my account and enter the email or mobile number you gave us at the casino. We text a code to confirm it’s you, then you create your sign-in. If we can’t find you, we try your player ID, or help you at player services in person.'],
-  ['I’m new. How do I join?','Leave your details with Join the list and we’ll email you an offer for your first visit. Your Club Passport card is issued at player services at any of our 11 casinos when you show a photo ID. It takes about five minutes.'],
+ const faqs=[['I already have a player’s card. How do I use it online?','Choose Sign in or join and enter the email or mobile number you gave us at the casino. We text a code to the phone on your player account and you’re in. If we can’t find you, scan your card in the app or enter its number, or we help you at player services.'],
+  ['I’m new. How do I join?','Choose Sign in or join, enter your email and tell us you’re new. We’ll email you an offer for your first visit. Your Club Passport card is issued at player services at any of our 11 casinos when you show a photo ID. It takes about five minutes.'],
   ['Do my points and tier work at every property?','Yes. Points, Free Play, comps and tier credit are earned and used at all 11 Chickasaw Nation destinations.'],
-  ['I’m not getting my verification code.','Choose Use a different method to get a code by email or an authenticator app, or verify with your photo ID. Player services can also restore access in person.'],
+  ['I’m not getting my code.','Choose Trouble signing in? to get a code by email or an authenticator app, or to verify with a photo ID in the app. Player services can also help in person.'],
   ['Who do I contact about my account?','Player services at any property, 24 hours a day. Elite and Chairman members can reach their host from their account.']];
- return `<div class="pnav"><span class="wm">CLUB PASSPORT</span><nav>${[['how','How it works'],['tiers','Tiers & benefits'],['dest','Destinations'],['help','Help']].map(([k,l])=>`<button data-act="wscroll" data-v="${k}">${l}</button>`).join('')}</nav><div class="me"><button class="wbtn line" data-act="wfind">Find my account</button><button class="wbtn" data-act="wsignin" data-v="loyalty">Sign in</button></div></div>
+ return `<div class="pnav"><span class="wm">CLUB PASSPORT</span><nav>${[['how','How it works'],['tiers','Tiers & benefits'],['dest','Destinations'],['help','Help']].map(([k,l])=>`<button data-act="wscroll" data-v="${k}">${l}</button>`).join('')}</nav><div class="me"><button class="wbtn" data-act="wsignin" data-v="loyalty">Sign in or join</button></div></div>
   <section class="pmain lp">
    <div class="lp-hero"><div class="tiles">${tiles.map(t=>`<div style="${bg(t)}"></div>`).join('')}</div>
     <div style="max-width:580px"><div style="font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--gold)">THE CHICKASAW NATION LOYALTY PROGRAM</div><h1 style="font-size:48px;line-height:1.04;letter-spacing:-.03em;margin:12px 0 0">One account.<br>Eleven destinations.</h1>
     <p style="font-size:16px;color:#C9D3E2;margin:14px 0 0;line-height:1.55">Earn, tier up and redeem at every Chickasaw Nation casino and resort, from WinStar to The Artesian.</p>
-    <div style="display:flex;gap:10px;margin-top:22px"><button class="wbtn" data-act="wsignin" data-v="loyalty" style="height:46px;padding:0 24px">Sign in</button><button class="wbtn line" data-act="wfind" style="height:46px;padding:0 24px">Find my account</button></div>
+    <div style="display:flex;gap:10px;margin-top:22px"><button class="wbtn" data-act="wsignin" data-v="loyalty" style="height:46px;padding:0 24px">Sign in or join</button><button class="wbtn line" data-act="wqr" style="height:46px;padding:0 24px">${ic('qr',16)} Sign in with your phone</button></div>
     <button data-act="wjoin" style="margin-top:14px;font-size:13.5px;font-weight:700;color:var(--sky)">New to our casinos? Join the list →</button></div></div>
    <div class="lp-sec" id="lp-how"><h2>How it works</h2><p class="lede">One card and one sign-in for the app, this site and every property website.</p>
     <div class="lp-grid3">${[['gem','Earn everywhere','Points and tier credit on slots, tables, hotel stays, dining and spa at all 11 properties.'],['crown','One tier, recognized everywhere','Base, Premier, Elite and Chairman, with milestone rewards on the way to the next tier.'],['gift','Redeem anywhere','Use Free Play, comps and offers at any property, or book a stay straight from an offer.']].map(([i,t,d])=>`<div class="lp-card"><span class="lp-ic">${ic(i,22)}</span><b>${t}</b><p>${d}</p></div>`).join('')}</div></div>
@@ -2630,21 +2606,32 @@ function propBooking(k){const q=P[k],p=per(),t=TIERS[p.tier],w=S.wbk,inn=S.webIn
 function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where:null,q=k?P[k]:null,acc=q?`--wa:${q.acc};--wo:${q.onacc}`:'';
  const head=(t,s)=>`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button>${k?`<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">${lg(k,18)}<span style="color:var(--mute);font-size:12px">with</span><span class="wm" style="font-size:12px">CLUB PASSPORT</span></div>`:`<span class="wm" style="font-size:13px;display:block;margin-bottom:14px">CLUB PASSPORT</span>`}<h3>${t}</h3>${s?`<div class="sub">${s}</div>`:''}`;
  let b='';
- if(m.step==='signin')b=`${head('Sign in to your account','One sign-in for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v">${p.email}</span></div><div class="wf">Password<span class="v">••••••••••••</span></div>
-  <div class="wchk"><i>${ic('check',12,3)}</i>Remember this device</div><button class="wprim" data-act="wsigngo" style="${acc}">Sign in</button><button class="wsec" data-act="wfind">Find my account</button>
-  <div class="wlinks"><button data-act="wcode">Email me a code instead</button></div><div class="wlinks" style="margin-top:8px"><button data-act="wforgot">Forgot password?</button><span style="color:var(--faint)">|</span><button data-act="wforgot">Forgot username?</button></div>`;
- else if(m.step==='mfa')b=`${head('Verify your identity','New browser. Choose how to get your one-time code.')}<div class="wopts">${[['sms','msg',`Text message to ${maskPh(p)}`],['email','mail',`Email to ${maskEm(p)}`],['app','shield','Authenticator app']].map(([v,i,l],j)=>`<button class="opt" aria-pressed="${j===0}"><span class="rad"></span><span class="oi">${ic(i,17)}</span><span class="grow"><b style="font-size:13.5px">${l}</b></span></button>`).join('')}</div><div class="wchk"><i>${ic('check',12,3)}</i>Remember this device for 30 days</div><button class="wprim" data-act="wstep" data-v="code" style="${acc}">Continue</button>`;
- else if(m.step==='code')b=`${head('Enter verification code',`We sent a 6-digit code to ${m.email?maskEm(p):maskPh(p)}.`)}<div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div><div class="wchk"><i>${ic('check',12,3)}</i>Trust this device</div><button class="wprim" data-act="wdone" style="${acc}">Verify & continue</button><div class="wlinks"><button data-act="wresend">Resend code</button><span style="color:var(--faint)">|</span><button data-act="wstep" data-v="mfa">Use a different method</button></div>`;
- else if(m.step==='forgot')b=`${head('Reset your password','Enter your email or mobile number and we’ll send reset instructions if we find a matching account.')}<div class="wf">Email or mobile number<span class="v">${p.email}</span></div><button class="wprim" data-act="wstep" data-v="code" style="${acc}">Send reset instructions</button><button class="wsec" data-act="wstep" data-v="mfa">Try another recovery method</button>`;
- else if(m.step==='find')b=`${head('Find my account','Enter the email or mobile number you gave us at the casino.')}<div class="wf">Email or mobile number<span class="v">${m.known?p.email:SAM.email}</span></div>
-  <div class="demo" style="margin-top:14px"><span>Demo</span><button data-act="wknown" data-v="1" aria-pressed="${!!m.known}">Known guest</button><button data-act="wknown" data-v="0" aria-pressed="${!m.known}">Not found</button></div>
-  <button class="wprim" data-act="wstep" data-v="${m.known?'fcode':'played'}" style="${acc}">Continue</button>`;
- else if(m.step==='fcode')b=`${head(`We found your account, ${p.first}`,`We texted a code to the mobile number on your player account, ${maskPh(p)}.`)}<div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div><div class="wf">Create a password<span class="v">••••••••••••••</span></div><button class="wprim" data-act="wdone" style="${acc}">Finish and sign in</button>`;
- else if(m.step==='played')b=`${head(`We couldn’t find ${SAM.email}`,'That doesn’t mean you’re new. Many guests gave us a different email or phone number at the casino.')}<div style="font-weight:700;margin-top:18px">Have you played at a Chickasaw Nation casino before?</div>
-  <button class="wsec" data-act="wstep" data-v="inperson" style="text-align:left;padding:0 16px">Yes, I have a player’s card</button><button class="wsec" data-act="wstep" data-v="inperson" style="text-align:left;padding:0 16px">I’m not sure</button><button class="wsec" data-act="wstep" data-v="join" style="text-align:left;padding:0 16px">No, I’m new</button>`;
- else if(m.step==='inperson')b=`${head('Let’s verify you in person','We couldn’t verify your account online. Bring a photo ID to player services at any Chickasaw Nation casino, and we’ll link your account in a few minutes.')}<div class="pc" style="background:#16233C;margin-top:16px;padding:16px;display:flex;gap:14px;align-items:center"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div style="color:var(--mute);font-size:12.5px">Show this at the desk</div><div style="font-weight:800;font-size:20px">CP-48213</div><div style="color:var(--mute);font-size:12px;margin-top:2px">No new account was created.</div></div></div><button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
- else if(m.step==='join')b=`${head('Join the list','No player account yet? Leave your details and we’ll email you an offer for your first visit.')}<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">First name<span class="v">Sam</span></div><div class="wf">Last name<span class="v">Carter</span></div></div><div class="wf">Email (required)<span class="v">${SAM.email}</span></div><div class="wf">Mobile (optional)<span class="v">${SAM.mobile}</span></div><div class="wchk"><i>${ic('check',12,3)}</i>Email me offers and news · I’m 21 or older</div><button class="wprim" data-act="wstep" data-v="jthanks" style="${acc}">Join the list</button>`;
- else if(m.step==='jthanks')b=`${head('You’re on the list, Sam','We’ve emailed you an offer for your first visit. Show a photo ID at player services at any of our 11 casinos to get your Club Passport card.')}<button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
+ const id=m.sam?SAM:p,ph=maskPh(id),demo=`<div class="demo" style="margin-top:14px"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="wwho" data-v="${k}" aria-pressed="${m.who===k}">${l}</button>`).join('')}</div>`;
+ const big=(act,v,t)=>`<button class="wsec" data-act="${act}"${v?` data-v="${v}"`:''} style="text-align:left;padding:0 16px">${t}</button>`;
+ if(m.step==='start')b=`${head('Sign in or join','One account for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v">${m.who==='new'?SAM.email:p.email}</span></div>${demo}
+  <button class="wprim" data-act="wgo" style="${acc}">Continue</button><div class="ordiv"><span>or</span></div>
+  <button class="wsec" data-act="wqr">${ic('qr',15)} Sign in with your phone</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey ${fut()}</button>
+  <div class="wlinks"><button data-act="wstep" data-v="trouble">Trouble signing in?</button></div>`;
+ else if(m.step==='pw')b=`${head('Enter your password',`Signing in as ${p.email}`)}<div class="wf">Password<span class="v">••••••••••••</span></div>
+  <button class="wprim" data-act="wpw" style="${acc}">Sign in</button><button class="wsec" data-act="wcode">Text me a code instead</button>`;
+ else if(m.step==='code')b=`${head(m.sam?'We found a card':'Enter the code',`We sent a 6-digit code to ${m.email?maskEm(id):ph}${m.who==='claim'&&!m.email?', the mobile number on the player account':''}.`)}
+  ${m.pwDone?`<div class="why">${ic('shield',16)}<span><b>New browser.</b> Your password was right. A code confirms it’s you.</span></div>`:''}
+  <div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div><div class="wchk"><i>${ic('check',12,3)}</i>Trust this browser for 30 days</div>
+  <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend">Resend code</button><span style="color:var(--faint)">|</span><button data-act="wemail">Email me instead</button></div>`;
+ else if(m.step==='welcome')b=`${head(`Welcome back, ${id.first}`,`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app.`)}<div style="display:flex;justify-content:center;margin-top:16px">${kcard(id,260)}</div>
+  <button class="wprim" data-act="wdone" style="${acc}">Go to my account</button><div class="wlinks"><button data-act="waddpw">Add a password (optional)</button></div>`;
+ else if(m.step==='played')b=`${head('Welcome! Let’s find you',`There’s no online account for ${SAM.email} yet.`)}<div style="font-weight:700;margin-top:18px">Have you played at a Chickasaw Nation casino?</div>
+  ${big('wstep','card','Yes, I have a player’s card')}${big('wstep','join','No, I’m new here')}`;
+ else if(m.step==='card')b=`${head('Let’s find your card','Enter the number on your card. In the app you can scan it instead.')}<div class="wf">Player ID<span class="v">${SAM.num}</span></div>
+  <button class="wprim" data-act="wcard" style="${acc}">Find my card</button>${big('wstep','inperson','I don’t have it with me')}`;
+ else if(m.step==='inperson')b=`${head('Let’s verify you in person','Show a photo ID at player services at any Chickasaw Nation casino. Linking your account takes a few minutes.')}<div class="pc" style="background:#16233C;margin-top:16px;padding:16px;display:flex;gap:14px;align-items:center"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div style="color:var(--mute);font-size:12.5px">Show this at the desk</div><div style="font-weight:800;font-size:20px">CP-48213</div><div style="color:var(--mute);font-size:12px;margin-top:2px">We’ll text you when it’s linked. No new account was created.</div></div></div><button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
+ else if(m.step==='join')b=`${head('Join the list','We’ll email you an offer for your first visit.')}<div class="wf">Email<span class="v">${SAM.email}</span></div><div class="wf">First name (optional)<span class="v">Sam</span></div><div class="wchk"><i>${ic('check',12,3)}</i>Email me offers and news. I’m 21 or older.</div><button class="wprim" data-act="wstep" data-v="jthanks" style="${acc}">Join</button><p style="font-size:12px;color:var(--mute);margin:12px 0 0">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</p>`;
+ else if(m.step==='jthanks')b=`${head('Check your email',`Tap the link we sent to ${SAM.email} to confirm. Your first-visit offer is in the same email.`)}<button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
+ else if(m.step==='qr')b=`${head('Sign in with your phone','Open the Club Passport app and scan this code. Your phone confirms it’s you, so there’s nothing to type here.')}
+  <div style="display:flex;justify-content:center;margin-top:18px"><div style="background:#fff;padding:12px;border-radius:16px">${qr('CP-WEB-SIGNIN-'+(m.where||'loyalty'),29,6)}</div></div>
+  <div style="text-align:center;color:var(--mute);font-size:13px;margin-top:12px">Waiting for your phone…</div>
+  <button class="wsec" data-act="wqrok">Demo: approve on ${p.first}’s iPhone</button>`;
+ else if(m.step==='trouble')b=`${head('Trouble signing in?','Choose what’s going on.')}${big('wtrouble','code','Email me a sign-in code')}${big('wtrouble','card','I can’t find my account')}${big('wstep','inperson','Help me in person')}`;
  else if(m.step==='offer'){const o=OFFERS[S.persona].find(z=>z.id===m.id),x=OX[o.id],oq=P[o.p],bk=S.booked[S.persona];
   b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button><div class="photo" style="${bg(o.img)};height:170px;border-radius:16px;margin:26px 0 14px;--shade:linear-gradient(180deg,rgba(5,10,20,.2),rgba(5,10,20,.8))"><div style="position:absolute;left:14px;top:12px">${lg(o.p,20)}</div><div style="position:absolute;left:16px;bottom:10px;font-family:var(--disp);font-weight:800;font-size:34px">${o.v}</div></div>
   ${x.pin?`<span class="pinl">${ic('star',12,2.4)} ${x.pin}</span>`:''}<h3 style="margin-top:8px;font-size:21px">${o.t}</h3><div class="sub">${oq.n} · ${expTxt(o,1)} · ${x.when}</div>
@@ -2698,7 +2685,7 @@ function analyticsView(){const sc={all:1,winstar:.46,riverwind:.12,artesian:.06}
  const fun=steps.map(([l,n],i)=>{const v=n*sc*chm*(i===0?vm:1),w=Math.max(2,Math.sqrt(v/mx)*100),prev=i?steps[i-1][1]:null,conv=i?Math.round(n/prev*100):100,a=S.anCh==='web'?0:S.anCh==='app'?1:appShare[i];
   return `<div class="fn"><span>${l}</span><div class="bars" data-tip="${l}: ${f(n*(i===0?vm:1))} · app ${Math.round(a*100)}% · web ${Math.round((1-a)*100)}%"><i style="width:${w*a}%;background:#4C8DF0"></i><i style="width:${w*(1-a)}%;background:#7FD8C4"></i></div><span class="r"><b class="num">${f(n*(i===0?vm:1))}</b>${i?`${conv}% of previous${conv<45?' · <span class="drop">drop-off</span>':''}`:'All channels'}</span></div>`}).join('');
  const props=[['winstar',592,98.1,41.6,2210,4.32],['riverwind',154,26.4,11.2,610,1.18],['artesian',77,13.9,6.1,402,.61],['lakecrest',88,15.2,7.4,388,.66],['westbay',51,9.8,4.0,301,.41],['treasure',63,10.6,5.2,226,.52],['newcastle',58,9.9,4.9,0,.49],['megastar',49,8.1,3.6,0,.38]];
- const hot=[['Find my account','Not found on the first try','31%','Most choose “Yes, I have a card” and match on player ID'],['Verification code','New-device sign-in','9%','Code by email recovers 4 in 10'],['Offer details → Book now','App','48%','Sold-out dates: show alternatives (future phase)'],['Hotel booking','Payment step, signed out','22%','Signed-in guests skip this step'],['Messages','Unsubscribe after 3+ a week','6%','Shared cap of 3 a week across properties']];
+ const hot=[['Sign in or join','Not found on the first try','31%','Most say “I have a card” and match by card scan'],['Verification code','New-device sign-in','9%','Code by email recovers 4 in 10'],['Offer details → Book now','App','48%','Sold-out dates: show alternatives (future phase)'],['Hotel booking','Payment step, signed out','22%','Signed-in guests skip this step'],['Messages','Unsubscribe after 3+ a week','6%','Shared cap of 3 a week across properties']];
  return `<div class="anv"><div class="an-top"><div><h1>Guest journey analytics</h1><div style="color:var(--mute);font-size:14px;margin-top:4px">The loyalty site, property sites, booking engines and the app in one view · last 30 days · sample data</div></div>
   <div class="an-ctl"><div class="seg">${[['all','All properties'],['winstar','WinStar'],['riverwind','Riverwind'],['artesian','The Artesian']].map(([k,l])=>`<button data-act="an" data-k="anScope" data-v="${k}" aria-pressed="${S.anScope===k}">${l}</button>`).join('')}</div>
    <div style="display:flex;gap:8px"><div class="seg">${[['all','App + web'],['app','App'],['web','Web']].map(([k,l])=>`<button data-act="an" data-k="anCh" data-v="${k}" aria-pressed="${S.anCh===k}">${l}</button>`).join('')}</div><div class="seg">${[['all','All visitors'],['known','Signed in'],['anon','Not signed in']].map(([k,l])=>`<button data-act="an" data-k="anVis" data-v="${k}" aria-pressed="${S.anVis===k}">${l}</button>`).join('')}</div></div></div></div>
@@ -2707,7 +2694,7 @@ function analyticsView(){const sc={all:1,winstar:.46,riverwind:.12,artesian:.06}
    <div class="an-card"><h3>Journey funnel</h3><div class="sub">From first visit to a trip and play. Hover a bar for the app and web split. Bar lengths use a square-root scale.</div>${fun}<div class="an-leg"><span><i style="background:#4C8DF0"></i>App</span><span><i style="background:#7FD8C4"></i>Web: loyalty and property sites</span></div></div>
    <div class="an-card"><h3>Where guests drop off</h3><div class="sub">Steps losing the most guests, with what the design does about it.</div><table class="tbl" style="font-size:12.5px"><tr><th>Step</th><th class="r">Drop-off</th></tr>${hot.map(([a,b,c,d])=>`<tr><td><b style="display:block">${a}</b><span style="color:var(--mute)">${b} · ${d}</span></td><td class="r num" style="color:#FF9C96;font-weight:700">${c}</td></tr>`).join('')}</table></div></div>
   <div class="an-card" style="margin-top:18px"><h3>One guest, across domains</h3><div class="sub">First-party tracking follows the visitor across property sites, the loyalty site, the booking engine and the app, and joins it to their player account at sign-in.</div>
-   <div class="jr">${[['anon','winstar.demo','Browses hotel pages','Anonymous visitor ID'],['anon','Offer banner','Clicks “Sign in for member rates”','Same visitor ID'],['known','Signs in','Club Passport, code on new device','Joined to player account'],['known','Offer WSE-89-1009','Opens details, taps Book now','Offer context kept'],['known','WinStar reservations','Booked with nothing re-entered','Guest and offer carried over'],['known','Stay Oct 9–11','Checks in with the digital key','From the hotel system'],['known','Casino play','$1,240 theo during the stay','From the player system']].map(([c,a,b,s])=>`<div class="${c}"><b>${a}</b>${b}<small>${s}</small></div>`).join('')}</div>
+   <div class="jr">${[['anon','winstar.demo','Browses hotel pages','Anonymous visitor ID'],['anon','Offer banner','Clicks “Sign in for member rates”','Same visitor ID'],['known','Signs in','Code to phone, filled in automatically','Joined to player account'],['known','Offer WSE-89-1009','Opens details, taps Book now','Offer context kept'],['known','WinStar reservations','Booked with nothing re-entered','Guest and offer carried over'],['known','Stay Oct 9–11','Checks in with the digital key','From the hotel system'],['known','Casino play','$1,240 theo during the stay','From the player system']].map(([c,a,b,s])=>`<div class="${c}"><b>${a}</b>${b}<small>${s}</small></div>`).join('')}</div>
    <div class="idline"><span>◀ Not signed in: tracked by first-party cookie across property domains</span><span>Signed in: tracked by player account ▶</span></div></div>
   <div class="an-row" style="grid-template-columns:1.6fr 1fr">
    <div class="an-card"><h3>By property <small style="font-weight:500;color:var(--mute);font-size:12.5px">${S.anScope==='all'?'All properties':P[S.anScope].n+' highlighted'}</small></h3><table class="tbl"><tr><th>Property</th><th class="r">Visits</th><th class="r">Sign-ins</th><th class="r">Redemptions</th><th class="r">Bookings</th><th class="r">Attributed play</th></tr>${props.map(([k,v,s,r,b,t])=>`<tr style="${S.anScope===k?'background:rgba(156,195,245,.08)':''}"><td>${P[k].n}</td><td class="r num">${Math.round(v*chm)}K</td><td class="r num">${(s*chm).toFixed(1)}K</td><td class="r num">${(r*chm).toFixed(1)}K</td><td class="r num">${b?Math.round(b*chm).toLocaleString('en-US'):'—'}</td><td class="r num">$${(t*chm).toFixed(2)}M</td></tr>`).join('')}</table></div>
@@ -2719,7 +2706,7 @@ function analyticsView(){const sc={all:1,winstar:.46,riverwind:.12,artesian:.06}
 const COV=[
  ['4.1','Loyalty website','The main site for program information, joining, sign-in, benefits and tiers. Education and property links without signing in; account details after.','First release',['w:loyalty','w:account','tier'],'Shown'],
  ['4.2','Property websites','Each property site keeps its own brand, with consistent Club Passport sign-in, account, offers and program rules, styled to the property.','First release',['w:winstar','w:artesian'],'Shown'],
- ['4.3','Login and account access','One sign-in across the sites and app. Known guests claim their account against ACSC/Engage; prospects never create a player record; unverified guests go to a casino; MFA, step-up and recovery work the same on web and app.','First release',['login','mfa','claim','recover','security','w:signin'],'Shown'],
+ ['4.3','Login and account access','One sign-in across the sites and app. Known guests claim their account against ACSC/Engage; prospects never create a player record; unverified guests go to a casino; MFA, step-up and recovery work the same on web and app.','First release',['login','recover','security','w:signin'],'Shown'],
  ['4.4','Logged-in experience','Status, tier, benefits, offers, points, tier progress, drawing entries, upcoming reservations, communication preferences and host contact.','First release',['home','tier','wallet','host','comms','w:account'],'Shown'],
  ['4.5','Offers','Offers first after sign-in. Only active, eligible offers; redeemed ones labeled. Ranked by nearest expiry, then property and type, with pinning. Search, filter, sort, details and terms, digital redemption, and booking straight from an offer. Hide or decline and host contact later.','First release; hide and host in a future phase',['offers','offer','home','w:offers'],'Shown'],
  ['4.6','Preferred property and availability','Preferred property from rated days (6 months, then 18 months, then latest trip) unless the guest picks one. Favorites. Trip dates improve relevance. Expired items removed. Alternatives when something is unavailable.','First release; alternatives in a future phase',['preferred','offers','book','destinations'],'Shown'],
@@ -2727,9 +2714,9 @@ const COV=[
  ['4.8','App','Account summary on Home, card number and benefits, biometric sign-in, property content, preferred property first, reservations, hotel booking and host contact.','First release',['home','wallet','login','destinations','property','trip'],'Shown'],
  ['4.9','Push and communications','Push for offers, events and reminders, coordinated across properties with a frequency cap. Guests manage their preferences. Location and trip-based messages later.','First release; location-based in a future phase',['lock','comms','inbox'],'Shown'],
  ['4.10','Analytics and reporting','Journeys, drop-off and conversion across web and app, cross-domain, signed in and anonymous, linked to bookings and play. Enterprise and property views.','First release',['v:analytics'],'Shown with sample data'],
- ['4.11','Data and system of record','ACSC/Engage are authoritative for identity and offers. Prospects stay separate from player records. Regulated profile fields aren’t editable online until Compliance confirms.','Decisions for CNIT and vendors',['claim','security'],'Shown in the flows and notes'],
+ ['4.11','Data and system of record','ACSC/Engage are authoritative for identity and offers. Prospects stay separate from player records. Regulated profile fields aren’t editable online until Compliance confirms.','Decisions for CNIT and vendors',['login','security'],'Shown in the flows and notes'],
  ['4.12','Migration and transition','Day one: the loyalty site, one app and unified sign-in, with a plan to retire the property apps and move users and web logins over.','First release',['moving','login'],'Shown']];
-const COVA=[['A','Authentication journey',['claim','login']],['B','Example login paths',['login','mfa','recover','w:signin']],['C','Known guest: recognize, verify, establish identity',['claim']],['D','New guest: prospect capture without a duplicate identity',['claim','w:join']],['E','Returning guest: login, MFA and step-up',['mfa','security']],['F','Account recovery',['recover']]];
+const COVA=[['A','Authentication journey',['login','w:signin']],['B','Example login paths',['login','recover','w:signin']],['C','Known guest: recognize, verify, establish identity',['login']],['D','New guest: prospect capture without a duplicate identity',['login','w:join']],['E','Returning guest: login, MFA and step-up',['login','security']],['F','Account recovery',['recover']]];
 const COVD=[['MVP scope','The prototype tags each screen as first release or future phase for discussion.',[]],['Event definition','Shows, drawings and promotions appear as separate content types, so either definition fits.',['shows','drawing']],['Communication preferences','Shows one combined model: topic × channel, by property, with a shared frequency cap.',['comms']],['Profile management','Shows email, phone, password and mailing address as editable with step-up; name and date of birth in person only.',['security']],['Real-time availability','Hotel rooms shown live; dining, spa and shows route to existing systems.',['book','dining']],['Remaining data ownership','Preferences and consent are stored with the account in the prototype; the source of truth is still to be confirmed.',['comms']],['Analytics KPIs','The dashboard proposes candidate KPIs: claims, sign-ins, redemptions, bookings and attributed play.',['v:analytics']],['Elite Bonusing Suite','Live meters and hourly progressives show how bonusing and jackpot content could appear.',['meters','playing']],['Reel Money Gaming','Not shown. The Play screen is where a link or embed would go.',['play']],['Everi Wallet','Shown as the Resort Wallet across all 11 properties; availability by property to be confirmed.',['wallet']]];
 function covChip(id){if(id.startsWith('w:')){const k=id.slice(2),l={loyalty:'Loyalty site',account:'Account hub',winstar:'WinStar site',artesian:'The Artesian site',signin:'Website sign-in',offers:'Website offers',book:'Website booking',join:'Website join'}[k];return `<button class="w" data-act="covgo" data-v="${id}">${ic('globe',12)} ${l}</button>`}
  if(id==='v:analytics')return `<button class="w" data-act="covgo" data-v="${id}">${ic('chart',12)} Analytics</button>`;
@@ -2750,16 +2737,24 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wsite':if(v==='loyalty')S.site='loyalty';else{S.site='property';S.psite=v;S.wbk=null}S.pPanel=false;render();return true;
   case 'wscroll':{const el=document.querySelector('.pmain #lp-'+v);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return true}
   case 'wfaq':S.faq=S.faq===+v?-1:+v;render(true);return true;
-  case 'wsignin':S.webModal={step:'signin',where:v==='loyalty'?null:v};render(true);return true;
-  case 'wfind':S.webModal={step:'find',known:1,where:S.webModal&&S.webModal.where};render(true);return true;
-  case 'wjoin':S.webModal={step:'join',where:null};render(true);return true;
-  case 'wknown':S.webModal.known=+v;render(true);return true;
-  case 'wcode':S.webModal.step='code';S.webModal.email=1;render(true);return true;
-  case 'wforgot':S.webModal.step='forgot';render(true);return true;
-  case 'wsigngo':if(S.webTrusted){webSignedIn();return true}S.webModal.step='mfa';render(true);return true;
+  case 'wsignin':S.webModal={step:'start',who:'ret',where:v==='loyalty'?null:v};render(true);return true;
+  case 'wfind':S.webModal={step:'start',who:'claim',where:S.webModal&&S.webModal.where};render(true);return true;
+  case 'wjoin':S.webModal={step:'start',who:'new',where:null};render(true);return true;
+  case 'wqr':S.webModal={step:'qr',who:'ret',where:S.webModal?S.webModal.where:(S.site==='property'?S.psite:null)};render(true);return true;
+  case 'wwho':S.webModal.who=v;S.webModal.sam=false;render(true);return true;
+  case 'wgo':{const m=S.webModal;m.pwDone=false;m.email=0;if(m.who==='new')m.step='played';else if(m.who==='ret'&&S.webTrusted){webSignedIn();return true}else m.step=m.who==='ret'&&HASPW[S.persona]?'pw':'code';render(true);return true}
+  case 'wpw':S.webModal.pwDone=true;S.webModal.step='code';render(true);return true;
+  case 'wcode':S.webModal.pwDone=false;S.webModal.step='code';render(true);return true;
+  case 'wemail':S.webModal.email=1;render(true);toast('Code sent by email');return true;
+  case 'wverify':{const m=S.webModal;S.webTrusted=true;if(m.who==='claim'){m.step='welcome';render(true)}else webSignedIn();return true}
+  case 'wcard':{const m=S.webModal;m.who='claim';m.sam=true;m.email=0;m.step='code';render(true);return true}
+  case 'wtrouble':{const m=S.webModal;if(v==='code'){m.who='ret';m.email=1;m.pwDone=false;m.step='code'}else{m.who='new';m.step='card'}render(true);return true}
+  case 'wqrok':toast(`Approved on ${per().first}’s iPhone`);S.webTrusted=true;webSignedIn();return true;
+  case 'waddpw':toast('Add one anytime under Settings › Sign-in and security');return true;
+  case 'wpasskey':toast('Passkeys are on the roadmap. Codes and your phone work today.');return true;
   case 'wstep':S.webModal.step=v;render(true);return true;
   case 'wresend':toast('New code sent');return true;
-  case 'wdone':S.webTrusted=true;webSignedIn();return true;
+  case 'wdone':{const m=S.webModal;if(m&&m.sam){S.webModal=null;S.webIn=true;if(S.site==='loyalty')S.portal='overview';render();later(`Card linked. The demo continues as ${per().first}.`);return true}webSignedIn();return true}
   case 'wclose':case 'wbg':S.webModal=null;render(true);return true;
   case 'wsignout':S.webIn=false;S.pPanel=false;S.site='loyalty';S.portal='overview';render();later('Signed out of every Chickasaw Nation site');return true;
   case 'ppanel':S.pPanel=!S.pPanel;render(true);return true;
@@ -2782,7 +2777,7 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'covgo':{if(v==='v:analytics'){S.view='analytics';render();window.scrollTo({top:0});return true}
    if(v.startsWith('w:')){const k=v.slice(2);S.view='web';S.webModal=null;S.wbk=null;S.pPanel=false;
     if(k==='loyalty'){S.site='loyalty';S.webIn=false}else if(k==='account'||k==='offers'){S.site='loyalty';S.webIn=true;S.portal=k==='offers'?'offers':'overview'}
-    else if(k==='signin'){S.site='loyalty';S.webIn=false;S.webModal={step:'signin',where:null}}else if(k==='join'){S.site='loyalty';S.webIn=false;S.webModal={step:'join',where:null}}
+    else if(k==='signin'){S.site='loyalty';S.webIn=false;S.webModal={step:'start',who:'ret',where:null}}else if(k==='join'){S.site='loyalty';S.webIn=false;S.webModal={step:'start',who:'new',where:null}}
     else if(k==='book'){S.webIn=true;S.site='property';S.psite='winstar';S.wbk={k:'winstar',o:S.persona==='B'?'b5':null,step:'room',room:0}}else{S.site='property';S.psite=k}
     render();window.scrollTo({top:0});return true}
    S.view='proto';go(v);window.scrollTo({top:0});return true}
@@ -2966,7 +2961,7 @@ function audioKick(){if(!GAME_SCREENS.includes(S.screen))return;
  try{if(!keepAlive){keepAlive=new Audio(silentWavUrl());keepAlive.loop=true;keepAlive.setAttribute('playsinline','')}if(keepAlive.paused)keepAlive.play().catch(()=>{})}catch(e){}}
 ['pointerdown','touchend','click'].forEach(ev=>document.addEventListener(ev,audioKick,{passive:true,capture:true}));
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&actx&&actx.state!=='running')actx.resume().catch(()=>{})});
-render=(orig=>function(k){const pm=document.querySelector('.pmain'),pms=pm?pm.scrollTop:0,pl=document.querySelector('.pchatlog'),pls=pl?pl.scrollTop:0;orig(k);if(k){const a=document.querySelector('.pmain');if(a)a.scrollTop=pms;const b=document.querySelector('.pchatlog');if(b)b.scrollTop=pls}syncCar();if(S.reskin){S.reskin=false;const sc=document.querySelector('#stage .scr');if(sc){sc.classList.add('reskin');setTimeout(()=>sc.classList.remove('reskin'),700)}}mountSocial();if(keepAlive&&!GAME_SCREENS.includes(S.screen))keepAlive.pause()})(render);
+render=(orig=>function(k){const pm=document.querySelector('.pmain'),pms=pm?pm.scrollTop:0,pl=document.querySelector('.pchatlog'),pls=pl?pl.scrollTop:0;orig(k);if(k){const a=document.querySelector('.pmain');if(a)a.scrollTop=pms;const b=document.querySelector('.pchatlog');if(b)b.scrollTop=pls}syncCar();if(S.reskin){S.reskin=false;const sc=document.querySelector('#stage .scr');if(sc){sc.classList.add('reskin');setTimeout(()=>sc.classList.remove('reskin'),700)}}mountSocial();doorAuto();if(keepAlive&&!GAME_SCREENS.includes(S.screen))keepAlive.pause()})(render);
 render();
 </script>
 
