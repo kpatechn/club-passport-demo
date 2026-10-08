@@ -470,6 +470,10 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .sysacct>span{color:#0A84FF}.sysacct b{display:block;font-size:14px;font-weight:600}.sysacct small{font-size:12px;color:rgba(235,235,245,.6)}
 .sysb{width:100%;height:50px;margin-top:18px;border-radius:14px;background:#0A84FF;color:#fff;font-weight:600;font-size:16px}
 .sysl{display:block;margin:14px auto 0;color:#0A84FF;font-size:15px}
+.fv.sugg{background:rgba(245,196,107,.12);box-shadow:inset 0 0 0 1.5px rgba(245,196,107,.55);font-family:ui-monospace,Menlo,monospace;font-size:14px}
+.sugtag{font:700 11px var(--ui);padding:3px 8px;border-radius:6px;background:rgba(245,196,107,.2);color:#F5C46B}
+.sugbox{margin-top:14px;padding:14px;border-radius:16px;background:var(--el);font-size:13px;line-height:1.45;color:var(--ink2)}
+.sugbox svg{flex:none;color:#F5C46B;margin-top:1px}
 /* rows that reuse the list text styles */
 .upc .k,.tgr .k,.rule .k{font-size:14px;font-weight:600}.upc .v,.tgr .v{font-size:12.5px;color:var(--ink2)}
 .upc .grow,.tgr .grow,.rule .grow,.bigopt .grow,.opt .grow{flex:1;min-width:0}
@@ -1434,7 +1438,8 @@ Object.assign(PATHS,{
  device:'<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
  laptop:'<rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/>',
  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
- refresh:'<path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/>'
+ refresh:'<path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/>',
+ pwd:'<rect x="2.5" y="7" width="19" height="10" rx="3"/><path d="M7 12h.01M11 12h.01M15 12h.01" stroke-width="3"/><path d="M18.5 10v4"/>'
 });
 // Guest contact details the sign-in screens show (sample data)
 Object.assign(PERS.A,{email:'winnie.day@example.com',mobile:'(405) 555-0142',since:'2014',dob:'•• / •• / 1979'});
@@ -1511,7 +1516,7 @@ const CMLOCK={trips:[0,0,1],acct:[1,1,1]};
 const cmInit=fav=>({offers:[1,1,1],events:[1,0,1],draw:[1,0,1],deals:[0,0,1],jackpot:[1,0,0],trips:[1,1,1],acct:[1,1,1],props:'fav',pick:new Set(fav),freq:1,quiet:1,geo:0});
 
 /* ---------- v3 state ---------- */
-const doorFresh=()=>({who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
+const doorFresh=()=>({faceOn:true,more:false,pkMade:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
 function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),trusted:{A:false,B:false},hasPw:{A:false,B:true},passkeys:{A:[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}],B:[]},pk:null,pwf:null,rc:{step:'menu',h:[]},
  stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
@@ -1620,13 +1625,16 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <button class="btn" data-act="dpkcreate" style="width:100%;height:52px;margin-top:24px">${ic('key',18)} Create a passkey</button>
   <button class="btn line" data-act="dface" style="width:100%;height:46px;margin-top:10px">Just Face ID on this iPhone</button>
   <button data-act="dskip" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">Not now</button>`;
- else if(st==='welcome')b=`<div style="display:flex;justify-content:center;margin-top:6px">${kcard(id,300)}</div>
+ else if(st==='welcome'){const pk=d.pkMade; // a first-time guest only has a passkey once they make one here
+  b=`<div style="display:flex;justify-content:center;margin-top:6px">${kcard(id,300)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">${d.sam?'Welcome':'Welcome back'}, ${id.first}</h1>
   <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">Your ${TIERS[id.tier].n} card is on this iPhone now, and the same sign-in works on every property website.</div>
-  <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">Open the app with a glance</div></div><button class="tg" role="switch" aria-checked="true" aria-label="Face ID"></button></div>
-   <button class="tgr" data-act="dpkcreate" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('key',20)}</span><div class="grow"><div class="k">Create a passkey</div><div class="v">Sign in with Face ID on our websites too</div></div>${ic('right',16)}</button>
-   <button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('key',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>
-  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">Go to my account</button>`;
+  <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${d.faceOn?'Opens the app with a glance on this iPhone':'Off. You’ll sign in with a code or passkey.'}</div></div><button class="tg" role="switch" aria-checked="${d.faceOn}" data-act="dfacetg" aria-label="Face ID"></button></div>
+   ${pk?`<div class="tgr"><span style="color:#5FD7A5">${ic('key',20)}</span><div class="grow"><div class="k">Passkey saved</div><div class="v">Sign in with Face ID here and on our websites</div></div><span style="color:#5FD7A5">${ic('check',18,2.6)}</span></div>`
+   :`<button class="tgr" data-act="dpkcreate" data-v="welcome" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('key',20)}</span><div class="grow"><div class="k">Create a passkey</div><div class="v">Sign in with Face ID on our websites too</div></div>${ic('right',16)}</button>`}</div>
+  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">Go to my account</button>
+  ${d.more?`<div class="list" style="margin:14px 0 0"><button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('pwd',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>`
+   :`<button data-act="dmore" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">More options</button>`}`}
  else if(st==='played')b=`${h1('Welcome! Let’s find you',`There’s no online account for ${SAM.email} yet.`)}
   <div style="font-weight:700;font-size:16px;margin-top:22px">Have you played at a Chickasaw Nation casino?</div>
   ${opt('dnext','find','card','Yes, I have a player’s card','We’ll find it in a few seconds')}${opt('dnext','join','plus','No, I’m new here','Join the list for a first-visit offer')}
@@ -1682,12 +1690,13 @@ function pkSheetHTML(){const k=S.pk,p=per(),has=S.passkeys[S.persona].length;let
  return `<div class="syssheet" data-act="pkclose"><div class="syspan" data-stop="1">${b}</div></div>`}
 function pkDone(){const k=S.pk,P1=S.persona;S.pk=null;
  if(k.mode==='signin'){S.trusted[P1]=true;doorDone('Signed in with your passkey');return}
- S.passkeys[P1].push({where:'iCloud Keychain',made:'Today',used:'Just now'});S.trusted[P1]=true;
- if(k.from==='door'){doorDone('Passkey saved. Next time, sign in with Face ID.');return}render(true);toast('Passkey saved to iCloud Keychain')}
+ S.passkeys[P1].push({where:'iCloud Keychain',made:'Today',used:'Just now'});if(k.from==='welcome')S.door.pkMade=true;else S.trusted[P1]=true;
+ if(k.from==='door'){doorDone('Passkey saved. Next time, sign in with Face ID.');return}render(true);toast(k.from==='welcome'?'Passkey saved. Use it on the app and our websites.':'Passkey saved to iCloud Keychain')}
 
 // Add, change or remove a password. Confirm-it's-you first, then strength and breach checks.
-const PWTXT={ok:'Riverwind-Lake-2026!',short:'winstar7',breach:'Password123456',sug:'hkt7-Qmzp-2xVd'};
-const pwfFresh=mode=>({mode,step:'confirm',demo:'ok',show:false,signout:true,back:'security',fill:false,err:false});
+const PWTXT={ok:'Riverwind-Lake-2026!',short:'winstar7',breach:'Password123456',sug:'hkt7-Qmzp-2xVd-ewn4'};
+// choice: null until the guest takes the suggested strong password or chooses their own
+const pwfFresh=mode=>({mode,step:'confirm',choice:null,demo:'ok',show:false,signout:true,back:'security',fill:false,err:false});
 SCR.password=()=>{const p=per();if(!S.pwf)S.pwf=pwfFresh(S.hasPw[S.persona]?'change':'add');const f=S.pwf,st=f.step;
  const lab={add:'Add a password',change:'Change your password',remove:'Remove your password'}[f.mode];
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
@@ -1698,19 +1707,24 @@ SCR.password=()=>{const p=per();if(!S.pwf)S.pwf=pwfFresh(S.hasPw[S.persona]?'cha
   <button class="btn line" data-act="pwcode" style="width:100%;height:46px;margin-top:10px">Send a code to ${maskEm(p)}</button>`;
  else if(st==='face')b=`<div class="faceid" style="margin-top:60px">${ic('face',54,1.6)}</div><div style="text-align:center;font-weight:700;margin-top:8px">Face ID</div>`;
  else if(st==='code')b=`${h1('Enter the code',`We sent a 6-digit code to ${maskEm(p)}.`)}${otpBox(f.fill)}${f.fill?`<div class="cap" style="text-align:center;margin-top:14px;color:#7FE3B8;font-weight:600">${ic('check',13,2.6)} Verifying</div>`:`<button class="autofill" data-act="pwfill">${ic('mail',15)} From Mail: <b>482 913</b></button>`}`;
- else if(st==='create'){const dm=f.demo,txt=PWTXT[dm],ok=dm==='ok'||dm==='sug';
-  const rules=[['At least 12 characters',dm!=='short'],['Not a common password or phrase',dm!=='breach'],['Not found in a known data breach',dm!=='breach'],['Doesn’t include your name or email',true]];
+ else if(st==='create'&&!f.choice)b=`${h1(f.mode==='change'?'Choose a new password':'Create a password','Optional. You can still sign in with a code, Face ID or a passkey.')}
+  <div class="fld"><span>${f.mode==='change'?'New password':'Password'}</span><span class="fv sugg"><span style="flex:1">${PWTXT.sug}</span><span class="sugtag">Strong</span></span></div>
+  <div class="sugbox"><div style="display:flex;gap:10px;align-items:flex-start">${ic('key',18)}<span>Your iPhone made a strong password and will save it to iCloud Keychain, so it fills in for you on your other devices.</span></div>
+   <button class="btn" data-act="pwchoose" data-v="sug" style="width:100%;height:50px;margin-top:14px">Use strong password</button>
+   <button class="btn line" data-act="pwchoose" data-v="own" style="width:100%;height:46px;margin-top:10px">Choose my own password</button></div>`;
+ else if(st==='create'){const sug=f.choice==='sug',dm=sug?'sug':f.demo,txt=PWTXT[dm],ok=dm==='ok'||dm==='sug';
+  const rules=[['At least 12 characters. A phrase works well.',dm!=='short'],['Not a common or breached password',dm!=='breach'],['Doesn’t include your name or email',true]];
   const bars=ok?4:dm==='short'?1:2,col=ok?'#5FD7A5':dm==='short'?'#FF8A84':'#F5C46B';
-  b=`${h1(f.mode==='change'?'Choose a new password':'Create a password','Optional. You can still sign in with a code, Face ID or a passkey.')}
-  <button class="autofill" data-act="pwdemo" data-v="sug">${ic('key',15)} Use strong password: <b>${PWTXT.sug}</b></button>
-  <div class="fld"><span>${f.mode==='change'?'New password':'Password'}</span><span class="fv${ok?'':' bad'}"><span style="flex:1;letter-spacing:${f.show?'0':'.1em'}">${f.show?txt:'•'.repeat(txt.length)}</span><button data-act="pwshow" aria-label="${f.show?'Hide':'Show'} password" style="color:var(--ink2);display:flex">${ic(f.show?'eyeoff':'eye',18)}</button></span></div>
+  b=`${h1(f.mode==='change'?'Choose a new password':'Create a password',sug?'Saved to iCloud Keychain when you tap Save.':'Make it long and memorable. No symbol or capital-letter rules.')}
+  <div class="fld"><span>${f.mode==='change'?'New password':'Password'}</span><span class="fv${ok?'':' bad'}${sug?' sugg':''}"><span style="flex:1;letter-spacing:${f.show||sug?'0':'.1em'}">${f.show||sug?txt:'•'.repeat(txt.length)}</span>${sug?'<span class="sugtag">Strong</span>':`<button data-act="pwshow" aria-label="${f.show?'Hide':'Show'} password" style="color:var(--ink2);display:flex">${ic(f.show?'eyeoff':'eye',18)}</button>`}</span></div>
   <div class="strength">${[0,1,2,3].map(i=>`<i style="background:${i<bars?col:'rgba(255,255,255,.12)'}"></i>`).join('')}</div>
-  <div class="cap" style="margin-top:6px;color:${col};font-weight:700">${ok?'Strong':dm==='short'?'Too short':'Unsafe: this password has appeared in a data breach'}</div>
+  <div class="cap" style="margin-top:6px;color:${col};font-weight:700">${ok?'Strong':dm==='short'?'Too short':'Unsafe: this password is common or has appeared in a data breach'}</div>
   <div class="list" style="margin:14px 0 0">${rules.map(([l,pass])=>`<div class="li" style="padding:11px 14px"><span style="color:${pass?'#5FD7A5':'#FF8A84'}">${ic(pass?'check':'x',16,2.6)}</span><div class="grow v" style="color:var(--ink)">${l}</div></div>`).join('')}</div>
   ${f.mode==='change'?chkrow(f.signout,'Sign out of my other devices','pwsignout'):''}
   ${f.err&&!ok?errT('Fix the items marked in red first.'):''}
   <button class="btn" data-act="pwsave" style="width:100%;height:52px;margin-top:16px">Save password</button>
-  ${demoRow('pwdemo',dm==='sug'?'ok':dm,[['ok','Strong'],['short','Too short'],['breach','In a breach']])}`}
+  <button data-act="pwchoose" data-v="${sug?'own':'sug'}" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">${sug?'Choose my own password':'Use the suggested strong password'}</button>
+  ${sug?'':demoRow('pwdemo',dm,[['ok','Strong'],['short','Too short'],['breach','Common or breached']])}`}
  else if(st==='removeask')b=`${h1('Remove your password?','You’ll sign in with a code, Face ID or your passkey. You can add a password again anytime.')}
   ${S.passkeys[S.persona].length?'':`<div class="note" style="margin-top:16px">${ic('key',16)}<span>Tip: create a passkey first, so you can sign in with Face ID on the websites too.</span></div>`}
   <button class="btn" data-act="pwremove" style="width:100%;height:52px;margin-top:22px;background:#FF8A84;color:#2A0A08">Remove password</button>
@@ -1726,7 +1740,7 @@ SCR.recover=()=>{const p=per(),r=S.rc,st=r.step;
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
  let b='';
  if(st==='menu')b=`${h1('Trouble signing in?','Choose what’s going on.')}
-  ${[['lost','device','I can’t get my code','New phone or number, or no access to my email'],['match','user','I can’t find my account','We’ll look further, or help you in person'],['pw','key','I forgot my password','Sign in with a code instead, then set a new one if you like']].map(([k,i,t,s])=>`<button class="bigopt" data-act="rcnext" data-v="${k}"><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`).join('')}
+  ${[['lost','device','I can’t get my code','New phone or number, or no access to my email'],['match','user','I can’t find my account','We’ll look further, or help you in person'],['pw','pwd','I forgot my password','Sign in with a code instead, then set a new one if you like']].map(([k,i,t,s])=>`<button class="bigopt" data-act="rcnext" data-v="${k}"><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`).join('')}
   <div class="note" style="margin-top:16px">${ic('pin',16)}<span>Player services at any of our casinos can always help in person, with a photo ID.</span></div>`;
  else if(st==='pw')b=`${h1('Forgot your password?','No problem. We’ll send a code so you can sign in, then you can set a new password or skip it.')}
   ${fld('Email or mobile number',p.email)}
@@ -1849,7 +1863,7 @@ SCR.security=()=>{const p=per(),mob=S.newMobile[S.persona]||p.mobile,A1=S.person
  const tg=(k,l,s)=>`<div class="tgr"><div class="grow"><div class="k">${l}</div>${s?`<div class="v">${s}</div>`:''}</div><button class="tg" role="switch" aria-checked="${!!S[k]}" data-act="sectg" data-k="${k}" aria-label="${l.replace(/<[^>]+>/g,'')}"></button></div>`;
  return `<div class="body">${head('Sign-in & security','settings')}
   <div class="sec" style="margin-top:12px"><h4>How you sign in</h4></div>
-  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}<div class="li"><span style="color:var(--ink2)">${ic('key',19)}</span><div class="grow"><div class="v">Password</div><div class="k">${S.hasPw[S.persona]?'Changed 3 months ago':'Not set · optional'}</div></div>${S.hasPw[S.persona]?'<button class="rowbtn" data-act="pwopen" data-v="remove" style="color:var(--ink2)">Remove</button><button class="rowbtn" data-act="pwopen" data-v="change" style="margin-left:12px">Change</button>':'<button class="rowbtn" data-act="pwopen" data-v="add">Add</button>'}</div></div>
+  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}<div class="li"><span style="color:var(--ink2)">${ic('pwd',19)}</span><div class="grow"><div class="v">Password</div><div class="k">${S.hasPw[S.persona]?'Changed 3 months ago':'Not set · optional'}</div></div>${S.hasPw[S.persona]?'<button class="rowbtn" data-act="pwopen" data-v="remove" style="color:var(--ink2)">Remove</button><button class="rowbtn" data-act="pwopen" data-v="change" style="margin-left:12px">Change</button>':'<button class="rowbtn" data-act="pwopen" data-v="add">Add</button>'}</div></div>
   <div class="list" style="margin-top:10px">${tg('secFace','Face ID','Open the app with a glance on this iPhone')}</div>
   <div class="sec"><h4>Passkeys</h4><button data-act="pkcreate">Create a passkey</button></div>
   <div class="list">${S.passkeys[S.persona].length?S.passkeys[S.persona].map((k,i)=>`<div class="li"><span style="color:var(--hi)">${ic('key',19)}</span><div class="grow"><div class="k">${k.where}</div><div class="v">Created ${k.made} · last used ${k.used}</div></div><button class="rowbtn" data-act="pkrm" data-i="${i}" style="color:#FF8A84">Remove</button></div>`).join(''):`<div class="li"><div class="grow v">No passkeys yet. A passkey signs you in with Face ID, here and on our websites, with no code or password.</div></div>`}</div>
@@ -1944,7 +1958,7 @@ function sheetHTML(){const p=per(),pf=prefProp(),fv=S.favs[S.persona];
 /* ---------- presenter notes for the v3 screens ---------- */
 Object.assign(NOTES,{
  moving:{e:'Moving over',t:'From the WinStar app to Club Passport',d:'When the WinStar or Riverwind app updates for the last time, it hands guests over to Club Passport with their card, tier, points, saved offers and Face ID already in place. Their winstar.com sign-in moves too. Tap Open Club Passport.',aud:['Exec','Loyalty','IT'],src:'<b>Requirement 4.12:</b> a plan on day one to retire the property apps and move app and web users to the new system. The Jan 31, 2027 date is a placeholder.'},
- password:{e:'Password',t:'Add, change or remove a password',d:'Passwords are optional. Adding, changing or removing one starts with Face ID or a code, then checks length, common passwords and known breaches, and suggests a strong password. Changing one can sign out other devices; removing one leaves codes, Face ID and passkeys. Use the Demo switch for the error states.',aud:['IT','Loyalty','Compliance'],src:'<b>Appendix E:</b> step-up for sensitive changes, then a notice to the guest’s contact details. Breach checks would use a service such as Have I Been Pwned’s k-anonymity API.'},
+ password:{e:'Password',t:'Add, change or remove a password',d:'Passwords are optional. Adding, changing or removing one starts with Face ID or a code. The phone’s strong password comes first, saved to iCloud Keychain; guests can choose their own instead, checked for length (12+), common and breached passwords, and their name or email, with no symbol rules. Changing one can sign out other devices; removing one leaves codes, Face ID and passkeys. Use the Demo switch for the error states.',aud:['IT','Loyalty','Compliance'],src:'<b>Appendix E:</b> step-up for sensitive changes, then a notice to the guest’s contact details. Rules follow NIST SP 800-63B: length and blocklists rather than composition rules or forced changes. Breach checks would use a service such as Have I Been Pwned’s k-anonymity API.'},
  recover:{e:'Recovery',t:'Trouble signing in? One link',d:'One link replaces forgot password, forgot username and lost phone. Can’t get a code: get one by email or an authenticator app, or scan a photo ID, then add the new number. Can’t find the account: back to the front door’s card search. Forgot password: sign in with a code, then set a new one or skip it. Every path notifies the guest’s other contact details.',aud:['IT','Loyalty'],src:'<b>Appendix F.</b> The vendor designs the recovery steps and proofing rules, keeping secure tokens, lockout controls, audit trails and assisted recovery. There is no separate username: it is the email or mobile number.'},
  offer:{e:'Offer details',t:'Everything about an offer, and how to use it',d:'Dates, why the guest has it, the offer code, how to redeem it and the full terms. Free Play loads to the card automatically, credits are shown at the outlet, and hotel offers go straight to booking. Hiding an offer and asking the host about it are tagged as a future phase.',aud:['Loyalty','GM','Marketing'],src:'<b>Requirement 4.5:</b> details with terms, digital redemption or a clear, auditable path, and booking without extra steps. Each property approves its own offers.'},
  book:{e:'Booking',t:'From offer to booked, nothing re-entered',d:'Book now hands the guest to the property’s booking engine with their name, Club Passport number, tier, offer code, eligible dates and rate filled in. Pick a room, review and confirm. Choose the sold-out dates to see alternatives ranked by dates, distance and favorites, a future phase.',aud:['Exec','GM','Loyalty','IT'],src:'<b>Requirement 4.7</b> and the hotel offer-to-reservation diagram, steps 1–12. Booking stays in each property’s reservation system for launch; cross-property booking is a future phase.'},
@@ -1974,8 +1988,10 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dfidcode':{const d=S.door;d.fid=null;d.m='sms';d.h=['start'];d.step='code';render();return true}
   case 'dface':S.trusted[P1]=true;doorDone('Face ID is on. Next time, just open the app.');return true;
   case 'dskip':doorDone('Signed in to all 11 properties');return true;
-  case 'daddpw':S.trusted[P1]=true;S.pwf=Object.assign(pwfFresh('add'),{step:'create',back:'home'});S.door=doorFresh();go('password');return true;
-  case 'dwelcome':S.trusted[P1]=true;doorDone(S.door.sam?`Card linked. The demo continues as ${per().first}.`:'Your Club Passport is ready');return true;
+  case 'daddpw':S.trusted[P1]=S.door.faceOn;S.pwf=Object.assign(pwfFresh('add'),{step:'create',back:'home'});S.door=doorFresh();go('password');return true;
+  case 'dfacetg':S.door.faceOn=!S.door.faceOn;render(true);return true;
+  case 'dmore':S.door.more=true;render(true);return true;
+  case 'dwelcome':{const on=S.door.faceOn;S.trusted[P1]=on;S.secFace=on;doorDone(S.door.sam?`Card linked. The demo continues as ${per().first}.`:on?'Your Club Passport is ready':'Your Club Passport is ready. Face ID is off.');return true}
   case 'dnext':stepTo(S.door,v);return true;
   case 'dback':{const d=S.door;d.err=null;if(d.h.length)stepBack(d,'login');else{d.step='start';render()}return true}
   case 'dtryph':toast(`No online account for ${SAM.mobile} either. Try scanning your card.`);return true;
@@ -1992,7 +2008,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dreset':S.door=doorFresh();render();return true;
   case 'dother':S.trusted[P1]=false;clearTimeout(S.fidT);S.fidT=null;S.door=doorFresh();render();return true;
   case 'dpasskey':S.pk={mode:'signin',step:'ask',from:'door'};render(true);return true;
-  case 'dpkcreate':S.pk={mode:'create',step:'ask',from:'door'};render(true);return true;
+  case 'dpkcreate':S.pk={mode:'create',step:'ask',from:v==='welcome'?'welcome':'door'};render(true);return true;
   case 'movego':S.trusted[P1]=true;go('login');later('Your WinStar sign-in moved over');return true;
   // passkeys
   case 'pkcreate':S.pk={mode:'create',step:'ask',from:'security'};render(true);return true;
@@ -2004,10 +2020,11 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'pwface':S.pwf.step='face';render(true);setTimeout(()=>{if(S.pwf&&S.pwf.step==='face'){S.pwf.step=S.pwf.mode==='remove'?'removeask':'create';render()}},1100);return true;
   case 'pwcode':S.pwf.step='code';S.pwf.fill=false;render();return true;
   case 'pwfill':S.pwf.fill=true;render(true);setTimeout(()=>{if(S.pwf&&S.pwf.step==='code'){S.pwf.step=S.pwf.mode==='remove'?'removeask':'create';render()}},800);return true;
-  case 'pwdemo':S.pwf.demo=v;S.pwf.err=false;if(v==='sug')S.pwf.show=true;render(true);return true;
+  case 'pwchoose':S.pwf.choice=v;S.pwf.demo='ok';S.pwf.err=false;render(true);return true;
+  case 'pwdemo':S.pwf.demo=v;S.pwf.err=false;render(true);return true;
   case 'pwshow':S.pwf.show=!S.pwf.show;render(true);return true;
   case 'pwsignout':S.pwf.signout=!S.pwf.signout;render(true);return true;
-  case 'pwsave':{const f=S.pwf;if(!(f.demo==='ok'||f.demo==='sug')){f.err=true;render(true);return true}S.hasPw[P1]=true;f.step='done';render();return true}
+  case 'pwsave':{const f=S.pwf;if(f.choice!=='sug'&&f.demo!=='ok'){f.err=true;render(true);return true}S.hasPw[P1]=true;f.step='done';render();if(f.choice==='sug')later('Saved to iCloud Keychain');return true}
   case 'pwremove':S.hasPw[P1]=false;S.pwf.step='done';render();return true;
   case 'pwback':{const b=S.pwf?S.pwf.back:'security';S.pwf=null;go(b);return true}
   case 'pwdone':{const b=S.pwf.back;S.pwf=null;go(b);return true}
@@ -2456,7 +2473,7 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['rcmenu','Trouble signing in?: one help link','App. F','App'],
  ['rclost','Can’t get a code: email, authenticator or photo ID, then a new number','App. F','App'],
  ['rcpw','Forgot password: sign in with a code, then set a new one or skip','App. F','App'],
- ['pwadd','Add a password, with strength and breach checks','App. E','App'],
+ ['pwadd','Add a password: the phone’s strong password first, or the guest’s own, checked for length and breaches','App. E','App'],
  ['pwchange','Change a password and sign out other devices','App. E','App'],
  ['pwremove','Remove a password and go passwordless','App. E','App'],
  ['stepup','Change the mobile number: confirm it’s you, then notify the old contacts','App. E','App'],
