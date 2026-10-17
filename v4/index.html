@@ -87,7 +87,7 @@ img{display:block}
 .phone .hw.l{left:-3px}.phone .hw.r{right:-3px;background:linear-gradient(90deg,#454B57,#9AA1AD 45%,#2E333D)}
 .scr .hi{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);width:136px;height:5px;border-radius:3px;background:rgba(255,255,255,.92);z-index:45;pointer-events:none}
 .scr{position:relative;width:390px;height:844px;border-radius:54px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.4;
-  --bg:#0A1324;--el:#111D33;--el2:#18263F;--ink:#F3F6FB;--ink2:rgba(243,246,251,.68);--ink3:rgba(243,246,251,.44);--ln:rgba(255,255,255,.08)}
+  --bg:#0A1324;--el:#111D33;--el2:#18263F;--ink:#F3F6FB;--ink2:rgba(243,246,251,.68);--ink3:rgba(243,246,251,.58);--ln:rgba(255,255,255,.08)}
 .sb{position:absolute;top:0;left:0;right:0;height:54px;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:4px 34px 0 42px;font-weight:700;font-size:16px;color:#fff;pointer-events:none}
 .sb .isl{position:absolute;left:50%;top:12px;transform:translateX(-50%);width:124px;height:36px;border-radius:20px;background:#000}
 .sb .ic{display:flex;gap:6px;align-items:center}
@@ -103,7 +103,7 @@ img{display:block}
 .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:linear-gradient(135deg,#2A3B5C,#1A2742);color:#fff}
 .t1{font-size:30px;font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0}
 .t2{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:0}
-.cap{font-size:12.5px;color:var(--ink2)}
+.cap{font-size:13px;color:var(--ink2)}
 .sec{display:flex;justify-content:space-between;align-items:baseline;margin:30px 20px 14px}
 .sec h4{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
 .sec button,.sec a{font-size:13px;color:var(--acc);font-weight:600}
@@ -193,7 +193,7 @@ img{display:block}
 .tbl th{text-align:left;font-weight:600;color:var(--mute);font-size:12px;padding:10px 12px;border-bottom:1px solid var(--line)}
 .tbl td{padding:13px 12px;border-bottom:1px solid var(--line)}
 .tbl .r{text-align:right}
-.browser{position:relative;--bg:#0A1324;--el:#16233C;--ink:#F3F6FB;--ink2:rgba(243,246,251,.68);--ink3:rgba(243,246,251,.44);--ln:rgba(255,255,255,.09);--hi:#9CC3F5;--acc:#F3F6FB;--onacc:#0A1324}
+.browser{position:relative;--bg:#0A1324;--el:#16233C;--ink:#F3F6FB;--ink2:rgba(243,246,251,.68);--ink3:rgba(243,246,251,.58);--ln:rgba(255,255,255,.09);--hi:#9CC3F5;--acc:#F3F6FB;--onacc:#0A1324}
 .browser .sheet{z-index:50}.browser .sheet>div{max-width:420px}.browser .toast{left:auto;right:28px;bottom:28px;width:380px}
 .pchip{height:36px;padding:0 16px;border-radius:99px;font-size:13px;font-weight:600;background:#132038;color:var(--mute);display:inline-flex;align-items:center;gap:7px}
 .pchip[aria-pressed="true"]{background:#F3F6FB;color:#0A1324}.pchat .msg.ai{background:#16233C}.pchat #cqin::placeholder{color:var(--faint)}
@@ -723,6 +723,64 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .prefchip{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:17px;background:rgba(233,199,123,.12);box-shadow:inset 0 0 0 1px rgba(233,199,123,.5);color:#E9C77B;font-size:12.5px;font-weight:700}
 .cov-new{margin:16px 0 0;padding:14px 18px;border-radius:14px;background:rgba(127,227,184,.07);box-shadow:inset 0 0 0 1px rgba(127,227,184,.3);font-size:13.5px;line-height:1.55;max-width:1100px}
 .cov-new ul{margin:6px 0 0;padding-left:18px}.cov-new li{margin:4px 0}
+/* v4 UX pass */
+.sbg{position:absolute;top:0;left:0;right:0;height:54px;z-index:24;pointer-events:none;opacity:0;background:rgba(10,19,36,.74);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);transition:opacity .2s,height .2s;display:flex;align-items:flex-end;justify-content:center}
+.sbg span{font-weight:700;font-size:15px;color:var(--ink);padding-bottom:11px;opacity:0;transition:opacity .2s;max-width:62%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sbg{background:rgba(10,19,36,.86)}
+.scr-s .sbg{opacity:1;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.scr-t .sbg{height:94px}.scr-t .sbg span{opacity:1}
+.idchip{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px;border-radius:8px;background:rgba(156,195,245,.14);color:#9CC3F5;font-size:11.5px;font-weight:700;flex:none;margin-left:8px}
+.didmean{display:flex;gap:8px;align-items:flex-start;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(245,196,107,.1);box-shadow:inset 0 0 0 1px rgba(245,196,107,.3);font-size:13px;line-height:1.45;color:var(--ink2)}
+.didmean>svg{flex:none;color:#F5C46B;margin-top:1px}
+.didmean button{color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:2px}
+.qtype{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 14px;border-radius:14px;background:rgba(156,195,245,.1);box-shadow:inset 0 0 0 1px rgba(156,195,245,.28);text-align:left;color:var(--hi)}
+.qtype .grow{display:flex;flex-direction:column;min-width:0}
+.qtype b{color:var(--ink);font-size:14px}.qtype .grow span{font-size:12px;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fhint{font-style:normal;font-weight:500;color:var(--ink3);margin-left:6px}
+.csheet{position:absolute;left:0;right:0;bottom:0;top:52px;z-index:29;border-radius:28px 28px 0 0;background:#F6F8FB;color:#0A1324;display:flex;flex-direction:column;align-items:center;padding:16px 24px 34px;animation:csin .25s ease}
+.csheet::before{content:'';position:absolute;left:0;right:0;top:-52px;height:52px;background:#03070F}
+@keyframes csin{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.csheet-top{display:flex;align-items:center;justify-content:space-between;width:100%}
+.csheet-card{margin-top:18px}
+.csheet-qr{margin-top:20px;padding:14px;border-radius:20px;background:#fff;box-shadow:0 10px 30px -12px rgba(10,19,36,.25)}
+.csheet-no{margin-top:14px;font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:.06em}
+.csheet-t{font-size:13.5px;color:#5A6780;font-weight:600;margin-top:2px}
+.csheet-hint{display:flex;align-items:center;gap:6px;margin-top:14px;font-size:12.5px;color:#5A6780;text-align:center}
+.csheet-w{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 20px;border-radius:12px;background:#000;color:#fff;font-weight:600;font-size:13.5px;margin-top:auto}
+.sysal-bg{position:absolute;inset:0;z-index:60;background:rgba(0,0,0,.42);display:grid;place-items:center;animation:csin .2s ease}
+.sysal{width:270px;border-radius:14px;background:rgba(242,242,247,.97);color:#000;text-align:center;overflow:hidden}
+.sysal-ic{color:#0A84FF;padding-top:18px;display:flex;justify-content:center}
+.sysal b{display:block;font-size:16px;font-weight:600;line-height:1.3;padding:6px 16px 0}
+.sysal p{margin:4px 16px 16px;font-size:13px;line-height:1.35;color:#000}
+.sysal-b{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(60,60,67,.29)}
+.sysal-b button{height:44px;font-size:16px;color:#0A84FF}.sysal-b button+button{font-weight:600;border-left:1px solid rgba(60,60,67,.29)}
+.psum-head{display:flex;align-items:center;gap:10px}
+.psum-head .psum-top{flex:1;min-width:0}
+.psum-qr{flex:none;width:54px;height:54px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#F6F8FB;color:#0A1324;font-size:10.5px;font-weight:800}
+.psum-ms{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:12px;color:var(--ink2);text-align:left}
+.psum-ms svg{flex:none;color:#E9C77B}
+.rnv{display:flex;flex-direction:column;gap:10px;padding:0 20px}
+.rnv .rn-card{flex:none;width:100%;min-height:76px}
+.ostick{position:sticky;bottom:-14px;z-index:5;margin-top:18px;padding:0 12px}
+.ostick-in{padding:10px;border-radius:24px;background:rgba(14,24,44,.84);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08)}
+.xchip{position:absolute;left:5px;top:5px;height:18px;padding:0 6px;border-radius:6px;display:inline-flex;align-items:center;font-size:9.5px;font-weight:800;letter-spacing:.02em;background:#F5C46B;color:#2A1A00}
+.xchip.hot{background:#FF8A84;color:#2A0703}
+.hbar{width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:22px}
+.hbar i{display:block;height:100%;width:0;animation:hbar 2.6s linear forwards}
+@keyframes hbar{to{width:100%}}
+.tabs button.tpulse{color:#7FE3B8}.tabs button.tpulse svg{animation:tpulse .8s ease 2}
+@keyframes tpulse{50%{transform:scale(1.28) translateY(-2px)}}
+.awbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;border-radius:14px;background:#000;color:#fff;font-weight:700;font-size:15px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.seg2{display:flex;gap:2px;padding:3px;border-radius:12px;background:rgba(255,255,255,.08)}
+.seg2 button{width:38px;height:32px;border-radius:9px;display:grid;place-items:center;color:var(--ink2)}
+.seg2 button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.dmap svg{display:block;border-radius:22px}
+.dpin{cursor:pointer}.dpin.off{opacity:.55}
+html.nodemo .demo{display:none!important}
+.chip.tgl[aria-pressed="true"]{background:rgba(127,227,184,.16);color:#7FE3B8;box-shadow:inset 0 0 0 1px rgba(127,227,184,.5)}
+.scr .body button[style*="color:var(--hi)"]:not([class]){position:relative}
+.scr .body button[style*="color:var(--hi)"]:not([class])::after{content:'';position:absolute;inset:-9px -4px}
+@media (prefers-reduced-motion:reduce){.hbar i{animation:none;width:100%}.tabs button.tpulse svg,.csheet,.sysal-bg{animation:none}}
 </style>
 
 </head>
@@ -742,7 +800,7 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 /* ================= DATA ================= */
 const A='assets/';
 const P={
- winstar:{n:'WinStar',city:'Thackerville',bg:'#212033',acc:'#50BFCA',onacc:'#101826',hi:'#FDC010',tag:"The world's largest casino",logo:'ws-logo.svg',ls:1.15,hero:'ws-globe',pics:['ws-hero','ws-dining','ws-pool','ws-spa','ws-gaming'],f:{hotel:1,key:1,finder:1,order:1,spa:1}},
+ winstar:{n:'WinStar',city:'Thackerville',bg:'#212033',acc:'#50BFCA',onacc:'#101826',hi:'#FDC010',tag:"The world's largest casino",logo:'ws-logo.svg',ls:1.15,hero:'ws-stay',pics:['ws-hero','ws-dining','ws-pool','ws-spa','ws-gaming'],f:{hotel:1,key:1,finder:1,order:1,spa:1}},
  riverwind:{n:'Riverwind',city:'Norman',bg:'#141A69',acc:'#FCB713',onacc:'#141A69',hi:'#FCB713',tag:"Norman's home for big nights",logo:'rw-logo2.png',ls:1.45,hero:'rw-hero',pics:['rw-show'],f:{hotel:1,finder:1}},
  riverstar:{n:'Riverstar',city:'Terral',bg:'#071A38',acc:'#EBA900',onacc:'#071A38',hi:'#EBA900',tag:'Red River gaming, done right',logo:'rs-logo.png',ls:.95,hero:'rs-hero',pics:['rs-floor'],f:{}},
  lakecrest:{n:'Lakecrest',city:'Ardmore',bg:'#00365F',acc:'#00AEEF',onacc:'#00253F',hi:'#4CD3FF',tag:"Ardmore's premier casino",logo:'lc-logo.png',ls:.8,hero:'lc-hero',pics:['lc-2'],f:{hotel:1}},
@@ -861,7 +919,7 @@ function topbar(){const p=per();
 // Bottom bar: the guest's home (preferred) property sits where Play used to be, in that property's colors
 const PSHORT={winstar:['WS','WinStar'],riverwind:['RW','Riverwind'],riverstar:['RS','Riverstar'],lakecrest:['LC','Lakecrest'],treasure:['TV','Treasure V.'],artesian:['AR','Artesian'],newcastle:['NC','Newcastle'],saltcreek:['SC','Saltcreek'],chisholm:['CT','Chisholm'],westbay:['WB','West Bay'],megastar:['MS','MegaStar']};
 function tabs(scr){const t=(id,i,l)=>`<button data-go="${id}" aria-current="${scr===id}">${ic(i,23)}<span>${l}</span></button>`,k=prefProp(),q=P[k],on=['property','dining','shows','hotels'].includes(scr)&&S.prop===k;
- return `<nav class="tabs">${t('home','home','Home')}${t('offers','tag','Offers')}<button data-act="hometab" aria-current="${on}" aria-label="${q.n}, your home property"><span class="ptab" style="--pa:${q.acc};--po:${q.onacc}">${PSHORT[k][0]}</span><span>${PSHORT[k][1]}</span></button>${t('wallet','passport','Passport')}<button data-act="menu" aria-label="Open menu">${ic('menu',23)}<span>Menu</span></button></nav>`}
+ return `<nav class="tabs">${t('home','home','Home')}${t('offers','tag','Offers')}<button data-act="hometab" aria-current="${on}" aria-label="${q.n}, your home property"><span class="ptab" style="--pa:${q.acc};--po:${q.onacc}">${PSHORT[k][0]}</span><span>${PSHORT[k][1]}</span></button>${t('wallet','passport','Passport').replace('<button ',Date.now()-(S.passPulse||0)<1500?'<button class="tpulse" ':'<button ')}<button data-act="menu" aria-label="Open menu">${ic('menu',23)}<span>Menu</span></button></nav>`}
 function sortedOffers(){return rankOffers(liveOffers())}
 function destTile(k,w=160,h=210){const p=P[k];
  return `<button data-act="prop" data-p="${k}" class="photo" style="${bg(p.hero)};width:${w}px;height:${h}px;border-radius:22px;text-align:left;--shade:linear-gradient(180deg,rgba(5,10,20,.1) 30%,rgba(5,10,20,.88) 100%)">
@@ -872,7 +930,7 @@ function balances(p){return `<div style="display:grid;grid-template-columns:repe
 const SCR={};
 SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  if(S.model==='endorsed'){
-  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${ic('pin',14)} ${p.where}<span style="opacity:.4">·</span><button data-go="preferred" style="display:inline-flex;align-items:center;gap:4px;color:var(--hi);font-weight:700">${ic('star',12,2.6)}${P[prefProp()].n}</button></div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>`;
+  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${ic('pin',14)} ${p.where}${p.where.includes(P[prefProp()].n)?'':`<span style="opacity:.4">·</span><button data-go="preferred" style="display:inline-flex;align-items:center;gap:4px;color:var(--hi);font-weight:700">${ic('star',12,2.6)}${P[prefProp()].n}</button>`}</div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>`;
  }else if(S.model==='umbrella'){
   hero=umbHero(p,t);
  }else{
@@ -885,7 +943,7 @@ SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  const keys0=Object.keys(P).filter(k=>S.model==='endorsed'||k!==S.prop);const keysO=propOrder(keys0).slice(0,7);
  // v2: one summary and one "Right now" stack instead of a card for everything
  return `<div class="body">${hero}${askTop()}${S.model==='endorsed'?passSummary():''}
-  ${S.model==='umbrella'?'':`<div class="sec"><h4>Offers for you</h4><button data-go="offers">See all ${liveOffers().length}</button></div><div class="hs">${offers}</div>`}
+  ${S.model==='umbrella'?'':`<div class="sec"><h4>Offers for you</h4><button data-go="offers">See all ${liveOffers().length}</button></div><div class="list">${sortedOffers().slice(0,3).map(offerRow).join('')}</div>`}
   ${rightNow()}${upcoming()}${S.model==='umbrella'?propFeed(S.prop):''}
   <div class="sec"><h4>${S.model==='endorsed'?'Your destinations':'More destinations'}</h4><button data-go="destinations">All 11</button></div><div class="hs">${keysO.map(k=>destTile(k)).join('')}</div></div>`};
 /* ---------- v2 Home: concierge search, Passport summary, "Right now" stack ---------- */
@@ -893,21 +951,24 @@ function askTop(){return `<button data-go="concierge" class="asktop">${ic('spa',
 function passSummary(){const p=per(),t=TIERS[p.tier],M=MILES[p.tier],L=M?M.list:[],nx=L.find(m=>p.tp<m[0]),prevAt=M?(L.filter(m=>m[0]<=p.tp).pop()||[M.from])[0]:0;
  const pct=nx?Math.round((p.tp-prevAt)/(nx[0]-prevAt)*100):100;
  return `<div class="psum">
-  <button data-go="wallet" class="psum-top"><span class="psum-card" style="background:linear-gradient(135deg,${t.c1},${t.c2})"></span><span style="flex:1;min-width:0"><span style="display:block;font-weight:800;font-size:15px">${t.n} member</span><span style="display:block;font-size:12.5px;color:var(--ink2)">${fmt(p.tp)} tier points · all 11 properties</span><span class="psum-no">${ic('card',12)} ${p.num}</span></span><span style="color:var(--ink3)">${ic('right',16)}</span></button>
+  <div class="psum-head"><button data-go="wallet" class="psum-top"><span class="psum-card" style="background:linear-gradient(135deg,${t.c1},${t.c2})"></span><span style="flex:1;min-width:0"><span style="display:block;font-weight:800;font-size:15px">${t.n} member</span><span style="display:block;font-size:12.5px;color:var(--ink2)">${fmt(p.tp)} tier points · all 11 properties</span><span class="psum-no">${ic('card',12)} ${p.num}</span></span></button><button data-act="cardshow" class="psum-qr" aria-label="Show your card to scan">${ic('qr',22)}<span>Scan</span></button></div>
   <div class="psum-stats"><button data-go="wallet"><b class="num">${fmt(p.pts)}</b><span>Points</span></button><button data-go="wallet"><b class="num">$${p.fp}</b><span>Free Play</span></button><button data-go="drawing"><b class="num">${drEntries()}</b><span>Entries</span></button><button data-act="walreveal" aria-label="${S.walShow?'Hide':'Show'} wallet balance"><b class="num">${S.walShow?usd(WB()):'$ ••••'}</b><span>Wallet ${ic(S.walShow?'eyeoff':'eye',12)}</span></button></div>
-  ${nx?`<button data-go="tier" class="psum-next"><span class="psum-bar"><i style="width:${pct}%;background:${t.c1}"></i></span><span class="psum-nt"><span>Next: <b>${nx[2]}</b></span><span class="num" style="color:var(--hi);font-weight:800;flex:none">${fmt(nx[0]-p.tp)} to go</span></span></button>`:''}</div>`}
+  <button data-go="tier" class="psum-next"><span class="psum-bar"><i style="width:${Math.round(p.prog*100)}%;background:${t.c1}"></i></span><span class="psum-nt"><span><b>${p.progTxt}</b></span>${p.tpNext?`<span class="num" style="color:var(--hi);font-weight:800;flex:none">${Math.round(p.prog*100)}%</span>`:''}</span>${nx?`<span class="psum-ms">${ic('gift',13)}<span>Next reward: <b>${nx[2]}</b> · ${fmt(nx[0]-p.tp)} tier points</span></span>`:''}</button></div>`}
 // Most urgent first: the live drawing, a reward to claim, the stay or a pick for you, then the guest's live meter
-function rnItems(){const p=per(),A1=S.persona==='A',d=S.dr[S.persona],M=MILES[p.tier],ready=M&&M.list.find(m=>p.tp>=m[0]&&!S.ms[S.persona].has(m[0])),g=GAMES[S.persona][0],it=[];
- it.push({go:'drawing',tone:'#FF6B66',icon:'live',live:'LIVE',title:'Live drawing',meta:d.drawn>=DRAW.of?'Club Passport drawing · next draw 9:00 PM':`Club Passport · draw ${d.drawn+1} of ${DRAW.of} · ${DRAW.prize} · ${d.act?'your entries are in':drEntries()+' entries to activate'}`,cta:'Watch'});
- if(ready)it.push({go:'tier',tone:'#E9C77B',icon:'gift',title:'Milestone reward ready',meta:`${fmt(ready[0])} tier points · ${ready[4]?'choose Free Play, dining, points or show tickets':ready[3]}`,cta:ready[4]?'Choose':'Claim'});
- if(A1)it.push({go:'stay',tone:'#9CC3F5',icon:'key',title:'In your stay at WinStar',meta:'Room 1418 · check-out Sun 11 AM',cta:'Room key'});
- else it.push({go:'offers',tone:'#9CC3F5',icon:'bed',title:'Elite Weekend at WinStar',meta:'Oct 9–11 · 2× tier points · rooms from $89',cta:'View'});
- it.push({go:'meters',tone:'#E9C77B',icon:'zap',title:g.n,meta:`<span class="num" data-tick="${g.k}">${usd(T[g.k])}</span> · ${g.hot||'live meter'} · ${P[g.p].n}`,cta:'Meters'});
- return it}
-function rightNow(){const it=rnItems();
- return `<div class="sec"><h4>Right now</h4><span class="cap rn-count">1 of ${it.length}</span></div>
-  <div class="rnow">${it.map(x=>`<button data-go="${x.go}" class="rn-card"><span class="rn-ic" style="background:${x.tone}24;color:${x.tone}">${ic(x.icon,19)}</span><span class="rn-tx"><span class="rn-t">${x.live==='LIVE'?'<span class="dlive" style="height:17px;font-size:9px;padding:0 5px;margin-right:7px;flex:none"><i></i>LIVE</span>':x.live==='dot'?'<i class="rn-dot"></i>':''}<span>${x.title}</span></span><span class="rn-m">${x.meta}</span></span><span class="rn-cta">${x.cta}</span></button>`).join('')}</div>
-  <div class="rn-dots">${it.map((x,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>`}
+function rnItems(){const p=per(),A1=S.persona==='A',d=S.dr[S.persona],M=MILES[p.tier],ready=M&&M.list.find(m=>p.tp>=m[0]&&!S.ms[S.persona].has(m[0])),g=GAMES[S.persona][0],on=/^On property/.test(p.where),it=[];
+ const fp=liveOffers().find(o=>OX[o.id]&&OX[o.id].d===0);
+ it.push({k:'draw',go:'drawing',tone:'#FF6B66',icon:'live',live:'LIVE',title:'Live drawing',meta:d.drawn>=DRAW.of?'Club Passport drawing · next draw 9:00 PM':`Club Passport · draw ${d.drawn+1} of ${DRAW.of} · ${DRAW.prize} · ${d.act?'your entries are in':drEntries()+' entries to activate'}`,cta:'Watch'});
+ if(ready)it.push({k:'tier',go:'tier',tone:'#E9C77B',icon:'gift',title:'Milestone reward ready',meta:`${fmt(ready[0])} tier points · ${ready[4]?'choose Free Play, dining, points or show tickets':ready[3]}`,cta:ready[4]?'Choose':'Claim'});
+ if(fp)it.push({k:'offer',act:'oopen',id:fp.id,tone:'#5FD7A5',icon:'zap',title:`${fp.v} ${fp.type} ends tonight`,meta:`${P[fp.p].n} · ${OX[fp.id].how==='card'?'already on your card':'add it to your Passport'} · until 11:59 PM`,cta:'Use'});
+ if(A1)it.push({k:'stay',go:'stay',tone:'#9CC3F5',icon:'key',title:'In your stay at WinStar',meta:'Room 1418 · check-out Sun 11 AM',cta:'Room key'});
+ else if(!S.booked.B)it.push({k:'trip',act:'oopen',id:'b5',tone:'#9CC3F5',icon:'bed',title:'Elite Weekend at WinStar',meta:'Oct 9–11 · 2× tier points · rooms from $89',cta:'View'});
+ it.push({k:'meter',go:'meters',tone:'#E9C77B',icon:'zap',title:g.n,meta:`<span class="num" data-tick="${g.k}">${usd(T[g.k])}</span> · ${g.hot||'live meter'} · ${P[g.p].n}`,cta:'Meters'});
+ // On property: the stay and tonight's money first. Away: what's worth the trip.
+ const order=on?['stay','offer','draw','tier','trip','meter']:['offer','trip','draw','tier','stay','meter'];
+ return it.sort((a,b)=>order.indexOf(a.k)-order.indexOf(b.k))}
+function rightNow(){const it=rnItems(),n=S.rnAll?it.length:3;
+ return `<div class="sec"><h4>Right now</h4>${it.length>3?`<button data-act="rnall">${S.rnAll?'Show less':'All '+it.length}</button>`:''}</div>
+  <div class="rnv">${it.slice(0,n).map(x=>`<button ${x.act?`data-act="${x.act}" data-id="${x.id}"`:`data-go="${x.go}"`} class="rn-card"><span class="rn-ic" style="background:${x.tone}24;color:${x.tone}">${ic(x.icon,19)}</span><span class="rn-tx"><span class="rn-t">${x.live==='LIVE'?'<span class="dlive" style="height:17px;font-size:9px;padding:0 5px;margin-right:7px;flex:none"><i></i>LIVE</span>':x.live==='dot'?'<i class="rn-dot"></i>':''}<span>${x.title}</span></span><span class="rn-m">${x.meta}</span></span><span class="rn-cta">${x.cta}</span></button>`).join('')}</div>`}
 // Keep the dots and "1 of 5" in step with the swipe
 document.addEventListener('scroll',e=>{const c=e.target;if(!(c instanceof Element)||!c.classList.contains('rnow'))return;
  const kids=[...c.children];let i=0,best=1e9;kids.forEach((k,j)=>{const dd=Math.abs(k.offsetLeft-c.offsetLeft-20-c.scrollLeft);if(dd<best){best=dd;i=j}});
@@ -949,7 +1010,7 @@ function umbHero(p,t){const keys=Object.keys(P),i=keys.indexOf(S.prop),pr=P[S.pr
   <div class="pdots">${keys.map(k=>`<button data-act="skin" data-p="${k}" aria-label="${P[k].n}" aria-current="${k===S.prop}"><i style="width:${k===S.prop?18:6}px;background:${k===S.prop?pr.hi:'rgba(255,255,255,.22)'}"></i></button>`).join('')}</div>
   <div class="cap" style="text-align:center;font-size:12px">Swipe to switch property. The whole app changes with it.</div>`}
 function propFeed(k){const q=P[k],x=PX[k]||{},ws=k==='winstar';
- const shows=ws?SHOWS.slice(0,3).map(r=>[r[0],r[1],r[2],r[3],r[4],'Lucas Oil Live',r[6]]):(x.shows||[]);
+ const shows=ws?upShows().slice(0,3).map(r=>[r[0],r[1],r[2],r[3],r[4],'Lucas Oil Live',r[6]]):upRows(x.shows||[]);
  const dine=ws?DINE.slice(0,4).map(r=>[r.n,`${r.cui} · ${r.hrs}`,r.img]):(x.dine||[]);
  const promo=ws?DPROMO.map(r=>[r[0],r[1],r[2]]):(x.promo||[]);
  const offs=OFFERS[S.persona].filter(o=>o.p===k),tile=(ico)=>`<div style="width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;background:${q.acc}26;color:${q.hi}">${ic(ico,22)}</div>`;
@@ -978,11 +1039,11 @@ SCR.property=()=>{const p=per(),k=S.prop,q=P[k],t=TIERS[p.tier];
  const offs=OFFERS[S.persona].filter(o=>o.p===k);
  const pics=[q.hero,...q.pics].slice(0,3);
  return `<div class="body">
-  <div class="photo" style="${bg(q.hero)};height:430px;--shade:linear-gradient(180deg,rgba(5,10,20,.55) 0,rgba(5,10,20,.05) 30%,rgba(5,10,20,.45) 64%,#0A1324 100%)">
+  <div class="photo" style="${bg(q.hero)};height:360px;--shade:linear-gradient(180deg,rgba(5,10,20,.55) 0,rgba(5,10,20,.05) 30%,rgba(5,10,20,.45) 64%,#0A1324 100%)">
    <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between"><button data-go="destinations" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button><${S.gm?'button data-act="gsignin"':'span'} class="glass" style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:99px;color:#fff"><span class="wm" style="font-size:10px">CLUB PASSPORT</span><span style="font-size:12.5px;font-weight:600">${S.gm?'Sign in':t.n}</span></${S.gm?'button':'span'}></div>
-   <div style="position:absolute;left:20px;right:20px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">${lg(k,62)}<div style="font-size:15px;color:#fff;font-weight:600">${q.tag}</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">${q.city}, OK · ${mi(p.dist[k])}</div></div></div>
+   <div style="position:absolute;left:20px;right:20px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">${lg(k,54)}<div style="font-size:15px;color:#fff;font-weight:600">${q.tag}</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">${q.city}, OK · ${mi(p.dist[k])}</div></div></div>
   <div style="display:grid;grid-template-columns:repeat(${acts.length},1fr);gap:8px;margin:4px 20px 0">${acts.map(a=>`<button ${a[3]?`data-go="${a[3]}"`:''} style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;border-radius:18px;background:var(--el);font-size:12px;font-weight:600"><span style="color:${q.hi}">${ic(a[0],22)}</span>${a[1]}</button>`).join('')}</div>
-  ${(()=>{const st=stayFor(),r=[];if(q.f.hotel&&st.k===k&&!S.gm)r.push(['key',st.now?'Room key · Room '+st.room:'Room key','stay',st.now?'Hold your phone near the lock':'Arrives at check-in, '+st.checkin]);if(k==='winstar')r.push(['map','Find your way','wayfind','Machines, restaurants, the cage and valet']);return r.length?`<div class="list" style="margin-top:12px">${r.map(([i,t,g,sb])=>`<button class="li" data-go="${g}" style="width:100%;text-align:left"><span style="color:${q.hi}">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${sb}</div></div>${ic('right',16)}</button>`).join('')}</div>`:''})()}
+  ${(()=>{const st=stayFor(),r=[];if(q.f.hotel&&st&&st.k===k&&!S.gm)r.push(['key',st.now?'Room key · Room '+st.room:'Room key','stay',st.now?'Hold your phone near the lock':'Arrives at check-in, '+st.checkin]);if(k==='winstar')r.push(['map','Find your way','wayfind','Machines, restaurants, the cage and valet']);return r.length?`<div class="list" style="margin-top:12px">${r.map(([i,t,g,sb])=>`<button class="li" data-go="${g}" style="width:100%;text-align:left"><span style="color:${q.hi}">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${sb}</div></div>${ic('right',16)}</button>`).join('')}</div>`:''})()}
   ${S.gm?`<div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard({tier:'circle'},86)}<div style="flex:1"><div style="font-weight:700">Members get more here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${['Member pricing at restaurants','Points on play, dining and stays','Offers picked for you'].map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div><div style="display:flex;gap:14px;margin-top:10px;font-size:13px;font-weight:700"><button data-act="gjoin" data-v="property" style="color:var(--hi)">Join, it’s free</button><button data-act="glink" data-v="property" style="color:var(--hi)">Link my account</button></div></div></div>`:''}
   ${S.gm?'':`<div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard(p,86)}<div style="flex:1"><div style="font-weight:700">${t.n} is recognized here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${perks.map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div></div></div>`}
   <div class="sec"><h4>Offers here</h4></div>
@@ -999,19 +1060,19 @@ const PACT={A:[['+','1,240','Slots','winstar','Today'],['−','2,500','Dinner at
 const pactApp=()=>`<div class="sec"><h4>Points activity</h4><span class="cap">Every property</span></div><div class="list">${PACT[S.persona].map(([sg,n,w,k,d])=>`<div class="li"><div class="grow"><div class="k">${w}</div><div class="v">${P[k].n} · ${d}</div></div><b class="num" style="color:${sg==='+'?'#5FD7A5':'var(--ink2)'}">${sg}${n}</b></div>`).join('')}</div>`;
 const wPointsAct=()=>`<div class="pc" style="margin-top:22px"><h3>Points activity <small>Earned and redeemed at every property</small></h3><table class="tbl"><tr><th>Date</th><th>Activity</th><th>Property</th><th class="r">Points</th></tr>${PACT[S.persona].map(([sg,n,w,k,d])=>`<tr><td>${d}</td><td>${w}</td><td style="color:var(--mute)">${P[k].n}</td><td class="r num" style="color:${sg==='+'?'#7FE3B8':'inherit'};font-weight:700">${sg}${n}</td></tr>`).join('')}</table></div>`;
 SCR.wallet=()=>{const p=per(),t=TIERS[p.tier],cl=OFFERS[S.persona].filter(o=>S.claimed.has(o.id));
- return `<div class="body"><div class="topbar"><h1 class="t1">Passport</h1><span class="iconbtn">${ic('plus',19)}</span></div>
-  <div style="display:flex;justify-content:center;margin-top:12px">${kcard(p,350)}</div>
-  ${resortWalletCard()}
-  <div class="sec"><h4>Wallet activity</h4><span class="cap">Everi CashClub</span></div><div class="list">${WT().slice(0,4).map(txRow).join('')}</div>
-  <div class="sec"><h4>Scan to play</h4></div>
+ return `<div class="body"><div class="topbar"><h1 class="t1">Passport</h1><button data-act="cardshow" class="iconbtn" aria-label="Show your card to scan">${ic('qr',19)}</button></div>
+  <button data-act="cardshow" aria-label="Show your card to scan" style="display:flex;justify-content:center;width:100%;margin-top:12px">${kcard(p,350)}</button>
+  <div class="sec"><h4>Scan to play</h4><button data-act="cardshow">Full screen</button></div>
   <div style="margin:0 20px;border-radius:24px;background:#F6F8FB;color:#0A1324;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px">
    ${qr(p.num,25,6)}<div style="font-weight:700;font-size:15px">Scan at any property</div><div style="font-size:12.5px;color:#5A6780;text-align:center;margin-top:-6px">Slots, tables, cages and restaurants at all 11. The code refreshes every 30 seconds.</div>
    <span style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:12px;background:#000;color:#fff;font-weight:600;font-size:13px">${ic('wallet',16)} Add to Apple Wallet</span></div>
   <div class="sec"><h4>Balances</h4><span class="cap">Shared across all 11</span></div>
   <div class="list">${[['Reward points',fmt(p.pts),'Worth $'+(p.pts/100).toFixed(2)],['Free Play','$'+p.fp,'Use at any property'],['Comp dollars','$'+p.comp,'Dining and retail'],['Tier points',fmt(p.tp),t.n+' tier']].map(([l,v,s])=>`<div class="li"><div class="grow"><div class="k">${l}</div><div class="v">${s}</div></div><div class="num" style="font-family:var(--disp);font-weight:800;font-size:19px">${v}</div></div>`).join('')}</div>
   ${pactApp()}
-  <div class="sec"><h4>Claimed offers</h4><button data-go="offers">Browse</button></div>
-  <div class="list">${cl.length?cl.map(offerRow).join(''):`<div class="li"><div class="grow v">Nothing claimed yet. Offers you claim show up here, ready to redeem at the property.</div></div>`}</div>
+  ${resortWalletCard()}
+  <div class="sec"><h4>Wallet activity</h4><span class="cap">Everi CashClub</span></div><div class="list">${WT().slice(0,4).map(txRow).join('')}</div>
+  <div class="sec"><h4>Offers in your Passport</h4><button data-go="offers">Browse</button></div>
+  <div class="list">${cl.length?cl.map(offerRow).join(''):`<div class="li"><div class="grow v">No offers added yet. Offers you add show up here, ready to redeem at the property.</div></div>`}</div>
     <div class="sec"><h4>Linked</h4></div><div class="list"><div class="li"><span style="color:var(--ink2)">${ic('wallet',20)}</span><div class="grow"><div class="k">Bank for Resort Wallet</div><div class="v">${WAL[S.persona].bank} · via Everi CashClub</div></div><span style="font-size:12.5px;font-weight:700;color:#5FD7A5">Linked</span></div></div></div>`};
 SCR.tier=()=>{const p=per(),order=['circle','select','signature','society'],cur=order.indexOf(p.tier),R=58,C=2*Math.PI*R;
  const fan=order.map((k,i)=>`<div style="position:absolute;left:${17+i*62}px;top:${16+Math.abs(i-cur)*8}px;transform:rotate(${(i-cur)*6}deg);z-index:${10-Math.abs(i-cur)};opacity:${i===cur?1:.8}">${kcard(i===cur?p:{tier:k},170)}</div>`).join('');
@@ -1085,12 +1146,12 @@ function tierBen(p){const order=['circle','select','signature','society'],cur=or
   <div class="list" style="margin-top:12px"><div style="padding:16px 16px 4px;display:flex;align-items:center;gap:12px"><span style="width:54px;height:36px;border-radius:7px;background:linear-gradient(135deg,${q.c1},${q.c2});flex:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)"></span><div><div style="font-weight:800;font-size:17px">${q.n}</div><div class="cap" style="display:flex;align-items:center;gap:5px;margin-top:2px">${state[0]}${state[1]}</div></div></div>
   ${si>0?`<div style="padding:8px 16px 0;font-size:12px;font-weight:600;color:var(--ink3)">Everything in ${TIERS[order[si-1]].n}, plus:</div>`:''}${rows}</div>`}
 SCR.meters=()=>{const p=per(),gs=GAMES[S.persona];
- const alert=S.persona==='A'?`<div style="margin:0 20px;padding:16px;border-radius:22px;background:linear-gradient(120deg,rgba(80,191,202,.22),rgba(80,191,202,.06));box-shadow:inset 0 0 0 1px rgba(80,191,202,.35)"><div style="font-weight:800;font-size:16px">You’re 180 ft from Bank 14</div><div class="cap" style="margin-top:3px">Golden Stampede Grand is at a 90-day high.</div></div>`
+ const alert=S.persona==='A'?`<div style="margin:0 20px;padding:16px;border-radius:22px;background:linear-gradient(120deg,rgba(80,191,202,.22),rgba(80,191,202,.06));box-shadow:inset 0 0 0 1px rgba(80,191,202,.35)"><div style="font-weight:800;font-size:16px">You’re 180 ft from Bank 14</div><div class="cap" style="margin-top:3px">Golden Stampede Grand is at a 90-day high.</div><button class="btn sm" data-act="waymeter" data-v="0" style="margin-top:12px">${ic('nav',14)} Take me there</button></div>`
   :`<div style="margin:0 20px;padding:16px;border-radius:22px;background:linear-gradient(120deg,rgba(253,192,16,.2),rgba(253,192,16,.05));box-shadow:inset 0 0 0 1px rgba(253,192,16,.35)"><div style="font-weight:800;font-size:16px">Your game is heating up at WinStar</div><div class="cap" style="margin-top:3px">Golden Stampede Grand passed $1.8M. That’s 72 mi away, and your Elite Weekend rate is waiting.</div><button class="btn sm" data-go="offers" style="margin-top:12px">See the trip offer</button></div>`;
  return `<div class="body"><div class="topbar"><h1 class="t1">Live meters</h1><span class="iconbtn">${ic('bell',19)}</span></div>
   <div class="px cap" style="margin:4px 0 16px">Games you play, across all properties, updated live.</div>${alert}
   <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">${gs.map(g=>`<div class="photo" style="${bg(g.img)};margin:0 20px;height:132px;border-radius:22px;--shade:linear-gradient(90deg,rgba(5,10,20,.92) 0,rgba(5,10,20,.7) 60%,rgba(5,10,20,.4))">
-   <div style="position:absolute;inset:16px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:14.5px;color:#fff">${g.n}</span>${lg(g.p,16)}</div>
+   <div style="position:absolute;inset:16px;display:flex;flex-direction:column;justify-content:space-between"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:700;font-size:14.5px;color:#fff">${g.n}</span>${g.p==='winstar'&&p.dist.winstar<1&&wayIdx(g.n)>=0?`<button class="btn sm" data-act="waymeter" data-v="${wayIdx(g.n)}" style="background:#fff;color:#0A1324;flex:none;height:30px">${ic('nav',13)} Take me there</button>`:lg(g.p,16)}</div>
    <div class="num" style="font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:-.02em;color:#fff" data-tick="${g.k}">${usd(T[g.k])}</div>
    <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.7)"><span>${g.loc} · ${mi(p.dist[g.p])}</span>${g.hot?`<span style="color:#F6E1AC;font-weight:700">${g.hot}</span>`:''}</div></div></div>`).join('')}</div>
   <div class="px cap" style="margin-top:14px">Alerts are on when one of your games passes its 90-day average, or when you arrive on property.</div></div>`};
@@ -1131,13 +1192,13 @@ const cqEsc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;
 const cqRow=(i,t,sub)=>`<div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px"><span style="color:var(--hi);margin-top:1px;flex:none">${ic(i,17)}</span><div><div style="font-weight:700;font-size:13.5px">${t}</div><div style="font-size:12px;color:var(--ink2);line-height:1.4">${sub}</div></div></div>`;
 const cqPic=(im,t,sub)=>`<div class="photo" style="${bg(im)};height:112px;border-radius:14px;margin-top:12px;--shade:linear-gradient(180deg,rgba(5,10,20,0) 30%,rgba(5,10,20,.85))"><div style="position:absolute;left:12px;right:12px;bottom:10px;color:#fff"><div style="font-weight:800;font-size:14px">${t}</div><div style="font-size:12px;opacity:.85">${sub}</div></div></div>`;
 const cqNote=h=>`<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--ln);font-size:12.5px;color:var(--ink2);line-height:1.45">${h}</div>`;
-function cqOffer(o){const c=S.claimed.has(o.id);return `<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><span style="min-width:52px;height:34px;padding:0 8px;border-radius:10px;display:grid;place-items:center;background:${P[o.p].acc}33;color:${P[o.p].hi};font-family:var(--disp);font-weight:800;font-size:13px">${o.v}</span><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px;line-height:1.3">${o.t}</div><div style="font-size:11.5px;color:var(--ink2)">${P[o.p].n} · ${o.e}</div></div><button data-act="claim" data-id="${o.id}" class="btn sm ${c?'done':'line'}" style="height:30px;padding:0 10px" aria-label="${c?'Claimed':'Claim offer'}">${c?ic('check',14,2.4):'Claim'}</button></div>`}
+function cqOffer(o){const c=S.claimed.has(o.id);return `<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><span style="min-width:52px;height:34px;padding:0 8px;border-radius:10px;display:grid;place-items:center;background:${P[o.p].acc}33;color:${P[o.p].hi};font-family:var(--disp);font-weight:800;font-size:13px">${o.v}</span><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:13px;line-height:1.3">${o.t}</div><div style="font-size:11.5px;color:var(--ink2)">${P[o.p].n} · ${o.e}</div></div><button data-act="claim" data-id="${o.id}" class="btn sm ${c?'done':'line'}" style="height:30px;padding:0 10px" aria-label="${c?'In your Passport':'Add to Passport'}">${c?ic('check',14,2.4):ic('plus',13,2.6)+' Add'}</button></div>`}
 // Questions a chip or recommendation card asks on the player's behalf
-const CQQ={tonight:'Plan my evening',weekend:{A:'Plan a weekend for two, Oct 16–18',B:'Plan a weekend at WinStar'},expiring:'What offers expire this week?',find:{A:'Find Golden Stampede Grand',B:'Find Money Bags Major'},host:'Is my host on property?',tier:{A:'What does Chairman take?',B:'How do I reach Elite?'},eat:'Where should I eat?',wutang:'Wu-Tang Clan tickets'};
+const CQQ={tonight:'Plan my evening',weekend:{A:'Plan a weekend for two, Oct 16–18',B:'Plan a weekend at WinStar'},expiring:'What offers expire this week?',find:{A:'Find Golden Stampede Grand',B:'Find Money Bags Major'},host:'Is my host on property?',tier:{A:'What does Chairman take?',B:'How do I reach Elite?'},eat:'Where should I eat?',wutang:'Tom Jones tickets'};
 const cqQ=id=>{const q=CQQ[id];return q?(typeof q==='string'?q:q[S.persona]):id};
 // Each answer: h = message, acts = quick replies [label, intent], used = what it drew on
 const CQ={
- tonight:()=>S.persona==='A'?{h:`You’re on property with <b>$50 Free Play</b> that expires at 11:59 PM, so I built tonight around it:${cqRow('dine','6:30 PM · Kirby’s Prime Steakhouse','Table for two is open. Your $40 dining credit applies.')}${cqRow('dice','8:00 PM · Golden Stampede Grand','$1.84M, a 90-day high. Plaza C, 2 minutes from you.')}${cqRow('zap','Before midnight · Your $50 Free Play','Already on your card. Works on any WinStar machine.')}${cqRow('glass','Later · Mickey Mantle’s Lounge','Lucky Hour: signature bites and drinks, $7 each at select times.')}${cqNote('Tomorrow: <b>Wu-Tang Clan</b> plays Lucas Oil Live at 8 PM.')}`,acts:[['Reserve Kirby’s at 6:30','kirby'],['Wu-Tang tickets','wutang']],used:['Elite tier','$50 Free Play','$40 dining credit','live meters','WinStar dining']}
+ tonight:()=>S.persona==='A'?{h:`You’re on property with <b>$50 Free Play</b> that expires at 11:59 PM, so I built tonight around it:${cqRow('dine','6:30 PM · Kirby’s Prime Steakhouse','Table for two is open. Your $40 dining credit applies.')}${cqRow('dice','8:00 PM · Golden Stampede Grand','$1.84M, a 90-day high. Plaza C, 2 minutes from you.')}${cqRow('zap','Before midnight · Your $50 Free Play','Already on your card. Works on any WinStar machine.')}${cqRow('glass','Later · Mickey Mantle’s Lounge','Lucky Hour: signature bites and drinks, $7 each at select times.')}${cqNote('Next Friday: <b>Tom Jones</b> plays Lucas Oil Live at 8 PM, the night your weekend starts.')}`,acts:[['Reserve Kirby’s at 6:30','kirby'],['Tom Jones tickets','wutang']],used:['Elite tier','$50 Free Play','$40 dining credit','live meters','WinStar dining']}
   :{h:`You’re near The Artesian with <b>$10 Free Play</b> that expires at 11:59 PM. Here’s an easy evening:${cqRow('dine','7:00 PM · Springs at The Artesian','Fine dining in the hotel.')}${cqRow('dice','8:30 PM · Money Bags Major','Casino floor, Bank 2. A good place for your $10 Free Play.')}${cqRow('glass','Later · The Fountain Club','Upscale lounge, a short walk from the floor.')}${cqRow('spa','Tomorrow · Spa at The Artesian','Your $30 spa credit ends Sunday.')}`,acts:[['Reserve Springs at 7','springs'],['How do I reach Elite?','tier']],used:['Premier tier','$10 Free Play','$30 spa credit','Artesian dining']},
  weekend:()=>S.persona==='A'?{h:`Here’s Oct 16–18 for two, using your Elite perks:${cqRow('bed','Fri–Sun · Tower king, 2 nights','Comp with your Elite room offer')}${cqRow('dine','Fri 6:00 PM · Kirby’s Prime Steakhouse','20% off dining for Elite')}${cqRow('ticket','Fri 8:00 PM · Tom Jones, 2 seats','Lucas Oil Live')}${cqRow('spa','Sat 10:00 AM · Spa for two','20% off with your Elite spa offer, good until Oct 31')}${cqNote('You save about <b style="color:var(--ink)">$420</b> with Club Passport. Your Riverwind comp nights (Oct 17–18) are still available if you’d rather split the weekend.')}`,acts:[['Book all','book'],['Change the show','swapshow']],used:['Elite perks','room comp','spa offer','WinStar shows']}
   :{h:`The best weekend for you is <b>Oct 9–11</b>, when the Elite Weekend offer is on:${cqRow('bed','Fri–Sun · WinStar World Casino Hotel','$89 a night with your Elite Weekend offer')}${cqRow('zap','All weekend · 2× tier points','About 3,600 tier points at your usual play: enough for Elite')}${cqRow('dine','Sat 7:00 PM · Kirby’s Prime Steakhouse','Prime steaks and a sommelier-led wine list')}`,acts:[['Book the weekend','book'],['Other dates','otherdates']],used:['Premier tier','Elite Weekend offer','your usual play']},
@@ -1150,24 +1211,24 @@ const CQ={
   :{h:`You need <b>3,150</b> more tier points. The Elite Weekend at WinStar (Oct 9–11) earns 2× tier points. At your usual weekend play you’d earn about 3,600 and reach Elite by Sunday. On the way you’ll hit your next milestone, <b>Elite for a weekend</b>, just 650 points away.${cqPic('ws-pool','$89 a night · 2× tier points','Elite Weekend at WinStar, Oct 9–11')}`,acts:[['Book the weekend','book'],['See my tier','gotier']],used:['tier progress','Elite Weekend offer','your usual play']},
  eat:()=>S.persona==='A'?{h:`Open now at WinStar, picked for you:${DINE.slice(0,3).map(d=>cqRow('dine',d.n,`${d.cui} · ${d.hrs}`)).join('')}${cqNote('Your <b>$40 dining credit</b> works at any WinStar restaurant until Sunday.')}`,acts:[['Reserve Kirby’s at 6:30','kirby'],['See all dining','godining']],used:['WinStar dining hours','$40 dining credit']}
   :{h:`Close to you at The Artesian:${cqRow('dine','Springs at The Artesian','Fine dining')}${cqRow('dine','Bedré Cafe','Casual cafe')}${cqRow('glass','The Fountain Club','Upscale lounge')}${cqNote('Also for you: <b>2-for-1 buffet</b> at Treasure Valley on Friday and Saturday, 60 mi away.')}`,acts:[['Reserve Springs at 7','springs']],used:['Artesian dining','your offers']},
- wutang:()=>({h:`<b>Wu-Tang Clan</b> plays Lucas Oil Live on Sat, Sep 26 at 8 PM. Tickets are sold through SeatGeek. I can open the event, or ask Marcus to look for Elite seats.${cqPic('e-wutang','Wu-Tang Clan','Sat, Sep 26 · 8 PM · Lucas Oil Live')}`,acts:[['Open tickets','goshows'],['Ask Marcus','hostwu']],used:['WinStar event calendar']}),
+ wutang:()=>({h:`<b>Tom Jones</b> plays Lucas Oil Live on Fri, Oct 16 at 8 PM, the first night of your weekend. Tickets are sold through SeatGeek. I can open the event, or ask Marcus to look for Elite seats.${cqPic('e-tomjones','Tom Jones','Fri, Oct 16 · 8 PM · Lucas Oil Live')}`,acts:[['Open tickets','goshows'],['Ask Marcus','hostwu']],used:['WinStar event calendar']}),
  kirby:()=>({h:`Booked. Table for two at <b>Kirby’s Prime Steakhouse</b>, 6:30 PM tonight. Confirmation <b>KPS-48213</b>. Your $40 dining credit is attached, and it’s in your trip.`,acts:[['View trip','gotrip'],['Plan the rest of my evening','tonight']],used:['WinStar reservations','$40 dining credit']}),
  springs:()=>({h:`Booked. Table for two at <b>Springs at The Artesian</b>, 7:00 PM tonight. Confirmation <b>SPR-20417</b>. It’s in your trip.`,acts:[['View trip','gotrip']],used:['Artesian dining']}),
  alert:()=>({h:S.persona==='A'?`Done. I’ll let you know if Golden Stampede Grand passes <b>$1.9M</b>, even when you’re away from the floor.`:`Done. I’ll let you know when Money Bags Major is running hot.`,acts:[],used:['live meters']}),
  hostseats:()=>({h:`Sent to Marcus: “Could you hold 2 seats for Tom Jones on Fri, Oct 16?” I’ll tell you as soon as he replies.`,acts:[['Open chat with Marcus','gohost']],used:['host messaging']}),
- hostwu:()=>({h:`Sent to Marcus: “Could you find 2 seats for Wu-Tang Clan on Sat, Sep 26?” I’ll tell you as soon as he replies.`,acts:[['Open chat with Marcus','gohost']],used:['host messaging']}),
+ hostwu:()=>({h:`Sent to Marcus: “Could you find 2 seats for Tom Jones on Fri, Oct 16?” I’ll tell you as soon as he replies.`,acts:[['Open chat with Marcus','gohost']],used:['host messaging']}),
  swapshow:()=>({h:`Swapped. Sat, Oct 17 at 8 PM: <b>Cardenales de Nuevo León and “El Jerry”</b> at Lucas Oil Live, 2 seats. Everything else stays the same.`,acts:[['Book all','book']],used:['WinStar shows']}),
  otherdates:()=>({h:`The 2× tier points only run Oct 9–11. On a regular weekend at your usual play you’d earn about 1,800, so two visits before Dec 31 would also get you to Elite.`,acts:[['Book Oct 9–11','book']],used:['tier progress','your usual play']}),
  book:()=>{S.chatBooked=true;return S.persona==='A'?{h:`Done. Oct 16–18 is booked and in your trip. Marcus, your host, knows you’re coming.`,acts:[['View trip','gotrip']],used:['room comp','Elite perks']}:{h:`Booked. Your WinStar room is set for Oct 9–11 at $89 a night, and 2× tier points are on. I’ll remind you Friday morning.`,acts:[['View trip','gotrip']],used:['Elite Weekend offer']}},
  fallback:()=>({h:`I can plan an evening or a trip, find a machine, check your offers, book dining and shows, and reach your host. Try one of these:`,acts:[['Plan my evening','tonight'],['What offers expire this week?','expiring'],['Where should I eat?','eat']],used:[]})
 };
-const CQREC={A:[['ws-dining','Dinner at 6:30','Kirby’s has a table for two. Your $40 credit applies.','eat'],['ws-gaming','$1.84M and climbing','Golden Stampede Grand, 2 min from you','find'],['e-wutang','Wu-Tang Clan','Sat 8 PM · Lucas Oil Live','wutang'],['ws-pool','Oct 16–18 for two','Tom Jones, spa and a comp room','weekend']],
+const CQREC={A:[['ws-dining','Dinner at 6:30','Kirby’s has a table for two. Your $40 credit applies.','eat'],['ws-gaming','$1.84M and climbing','Golden Stampede Grand, 2 min from you','find'],['e-tomjones','Tom Jones','Fri, Oct 16 · Lucas Oil Live','wutang'],['ws-pool','Oct 16–18 for two','Tom Jones, spa and a comp room','weekend']],
  B:[['ws-pool','3,150 points to Elite','The Elite Weekend at WinStar earns 2×','tier'],['ar-lobby','$10 Free Play today','Plus a $30 spa credit until Sunday','expiring'],['ar-hero','Dinner at Springs','Fine dining at The Artesian','eat'],['tv-hero','2-for-1 buffet','Treasure Valley, Friday and Saturday','expiring']]};
 const CQTRY={A:['tonight','expiring','find','host','weekend','eat'],B:['tonight','tier','expiring','eat','host','weekend']};
 function cqMatch(v){const t=v.toLowerCase();
  // Most specific topics first, so "is my host around tonight?" goes to the host
  if(/host|marcus/.test(t))return 'host';
- if(/wu.?tang|ticket|concert|show/.test(t))return S.persona==='A'?'wutang':'weekend';
+ if(/wu.?tang|tom jones|ticket|concert|show/.test(t))return S.persona==='A'?'wutang':'weekend';
  if(/find|machine|slot|stampede|money bags|where is|jackpot|meter/.test(t))return 'find';
  if(/expir|offer|free play|deal|promo/.test(t))return 'expiring';
  if(/tier|elite|chairman|status|point/.test(t))return 'tier';
@@ -1207,7 +1268,7 @@ SCR.lock=()=>{const A1=S.persona==='A';
  return `<div class="body" style="padding-bottom:0;overflow:hidden">
   <div style="position:absolute;inset:-24px;${bg(A1?'ws-globe':'ar-hero')};background-size:cover;background-position:center;filter:blur(3px) brightness(.6)"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.4))"></div>
-  <div style="position:relative;text-align:center;color:#fff;padding-top:70px"><div style="display:flex;justify-content:center;opacity:.9">${ic('lock',18,2)}</div><div style="font-size:19px;font-weight:600;margin-top:8px">Friday, September 25</div><div style="font-family:var(--disp);font-weight:700;font-size:98px;letter-spacing:-.03em;line-height:1">9:41</div></div>
+  <div style="position:relative;text-align:center;color:#fff;padding-top:70px"><div style="display:flex;justify-content:center;opacity:.9">${ic('lock',18,2)}</div><div style="font-size:19px;font-weight:600;margin-top:8px">Wednesday, October 7</div><div style="font-family:var(--disp);font-weight:700;font-size:98px;letter-spacing:-.03em;line-height:1">9:41</div></div>
   <div style="position:absolute;left:12px;right:12px;bottom:118px;display:flex;flex-direction:column;gap:8px">${notes.map(([g,tm,t,b])=>`<button data-go="${g}" style="display:flex;gap:12px;align-items:flex-start;text-align:left;padding:13px 14px;border-radius:22px;background:rgba(242,245,249,.78);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);color:#0A1324">
    <span style="width:38px;height:38px;border-radius:10px;flex:none;background:linear-gradient(140deg,#1A2E55,#0A1324);display:grid;place-items:center;color:#fff;font-family:var(--disp);font-weight:900;font-size:13px">CP</span>
    <div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;font-size:13px"><b>Club Passport</b><span style="color:rgba(10,19,36,.55)">${tm}</span></div><div style="font-weight:700;font-size:14px;margin-top:1px">${t}</div><div style="font-size:13.5px;color:rgba(10,19,36,.78);line-height:1.35">${b}</div></div></button>`).join('')}</div>
@@ -1220,15 +1281,17 @@ SCR.inbox=()=>{const f=S.ifil,cats=['All','Offers','Stays','Property news','Acco
   <div class="hs" style="gap:8px;margin:6px 0 16px">${cats.map(c=>`<button class="chip" data-act="ifil" data-v="${c}" aria-pressed="${f===c}">${c}</button>`).join('')}</div>
   <div class="list">${list.map(([[c,ph,t,b,tm,g],i])=>{const un=i<2&&!S.read.has(i);return `<button data-act="openmsg" data-i="${i}" data-to="${g}" class="li" style="width:100%;text-align:left;align-items:flex-start"><span class="photo" style="${bg(ph)};width:52px;height:52px;border-radius:14px;flex:none;--shade:none"></span><div class="grow"><div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:11.5px;font-weight:700;color:var(--ink3)">${c}</span><span style="font-size:11.5px;color:var(--ink3)">${tm}</span></div><div class="k" style="margin-top:2px;${un?'':'font-weight:500'}">${t}</div><div class="v">${b}</div></div>${un?'<span style="width:9px;height:9px;border-radius:50%;background:#4287EA;flex:none;margin-top:22px"></span>':''}</button>`}).join('')||'<div class="li"><div class="grow v">No messages here.</div></div>'}</div></div>`};
 
-SCR.trip=()=>{const A1=S.persona==='A';
+SCR.trip=()=>{const A1=S.persona==='A',bkB=!A1&&!!S.booked.B;
  const days=A1?[['Friday, Oct 16',[['3:00 PM','key','Check in · Tower king','Check-in from 3 PM','Ready'],['7:30 PM','dine','Dinner for two','$40 dining credit applied','Booked']]],['Saturday, Oct 17',[['10:00 AM','spa','Spa for two','20% Elite discount applied','Booked'],['8:00 PM','ticket','Concert · 2 seats','Global Event Center, row F','In wallet']]],['Sunday, Oct 18',[['11:00 AM','car','Check out · valet','Elite priority valet','Scheduled']]]]
   :[['Friday, Oct 9',[['3:00 PM','key','Check in · Standard king','Check-in from 3 PM','Booked'],['6:00 PM','zap','2× tier points start','Every point counts double until Sunday','Active']]],['Saturday, Oct 10',[['7:00 PM','dine','Dinner for two','Reserve with your Premier discount','Suggested']]],['Sunday, Oct 11',[['11:00 AM','car','Check out','You should reach Elite by now','On track']]]];
  return `<div class="body">
-  <div class="photo" style="${bg(A1?'ws-globe':'ws-pool')};height:280px;--shade:linear-gradient(180deg,rgba(5,10,20,.5) 0,rgba(5,10,20,.1) 35%,#0A1324 100%)">
+  <div class="photo" style="${bg(A1?'ws-stay':'ws-pool')};height:280px;--shade:linear-gradient(180deg,rgba(5,10,20,.5) 0,rgba(5,10,20,.1) 35%,#0A1324 100%)">
    <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between"><button data-go="home" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button><span class="glass iconbtn" style="color:#fff">${ic('share',18)}</span></div>
-   <div style="position:absolute;left:20px;right:20px;bottom:14px">${lg('winstar',22)}<h1 class="t1" style="color:#fff;margin-top:10px">${A1?'WinStar weekend for two':'Elite Weekend'}</h1><div style="display:flex;align-items:center;gap:10px;margin-top:6px"><span style="font-size:13px;color:rgba(255,255,255,.85)">${A1?'Oct 16–18':'Oct 9–11'}</span><span style="height:26px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:12px;font-weight:700;background:rgba(95,215,165,.2);color:#8AE6BF">${A1?'Saving $420 with Club Passport':'2× tier points all weekend'}</span></div></div></div>
-  <div class="px" style="margin-top:14px"><button class="upc" data-go="stay" style="width:100%"><span class="ui">${ic('key',19)}</span><span class="grow"><span class="k" style="display:block">${A1?'Room key · Room 1418':'Room key'}</span><span class="v" style="display:block">${A1?'In your stay now at WinStar':'Arrives at check-in, Fri 3 PM'}</span></span>${ic('right',16)}</button></div>
-  ${days.map(([d,items])=>`<div class="px" style="margin-top:22px"><div style="font-weight:800;font-size:15px;margin-bottom:12px">${d}</div>${items.map(([tm,i,t,s,st],j)=>`<div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><span style="width:40px;height:40px;border-radius:12px;background:var(--el);display:grid;place-items:center;color:var(--hi);flex:none">${ic(i,18)}</span>${j<items.length-1?'<span style="flex:1;width:2px;background:var(--ln);margin:4px 0"></span>':''}</div><div style="flex:1;padding-bottom:16px"><div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:12px;color:var(--ink3);font-weight:600">${tm}</span><span style="font-size:11.5px;font-weight:700;color:#5FD7A5">${st}</span></div><div style="font-weight:700;font-size:14.5px">${t}</div><div class="cap">${s}</div></div></div>`).join('')}</div>`).join('')}
+   <div style="position:absolute;left:20px;right:20px;bottom:14px">${lg('winstar',22)}<h1 class="t1" style="color:#fff;margin-top:10px">${A1?'WinStar weekend for two':'Elite Weekend'}</h1><div style="display:flex;align-items:center;gap:10px;margin-top:6px"><span style="font-size:13px;color:rgba(255,255,255,.85)">${A1?'Oct 16–18':'Oct 9–11'}</span><span style="height:26px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:12px;font-weight:700;background:rgba(95,215,165,.2);color:#8AE6BF">${A1?'Saving $420 with Club Passport':bkB?'2× tier points all weekend':'Not booked yet · from $89'}</span></div></div></div>
+  ${A1?`<div class="sec"><h4>Right now</h4><span class="cap">Until Sun, Oct 11</span></div><div class="list"><button class="upc" data-go="stay"><span class="ui">${ic('key',19)}</span><span class="grow"><span class="k" style="display:block">Room key · Room 1418</span><span class="v" style="display:block">In your stay now at WinStar · check-out Sun 11 AM</span></span>${ic('right',16)}</button></div><div class="sec"><h4>Next trip</h4><span class="cap">Fri, Oct 16 – Sun, Oct 18</span></div>`
+   :bkB?`<div class="list" style="margin-top:14px"><button class="upc" data-go="stay"><span class="ui">${ic('key',19)}</span><span class="grow"><span class="k" style="display:block">Room key</span><span class="v" style="display:block">Arrives at check-in, Fri 3 PM</span></span>${ic('right',16)}</button></div>`
+   :`<div class="px" style="margin-top:14px"><button class="btn" data-act="obook" data-id="b5" style="width:100%;height:50px">${ic('bed',18)} Book the Elite Weekend · $89 a night</button><div class="cap" style="text-align:center;margin-top:8px">Here’s the plan. Book it and your room key arrives at check-in.</div></div>`}
+  ${days.map(([d,items])=>`<div class="px" style="margin-top:22px"><div style="font-weight:800;font-size:15px;margin-bottom:12px">${d}</div>${items.map(([tm,i,t,s,st],j)=>`<div style="display:flex;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><span style="width:40px;height:40px;border-radius:12px;background:var(--el);display:grid;place-items:center;color:var(--hi);flex:none">${ic(i,18)}</span>${j<items.length-1?'<span style="flex:1;width:2px;background:var(--ln);margin:4px 0"></span>':''}</div><div style="flex:1;padding-bottom:16px"><div style="display:flex;justify-content:space-between;gap:8px"><span style="font-size:12px;color:var(--ink3);font-weight:600">${tm}</span><span style="font-size:11.5px;font-weight:700;color:${A1||bkB?'#5FD7A5':'var(--ink3)'}">${A1||bkB?st:'Plan'}</span></div><div style="font-weight:700;font-size:14.5px">${t}</div><div class="cap">${s}</div></div></div>`).join('')}</div>`).join('')}
   <div class="sec" style="margin-top:14px"><h4>Add to your trip</h4></div>
   <div class="hs" style="gap:8px">${[['Golf tee time','spa'],['Pool cabana','bed'],['Airport shuttle','car']].map(([l])=>`<span class="chip">${ic('plus',14,2.4)} ${l}</span>`).join('')}</div></div>`};
 
@@ -1242,7 +1305,7 @@ SCR.host=()=>{const A1=S.persona==='A',p=per();
    <div style="display:flex;gap:10px;margin-top:18px"><button class="btn" data-act="hostmsg" style="flex:1">${ic('msg',16)} Message</button><button class="btn line" data-act="hostcall" style="flex:1">${ic('phone',16)} Call me back</button></div></div>
   <div class="sec"><h4>Ask Marcus to</h4></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 20px">${[['bed','Upgrade my room'],['dine','Book a table'],['ticket','Get show tickets'],['car','Arrange a ride']].map(([i,l])=>`<button data-act="hostreq" data-v="${l}" style="display:flex;align-items:center;gap:10px;padding:14px;border-radius:18px;background:var(--el);font-weight:600;font-size:13.5px;text-align:left"><span style="color:var(--hi)">${ic(i,20)}</span>${l}</button>`).join('')}</div>
-  <div class="sec"><h4>From Marcus</h4><span class="cap">Sep 25</span></div>
+  <div class="sec"><h4>From Marcus</h4><span class="cap">Oct 6</span></div>
   <div class="px"><div class="msg ai" style="max-width:100%">Welcome back, Winnie! I upgraded you to a tower king and put a $40 dining credit in your wallet. Text me anytime this weekend.</div></div>
   <div class="px cap" style="margin-top:14px">Marcus also looks after you at Riverwind and Lakecrest. Your preferences follow you to every property.</div></div>`;
  return `<div class="body">${head('Player services','settings')}
@@ -1327,9 +1390,9 @@ const DRAW={name:'Club Passport Fall Fortune',t0:Date.now()-(72*60+8)*1000,watch
  live:['K. M*** · Riverwind','D. T*** · WinStar','L. P*** · Newcastle'],
  ticker:['A. R***','M. K***','J. D***','S. T***','B. W***','L. H***','C. M***','R. P***'],
  entries:{A:[['winstar',42],['riverwind',8],['newcastle',6]],B:[['artesian',12],['treasure',4],['lakecrest',2]]}};
-const PDRAW=[['riverwind','Wild Card Blitz','Fri, Oct 2','Drawings 6:00–11:30 PM','A share of over $300K in cash, Bonus Play and prizes through October','9× entries on Mondays and Tuesdays'],
- ['riverstar','Trick or Treasure','Fri, Oct 2','Hot seats every 15 min, 6:00–8:45 PM','$1,500 in Bonus Play. Grand prize about 9 PM: $300 Bonus Play and a Nintendo Switch 2','Must be present and playing'],
- ['riverstar','Witches and Riches','Sat, Oct 3','Hot seats 6:00–9:30 PM','$1,800 in Bonus Play. Grand prize about 10 PM: $1,000 Bonus Play','Must be present and playing'],
+const PDRAW=[['riverwind','Wild Card Blitz','Fri, Oct 9','Drawings 6:00–11:30 PM','A share of over $300K in cash, Bonus Play and prizes through October','9× entries on Mondays and Tuesdays'],
+ ['riverstar','Trick or Treasure','Fri, Oct 9','Hot seats every 15 min, 6:00–8:45 PM','$1,500 in Bonus Play. Grand prize about 9 PM: $300 Bonus Play and a Nintendo Switch 2','Must be present and playing'],
+ ['riverstar','Witches and Riches','Sat, Oct 10','Hot seats 6:00–9:30 PM','$1,800 in Bonus Play. Grand prize about 10 PM: $1,000 Bonus Play','Must be present and playing'],
  ['riverwind','Battle of the Bridge','October','Earning entries now','A share of $27K cash, with Goldsby Gaming Center','Entries and points earned in October'],
  ['riverwind','Moonlight Money Madness','Sat, Oct 31','Earning entries now','A share of $10K in Bonus Play on Halloween','Entries earned all October']];
 S.dr={A:{act:false,drawn:1,at:''},B:{act:false,drawn:1,at:''}};S.drRoll=false;S.drWin=null;S.drMiss=false;S.drRem=new Set();
@@ -1437,7 +1500,7 @@ SCR.shows=()=>{if(S.prop!=='winstar')return propOnly('Shows');const perk=!S.gm&&
  return `<div class="body">${head('Shows','property',lg('winstar',16))}
   <div class="photo" style="${bg('rw-show')};margin:4px 20px 0;height:130px;border-radius:22px;--shade:linear-gradient(90deg,rgba(5,10,20,.85),rgba(5,10,20,.3))"><div style="position:absolute;left:16px;bottom:14px"><div class="spon" style="color:#F6E1AC">Live at WinStar</div><div style="font-weight:800;font-size:22px;color:#fff">Lucas Oil Live</div><div style="font-size:12.5px;color:rgba(255,255,255,.8)">Concerts and headliners all year</div></div></div>
   ${perk?`<div style="margin:12px 20px 0;display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:16px;background:rgba(175,196,58,.12);box-shadow:inset 0 0 0 1px rgba(175,196,58,.35)"><span style="color:#C9DB5A">${ic('crown',18)}</span><span style="font-size:13px"><b>${TIERS[per().tier].n} perk:</b> presale access to Lucas Oil Live shows.</span></div>`:''}
-  ${SHOWS.map(([t,mo,dd,dow,tm,im,so,url])=>{const hdr=mo!==m?`<div class="sec" style="margin-top:22px"><h4>${{Sep:'September',Oct:'October',Nov:'November',Dec:'December'}[mo]} 2026</h4></div>`:'';m=mo;
+  ${upShows().map(([t,mo,dd,dow,tm,im,so,url])=>{const hdr=mo!==m?`<div class="sec" style="margin-top:22px"><h4>${{Sep:'September',Oct:'October',Nov:'November',Dec:'December'}[mo]} 2026</h4></div>`:'';m=mo;
    return hdr+`<div style="margin:0 20px 12px;border-radius:22px;overflow:hidden;background:var(--el)"><div class="photo" style="${bg(im)};aspect-ratio:16/9;max-width:100%;--shade:none">${so?`<span style="position:absolute;right:12px;top:12px;height:26px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:11.5px;font-weight:800;letter-spacing:.06em;background:#E0503F;color:#fff">SOLD OUT</span>`:''}</div>
    <div style="display:flex;gap:14px;align-items:center;padding:14px 16px"><div style="width:52px;flex:none;text-align:center;border-radius:14px;background:rgba(255,255,255,.06);padding:6px 0"><div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em">${mo.toUpperCase()}</div><div style="font-family:var(--disp);font-weight:800;font-size:22px;line-height:1.1">${dd}</div></div>
    <div style="flex:1;min-width:0"><b style="font-size:15px;line-height:1.25;display:block">${t}</b><div class="cap" style="margin-top:2px">${dow} · ${tm} · Lucas Oil Live</div></div>
@@ -1529,7 +1592,7 @@ function expTxt(o,web){const x=OX[o.id];if(!x)return o.e;const c=web?'wexp ':'';
  return x.d===0?`<b class="${c}hot" style="color:#FF8A84">Ends tonight</b>`:x.d<=3?`<b class="${c}warm" style="color:#F5C46B">Ends in ${x.d} days</b>`:x.ends}
 
 /* ---------- preferred property: rated days in 6 months, then 18 months, then the latest trip ---------- */
-const RATED={A:{m6:[['winstar',14],['riverwind',3],['newcastle',2]],m18:[['winstar',41],['riverwind',12],['newcastle',5]],last:['winstar','Sep 25']},
+const RATED={A:{m6:[['winstar',14],['riverwind',3],['newcastle',2]],m18:[['winstar',41],['riverwind',12],['newcastle',5]],last:['winstar','Oct 6']},
  B:{m6:[['artesian',9],['treasure',9],['lakecrest',2]],m18:[['artesian',22],['treasure',17],['lakecrest',4]],last:['treasure','Sep 27']}};
 function autoPref(){const r=RATED[S.persona],top=a=>a[0][1]>a[1][1]?a[0][0]:null,k6=top(r.m6),k18=top(r.m18);
  if(k6)return {k:k6,rule:1};if(k18)return {k:k18,rule:2};return {k:r.last[0],rule:3}}
@@ -1545,7 +1608,7 @@ const CMLOCK={trips:[0,0,1],acct:[1,1,1]};
 const cmInit=fav=>({offers:[1,1,1],events:[1,0,1],draw:[1,0,1],deals:[0,0,1],jackpot:[1,0,0],trips:[1,1,1],acct:[1,1,1],props:'fav',pick:new Set(fav),freq:1,quiet:1,geo:0});
 
 /* ---------- v3 state ---------- */
-const doorFresh=()=>({idType:'email',idEmpty:false,idErr:false,cardFirst:false,faceOn:true,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
+const doorFresh=()=>({idType:'email',idEmpty:false,idErr:false,cardFirst:false,faceOn:false,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
 function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),trusted:{A:false,B:false},hasPw:{A:false,B:true},passkeys:{A:[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}],B:[]},pk:null,pwf:null,rc:{step:'menu',h:[]},
  stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
@@ -1580,17 +1643,17 @@ function doorAuto(){if(S.view!=='proto'||S.screen!=='login'||S.gm||!S.trusted[S.
  S.fidT=setTimeout(()=>{S.fidT=null;if(S.view==='proto'&&S.screen==='login'&&S.trusted[S.persona]&&S.door.step==='start'&&!S.door.fid&&!S.pk){go(gOut());setTimeout(()=>toast('Signed in with Face ID'),40)}},1800)}
 function doorVerified(){const d=S.door;d.fill=false;d.methods=false;d.err=null;
  // Risk signal after an email code: a second check on the phone on file (Appendix E)
- if(d.who!=='claim'&&d.risk&&d.m==='email'&&!d.second){d.second=true;d.m='sms';stepTo(d,'code');return}
+ if(d.who!=='claim'&&d.risk&&d.m==='email'&&!d.second){d.second=true;d.m='sms';d.sentAt=Date.now();stepTo(d,'code');return}
  // Found by mobile or card number: after the phone code, the email they typed becomes their sign-in
  if(d.who==='claim'){if(d.emailStep){d.emailStep=false;d.emailAdded=true;stepTo(d,'welcome')}else stepTo(d,d.via&&!d.emailAdded&&!d.notme?'addemail':'welcome')}else if(S.trusted[S.persona])doorDone('Signed in');else stepTo(d,'faster')}
 function doorDone(msg){S.door=doorFresh();go(gOut());setTimeout(()=>toast(msg),40)}
 const demoRow=(act,cur,opts)=>`<div class="demo"><span>Demo</span>${opts.map(([v,l])=>`<button data-act="${act}" data-v="${v}" aria-pressed="${cur===v}">${l}</button>`).join('')}</div>`;
 const errT=t=>`<div class="errt">${ic('info',15)}<span>${t}</span></div>`;
 // What the guest typed on the first screen, and the account number shown as its last 4 digits
-const typedId=d=>d.who==='new'||d.sam?(d.idType==='phone'?SAM.typedPhone:SAM.email):(d.idType==='phone'?per().mobile:per().email);
+const typedId=d=>d.typo?SAM.email.replace('example','exmaple'):d.who==='new'||d.sam?(d.idType==='phone'?SAM.typedPhone:SAM.email):(d.idType==='phone'?per().mobile:per().email);
 const last4=x=>x.num.replace(/\s/g,'').slice(-4);
 // The 4-digit casino PIN, shown as dots
-const pinBox=bad=>`<div class="otp pin">${[0,1,2,3].map(()=>`<span class="${bad?'bad':'on'}">•</span>`).join('')}</div>`;
+const pinBox=(bad,show)=>`<div class="otp pin">${[...'4827'].map(c=>`<span class="${bad?'bad':'on'}">${show?c:'•'}</span>`).join('')}</div>`;
 const pinHelpHTML=d=>d.pinHelp?`<div class="note" style="margin-top:14px">${ic('info',16)}<span>PINs are reset at any player services desk or self-service kiosk, with a photo ID. Then come back and finish here.</span></div><button data-act="dnext" data-v="inperson" style="display:block;margin:12px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Find player services</button>`:`<button data-act="dpinhelp" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Forgot your PIN?</button>`;
 SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.persona].length;
  const tiles=['ws-globe','ar-lobby','rw-show','ws-dining','lc-hero','ms-games','wb-hero','ws-spa','tv-hero','ct-hero','nc-floor','ws-pool'];
@@ -1611,17 +1674,18 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
  const h1=(t,s)=>`<h1 class="t1">${t}</h1>${s?`<div class="cap" style="margin-top:6px;font-size:14px;line-height:1.45">${s}</div>`:''}`;
  const opt=(act,v,i,t,s)=>`<button class="bigopt" data-act="${act}"${v?` data-v="${v}"`:''}><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`;
  let b='';
- if(st==='start'){const val=d.idEmpty?'':typedId(d);b=`${d.link?h1('Link your account','Enter the email or mobile number you gave us at the casino. We’ll find your player account.'):h1('Sign in','One account for the app and all 11 property websites.')}
-  <div class="fld"><span>Email or mobile number</span><span class="fv${d.idErr?' bad':''}" data-act="didfill">${val?`<span style="flex:1">${val}</span><i class="caret"></i><button data-act="didclear" aria-label="Clear" style="color:var(--ink3);display:flex;margin-left:8px">${ic('x',16,2.4)}</button>`:'<i class="caret" style="margin-left:0"></i><span style="flex:1;color:var(--ink3);font-weight:500;margin-left:6px">Email or mobile number</span>'}</span></div>
+ if(st==='start'){const val=d.idEmpty?'':typedId(d),ph=d.idType==='phone',pkHint=hasPk&&d.who==='ret'&&!d.sam&&!d.typo&&!d.link&&!!val;b=`${d.link?h1('Link your account','Enter the email or mobile number you gave us at the casino. We’ll find your player account.'):h1('Sign in','One account for the app and all 11 property websites.')}
+  <div class="fld"><span>Email or mobile number</span><span class="fv${d.idErr?' bad':''}" data-act="didfill">${val?`<span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${val}</span><i class="caret"></i><span class="idchip">${ic(ph?'phone':'mail',12,2.2)}${ph?'Mobile':'Email'}</span><button data-act="didclear" aria-label="Clear" style="color:var(--ink3);display:flex;margin-left:2px">${ic('x',16,2.4)}</button>`:'<i class="caret" style="margin-left:0"></i><span style="flex:1;color:var(--ink3);font-weight:500;margin-left:6px">Email or mobile number</span>'}</span></div>
   ${d.idErr?errT('Enter your email or mobile number to continue.'):''}
-  <div style="display:flex;justify-content:space-between;gap:10px;margin-top:10px"><button data-act="didtype" style="font-size:13px;font-weight:700;color:var(--hi)">${d.idType==='phone'?'Use my email instead':'Use my mobile number instead'}</button><button data-act="dcardstart" style="font-size:13px;font-weight:700;color:var(--hi)">Use my card number</button></div>
-  <div class="demo"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="dwho" data-v="${k}" aria-pressed="${d.who===k&&!d.sam}">${l}</button>`).join('')}</div>
+  ${d.typo&&val?`<div class="didmean">${ic('info',15)}<span>Did you mean <button data-act="dfixtypo">sam.carter@<b>example.com</b></button>?</span></div>`:''}
+  ${pkHint?`<button class="qtype" data-act="dpasskey">${ic('key',18)}<span class="grow"><b>Sign in with your passkey</b><span>${p.email} · iCloud Keychain</span></span>${ic('face',18)}</button>`:''}
+  <div style="display:flex;justify-content:space-between;gap:10px;margin-top:12px"><button data-act="dcardstart" style="font-size:13px;font-weight:700;color:var(--hi)">Use my card number</button>${d.link||pkHint?'':`<button data-act="dpasskey" style="font-size:13px;font-weight:700;color:var(--hi);display:inline-flex;align-items:center;gap:5px">${ic('key',14)}Use a passkey</button>`}</div>
+  <div class="demo"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="dwho" data-v="${k}" aria-pressed="${d.who===k&&!d.sam&&!d.typo}">${l}</button>`).join('')}</div>
+  ${demoRow('didset',d.typo?'typo':d.idType,[['email','Typed email'],['phone','Typed mobile'],['typo','Email typo']])}
   <button class="btn" data-act="dgo" aria-disabled="${!val}" style="width:100%;height:52px;margin-top:16px;${val?'':'opacity:.4'}">Continue</button>
-  ${d.link?'':`<div class="ordiv"><span>or</span></div>
-  <button class="btn line" data-act="dpasskey" style="width:100%;height:48px">${ic('key',17)} Sign in with a passkey</button>`}
-  <div style="display:flex;justify-content:center;gap:18px;margin-top:16px"><button data-go="recover" style="font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button><span style="color:var(--ink3)">·</span><button data-act="dguest" style="font-size:13.5px;font-weight:700;color:var(--hi)">${S.gm?'Not now':'Continue as a guest'}</button></div>
-  ${d.link?'':`<button data-go="moving" class="note" style="margin-top:12px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}`}
- else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}
+  <button class="btn line" data-act="dguest" style="width:100%;height:48px;margin-top:10px">${S.gm?'Not now':'Continue as a guest'}</button>
+  <button data-go="recover" style="display:block;margin:16px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button>
+  ${d.link||!S.fromOld?'':`<button data-go="moving" class="note" style="margin-top:14px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}`} else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${p.email}`)}
   <div class="fld"><span>Password</span><span class="fv${d.err==='pw'?' bad':''}"><span style="flex:1">••••••••••••</span><i class="caret"></i></span></div>
   ${d.err==='pw'?errT('That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.'):''}
   <button class="btn" data-act="dpw" style="width:100%;height:52px;margin-top:16px">Sign in</button>
@@ -1637,9 +1701,10 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   ${otpBox(d.fill,d.err==='wrong')}
   ${d.err==='wrong'?errT('That code doesn’t match. 2 tries left.'):d.err==='expired'?errT('That code expired after 10 minutes. We sent a new one.'):''}
   ${d.fill?`<div class="cap" style="text-align:center;margin-top:14px;color:#7FE3B8;font-weight:600">${ic('check',13,2.6)} Verifying</div>`:`<button class="autofill" data-act="dfill">${ic(d.m==='email'?'mail':d.m==='app'?'shield':'msg',15)} ${d.m==='email'?'From Mail':d.m==='app'?'Paste':'From Messages'}: <b>${d.err==='expired'?'607 254':'482 913'}</b></button>`}
-  ${d.m==='email'&&!d.fill?`<div class="note" style="margin-top:12px">${ic('mail',16)}<span>Or tap the sign-in link in the email. It opens the app and signs you in.</span></div>`:''}
+  ${d.m==='email'&&!d.fill?`<button class="btn line" data-act="dopenmail" style="width:100%;height:44px;margin-top:10px">${ic('mail',16)} Open Mail</button><div class="cap" style="text-align:center;margin-top:8px">Or tap the sign-in link in the email. It opens the app and signs you in.</div>`:''}
   ${d.methods?`<div class="opts">${meth.map(([k,i,t])=>`<button class="opt" data-act="dm" data-v="${k}" aria-pressed="${d.m===k}"><span class="rad"></span><span class="oi">${ic(i,18)}</span><span class="grow"><b>${t}</b></span></button>`).join('')}</div>`:''}
-  <div style="display:flex;justify-content:center;gap:14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" style="color:var(--hi)">Resend code</button>${d.emailStep?'':'<span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button>'}</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" data-until="${d.sentAt||(d.sentAt=Date.now())}" style="color:var(--hi)">Resend code</button>${d.emailStep?'':'<span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button>'}</div>
+  ${!claim&&!d.emailStep&&!d.second&&!d.newph&&d.m!=='app'?`<button data-act="dchange" style="display:block;margin:12px auto 0;font-size:13px;font-weight:700;color:var(--hi)">Wrong ${d.m==='email'?'email':'number'}? Change it</button>`:''}
   ${claim&&!d.newph&&!d.emailStep&&d.via!=='phone'?`<button data-act="dnophone" style="display:block;margin:12px auto 0;font-size:13px;font-weight:700;color:var(--hi)">I don’t have this phone anymore</button>`:''}
   <div class="cap" style="text-align:center;margin-top:14px;color:var(--ink3)">The code fills in and checks itself. Codes last 10 minutes.</div>
   ${demoRow('derr',d.err,[['wrong','Wrong code'],['expired','Expired'],['locked','Too many tries']])}`}
@@ -1664,13 +1729,14 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   b=`<div style="display:flex;justify-content:center;margin-top:6px">${kcard(id,300)}</div>
   <h1 class="t1" style="text-align:center;margin-top:18px">${d.sam?'Welcome':'Welcome back'}, ${id.first}</h1>
   <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">Your ${TIERS[id.tier].n} card is on this iPhone now, and the same sign-in works on every property website.</div>
-  <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${d.faceOn?'Opens the app with a glance on this iPhone':'Off. You’ll sign in with a code or passkey.'}</div></div><button class="tg" role="switch" aria-checked="${d.faceOn}" data-act="dfacetg" aria-label="Face ID"></button></div>
+  <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${d.faceOn?'Opens the app with a glance on this iPhone':'Turn on to open the app with a glance'}</div></div><button class="tg" role="switch" aria-checked="${d.faceOn}" data-act="dfacetg" aria-label="Face ID"></button></div>
    ${pk?`<div class="tgr"><span style="color:#5FD7A5">${ic('key',20)}</span><div class="grow"><div class="k">Passkey saved</div><div class="v">Sign in with Face ID here and on our websites</div></div><span style="color:#5FD7A5">${ic('check',18,2.6)}</span></div>`
    :`<button class="tgr" data-act="dpkcreate" data-v="welcome" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('key',20)}</span><div class="grow"><div class="k">Create a passkey</div><div class="v">Sign in with Face ID on our websites too</div></div>${ic('right',16)}</button>`}</div>
   <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">${S.gm&&gName(S.gNext)?'Continue to '+gName(S.gNext):'Go to my account'}</button>
   ${d.more?`<div class="list" style="margin:14px 0 0"><button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('pwd',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>`
    :`<button data-act="dmore" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">More options</button>`}`}
  else if(st==='played')b=`${h1('We couldn’t find you',`No account uses ${typedId(d)}. Have you played at a Chickasaw Nation casino?`)}
+  ${d.typo?`<div class="didmean">${ic('info',15)}<span>Did you mean <button data-act="dfixtypo">sam.carter@<b>example.com</b></button>? <button data-act="dback">Edit</button></span></div>`:''}
   <div style="margin-top:16px">${opt('dnext','card','card','Yes: enter my card number','With your date of birth and casino PIN')}${d.idType==='phone'?opt('dnext','phone','mail','Yes: try my email address','The one you gave us at the casino'):opt('dnext','phone','phone','Yes: try my mobile number','The one you gave us at the casino')}${opt('dnext','join','plus','No, I’m new here','Join for a first-visit offer')}${opt('dnext','inperson','pin','I don’t have my card or PIN','Get help in person')}</div>
   <div class="note" style="margin-top:14px">${ic('info',16)}<span>Many guests gave us a different email or number at the casino, so a card holder is never treated as new.</span></div>`;
  else if(st==='find')b=d.who==='claim'?`${h1('Let’s confirm it’s you another way','Then we’ll send codes to your new number.')}
@@ -1680,8 +1746,8 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
  else if(st==='pin'){const left=3-d.perr;
   b=`${h1('Confirm it’s you','Enter your date of birth and the 4-digit PIN you use at our casinos.')}
   <div class="acct">${ic('card',18)}<span>We found <b>account ending in ${last4(id)}</b>. Confirm it’s yours.</span></div>
-  <div class="fld"><span>Date of birth</span><span class="fv${d.perr?' bad':''}">${id.dobFull}</span></div>
-  <div class="fld"><span>Casino PIN</span></div>${pinBox(d.perr>0)}
+  <div class="fld"><span>Date of birth <i class="fhint">MM / DD / YYYY</i></span><span class="fv${d.perr?' bad':''}">${id.dobFull}</span></div>
+  <div class="fld"><span style="display:flex;justify-content:space-between;align-items:center">Casino PIN<button data-act="dpinshow" aria-pressed="${!!d.pinShow}" style="font-size:12.5px;font-weight:700;color:var(--hi)">${d.pinShow?'Hide':'Show'}</button></span></div>${pinBox(d.perr>0,d.pinShow)}
   ${d.perr?errT(`That date of birth and PIN don’t match our records. ${left} ${left===1?'try':'tries'} left.`):''}
   <button class="btn" data-act="dpin" style="width:100%;height:52px;margin-top:16px">Continue</button>
   ${pinHelpHTML(d)}
@@ -1703,7 +1769,7 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   b=`${h1(only?'Enter your card number':'Enter your card details',only?'The number on your Club Passport or casino card.':'Your card number, date of birth and the 4-digit PIN you use at our casinos.')}
   ${d.notme?`<div class="note" style="margin-top:12px">${ic('info',16)}<span>Sharing an email with someone in your household? Your card number finds your own account.</span></div>`:''}
   ${fld('Card number',only?id.num:SAM.num,{caret:1})}
-  ${only?'':`<div class="fld"><span>Date of birth</span><span class="fv${d.perr?' bad':''}">${SAM.dobFull}</span></div><div class="fld"><span>Casino PIN</span></div>${pinBox(d.perr>0)}${d.perr?errT(`That card, date of birth and PIN don’t match our records. ${left} ${left===1?'try':'tries'} left.`):''}`}
+  ${only?'':`<div class="fld"><span>Date of birth <i class="fhint">MM / DD / YYYY</i></span><span class="fv${d.perr?' bad':''}">${SAM.dobFull}</span></div><div class="fld"><span style="display:flex;justify-content:space-between;align-items:center">Casino PIN<button data-act="dpinshow" aria-pressed="${!!d.pinShow}" style="font-size:12.5px;font-weight:700;color:var(--hi)">${d.pinShow?'Hide':'Show'}</button></span></div>${pinBox(d.perr>0,d.pinShow)}${d.perr?errT(`That card, date of birth and PIN don’t match our records. ${left} ${left===1?'try':'tries'} left.`):''}`}
   <button class="btn" data-act="dcard" style="width:100%;height:52px;margin-top:16px">Continue</button>
   ${only?'':pinHelpHTML(d)+demoRow('dpinerr',d.pinDemo,[['ok','Matches'],['wrong','No match'],['lock','3 wrong tries']])}`}
  else if(st==='addemail'){const tp=d.idType==='phone';
@@ -1830,7 +1896,7 @@ SCR.recover=()=>{const p=per(),r=S.rc,st=r.step;
  else if(st==='acode')b=`${h1('Enter your authenticator code','Open your authenticator app and enter the code for Club Passport.')}${otpBox(r.fill)}${r.fill?'':`<button class="autofill" data-act="rcfill">${ic('shield',15)} Paste: <b>482 913</b></button>`}
   <button class="btn" data-act="rcnext" data-v="newph" style="width:100%;height:50px;margin-top:16px">Verify</button>`;
  else if(st==='rcard')b=`${h1('Enter your card details','Your card number, date of birth and the 4-digit PIN you use at our casinos.')}${fld('Card number',p.num,{caret:1})}
-  <div class="fld"><span>Date of birth</span><span class="fv">${p.dobFull}</span></div><div class="fld"><span>Casino PIN</span></div>${pinBox(false)}
+  <div class="fld"><span>Date of birth <i class="fhint">MM / DD / YYYY</i></span><span class="fv">${p.dobFull}</span></div><div class="fld"><span>Casino PIN</span></div>${pinBox(false)}
   <button class="btn" data-act="rcnext" data-v="newph" style="width:100%;height:50px;margin-top:16px">Continue</button>
   <div class="cap" style="margin-top:12px;color:var(--ink3)">Forgot your PIN? Reset it at any player services desk or kiosk, with a photo ID.</div>`;
  else if(st==='newph')b=`${h1('Add your new mobile number','We’ll send codes here from now on.')}${fld('New mobile number','(580) 555-0177',{caret:1})}
@@ -1853,13 +1919,13 @@ SCR.offer=()=>{const all=OFFERS[S.persona],o=all.find(q=>q.id===S.offer)||rankOf
    <div class="li"><span style="color:var(--hi)">${ic('tag',19)}</span><div class="grow"><div class="v">Offer code</div><div class="k" style="font-family:var(--disp);letter-spacing:.04em">${x.code}</div></div></div></div>
   <div class="sec"><h4>How to use it</h4></div>
   <div class="list">${steps.map((s,i)=>`<div class="howl"><b>${i+1}</b><span style="font-size:13.5px;line-height:1.4">${s}</span></div>`).join('')}</div>
-  <div class="px" style="margin-top:16px">${act}</div>
   <div class="sec"><h4>Terms and conditions</h4><button data-act="tc">${S.tc?'Hide':'Show all'}</button></div>
   <div class="px tc">${S.tc?x.terms+' You must be 21 or older. Management may change or cancel this offer.':x.terms.split('. ')[0]+'.'}</div>
   <div class="list" style="margin-top:16px">
    ${A1?`<button class="li" data-act="ohost" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('msg',19)}</span><div class="grow"><div class="k">Ask Marcus about this offer ${fut()}</div><div class="v">Your host sees which offer you’re asking about</div></div></button>`:''}
    <button class="li" data-act="ohide" data-id="${o.id}" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('eyeoff',19)}</span><div class="grow"><div class="k">Not interested ${fut()}</div><div class="v">Hide this offer and see fewer like it</div></div></button></div>
-  <div class="px cap" style="margin-top:12px;color:var(--ink3)">Offer from ${q.n}. Each property approves its own offers. Your preferred property doesn’t change which offers you get.</div></div>`};
+  <div class="px cap" style="margin-top:12px;color:var(--ink3)">Offer from ${q.n}. Each property approves its own offers. Your preferred property doesn’t change which offers you get.</div>
+  <div class="ostick"><div class="ostick-in">${act}</div></div></div>`};
 
 // Booking from an offer: secure handoff to the property's booking engine with the guest and offer carried over
 const BKROOMS={winstar:[['Deluxe King','ws-stay','1 king · tower view',0],['Tower Double Queen','ws-hero','2 queens · tower view',0],['Tower Suite','ws-pool','Separate living room · 650 sq ft',60]],
@@ -1881,7 +1947,7 @@ SCR.book=()=>{const c=bkCtx(),q=P[c.k],p=per(),t=TIERS[p.tier],b=S.bk,ds=bkDates
    <div style="font-size:23px;font-weight:800;letter-spacing:-.02em;color:#fff">Taking you to ${c.hotel} reservations</div>
    <div class="cap" style="margin-top:6px;font-size:13.5px;color:rgba(255,255,255,.75)">A secure handoff. Nothing to re-enter.</div>
    <div class="list carry" style="margin:22px 0 0;background:rgba(0,0,0,.25)">${rows.map(([i,a,s],j)=>`<div class="li" style="animation-delay:${.15+j*.35}s"><span style="color:#5FD7A5">${ic('check',18,2.6)}</span><div class="grow"><div class="k" style="color:#fff">${a}</div><div class="v">${s}</div></div><span style="color:rgba(255,255,255,.5)">${ic(i,16)}</span></div>`).join('')}</div>
-   <button class="btn" data-act="bknext" data-v="room" style="width:100%;height:50px;margin-top:20px;background:${q.acc};color:${q.onacc}">Continue</button></div></div>`}
+   <div class="hbar" aria-hidden="true"><i style="background:${q.acc}"></i></div><button class="btn" data-act="bknext" data-v="room" style="width:100%;height:50px;margin-top:14px;background:${q.acc};color:${q.onacc}">Continue now</button><div class="cap" style="margin-top:8px;color:rgba(255,255,255,.6)">Continuing on its own in a moment</div></div></div>`}
  if(b.step==='alts'){const alts=[[c.k,'Nov 13–15','Rooms available · member rate','Same hotel, next open dates',0],['artesian','Nov 6–8','Rooms from $99 · member rate',mi(p.dist.artesian)+(S.favs[S.persona].has('artesian')?' · one of your favorites':''),1],[c.k==='winstar'?'riverwind':'winstar','Nov 6–8','Rooms from $79 · member rate',mi(p.dist[c.k==='winstar'?'riverwind':'winstar']),2]];
   return `<div class="body">${bar}${who}
   <div class="px" style="margin-top:18px"><div style="display:flex;align-items:center;gap:8px"><h1 class="t2">${q.n} is sold out Nov 6–8</h1>${fut()}</div><div class="cap" style="margin-top:4px">Other options, ranked by your dates, distance and favorites.</div></div>
@@ -1983,7 +2049,7 @@ function upcoming(){const it=upcomingItems();
 function offerAct(o,tile){const x=OX[o.id]||{},c=S.claimed.has(o.id),bk=S.booked[S.persona];
  if(x.how==='book')return bk&&bk.o===o.id?`<span class="${tile?'btn sm done':'oncard'}">${ic('check',13,2.6)} Booked</span>`:`<button data-act="obook" data-id="${o.id}" class="btn sm" ${tile?'style="background:#fff;color:#0A1324"':''}>Book</button>`;
  if(x.how==='card')return `<span class="${tile?'btn sm done':'oncard'}" ${tile?'style="background:rgba(8,30,22,.8)"':''}>${ic('check',13,2.6)} On card</span>`;
- return `<button data-act="claim" data-id="${o.id}" class="btn sm ${c?'done':tile?'':'line'}" ${tile&&!c?'style="background:#fff;color:#0A1324"':''} aria-label="${c?'In your Passport':'Add to Passport'}">${c?ic('check',15,2.4)+(tile?' Claimed':''):'Claim'}</button>`}
+ return `<button data-act="claim" data-id="${o.id}" class="btn sm ${c?'done':tile?'':'line'}" ${tile&&!c?'style="background:#fff;color:#0A1324"':''} aria-label="${c?'In your Passport':'Add to Passport'}">${c?ic('check',15,2.4)+(tile?' In Passport':''):ic('plus',14,2.6)+' Add'}</button>`}
 function offerTile(o){const p=P[o.p],x=OX[o.id]||{};
  return `<div style="width:250px"><div class="photo" data-act="oopen" data-id="${o.id}" role="button" aria-label="${o.t}" style="${bg(o.img)};height:160px;border-radius:20px;cursor:pointer;--shade:linear-gradient(180deg,rgba(5,10,20,.55) 0,rgba(5,10,20,0) 40%,rgba(5,10,20,.2) 60%,rgba(5,10,20,.8) 100%)">
   <div style="position:absolute;left:12px;top:12px">${lg(o.p,22)}</div>${x.pin?`<span class="pinl" style="position:absolute;right:10px;top:10px;height:22px;font-size:10.5px">${ic('star',11,2.4)} Featured</span>`:''}
@@ -1991,7 +2057,7 @@ function offerTile(o){const p=P[o.p],x=OX[o.id]||{};
   <span style="position:absolute;right:10px;bottom:12px">${offerAct(o,1)}</span></div>
   <div style="padding:10px 2px 0"><div style="font-weight:700;font-size:14.5px;line-height:1.3">${o.t}</div><div class="cap" style="margin-top:3px">${p.n} · ${expTxt(o)}</div></div></div>`}
 function offerRow(o){const p=P[o.p],x=OX[o.id]||{};
- return `<div class="li orow"><button data-act="oopen" data-id="${o.id}" class="photo" aria-label="${o.t}" style="${bg(o.img)};width:72px;height:72px;border-radius:16px;flex:none;--shade:linear-gradient(180deg,transparent 30%,rgba(5,10,20,.75))"><span style="position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--disp);font-weight:800;font-size:${o.v.length>4?13:17}px;color:#fff">${o.v}</span></button>
+ return `<div class="li orow"><button data-act="oopen" data-id="${o.id}" class="photo" aria-label="${o.t}" style="${bg(o.img)};width:72px;height:72px;border-radius:16px;flex:none;--shade:linear-gradient(180deg,transparent 30%,rgba(5,10,20,.75))">${x.d!=null&&x.d<=3?`<span class="xchip${x.d===0?' hot':''}">${x.d===0?'Tonight':x.d+' days'}</span>`:''}<span style="position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--disp);font-weight:800;font-size:${o.v.length>4?13:17}px;color:#fff">${o.v}</span></button>
   <button data-act="oopen" data-id="${o.id}" class="grow" style="text-align:left"><div style="font-size:12px;font-weight:700;color:${p.hi};letter-spacing:.02em;display:flex;align-items:center;gap:4px">${x.pin?`<span style="color:#E9C77B;display:flex">${ic('star',11,2.6)}</span>`:''}${p.n} · ${mi(per().dist[o.p])}</div><div class="k" style="line-height:1.3;margin-top:2px">${o.t}</div><div class="v" style="margin-top:2px">${o.type} · ${expTxt(o)}</div></button>
   ${offerAct(o)}</div>`}
 SCR.offers=()=>{const types=['All','Free Play','Dining','Stay','Spa','Points'],pfp=prefProp(),live=liveOffers(),props=propOrder([...new Set(live.map(o=>o.p))]);
@@ -2033,19 +2099,26 @@ Object.assign(NOTES,{
 });
 
 /* ---------- Kept from the property apps (BRD 4.12): Stay & digital key at every property with a hotel, wayfinding at WinStar ---------- */
-// The guest's stay: in a stay now (Winnie), a booking made in the app, or the upcoming Elite Weekend (Jordan)
+// The guest's stay: in a stay now (Winnie) or a booking made in the app. Nothing booked, no key.
 function stayFor(){const A1=S.persona==='A',b=S.booked[S.persona];
  if(A1)return {k:'winstar',now:true,room:'1418',type:'Tower king',dates:'Tue, Oct 6 – Sun, Oct 11',until:'Sunday, 11:00 AM',conf:'WS-40718'};
  if(b&&P[b.k]&&P[b.k].f.hotel)return {k:b.k,now:false,type:b.room,dates:b.dates,conf:b.conf,checkin:'3 PM'};
- return {k:'winstar',now:false,type:'Standard king',dates:'Fri, Oct 9 – Sun, Oct 11',conf:'WS-88213',checkin:'3 PM'}}
+ return null}
 const keyHotels=()=>Object.keys(P).filter(x=>P[x].f.hotel);
 const STAYIMG={winstar:'ws-stay',artesian:'ar-lobby',riverwind:'rw-hero',lakecrest:'lc-hero',treasure:'tv-hero',westbay:'wb-hotel'};
-SCR.stay=()=>{const st=stayFor(),k=st.k,q=P[k],t=TIERS[per().tier];
+// No stay booked: where the key will work, and the hotel offer to book
+function noStayHTML(){const o=OFFERS[S.persona].find(z=>OX[z.id]&&OX[z.id].how==='book');
+ return `<div class="body"><div class="topbar" style="justify-content:flex-start;gap:12px"><button data-go="trip" class="iconbtn" aria-label="Back">${ic('back',20,2.2)}</button><h1 class="t1" style="font-size:26px;flex:1">Stay & digital key</h1></div>
+  <div class="px" style="margin-top:14px"><div style="padding:22px 20px;border-radius:24px;background:var(--el);box-shadow:inset 0 0 0 1px var(--ln);text-align:center"><div style="width:56px;height:56px;border-radius:18px;margin:0 auto;display:grid;place-items:center;background:rgba(156,195,245,.14);color:var(--hi)">${ic('key',26)}</div><div style="font-weight:800;font-size:18px;margin-top:12px">No stay booked yet</div><div class="cap" style="margin-top:6px;line-height:1.45">When you book a room, your key arrives here at check-in. It opens your door at any of our hotels.</div>
+  ${o?`<button class="btn" data-act="obook" data-id="${o.id}" style="width:100%;height:48px;margin-top:16px">${ic('bed',17)} Book ${OX[o.id].bk.short} at ${P[o.p].n} · ${o.v}</button>`:''}</div></div>
+  <div class="sec"><h4>Hotels with a digital key</h4></div>
+  <div class="list">${keyHotels().sort((a,b)=>per().dist[a]-per().dist[b]).map(x=>`<button class="li" data-act="prop" data-p="${x}" style="width:100%;text-align:left"><span class="photo" style="${bg(STAYIMG[x]||P[x].hero)};width:48px;height:48px;border-radius:12px;flex:none"></span><div class="grow"><div class="k">${P[x].n}</div><div class="v">${P[x].city} · ${mi(per().dist[x])}</div></div>${ic('right',16)}</button>`).join('')}</div></div>`}
+SCR.stay=()=>{const st=stayFor();if(!st)return noStayHTML();const k=st.k,q=P[k],t=TIERS[per().tier];
  const arrive=st.now?st.room:st.dates.split(' – ')[0].replace(/^\w+, /,'');
  const pass=`<div style="margin:0 20px;border-radius:26px;overflow:hidden;background:linear-gradient(150deg,${q.bg},#10152A);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)">
    <div style="padding:18px 20px;display:flex;justify-content:space-between;align-items:center">${lg(k,24)}<span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7)">ROOM KEY</span></div>
    <div style="padding:0 20px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div><div style="font-size:12px;color:rgba(255,255,255,.6);font-weight:600">${st.now?'Room':'Arrives'}</div><div style="font-family:var(--disp);font-weight:800;font-size:44px;letter-spacing:-.02em;color:#fff;line-height:1">${arrive}</div></div><div style="text-align:right;font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.45">${st.type}<br>${st.now?'Until '+st.until.replace(', 11:00 AM',' 11 AM'):'Key arrives at check-in, '+st.checkin}</div></div>
-   ${st.now?`<button data-act="key" style="width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15px;color:${S.keyOpen?'#0A1324':'#fff'};background:${S.keyOpen?'#5FD7A5':'rgba(255,255,255,.08)'};border-top:1px solid rgba(255,255,255,.1);transition:background .3s">${S.keyOpen?ic('check',20,2.6)+' Door unlocked':ic('nfc',20)+' Hold near the lock'}</button>`
+   ${st.now?`<button data-act="key" style="width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15px;color:${S.keyOpen?'#0A1324':'#fff'};background:${S.keyOpen?'#5FD7A5':'rgba(255,255,255,.08)'};border-top:1px solid rgba(255,255,255,.1);transition:background .3s">${S.keyOpen?ic('check',20,2.6)+' Door unlocked':ic('nfc',20)+' Use the key in the app'}</button>`
    :`<div style="height:56px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);border-top:1px solid rgba(255,255,255,.1)">${ic('clock',16)} We’ll let you know when your room is ready</div>`}</div>`;
  const rows=st.now?[['receipt','Folio',S.folioPaid?'Paid from Resort Wallet':'$186.40 so far'],['car','Valet',t.n+' priority'],['clock','Check-out',st.until]]:[['receipt','Confirmation',st.conf],['car','Valet',t.n+' rate'],['clock','Check-in','From '+st.checkin]];
  return `<div class="body">
@@ -2053,7 +2126,8 @@ SCR.stay=()=>{const st=stayFor(),k=st.k,q=P[k],t=TIERS[per().tier];
    <div style="position:absolute;top:58px;left:16px"><button data-go="trip" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button></div>
    <div style="position:absolute;left:20px;right:20px;bottom:18px"><span class="glass" style="display:inline-flex;height:28px;padding:0 11px;border-radius:99px;align-items:center;font-size:12px;font-weight:700;color:#fff">${st.now?'In your stay':'Upcoming stay'}</span><h1 class="t1" style="color:#fff;margin-top:8px">${st.now?'Welcome to '+q.n:'Your stay at '+q.n}</h1><div style="font-size:13px;color:rgba(255,255,255,.82)">${st.dates} · ${st.conf}</div></div></div>
   <div style="margin-top:6px">${pass}</div>
-  ${st.now?`<div style="display:flex;justify-content:center;margin-top:12px"><button data-act="keywallet" style="font-size:13px;font-weight:700;color:var(--hi);display:inline-flex;align-items:center;gap:6px">${ic('wallet',15)} Add key to Apple Wallet</button></div>`:''}
+  ${st.now?(S.keyWallet?`<div class="px" style="margin-top:12px"><div class="okbar">${ic('check',16,2.6)} In Apple Wallet · Express Mode on</div><div class="cap" style="margin-top:8px;text-align:center">Hold your iPhone or Apple Watch near the lock. No need to unlock or open the app.</div></div>`
+   :`<div class="px" style="margin-top:12px"><button class="awbtn" data-act="keywallet">${ic('wallet',18)} Add to Apple Wallet</button><div class="cap" style="margin-top:8px;text-align:center">The fastest way in: Express Mode opens the door without unlocking your phone. The key above works too.</div></div>`):''}
   <div class="sec"><h4>Your stay</h4></div>
   <div class="list">${rows.map(([i,l,v])=>`<div class="li"><span style="color:var(--ink2)">${ic(i,20)}</span><div class="grow"><div class="k">${l}</div></div><span class="v" style="font-weight:600;color:var(--ink)">${v}</span></div>`).join('')}</div>
   ${st.now?`<div class="px" style="margin-top:12px"><button class="btn ${S.folioPaid?'done':''}" data-act="payfolio" style="width:100%;height:48px">${S.folioPaid?ic('check',16,2.6)+' Folio paid from Resort Wallet':ic('wallet',16)+' Pay folio $186.40 with Resort Wallet'}</button></div>`:''}
@@ -2065,7 +2139,10 @@ SCR.stay=()=>{const st=stayFor(),k=st.k,q=P[k],t=TIERS[per().tier];
 const WAYD=[['Golden Stampede Grand','Machine 40412 · Plaza C · Bank 14 · 3 of 7 open','ws-gaming',2,'M100 470 L100 356 L128 356 L128 188 L300 188 L300 226',[300,262]],
  ['Kirby’s Prime Steakhouse','Food hall · open until 11 PM','d-kirbys',4,'M100 470 L100 356 L198 356 L198 432 L262 432',[288,432]],
  ['Cage and Players Club','Next to Plaza A · open 24 hours','ws-tables',1,'M100 470 L100 356 L128 356 L128 270 L106 270',[70,270]],
- ['Valet and hotel lobby','West entrance','ws-stay',3,'M100 470 L100 356 L128 356 L128 188 L378 188 L378 152',[352,140]]];
+ ['Valet and hotel lobby','West entrance','ws-stay',3,'M100 470 L100 356 L128 356 L128 188 L378 188 L378 152',[352,140]],
+ ['Red Hot Ruby Major','Plaza A · Bank 3 · 2 of 6 open','ws-gaming',2,'M100 470 L100 356 L128 356 L128 188 L100 188 L100 150',[100,112]],
+ ['Restrooms','Next to Plaza D',null,1,'M100 470 L100 420 L136 420',[150,420],'wc'],
+ ['ATM','By Plaza A, next to the cage',null,2,'M100 470 L100 356 L128 356 L128 188 L70 188 L70 154',[70,140],'atm']];
 SCR.wayfind=()=>{const di=S.wayDest||0,d=WAYD[di],[tx,ty]=d[5];
  const zones=[[20,30,160,150,'Plaza A'],[196,30,174,150,'Plaza B'],[20,196,100,150,'Cage'],[136,196,234,150,'Plaza C'],[20,362,170,140,'Plaza D'],[206,362,164,140,'Food hall']];
  const map=`<svg viewBox="0 0 390 520" width="390" height="470" preserveAspectRatio="xMidYMin meet" style="display:block" role="img" aria-label="WinStar floor map with a route to ${d[0]}">
@@ -2073,7 +2150,7 @@ SCR.wayfind=()=>{const di=S.wayDest||0,d=WAYD[di],[tx,ty]=d[5];
   ${zones.map(([x,y,w,h,l])=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="#16223A"/><text x="${x+12}" y="${y+22}" fill="rgba(243,246,251,.45)" font-size="11" font-weight="700" font-family="Plus Jakarta Sans">${l.toUpperCase()}</text>`).join('')}
   ${Array.from({length:7},(_,i)=>`<rect x="${156+i*28}" y="236" width="18" height="52" rx="4" fill="${i===5&&di===0?'#FDC010':'#243554'}"/>`).join('')}
   ${Array.from({length:9},(_,i)=>`<rect x="${34+i*15}" y="70" width="9" height="36" rx="2" fill="#243554"/><rect x="${210+i*17}" y="70" width="10" height="36" rx="2" fill="#243554"/>`).join('')}
-  <path d="${d[4]}" fill="none" stroke="#9CC3F5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="${d[4]}" fill="none" stroke="${S.wayAcc?'#7FE3B8':'#9CC3F5'}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="${d[4]}" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"${S.wayOn?' class="waydash"':''}/>
   <circle cx="100" cy="470" r="14" fill="rgba(156,195,245,.25)"/><circle cx="100" cy="470" r="8" fill="#9CC3F5" stroke="#fff" stroke-width="3"/>
   <text x="118" y="474" fill="#9CC3F5" font-size="11" font-weight="700" font-family="Plus Jakarta Sans">You’re here</text>
@@ -2083,16 +2160,73 @@ SCR.wayfind=()=>{const di=S.wayDest||0,d=WAYD[di],[tx,ty]=d[5];
  return `<div class="body" style="padding-bottom:0">
   <div style="position:absolute;inset:0;background:#0E1729"></div><div style="position:absolute;left:0;right:0;top:150px">${map}</div>
   <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;gap:10px"><div class="glass" style="flex:1;height:46px;border-radius:14px;display:flex;align-items:center;gap:10px;padding:0 14px;color:#fff;min-width:0">${ic('search',18)}<span style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${d[0]}</span></div><span class="glass" style="height:46px;padding:0 12px;border-radius:14px;display:grid;place-items:center">${lg('winstar',18)}</span></div>
-  <div class="hs" style="position:absolute;top:112px;left:0;right:0;gap:8px">${WAYD.map((w,i)=>`<button class="chip" data-act="waydest" data-v="${i}" aria-pressed="${di===i}" style="height:32px;font-size:12.5px;flex:none">${w[0].replace(' and Players Club','').replace(' and hotel lobby','')}</button>`).join('')}</div>
+  <div class="hs" style="position:absolute;top:112px;left:0;right:0;gap:8px"><button class="chip tgl" data-act="wayacc" aria-pressed="${!!S.wayAcc}" style="height:32px;font-size:12.5px;flex:none">${ic('access',14)} Step-free</button>${WAYD.map((w,i)=>`<button class="chip" data-act="waydest" data-v="${i}" aria-pressed="${di===i}" style="height:32px;font-size:12.5px;flex:none">${w[6]?ic(w[6],13)+' ':''}${w[0].replace(' and Players Club','').replace(' and hotel lobby','')}</button>`).join('')}</div>
   <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 20px 104px;border-radius:30px 30px 0 0;background:#0E1830;box-shadow:0 -20px 40px rgba(0,0,0,.4)">
    <div style="width:38px;height:5px;border-radius:3px;background:rgba(255,255,255,.2);margin:0 auto 14px"></div>
-   <div style="display:flex;gap:14px;align-items:center"><div class="photo" style="${bg(d[2])};width:60px;height:60px;border-radius:16px;flex:none;--shade:none"></div><div style="flex:1;min-width:0"><div style="font-weight:800;font-size:16px">${d[0]}</div><div class="cap">${d[1]}</div></div></div>
-   <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" data-act="waygo" style="flex:1">${S.wayOn?ic('x',16)+' Stop directions':ic('nav',16)+' Start · '+d[3]+' min'}</button><button class="btn line" data-act="wayclose" aria-label="Close map" style="width:44px;padding:0">${ic('x',18)}</button></div>
+   <div style="display:flex;gap:14px;align-items:center">${d[2]?`<div class="photo" style="${bg(d[2])};width:60px;height:60px;border-radius:16px;flex:none;--shade:none"></div>`:`<div style="width:60px;height:60px;border-radius:16px;flex:none;display:grid;place-items:center;background:#F3F6FB;color:#0A1324">${ic(d[6],26)}</div>`}<div style="flex:1;min-width:0"><div style="font-weight:800;font-size:16px">${d[0]}</div><div class="cap">${d[1]}${S.wayAcc?' · <span style="color:#7FE3B8">step-free route</span>':''}</div></div></div>
+   <div style="display:flex;gap:10px;margin-top:14px"><button class="btn" data-act="waygo" style="flex:1">${S.wayOn?ic('x',16)+' Stop directions':ic('nav',16)+' Start · '+(d[3]+(S.wayAcc?1:0))+' min'}</button><button class="btn line" data-act="wayclose" aria-label="Close map" style="width:44px;padding:0">${ic('x',18)}</button></div>
   </div></div>`};
 
 Object.assign(NOTES,{
- stay:{e:'Stay & digital key',t:'Your room key, at any of our hotels',d:'A stay at any property with a hotel puts the room key on the phone at check-in, branded for that property: hold the phone near the lock, or add it to Apple Wallet. The same screen shows the folio, valet and check-out, and at WinStar the guest can pay the folio from the Resort Wallet or order to the room. Properties without a hotel never show a key.',aud:['GM','Hotel ops','Exec'],src:'<b>Requirement 4.12:</b> nothing the property apps do today is lost in the move. <b>4.8:</b> the app supports the trip. The digital key vendor and lock system at each hotel are to be confirmed with hotel operations.'},
- wayfind:{e:'Wayfinding',t:'Find your way around WinStar',d:'WinStar only, as in the WinStar app today: pick a machine, a restaurant, the cage or valet and follow the blue line. It opens from the WinStar property page and from the room key.',aud:['GM','Exec'],src:'<b>Requirement 4.12:</b> WinStar’s wayfinding stays. Other properties can be added once they have indoor maps.'}});
+ stay:{e:'Stay & digital key',t:'Your room key, at any of our hotels',d:'A stay at any property with a hotel puts the room key on the phone at check-in, branded for that property: add it to Apple Wallet with Express Mode, or hold the phone near the lock with the app. The same screen shows the folio, valet and check-out, and at WinStar the guest can pay the folio from the Resort Wallet or order to the room. Properties without a hotel never show a key.',aud:['GM','Hotel ops','Exec'],src:'<b>Requirement 4.12:</b> nothing the property apps do today is lost in the move. <b>4.8:</b> the app supports the trip. The digital key vendor and lock system at each hotel are to be confirmed with hotel operations.'},
+ wayfind:{e:'Wayfinding',t:'Find your way around WinStar',d:'WinStar only, as in the WinStar app today: pick a machine, a restaurant, the cage, valet, a restroom or an ATM and follow the line. A step-free route uses lifts and ramps only. Live meters open the same map with “Take me there”. It opens from the WinStar property page and from the room key.',aud:['GM','Exec'],src:'<b>Requirement 4.12:</b> WinStar’s wayfinding stays. Other properties can be added once they have indoor maps.'}});
+
+/* ================= v4 UX pass (Oct 17): consistency, fewer taps, accessibility ================= */
+// One demo "today": Wednesday, October 7, 2026. Shows before today are gone (BRD 4.6).
+const upRows=a=>a.filter(r=>r[1]==='Sep'?false:r[1]==='Oct'?+r[2]>=7:true);
+const upShows=()=>upRows(SHOWS);
+Object.assign(PATHS,{access:'<circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/>'});
+// A WinStar game the floor map can route to
+const wayIdx=n=>WAYD.findIndex(w=>w[0]===n);
+
+// The real menu. The demo screens sit behind a presenter switch at the bottom.
+const MENU=[['Your visit',[['trip','Trip'],['stay','Stay & digital key',()=>!!stayFor()],['wayfind','WinStar maps'],['destinations','Destinations']]],
+ ['Help',[['concierge','Concierge'],['host','Your host'],['inbox','Inbox']]],
+ ['Account',[['settings','Account'],['security','Sign-in & security'],['comms','Messages & alerts'],['preferred','Preferred property']]]];
+const menuRows=()=>MENU.map(([g,items])=>`<div class="dlab" style="padding:18px 18px 6px">${g}</div>${items.filter(x=>!x[2]||x[2]()).map(([k,l])=>`<button data-nav="${k}" class="drow" aria-current="${S.screen===k}"><span>${ic(SICON[k]||'right',19)}</span>${l}</button>`).join('')}`).join('');
+
+// The card, full screen and ready to scan: one tap from Home and Passport
+function cardSheetHTML(){const p=per(),t=TIERS[p.tier];
+ return `<div class="csheet" role="dialog" aria-label="Your Club Passport card"><div class="csheet-top"><span class="wm" style="font-size:14px">CLUB PASSPORT</span><button data-act="cardclose" class="iconbtn" aria-label="Close" style="background:#E3E8F0;color:#0A1324">${ic('x',18,2.4)}</button></div>
+  <div class="csheet-card">${kcard(p,300)}</div>
+  <div class="csheet-qr">${qr(p.num,25,8)}</div>
+  <div class="csheet-no num">${p.num}</div><div class="csheet-t">${p.name} · ${t.n}</div>
+  <div class="csheet-hint">${ic('zap',14)} Screen brightness is turned up. The code refreshes every 30 seconds.</div>
+  <span class="csheet-w">${ic('wallet',16)} Add to Apple Wallet</span></div>`}
+
+// The phone's own permission prompt (Face ID on Welcome)
+function sysAlertHTML(){const a=S.sysAlert;
+ return `<div class="sysal-bg"><div class="sysal" role="alertdialog" aria-label="${a.t}"><div class="sysal-ic">${ic('face',30,1.8)}</div><b>${a.t}</b><p>${a.d}</p><div class="sysal-b"><button data-act="${a.no}">Don’t Allow</button><button data-act="${a.ok}">Allow</button></div></div></div>`}
+
+// Destinations: a list or a map, with filters (BRD 4.8: move between properties)
+const GOLF=new Set(['winstar']);
+// Longitude, latitude and where the label sits (r right, l left, t above, b below)
+const GEO={winstar:[-97.13,33.77,'r'],riverwind:[-97.47,35.22,'r'],riverstar:[-97.94,33.90,'r'],lakecrest:[-97.13,34.17,'r'],treasure:[-97.12,34.50,'b'],artesian:[-96.97,34.51,'r'],newcastle:[-97.60,35.25,'t'],saltcreek:[-97.95,35.18,'b'],chisholm:[-97.96,34.50,'r'],westbay:[-96.72,33.99,'l'],megastar:[-96.83,33.87,'r']};
+const DFIL=[['all','All'],['hotel','Hotel'],['spa','Spa'],['golf','Golf']];
+const dfit=(k,f)=>f==='all'||(f==='golf'?GOLF.has(k):!!P[k].f[f]);
+SCR.destinations=()=>{const p=per(),f=S.dfil||'all',mapv=S.dview==='map';
+ const keys=Object.keys(P).filter(k=>dfit(k,f)).sort((a,b)=>p.dist[a]-p.dist[b]);
+ const home=S.gm?S.gPref:p.home;
+ const card=k=>{const q=P[k],fs=Object.keys(q.f).filter(x=>FEAT[x]).slice(0,3);
+  return `<button data-act="prop" data-p="${k}" class="photo" style="${bg(q.hero)};display:block;width:100%;height:150px;border-radius:22px;text-align:left;--shade:linear-gradient(180deg,rgba(5,10,20,.35) 0,rgba(5,10,20,0) 35%,rgba(5,10,20,.88) 100%)">
+   <span class="glass" style="position:absolute;right:12px;top:12px;height:28px;padding:0 11px;border-radius:99px;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fff">${ic('pin',13)} ${mi(p.dist[k])}</span>
+   ${home===k?`<span style="position:absolute;left:12px;top:12px;height:28px;padding:0 11px;border-radius:99px;display:inline-flex;align-items:center;font-size:12px;font-weight:700;background:#fff;color:#0A1324">${S.gm?'Your pick':'Your home'}</span>`:''}
+   <div style="position:absolute;left:16px;right:16px;bottom:12px;display:flex;align-items:flex-end;justify-content:space-between;gap:10px"><div style="display:flex;flex-direction:column;gap:5px;align-items:flex-start">${lg(k,26)}<span style="font-size:12.5px;color:rgba(255,255,255,.85);font-weight:600">${q.city}, OK</span></div>
+   <div style="display:flex;gap:6px">${fs.map(x=>`<span class="glass" title="${FEAT[x][1]}" style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff">${ic(FEAT[x][0],15)}</span>`).join('')}</div></div></button>`};
+ const W=350,H=430,xy=([lo,la])=>[Math.round((lo+98.25)/1.75*(W-40)+20),Math.round((35.5-la)/1.9*(H-40)+20)];
+ const me=Object.keys(P).sort((a,b)=>p.dist[a]-p.dist[b])[0];
+ const i35=[[-97.50,35.45],[-97.44,35.22],[-97.12,34.50],[-97.13,34.17],[-97.14,33.72]].map(xy);
+ const lab=(x,y,pos,o=14)=>pos==='l'?[x-o,y+4,'end']:pos==='t'?[x,y-o-1,'middle']:pos==='b'?[x,y+o+11,'middle']:[x+o,y+4,'start'];
+ const map=`<div class="dmap"><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Map of the 11 Chickasaw Nation destinations">
+  <rect width="${W}" height="${H}" rx="22" fill="#0E1729"/>
+  <path d="M20 ${H-34} C110 ${H-50} 200 ${H-22} ${W-20} ${H-44}" fill="none" stroke="rgba(156,195,245,.3)" stroke-width="3"/><text x="${W-24}" y="${H-16}" text-anchor="end" fill="rgba(243,246,251,.5)" font-size="10.5" font-family="Plus Jakarta Sans">Red River · Texas</text>
+  <polyline points="${i35.map(a=>a.join(',')).join(' ')}" fill="none" stroke="rgba(243,246,251,.14)" stroke-width="4" stroke-linejoin="round"/><text x="${i35[0][0]+8}" y="${i35[0][1]+16}" fill="rgba(243,246,251,.45)" font-size="10.5" font-weight="700" font-family="Plus Jakarta Sans">I-35</text>
+  ${Object.keys(P).map(k=>{const [x,y]=xy(GEO[k]),on=dfit(k,f),[lx,ly,an]=lab(x,y,GEO[k][2],k===me?21:14);return `<g class="dpin${on?'':' off'}" data-act="prop" data-p="${k}" role="button" aria-label="${P[k].n}, ${P[k].city}">${k===me?`<circle cx="${x}" cy="${y}" r="17" fill="none" stroke="${P[k].acc}" stroke-width="2" opacity=".7"/>`:''}<circle cx="${x}" cy="${y}" r="16" fill="transparent"/><circle cx="${x}" cy="${y}" r="${k===me?10:8}" fill="${on?P[k].acc:'#3A4560'}" stroke="#0E1729" stroke-width="3"/><text x="${lx}" y="${ly}" text-anchor="${an}" fill="${on?'#F3F6FB':'rgba(243,246,251,.4)'}" font-size="11.5" font-weight="700" font-family="Plus Jakarta Sans">${P[k].n}</text></g>`}).join('')}
+ </svg><div class="cap" style="margin-top:8px;text-align:center">The ring is you. Tap a property to open it.</div></div>`;
+ return `<div class="body"><div class="topbar" style="padding-bottom:0"><h1 class="t1">Destinations</h1><div class="seg2" role="group" aria-label="View"><button data-act="dview" data-v="list" aria-pressed="${!mapv}" aria-label="List">${ic('list',16)}</button><button data-act="dview" data-v="map" aria-pressed="${mapv}" aria-label="Map">${ic('map',16)}</button></div></div>
+  <div class="px cap" style="margin:6px 0 12px">${S.gm?'One card and one tier, recognized at all 11.':`Your ${TIERS[p.tier].n} status is recognized at all 11.`}</div>
+  <div class="hs" style="gap:8px;margin-bottom:14px">${DFIL.map(([k,l])=>`<button class="chip" data-act="dfil" data-v="${k}" aria-pressed="${f===k}">${l}${k==='all'?'':` <span style="opacity:.6;font-weight:700">${Object.keys(P).filter(x=>dfit(x,k)).length}</span>`}</button>`).join('')}</div>
+  ${mapv?`<div class="px">${map}</div>`:`<div class="px" style="display:flex;flex-direction:column;gap:12px">${keys.map(card).join('')}</div>`}</div>`};
 
 /* ---------- Guest mode: the app before signing in (requirement 4.1.3), booking with a nudge to sign in (4.1.4),
    and personal pages that ask the guest to join or link their account ---------- */
@@ -2235,21 +2369,26 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
  const later=m=>setTimeout(()=>toast(m),40);
  switch(act){
   // sign in or join
-  case 'dwho':S.door.who=v;S.door.sam=false;S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
+  case 'dwho':S.door.who=v;S.door.sam=false;S.door.typo=false;S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
   case 'didclear':S.door.idEmpty=true;render(true);return true;
   case 'didfill':if(S.door.idEmpty){S.door.idEmpty=false;S.door.idErr=false;render(true)}return true;
   case 'didtype':S.door.idType=S.door.idType==='phone'?'email':'phone';S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
   case 'dnotme':{const d=S.door;d.notme=true;d.perr=0;d.pinDemo='ok';d.pinHelp=false;stepTo(d,'card');return true}
   case 'dcardstart':{const d=S.door;d.who='new';d.cardFirst=true;stepTo(d,'card');return true}
-  case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m=d.who==='ret'&&d.idType!=='phone'?'email':'sms';d.second=false;d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
+  case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m=d.who==='ret'&&d.idType!=='phone'?'email':'sms';d.sentAt=0;d.second=false;d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
   case 'dpw':{const d=S.door;if(d.err==='pw'){d.err=null;render(true);return true}d.pwDone=true;d.m='sms';stepTo(d,'code');return true}
   case 'dcode':S.door.pwDone=false;S.door.m='sms';S.door.err=null;stepTo(S.door,'code');return true;
   case 'dforgot':S.rc={step:'pw',h:['menu']};go('recover');return true;
   case 'derr':{const d=S.door;if(v==='locked'){d.err=null;stepTo(d,'locked');return true}d.err=d.err===v?null:v;d.fill=false;render(true);return true}
   case 'dfill':{const d=S.door;d.err=null;d.fill=true;render(true);setTimeout(()=>{if(S.screen==='login'&&S.door.step==='code'&&S.door.fill)doorVerified()},800);return true}
   case 'dmethods':S.door.methods=!S.door.methods;render(true);return true;
-  case 'dm':{const d=S.door;d.m=v;d.methods=false;d.fill=false;d.err=null;if(d.step!=='code'){stepTo(d,'code')}else render(true);toast(v==='app'?'Open your authenticator app':`New code sent by ${v==='email'?'email':'text'}`);return true}
-  case 'dresend':S.door.err=null;render(true);toast('New code sent');return true;
+  case 'dm':{const d=S.door;d.m=v;d.sentAt=Date.now();d.methods=false;d.fill=false;d.err=null;if(d.step!=='code'){stepTo(d,'code')}else render(true);toast(v==='app'?'Open your authenticator app':`New code sent by ${v==='email'?'email':'text'}`);return true}
+  case 'dresend':S.door.err=null;S.door.sentAt=Date.now();render(true);toast('New code sent');return true;
+  case 'dchange':{const d=S.door;d.err=null;d.fill=false;d.h=[];d.step='start';render();return true}
+  case 'dopenmail':{later('Opening Mail');setTimeout(()=>{const d=S.door;if(S.screen==='login'&&d.step==='code'&&!d.fill){d.fill=true;render(true);setTimeout(()=>{if(S.screen==='login'&&S.door.step==='code'&&S.door.fill)doorVerified()},800)}},900);return true}
+  case 'didset':{const d=S.door;if(v==='typo'){d.typo=!d.typo;d.idType='email';if(d.typo){d.who='new';d.sam=false}}else{d.idType=v;d.typo=false}d.idEmpty=false;d.idErr=false;render(true);return true}
+  case 'dfixtypo':{const d=S.door;d.typo=false;d.who='claim';d.sam=true;d.idType='email';d.err=null;if(d.step==='start')render(true);else stepTo(d,'pin');later('Changed to sam.carter@example.com');return true}
+  case 'dpinshow':S.door.pinShow=!S.door.pinShow;render(true);return true;
   case 'dnophone':stepTo(S.door,'find');return true;
   case 'dnewph':S.door.newph=true;S.door.m='sms';stepTo(S.door,'code');return true;
   case 'dfidretry':S.door.fid=null;render();return true;
@@ -2257,7 +2396,11 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dface':S.trusted[P1]=true;doorDone('Face ID is on. Next time, just open the app.');return true;
   case 'dskip':doorDone('Signed in to all 11 properties');return true;
   case 'daddpw':S.trusted[P1]=S.door.faceOn;S.pwf=Object.assign(pwfFresh('add'),{step:'create',back:'home'});S.door=doorFresh();go('password');return true;
-  case 'dfacetg':S.door.faceOn=!S.door.faceOn;render(true);return true;
+  case 'dfacetg':{const d=S.door;if(!d.faceOn&&d.faceDenied){later('Allow Face ID for Club Passport in iPhone Settings');return true}
+   if(!d.faceOn&&!d.faceAsked){S.sysAlert={t:'Do you want to allow “Club Passport” to use Face ID?',d:'Club Passport uses Face ID to sign you in and confirm it’s you.',ok:'dfaceallow',no:'dfacedeny'};render(true);return true}
+   d.faceOn=!d.faceOn;render(true);return true}
+  case 'dfaceallow':S.door.faceAsked=true;S.door.faceOn=true;S.sysAlert=null;render(true);return true;
+  case 'dfacedeny':S.door.faceAsked=true;S.door.faceDenied=true;S.sysAlert=null;render(true);later('Face ID stays off. You can sign in with a code or passkey.');return true;
   case 'dmore':S.door.more=true;render(true);return true;
   case 'dwelcome':{const on=S.door.faceOn;S.trusted[P1]=on;S.secFace=on;doorDone(S.door.sam?`Card linked. The demo continues as ${per().first}.`:on?'Your Club Passport is ready':'Your Club Passport is ready. Face ID is off.');return true}
   case 'dnext':stepTo(S.door,v);return true;
@@ -2284,7 +2427,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dother':S.trusted[P1]=false;clearTimeout(S.fidT);S.fidT=null;S.door=doorFresh();render();return true;
   case 'dpasskey':S.pk={mode:'signin',step:'ask',from:'door'};render(true);return true;
   case 'dpkcreate':S.pk={mode:'create',step:'ask',from:v==='welcome'?'welcome':'door'};render(true);return true;
-  case 'movego':S.trusted[P1]=true;go('login');later('Your WinStar sign-in moved over');return true;
+  case 'movego':S.trusted[P1]=true;S.fromOld=true;go('login');later('Your WinStar sign-in moved over');return true;
   // passkeys
   case 'pkcreate':S.pk={mode:'create',step:'ask',from:'security'};render(true);return true;
   case 'pkgo':S.pk.step='face';render(true);setTimeout(()=>{if(S.pk&&S.pk.step==='face')pkDone()},1100);return true;
@@ -2353,12 +2496,20 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'prefset':S.prefSel[P1]=a.dataset.p===autoPref().k?null:a.dataset.p;S.prop=a.dataset.p;S.opf=null;render(true);later(`${P[a.dataset.p].n} is your preferred property. The offers you get don’t change.`);return true;
   case 'gopref':go('preferred');return true;
   case 'key':S.keyOpen=!S.keyOpen;render(true);if(S.keyOpen)later('Unlocked');return true;
-  case 'keywallet':later('Room key added to Apple Wallet');return true;
+  case 'keywallet':S.keyWallet=true;render(true);later('Room key added to Apple Wallet · Express Mode on');return true;
   case 'payfolio':if(!S.folioPaid){S.folioPaid=true;if(typeof addTx==='function')addTx('WinStar room 1418 folio','Hotel',-186.4);render(true);later('Folio paid from your Resort Wallet')}return true;
   case 'roomorder':later('Menus from every WinStar restaurant, delivered to room 1418');return true;
   case 'waydest':S.wayDest=+v;S.wayOn=false;render(true);return true;
   case 'waygo':S.wayOn=!S.wayOn;render(true);if(S.wayOn)later('Follow the blue line');return true;
   case 'wayclose':S.wayOn=false;S.prop='winstar';go('property');return true;
+  case 'rnall':S.rnAll=!S.rnAll;render(true);return true;
+  case 'cardshow':S.cardSheet=true;render(true);return true;
+  case 'cardclose':S.cardSheet=false;render(true);return true;
+  case 'demomenu':S.demoMenu=!S.demoMenu;render(true);return true;
+  case 'dfil':S.dfil=v;render(true);return true;
+  case 'dview':S.dview=v;render(true);return true;
+  case 'waymeter':S.wayDest=+v;S.wayOn=true;S.prop='winstar';go('wayfind');return true;
+  case 'wayacc':S.wayAcc=!S.wayAcc;render(true);return true;
   case 'prefpick':{const k=a.dataset.p;if(S.gm)S.gPref=k;else S.prefSel[P1]=k===autoPref().k?null:k;render(true);later(`${P[k].n} is your preferred property. It shows first everywhere; the offers you get don’t change.`);return true}
   case 'prefauto':S.prefSel[P1]=null;S.prop=autoPref().k;render(true);return true;
   case 'fav':{const f=S.favs[P1],k=a.dataset.p;f.has(k)?f.delete(k):f.add(k);render(true);return true}
@@ -2389,15 +2540,19 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
  return `<div class="drawer-bg${an}" data-act="menuclose"></div><aside class="drawer${an}" role="dialog" aria-label="Menu">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:60px 18px 14px"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><button data-act="menuclose" class="iconbtn" aria-label="Close menu">${ic('x',18,2.2)}</button></div>
   <button data-nav="settings" style="margin:0 14px;width:calc(100% - 28px);display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;background:rgba(255,255,255,.06);text-align:left"><span class="av">${p.ini}</span><div style="flex:1;min-width:0"><div style="font-weight:700">${p.name}</div><div class="cap">${t.n} · ${fmt(p.pts)} pts</div></div>${ic('right',16)}</button>
-  <div style="padding:18px 18px 2px"><div class="dlab">Demo controls</div>
+  ${menuRows()}
+  <div class="dlab" style="padding:22px 18px 6px">Presenter</div>
+  <button data-act="demomenu" class="drow" aria-expanded="${!!S.demoMenu}"><span>${ic('sliders',19)}</span>${S.demoMenu?'Hide demo screens':'Show demo screens'}</button>
+  ${S.demoMenu?`  <div style="padding:18px 18px 2px"><div class="dlab">Demo controls</div>
    <div class="dseg">${[['A','Winnie · Elite'],['B','Jordan · Premier']].map(([v,l])=>`<button data-set="persona" data-v="${v}" aria-pressed="${S.persona===v}">${l}</button>`).join('')}</div>
    <div class="dseg" style="margin-top:6px">${[['umbrella','Parent-led'],['endorsed','Endorsed'],['property','Property-first']].map(([v,l])=>`<button data-set="model" data-v="${v}" aria-pressed="${S.model===v}">${l}</button>`).join('')}</div></div>
   ${FLOW.map(([g,items])=>`<div class="dlab" style="padding:18px 18px 6px">${g}</div>${items.map(([k,l])=>`<button data-nav="${k}" class="drow" aria-current="${S.screen===k}"><span>${ic(SICON[k]||'right',19)}</span>${l}</button>`).join('')}`).join('')}
   <div class="dlab" style="padding:18px 18px 6px">More views</div>
   ${[['gallery','All screens','map'],['web','Websites','globe'],['analytics','Analytics','chart'],['coverage','Requirements coverage','list']].map(([v,l,i])=>`<button data-set="view" data-v="${v}" class="drow"><span>${ic(i,19)}</span>${l}</button>`).join('')}
+`:''}
   <div style="padding:20px 18px 0;font-size:11.5px;color:var(--ink3)">Concept demo · sample data</div></aside>`}
 function screenHTML(scr,live,mob){const t=themeFor(scr);
- return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${SB}${NOTABS.includes(scr)?(live?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.fund?fundSheetHTML():''}${S.drWin&&scr==='drawing'?drawWinHTML():''}${S.stepup&&scr==='security'?stepupHTML():''}${S.pk?pkSheetHTML():''}${S.modal?modalHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
+ return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${live?'<div class="sbg" aria-hidden="true"><span></span></div>':''}${SB}${NOTABS.includes(scr)?(live?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.fund?fundSheetHTML():''}${S.drWin&&scr==='drawing'?drawWinHTML():''}${S.stepup&&scr==='security'?stepupHTML():''}${S.pk?pkSheetHTML():''}${S.modal?modalHTML():''}${S.cardSheet?cardSheetHTML():''}${S.sysAlert?sysAlertHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
 function phone(scr,live){return `<div class="phone"><span class="hw l" style="top:170px;height:34px"></span><span class="hw l" style="top:232px;height:62px"></span><span class="hw l" style="top:308px;height:62px"></span><span class="hw r" style="top:256px;height:98px"></span><div class="bezel">${screenHTML(scr,live)}</div></div>`}
 function fitBox(html,w,h,maxW,maxH,cls=''){const s=Math.min(1,maxW/w,maxH?maxH/h:1);return `<div class="fit ${cls}" style="width:${Math.round(w*s)}px;height:${Math.round(h*s)}px"><div class="inner" style="width:${w}px;height:${h}px;transform:scale(${s.toFixed(4)})">${html}</div></div>`}
 
@@ -2428,7 +2583,7 @@ function portal(){const p=per(),t=TIERS[p.tier],tab=S.portal;
     <div><h3>Recent activity <small>Everi CashClub</small></h3><table class="tbl"><tr><th>Activity</th><th>Where</th><th>When</th><th class="r">Amount</th></tr>${WT().slice(0,5).map(([t,sub,w,a])=>`<tr><td>${t}</td><td style="color:var(--mute)">${sub}</td><td style="color:var(--mute)">${w}</td><td class="r num" style="font-weight:600;color:${a>0?'#7FE3B8':'var(--text)'}">${a>0?'+':'−'}${usd(Math.abs(a))}</td></tr>`).join('')}</table></div></div>
    <div class="pc" style="grid-column:span 7;display:flex;gap:26px;align-items:center">${kcard(p,400)}<div style="display:flex;flex-direction:column;gap:10px;align-items:center"><div style="background:#fff;padding:12px;border-radius:16px">${qr(p.num,25,5)}</div><span style="font-size:12.5px;color:var(--mute);text-align:center">Scan at any kiosk,<br>cage or outlet</span></div></div>
    <div class="pc" style="grid-column:span 5"><h3>Balances</h3>${stats}<p style="font-size:13px;color:var(--mute);margin:18px 0 0;line-height:1.55">Points, Free Play and comps are shared across all 11 properties. There are no separate property balances to track.</p></div>
-   <div class="pc" style="grid-column:span 7"><h3>Claimed offers <small>${cl.length} ready</small></h3>${cl.length?`<table class="tbl"><tr><th>Offer</th><th>Property</th><th class="r">Value</th></tr>${cl.map(o=>`<tr><td>${o.t}</td><td>${P[o.p].n}</td><td class="r num">${o.v}</td></tr>`).join('')}</table>`:'<p style="color:var(--mute);margin:0">Nothing claimed yet. Claim an offer here or in the app and it appears in both places.</p>'}</div>
+   <div class="pc" style="grid-column:span 7"><h3>Offers in your Passport <small>${cl.length} ready</small></h3>${cl.length?`<table class="tbl"><tr><th>Offer</th><th>Property</th><th class="r">Value</th></tr>${cl.map(o=>`<tr><td>${o.t}</td><td>${P[o.p].n}</td><td class="r num">${o.v}</td></tr>`).join('')}</table>`:'<p style="color:var(--mute);margin:0">Nothing claimed yet. Claim an offer here or in the app and it appears in both places.</p>'}</div>
    <div class="pc" style="grid-column:span 5"><h3>Linked accounts</h3><table class="tbl"><tr><td>Everi CashClub</td><td class="r" style="color:#5FD7A5">Linked</td></tr><tr><td>Apple Wallet pass</td><td class="r" style="color:#5FD7A5">Added</td></tr></table></div></div>`}
  else if(tab==='tier'){const order=['circle','select','signature','society'],cur=order.indexOf(p.tier);
   const card=([at,i,ti,sub,choice])=>{const cl=done.has(at),reached=p.tp>=at,rd=reached&&!cl,isNext=nx&&nx[0]===at,locked=!reached&&!isNext,picked=cl&&S.msPick[S.persona][at];
@@ -2562,7 +2717,7 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
  let b='';
  const id=m.sam?SAM:p,ph=maskPh(id),demo=`<div class="demo" style="margin-top:14px"><span>Demo</span>${DOORWHO.map(([k,l])=>`<button data-act="wwho" data-v="${k}" aria-pressed="${m.who===k}">${l}</button>`).join('')}</div>`;
  const big=(act,v,t)=>`<button class="wsec" data-act="${act}"${v?` data-v="${v}"`:''} style="text-align:left;padding:0 16px">${t}</button>`;
- if(m.step==='start')b=`${head('Sign in','One account for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v">${m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)}</span></div><div class="wlinks" style="justify-content:space-between;margin-top:8px"><button data-act="wtype">${m.idType==='phone'?'Use my email instead':'Use my mobile number instead'}</button><button data-act="wcardstart">Use my card number</button></div>${k==='winstar'&&m.who!=='new'?`<div class="why" style="margin-top:12px">${ic('swap',16)}<span><b>Used to sign in to winstar.com?</b> Use the same email. Your winstar.com login is now your Club Passport.</span></div>`:''}${demo}
+ if(m.step==='start')b=`${head('Sign in','One account for every Chickasaw Nation site and the app.')}<div class="wf">Email or mobile number<span class="v"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)}</span><span class="idchip">${ic(m.idType==='phone'?'phone':'mail',12,2.2)}${m.idType==='phone'?'Mobile':'Email'}</span></span></div><div class="wlinks" style="justify-content:flex-start;margin-top:8px"><button data-act="wcardstart">Use my card number</button></div>${k==='winstar'&&m.who!=='new'?`<div class="why" style="margin-top:12px">${ic('swap',16)}<span><b>Used to sign in to winstar.com?</b> Use the same email. Your winstar.com login is now your Club Passport.</span></div>`:''}${demo}<div class="demo" style="margin-top:8px"><span>Demo</span>${[['email','Typed email'],['phone','Typed mobile']].map(([k,l])=>`<button data-act="wtypeset" data-v="${k}" aria-pressed="${(m.idType||'email')===k}">${l}</button>`).join('')}</div>
   <button class="wprim" data-act="wgo" style="${acc}">Continue</button><div class="ordiv"><span>or</span></div>
   <button class="wsec" data-act="wqr">${ic('qr',15)} Sign in with your phone</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey</button>
   <div class="wlinks"><button data-act="wstep" data-v="trouble">Trouble signing in?</button></div>`;
@@ -2571,7 +2726,7 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
  else if(m.step==='code')b=`${head(m.confirmEmail?(m.idType==='phone'?'Confirm your mobile number':'Confirm your email'):'Enter the code',`We sent a 6-digit code to ${m.newph?'(580) ***-**77':m.confirmEmail&&m.idType==='phone'?'***-***-'+SAM.typedPhone.slice(-4):m.email?maskEm(id):ph}${m.who==='claim'&&!m.email?', the mobile number on the player account':''}.`)}
   ${m.pwDone?`<div class="why">${ic('shield',16)}<span><b>New browser.</b> Your password was right. A code confirms it’s you.</span></div>`:''}
   <div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div><div class="wchk"><i>${ic('check',12,3)}</i>Trust this browser for 30 days</div>
-  <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend">Resend code</button><span style="color:var(--faint)">|</span>${m.email?'<button data-act="wtext">Text me instead</button>':'<button data-act="wemail">Email me instead</button>'}</div>
+  <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend" data-until="${m.sentAt||(m.sentAt=Date.now())}">Resend code</button><span style="color:var(--faint)">|</span>${m.email?'<button data-act="wtext">Text me instead</button>':'<button data-act="wemail">Email me instead</button>'}</div>
   ${m.err==='wrong'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code doesn’t match. 2 tries left.</div>':m.err==='expired'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code expired after 10 minutes. We sent a new one.</div>':''}
   <div class="demo" style="margin-top:14px"><span>Demo</span>${[['wrong','Wrong code'],['expired','Expired'],['locked','Too many tries']].map(([k,l])=>`<button data-act="werr" data-v="${k}" aria-pressed="${m.err===k}">${l}</button>`).join('')}</div>`;
  else if(m.step==='welcome')b=`${head(`Welcome back, ${id.first}`,`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app.`)}<div style="display:flex;justify-content:center;margin-top:16px">${kcard(id,260)}</div>
@@ -2717,7 +2872,7 @@ function covChip(id){if(id.startsWith('w:')){const k=id.slice(2),l={loyalty:'Loy
 function coverageView(){const n=SCREENS.length,fut=Object.values(SPHASE).filter(x=>x.includes('f')).length;
  const st=s=>`<span class="st" style="color:${s==='Shown'?'#7FE3B8':'#F5C46B'}">${ic(s==='Shown'?'check':'info',13,2.4)} ${s}</span>`;
  return `<div class="cov"><h1>Requirements coverage</h1><p class="lede">Every requirement area in the CNDC Website / App Business Requirements (v7), and where this prototype shows it. Click a screen to open it.</p>
-  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li></ul></div>
+  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li><li><b>UX pass:</b> one demo date (Wed, Oct 7), so no past shows or drawings. One smart sign-in field with a passkey suggestion, a typo check, a resend countdown, Open Mail, a PIN you can show, and Face ID asked for with the phone’s own prompt. “Continue as a guest” is a real button. Home: the card is one tap from scanning, tier progress, offers as a short list, and “Right now” ordered by where the guest is. One set of words for offers (Add, In Passport, On card, Book). A sticky offer button, an auto-continuing hotel handoff, Apple Wallet first for the room key, “Take me there” from Live meters, restrooms, an ATM and a step-free route on the WinStar map, and a Destinations map with filters. The menu shows the product; demo screens and the dashed DEMO rows sit behind presenter switches. Stronger text contrast and labels for icon-only buttons.</li></ul></div>
   <div class="cov-sum"><div><b>${SCN.length}</b><span>sign-in and join paths, all shown</span></div><div><b>12 of 12</b><span>requirement areas shown</span></div><div><b>6 of 6</b><span>authentication appendices</span></div><div><b>${n}</b><span>app screens</span></div><div><b>3</b><span>websites: loyalty, account, property</span></div><div><b>${fut}</b><span>screens with a future-phase part</span></div><div><b>10</b><span>open decisions with an option shown</span></div></div>
   <table class="ctab"><thead><tr><th>Req</th><th>Area and what it asks for</th><th>Phase</th><th>Shown in</th><th>Status</th></tr></thead><tbody>
   ${COV.map(([id,a,d,ph,ids,s])=>`<tr><td class="n">${id}</td><td style="max-width:520px"><b>${a}</b><span class="m">${d}</span></td><td class="m" style="max-width:170px">${ph}</td><td><div class="scr-chips">${ids.map(covChip).join('')}</div></td><td>${st(s)}</td></tr>`).join('')}</tbody></table>
@@ -2750,6 +2905,7 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wexpsignin':{const m=S.webModal;S.webModal={step:'start',who:'ret',where:m.where,resume:m.kind};render(true);return true}
   case 'wexpdone':S.webModal.member=true;S.webModal.step='expdone';render(true);return true;
   case 'wtype':S.webModal.idType=S.webModal.idType==='phone'?'email':'phone';render(true);return true;
+  case 'wtypeset':S.webModal.idType=v;render(true);return true;
   case 'wcardstart':{const m=S.webModal;m.who='new';m.by='card';m.cardFirst=true;m.step='card';render(true);return true}
   case 'wpinhelp':toast('PINs are reset at any player services desk or kiosk, with a photo ID');return true;
   case 'wcard':{const m=S.webModal;if(m.lost){m.step='newph';render(true);return true}m.who='claim';m.sam=true;m.email=0;m.step='code';render(true);return true}
@@ -2765,7 +2921,7 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wnotme':{const m=S.webModal;m.notme=true;m.by='card';m.step='card';render(true);return true}
   case 'wprefpick':S.prefSel[S.persona]=a.dataset.p;render(true);toast(`${P[a.dataset.p].n} is now your preferred property. It shows first in the app and on every website.`);return true;
   case 'wstep':S.webModal.step=v;render(true);return true;
-  case 'wresend':toast('New code sent');return true;
+  case 'wresend':S.webModal.sentAt=Date.now();render(true);toast('New code sent');return true;
   case 'wdone':{const m=S.webModal;if(m&&m.sam){S.webModal=null;S.webIn=true;if(S.site==='loyalty')S.portal='overview';render();later(`Card linked. The demo continues as ${per().first}.`);return true}webSignedIn();return true}
   case 'wclose':case 'wbg':S.webModal=null;render(true);return true;
   case 'wsignout':S.webIn=false;S.pPanel=false;S.site='loyalty';S.portal='overview';render();later('Signed out of every Chickasaw Nation site');return true;
@@ -2867,7 +3023,7 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
  const login=(P1,trusted,door,extra)=>app('login',()=>{as(P1);S.trusted[P1]=trusted;S.door=fresh(door);if(extra)extra()});
  const web=setup=>{S.view='web';S.pPanel=false;S.wbk=null;S.webModal=null;setup();render();window.scrollTo({top:0})};
  switch(id){
-  case 'mig':return app('moving',()=>{as('A');S.trusted.A=false});
+  case 'mig':return app('moving',()=>{as('A');S.trusted.A=false;S.fromOld=true});
   case 'guest':return app('guest',()=>{S.gm=true});
   case 'gbook':return app('gbook',()=>{S.gm=true;S.gb={k:'hotel',p:'winstar',step:'nudge'}});
   case 'ggate':return app('wallet',()=>{S.gm=true});
@@ -2979,7 +3135,7 @@ document.addEventListener('click',e=>{
  const pf=e.target.closest('[data-pf]');if(pf){S.pfil=pf.dataset.pf;render();return}
  const a=e.target.closest('[data-act]');
  if(a){const act=a.dataset.act;
-  if(act==='claim'){const id=a.dataset.id;S.claimed.has(id)?S.claimed.delete(id):S.claimed.add(id);render(true);if(S.claimed.has(id))setTimeout(()=>toast('Added to your wallet'),40);return}
+  if(act==='claim'){const id=a.dataset.id;S.claimed.has(id)?S.claimed.delete(id):S.claimed.add(id);if(S.claimed.has(id))S.passPulse=Date.now();render(true);if(S.claimed.has(id))setTimeout(()=>toast('Added to your Passport'),40);return}
   if((a.closest('.browser')||a.closest('.anv')||a.closest('.cov'))&&webAct(act,a))return;
   // Actions only run inside the live phone, plus the ones the web portal uses
   if(!a.closest('#stage')&&!(a.closest('.browser')&&['msopen','mspick','msclaim','ofil','cq','csend','cqnew','modalclose'].includes(act)))return;
@@ -3036,6 +3192,32 @@ setInterval(()=>{T.sess++;T.bonus=Math.max(0,T.bonus-1);T.sessPts+=Math.random()
 const tip=document.createElement('div');tip.className='ctip';document.body.appendChild(tip);
 document.addEventListener('mousemove',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return}tip.textContent=t.dataset.tip;tip.style.left=Math.min(e.clientX+14,window.innerWidth-tip.offsetWidth-8)+'px';tip.style.top=(e.clientY-40)+'px';tip.classList.add('on')});
 render=(orig=>function(k){const pm=document.querySelector('.pmain'),pms=pm?pm.scrollTop:0,pl=document.querySelector('.pchatlog'),pls=pl?pl.scrollTop:0;orig(k);if(k){const a=document.querySelector('.pmain');if(a)a.scrollTop=pms;const b=document.querySelector('.pchatlog');if(b)b.scrollTop=pls}syncCar();if(S.reskin){S.reskin=false;const sc=document.querySelector('#stage .scr');if(sc){sc.classList.add('reskin');setTimeout(()=>sc.classList.remove('reskin'),700)}}doorAuto()})(render);
+/* ---------- UX late: runs after everything else is set up ---------- */
+// After every render of the live phone: the status-bar backdrop and its compact title, labels for
+// icon-only buttons, the resend countdowns and the hotel handoff that continues on its own
+const ALAB={inbox:'Inbox',settings:'Account',menu:'Open menu',menuclose:'Close menu',wallet:'Passport',home:'Home',offers:'Offers',didclear:'Clear',cardclose:'Close',wayclose:'Close map',trip:'Trip',destinations:'Destinations',preferred:'Preferred property',concierge:'Concierge'};
+function tickCounts(){document.querySelectorAll('[data-until]').forEach(el=>{const t=30-Math.floor((Date.now()-(+el.dataset.until||0))/1000);
+ if(t>0){el.disabled=true;el.textContent=`Resend in 0:${String(t).padStart(2,'0')}`;el.style.opacity='.55'}else if(el.disabled||el.textContent!=='Resend code'){el.disabled=false;el.textContent='Resend code';el.style.opacity=''}})}
+setInterval(tickCounts,500);
+function uxAfter(){const scr=document.querySelector('#stage .scr'),b=scr&&scr.querySelector('.body');tickCounts();
+ if(scr&&b){const bar=scr.querySelector('.sbg span'),h=b.querySelector('h1');if(bar)bar.textContent=h?h.textContent.trim():'';
+  const on=()=>{scr.classList.toggle('scr-s',b.scrollTop>16);scr.classList.toggle('scr-t',b.scrollTop>90&&!!(bar&&bar.textContent))};b.addEventListener('scroll',on,{passive:true});on()}
+ document.querySelectorAll('#stage button:not([aria-label]),#stage [role=button]:not([aria-label])').forEach(el=>{if(el.textContent.trim())return;const k=el.dataset.go||el.dataset.act||el.dataset.nav||'';el.setAttribute('aria-label',ALAB[k]||(k?k.charAt(0).toUpperCase()+k.slice(1):'Button'))});
+ document.querySelectorAll('#stage .hs').forEach(r=>{const c=r.querySelector('[aria-pressed="true"]:not(.tgl)');if(c&&c.offsetLeft+c.offsetWidth>r.clientWidth)r.scrollLeft=c.offsetLeft-20});
+ if(S.view==='proto'&&S.screen==='book'&&S.bk&&S.bk.step==='handoff'){if(!S.bkAutoT)S.bkAutoT=setTimeout(()=>{S.bkAutoT=null;if(S.view==='proto'&&S.screen==='book'&&S.bk&&S.bk.step==='handoff'){const c=document.querySelector('#stage [data-act="bknext"][data-v="room"]');if(c)c.click()}},2600)}
+ else if(S.bkAutoT){clearTimeout(S.bkAutoT);S.bkAutoT=null}}
+render=(f=>function(k){f(k);uxAfter()})(render);
+// Overlays close when the screen changes
+go=(f=>function(scr){S.sysAlert=null;S.cardSheet=false;return f(scr)})(go);
+
+// Presenter switch: hide the dashed DEMO rows so the screens look like production
+function setDemoRows(on){document.documentElement.classList.toggle('nodemo',!on);try{localStorage.setItem('cp-demo-rows',on?'on':'off')}catch(e){}
+ document.querySelectorAll('#c-demo button').forEach(x=>x.setAttribute('aria-pressed',String((x.dataset.dm==='on')===on)))}
+(()=>{const sb=document.querySelector('.sub-bar');if(!sb||document.getElementById('c-demo'))return;
+ const g=document.createElement('div');g.className='grp';g.innerHTML='<label>Demo switches</label><div class="seg" id="c-demo" role="group" aria-label="Demo switches"><button data-dm="on">Show</button><button data-dm="off">Hide</button></div>';sb.appendChild(g);
+ g.addEventListener('click',e=>{const x=e.target.closest('[data-dm]');if(x)setDemoRows(x.dataset.dm==='on')});
+ let on=true;try{on=localStorage.getItem('cp-demo-rows')!=='off'}catch(e){}setDemoRows(on)})();
+
 render();
 </script>
 
