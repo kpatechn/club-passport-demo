@@ -753,7 +753,10 @@ body.m .bar,body.m .sub-bar,body.m .foot-note,body.mw .bar,body.mw .sub-bar{disp
 .sysal b{display:block;font-size:16px;font-weight:600;line-height:1.3;padding:6px 16px 0}
 .sysal p{margin:4px 16px 16px;font-size:13px;line-height:1.35;color:#000}
 .sysal-b{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(60,60,67,.29)}
-.sysal-b button{height:44px;font-size:16px;color:#0A84FF}.sysal-b button+button{font-weight:600;border-left:1px solid rgba(60,60,67,.29)}
+.sysal-b button{height:44px;font-size:16px;color:#0A84FF}.sysal-b button+button{border-left:1px solid rgba(60,60,67,.29)}
+.sysal-b.stack{grid-template-columns:1fr}.sysal-b.stack button+button{border-left:0;border-top:1px solid rgba(60,60,67,.29)}
+.sysal-map{height:96px;margin:16px 16px 4px;border-radius:10px;background:linear-gradient(135deg,#DCE7D3,#C9DCEB);display:grid;place-items:center;color:#0A84FF}.sysal-map span{width:36px;height:36px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.sysal-prec{font-size:13px;color:#0A84FF;margin:-8px 0 12px;font-weight:600}
 .psum-head{display:flex;align-items:center;gap:10px}
 .psum-head .psum-top{flex:1;min-width:0}
 .psum-qr{flex:none;width:54px;height:54px;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:#F6F8FB;color:#0A1324;font-size:10.5px;font-weight:800}
@@ -781,6 +784,22 @@ html.nodemo .demo{display:none!important}
 .scr .body button[style*="color:var(--hi)"]:not([class]){position:relative}
 .scr .body button[style*="color:var(--hi)"]:not([class])::after{content:'';position:absolute;inset:-9px -4px}
 @media (prefers-reduced-motion:reduce){.hbar i{animation:none;width:100%}.tabs button.tpulse svg,.csheet,.sysal-bg{animation:none}}
+/* terms and phone permissions */
+.legal{font-size:12px;line-height:1.5;color:var(--ink3)}
+.legal button{color:var(--hi);font-weight:700}
+.wchk.off i{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.permcard{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:rgba(156,195,245,.08);box-shadow:inset 0 0 0 1px rgba(156,195,245,.25);color:var(--hi);text-align:left}
+.permcard>svg{flex:none}.permcard .grow{display:flex;flex-direction:column;gap:2px;min-width:0}
+.permcard b{color:var(--ink);font-size:13.5px}.permcard .grow span{font-size:12px;color:var(--ink2);line-height:1.35}
+.permcard .btn{flex:none}
+.asheet-bg{position:absolute;inset:0;z-index:34;background:rgba(0,0,0,.5)}
+.asheet{position:absolute;left:0;right:0;bottom:0;z-index:35;padding:22px 24px 34px;border-radius:28px 28px 0 0;background:#0F1A30;box-shadow:0 -20px 50px rgba(0,0,0,.5);text-align:center;animation:csin .25s ease}
+.asheet-ic{width:56px;height:56px;margin:0 auto 12px;border-radius:18px;display:grid;place-items:center;background:rgba(156,195,245,.14);color:var(--hi)}
+.asheet b{display:block;font-size:19px;font-weight:800}.asheet p{margin:8px 0 18px;font-size:13.5px;line-height:1.5;color:var(--ink2)}
+.lsheet{position:absolute;left:0;right:0;bottom:0;top:52px;z-index:29;border-radius:28px 28px 0 0;background:#0F1A30;display:flex;flex-direction:column;padding:20px 20px 34px;animation:csin .25s ease}
+.lsheet::before{content:'';position:absolute;left:0;right:0;top:-52px;height:52px;background:#03070F}
+.lsheet .list{margin-left:0;margin-right:0}
+.lsheet-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.lsheet-top b{font-size:20px;font-weight:800}
 </style>
 
 </head>
@@ -930,7 +949,7 @@ function balances(p){return `<div style="display:grid;grid-template-columns:repe
 const SCR={};
 SCR.home=()=>{const p=per(),pr=P[S.prop],t=TIERS[p.tier];let hero;
  if(S.model==='endorsed'){
-  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${ic('pin',14)} ${p.where}${p.where.includes(P[prefProp()].n)?'':`<span style="opacity:.4">·</span><button data-go="preferred" style="display:inline-flex;align-items:center;gap:4px;color:var(--hi);font-weight:700">${ic('star',12,2.6)}${P[prefProp()].n}</button>`}</div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>`;
+  hero=`${topbar()}<div class="px" style="margin-top:14px"><div class="cap" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${ic('pin',14)} ${locOK()?p.where:'<button data-act="locask" data-v="home" style="color:var(--hi);font-weight:700">Show where you are</button>'}${locOK()&&p.where.includes(P[prefProp()].n)?'':`<span style="opacity:.4">·</span><button data-go="preferred" style="display:inline-flex;align-items:center;gap:4px;color:var(--hi);font-weight:700">${ic('star',12,2.6)}${P[prefProp()].n}</button>`}</div><h1 class="t1" style="margin-top:6px">Good evening, ${p.first}</h1></div>`;
  }else if(S.model==='umbrella'){
   hero=umbHero(p,t);
  }else{
@@ -1180,7 +1199,7 @@ Object.assign(NOTES,{
  trip:{e:'Resort',t:'The whole trip in one timeline',d:'Hotel, dining, spa and show bookings are made inside the app, with offers applied automatically and everything in one timeline.',aud:['GM','Exec'],src:'<b>Roadmap:</b> native app reservations, replacing today’s web views and SSO pages.'},
  concierge:{e:'AI concierge',t:'A concierge that knows the player',d:'Tap a suggestion or type a question. Answers come from the player’s tier, offers, bookings, live meters and each property’s calendar. Each answer shows what it used, and bookings take one tap. Try “Plan my evening” or “Find Golden Stampede Grand”.',aud:['Exec','Loyalty'],src:'<b>Roadmap:</b> AI Concierge Messaging (TalkDesk AI chat). Answers are scripted for this demo.'},
  host:{e:'Service',t:'A host in your pocket',d:'Elite and Chairman members see their personal host, whether they’re on property, and can message them or make a request. Premier members see player services and what it takes to get a host.',aud:['GM','Loyalty'],src:'<b>Roadmap:</b> Backstage patron profile and host system integration.'},
- settings:{e:'Account',t:'Account in one place',d:'Your profile (tap your name), sign-in and security, messages and alerts, the preferred property, the host or player services, the inbox, statements and tax forms, and Sign out.',aud:['Loyalty','Compliance'],src:'<b>Requirements:</b> communication preferences and host contact (4.4). Regulated profile data stays read-only online until Compliance confirms (4.11).'},
+ settings:{e:'Account',t:'Account in one place',d:'Your profile (tap your name), sign-in and security, messages and alerts, the preferred property, the host or player services, the inbox, what this iPhone allows (location, notifications, Bluetooth), statements and tax forms, the Terms, Privacy Policy, Program rules and responsible gaming, and Sign out.',aud:['Loyalty','Compliance'],src:'<b>Requirements:</b> communication preferences and host contact (4.4). Regulated profile data stays read-only online until Compliance confirms (4.11).'},
 });
 const clk=s=>{s=Math.max(0,Math.floor(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(x).padStart(2,'0')};
 function head(title,back,right=''){return `<div class="topbar" style="justify-content:flex-start;gap:12px">${back?`<button data-go="${back}" class="iconbtn" aria-label="Back">${ic('back',20,2.2)}</button>`:''}<h1 class="t1" style="font-size:${back?26:30}px;flex:1">${title}</h1>${right}</div>`}
@@ -1324,7 +1343,9 @@ SCR.settings=()=>{const p=per(),t=TIERS[p.tier],pr=S.prefs,A1=S.persona==='A';
   <button data-go="profile" style="margin:6px 20px 0;width:calc(100% - 40px);padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center;text-align:left"><span class="av" style="width:52px;height:52px;font-size:17px">${p.ini}</span><div style="flex:1;min-width:0"><div style="font-weight:800;font-size:17px">${p.name}</div><div class="cap">Club Passport ${t.n} · ${p.num}</div><div style="font-size:12.5px;font-weight:700;color:var(--hi);margin-top:4px">Profile and mailing address</div></div><span style="color:var(--ink3)">${ic('right',16)}</span></button>
   <div class="sec"><h4>Service</h4></div><div class="list">${row('user',A1?'Your host':'Player services',A1?'Marcus Reed · on property now':'The Artesian · open 24/7','host')}${row('inbox','Inbox','2 unread','inbox')}</div>
   <div class="sec"><h4>Your account</h4></div><div class="list">${row('shield','Sign-in & security','Email, mobile, passkeys and trusted devices','security')}${row('bell','Messages & alerts','Topics, channels, properties and how often','comms')}${row('star','Preferred property',P[prefProp()].n+(S.prefSel[S.persona]?' · chosen by you':' · picked from your visits'),'preferred')}</div>
+  <div class="sec"><h4>On this iPhone</h4><span class="cap">Asked only when needed</span></div><div class="list">${[['pin','Location','loc'],['bell','Notifications','push'],['nfc','Bluetooth','bt']].map(([i,l,k])=>`<div class="li"><span style="color:var(--ink2)">${ic(i,20)}</span><div class="grow"><div class="k">${l}</div><div class="v">${permTxt(k)}</div></div>${S.perm[k]==='ask'?'':'<button class="rowbtn" data-act="settingsapp">Settings</button>'}</div>`).join('')}<div class="li"><span style="color:var(--ink2)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${S.secFace?'On · set in Sign-in & security':'Off'}</div></div></div></div>
   <div class="sec"><h4>Documents</h4></div><div class="list">${row('file','Win/loss statements','One statement for every property')}${row('file','Tax forms','W-2G and annual summaries')}</div>
+  <div class="sec"><h4>Legal</h4></div><div class="list">${[['file','Terms of Use','terms'],['shield','Privacy Policy','privacy'],['crown','Program rules','rules'],['info','Responsible gaming','rg']].map(([i,l,k])=>`<button class="li" data-act="legal" data-v="${k}" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic(i,20)}</span><div class="grow"><div class="k">${l}</div>${k==='rg'?'<div class="v">Gambling problem? Call 1-800-522-4700</div>':''}</div>${ic('right',16)}</button>`).join('')}</div>
   <div class="sec"><h4>Privacy</h4></div><div class="list">${row('user','Delete my account','Removes your mobile account. Player history is kept as the law requires.',null,true)}</div>
   <div class="px" style="margin-top:22px"><button class="btn line" data-act="signout" style="width:100%;height:48px">Sign out</button></div></div>`};
 
@@ -1421,7 +1442,7 @@ SCR.drawing=()=>{const p=per(),d=S.dr[S.persona],here=p.home,ent=drEntries(),win
  const entries=`<div class="sec"><h4>Your entries</h4><span class="cap">This week</span></div><div class="list" style="padding:16px;display:flex;flex-direction:column;gap:12px">
    <div style="display:flex;align-items:center;justify-content:space-between"><div><span class="num" style="font-family:var(--disp);font-weight:800;font-size:30px">${ent}</span> <span style="color:var(--ink2);font-size:13px">entries from ${DRAW.entries[S.persona].length} properties</span></div><span style="height:24px;padding:0 10px;border-radius:99px;display:inline-flex;align-items:center;font-size:11px;font-weight:800;letter-spacing:.05em;${d.act?'background:rgba(46,189,133,.16);color:#5FD7A5':'background:rgba(242,184,75,.14);color:#F2B84B'}">${d.act?'ACTIVE':'NOT ACTIVE'}</span></div>
    ${bars}
-   ${d.act?`<div style="display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(46,189,133,.1);font-size:12.5px;color:#9FE8C9">${ic('check',14,2.6)} Active for every drawing tonight. Activated at ${P[here].n}, ${d.at}.</div>`
+   ${d.act?`<div style="display:flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(46,189,133,.1);font-size:12.5px;color:#9FE8C9">${ic('check',14,2.6)} Active for every drawing tonight. Activated at ${P[here].n}, ${d.at}.</div>${S.perm.push!=='on'?pushCard('Get told if you win','Winners have 5 minutes to claim in the app.'):''}`
     :`<button class="btn" data-act="dract" style="width:100%">${ic('pin',16)} Activate at ${P[here].n}</button><div style="font-size:12px;color:var(--ink3);text-align:center;margin-top:-4px">You’re on property, so you can activate here. No kiosk line.</div>`}
    <div style="display:flex;flex-direction:column;gap:7px;padding-top:10px;border-top:1px solid var(--ln)">${earn}</div></div>`;
  const sess=DRAW.sessions.map(([t,prize,n,st,w],i)=>{const live=st==='live',ww=live?wins:w,rem=S.drRem.has('s'+i);
@@ -1609,8 +1630,8 @@ const CMLOCK={trips:[0,0,1],acct:[1,1,1]};
 const cmInit=fav=>({offers:[1,1,1],events:[1,0,1],draw:[1,0,1],deals:[0,0,1],jackpot:[1,0,0],trips:[1,1,1],acct:[1,1,1],props:'fav',pick:new Set(fav),freq:1,quiet:1,geo:0});
 
 /* ---------- v3 state ---------- */
-const doorFresh=()=>({idType:'email',idEmpty:false,idErr:false,cardFirst:false,faceOn:false,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:true});
-function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),trusted:{A:false,B:false},hasPw:{A:false,B:true},passkeys:{A:[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}],B:[]},pk:null,pwf:null,rc:{step:'menu',h:[]},
+const doorFresh=()=>({idType:'email',idEmpty:false,idErr:false,cardFirst:false,faceOn:false,smsOk:false,jtry:false,more:false,pkMade:false,via:null,pinOk:false,perr:0,pinDemo:'ok',pinHelp:false,phDemo:'found',phErr:false,emailStep:false,emailAdded:false,who:'ret',step:'start',h:[],m:'sms',fill:false,methods:false,sam:false,pwDone:false,scanId:false,addPh:false,fid:null,err:null,risk:false,found:false,newph:false,jerr:null,age21:false});
+function v3Reset(keep){const k=keep?{site:S.site,webIn:S.webIn,webTrusted:S.webTrusted,psite:S.psite,wextra:S.wextra,anScope:S.anScope,anCh:S.anCh,anVis:S.anVis}:{};Object.assign(S,{door:doorFresh(),perm:permFresh(),ask:null,legal:null,trusted:{A:false,B:false},hasPw:{A:false,B:true},passkeys:{A:[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}],B:[]},pk:null,pwf:null,rc:{step:'menu',h:[]},
  stepup:null,newMobile:{A:null,B:null},secFace:true,offer:null,tc:false,oq:'',osort:'exp',odate:'any',ofOpen:false,hidden:new Set(),
  bk:{o:null,step:'handoff',dt:0,room:0,h:[]},booked:{A:null,B:null},prefSel:{A:null,B:null},favs:{A:new Set(['winstar','riverwind']),B:new Set(['artesian','treasure'])},
  cm:{A:cmInit(['winstar','riverwind']),B:cmInit(['artesian','treasure'])},site:'loyalty',wextra:[],webIn:false,webTrusted:false,webModal:null,psite:'winstar',pPanel:false,faq:0,wbk:null,wOffer:null,
@@ -1629,7 +1650,8 @@ SCR.moving=()=>{const p=per(),t=TIERS[p.tier],w=P.winstar;
    <div class="cap" style="font-size:13.5px;margin-top:6px">Same account and card, now at all 11 Chickasaw Nation destinations.</div>
    <div style="font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:16px 0 4px">Coming with you</div>
    ${[['card',`Card ${p.num}`],['crown',`${t.n} tier · ${fmt(p.tp)} tier points`],['gem',`${fmt(p.pts)} points and $${p.fp} Free Play`],['tag','Saved offers and favorites'],['face','Face ID on this iPhone'],['key','Your room key and WinStar maps']].map(([i,l],j)=>`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;font-size:13.5px;font-weight:600;${j?'border-top:1px solid var(--ln)':''}"><span style="color:#5FD7A5">${ic('check',16,2.6)}</span><span style="flex:1">${l}</span><span style="color:var(--ink3)">${ic(i,15)}</span></div>`).join('')}
-   <button class="btn" data-act="movego" style="width:100%;height:50px;margin-top:16px">Open Club Passport</button>
+   <div class="legal" style="margin-top:14px;text-align:center">Club Passport has its own ${legalLinks(1)}. By continuing, you agree to them.</div>
+   <button class="btn" data-act="movego" style="width:100%;height:50px;margin-top:10px">Agree and open Club Passport</button>
    <div class="cap" style="text-align:center;margin-top:10px;color:var(--ink3)">The WinStar app stops working Jan 31, 2027. Your winstar.com sign-in moves over too.</div></div></div>`};
 
 // Sign in: one front door. The email or mobile number decides what comes next, so guests never have to
@@ -1731,9 +1753,11 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <h1 class="t1" style="text-align:center;margin-top:18px">${d.sam?'Welcome':'Welcome back'}, ${id.first}</h1>
   <div class="cap" style="text-align:center;margin-top:6px;font-size:14px;line-height:1.45">Your ${TIERS[id.tier].n} card is on this iPhone now, and the same sign-in works on every property website.</div>
   <div class="list" style="margin:18px 0 0"><div class="tgr"><span style="color:var(--hi)">${ic('face',20)}</span><div class="grow"><div class="k">Face ID</div><div class="v">${d.faceOn?'Opens the app with a glance on this iPhone':'Turn on to open the app with a glance'}</div></div><button class="tg" role="switch" aria-checked="${d.faceOn}" data-act="dfacetg" aria-label="Face ID"></button></div>
+   <div class="tgr"><span style="color:var(--hi)">${ic('bell',20)}</span><div class="grow"><div class="k">Notifications</div><div class="v">${S.perm.push==='no'?'Off. Turn them on in iPhone Settings anytime.':'Free Play reminders, room ready and drawing wins'}</div></div><button class="tg" role="switch" aria-checked="${S.perm.push==='on'}" data-act="dpushtg" aria-label="Notifications"></button></div>
    ${pk?`<div class="tgr"><span style="color:#5FD7A5">${ic('key',20)}</span><div class="grow"><div class="k">Passkey saved</div><div class="v">Sign in with Face ID here and on our websites</div></div><span style="color:#5FD7A5">${ic('check',18,2.6)}</span></div>`
    :`<button class="tgr" data-act="dpkcreate" data-v="welcome" style="width:100%;text-align:left"><span style="color:var(--hi)">${ic('key',20)}</span><div class="grow"><div class="k">Create a passkey</div><div class="v">Sign in with Face ID on our websites too</div></div>${ic('right',16)}</button>`}</div>
-  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:18px">${S.gm&&gName(S.gNext)?'Continue to '+gName(S.gNext):'Go to my account'}</button>
+  ${d.who==='claim'||d.sam?`<div class="legal" style="margin-top:16px;text-align:center">By continuing, you agree to the Club Passport ${legalLinks(1)}.</div>`:''}
+  <button class="btn" data-act="dwelcome" style="width:100%;height:52px;margin-top:${d.who==='claim'||d.sam?10:18}px">${d.who==='claim'||d.sam?'Agree and continue':S.gm&&gName(S.gNext)?'Continue to '+gName(S.gNext):'Go to my account'}</button>
   ${d.more?`<div class="list" style="margin:14px 0 0"><button class="tgr" data-act="daddpw" style="width:100%;text-align:left"><span style="color:var(--ink2)">${ic('pwd',20)}</span><div class="grow"><div class="k">Add a password</div><div class="v">Optional. Codes, Face ID and passkeys work without one.</div></div>${ic('right',16)}</button></div>`
    :`<button data-act="dmore" style="display:block;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--ink2)">More options</button>`}`}
  else if(st==='played')b=`${h1('We couldn’t find you',`No account uses ${typedId(d)}. Have you played at a Chickasaw Nation casino?`)}
@@ -1793,8 +1817,12 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   <div class="fld"><span>Email</span><span class="fv${d.jerr==='email'?' bad':''}">${d.jerr==='email'?'sam.carter@example':SAM.email}</span></div>${d.jerr==='email'?errT('Enter a full email address, like name@example.com.'):''}
   ${fld('First name (optional)','Sam')}
   ${d.addPh?fld('Mobile for texts (optional)',SAM.mobile,{caret:1}):`<button data-act="daddph" style="margin-top:14px;font-size:13.5px;font-weight:700;color:var(--hi)">+ Add a mobile number for texts</button>`}
-  ${chkrow(1,'Email me offers and news','dnoop')}${chkrow(d.age21,'I’m 21 or older','dage')}${d.age21?'':errT('You must be 21 or older to join Club Passport.')}
-  <button class="btn" data-act="djoin" style="width:100%;height:52px;margin-top:16px">Join</button>
+  ${chkrow(1,'Email me offers and news','dnoop')}
+  ${d.addPh?chkrow(d.smsOk,'Text me offers too (optional)','dsms')+(d.smsOk?`<div class="legal" style="margin:6px 0 0 32px">Up to 4 texts a month. Message and data rates may apply. Reply STOP to cancel or HELP for help. You don’t have to agree to join.</div>`:''):''}
+  ${chkrow(d.age21,'I’m 21 or older and I agree to the Terms and Privacy Policy','dage')}
+  <div class="legal" style="margin:6px 0 0 32px">Read the ${legalLinks()}</div>
+  ${d.jtry&&!d.age21?errT('To join, confirm you’re 21 or older and agree to the Terms.'):''}
+  <button class="btn" data-act="djoin" aria-disabled="${!d.age21}" style="width:100%;height:52px;margin-top:16px;${d.age21?'':'opacity:.4'}">Join</button>
   <div class="cap" style="margin-top:12px;color:var(--ink3);line-height:1.45">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</div>
   ${demoRow('djerr',d.jerr||'ok',[['ok','Works'],['email','Bad email'],['dup','Already on the list']])}`;
  else if(st==='joined'||st==='dup')b=`<div class="done-ic">${ic('mail',36)}</div>
@@ -2019,6 +2047,7 @@ SCR.comms=()=>{const c=S.cm[S.persona],fv=S.favs[S.persona],ch=['Push','Text','E
  const who=c.props==='all'?'All 11 properties':c.props==='fav'?[...fv].map(k=>P[k].n).join(' and '):[...c.pick].map(k=>P[k].n).join(', ')||'No properties';
  return `<div class="body">${head('Messages & alerts','settings')}
   <div class="px cap" style="margin:-2px 0 4px;font-size:13px;line-height:1.45">One set of choices for push, texts and email from all 11 properties. They apply on every property website too.</div>
+  ${S.perm.push!=='on'?`<div class="px" style="margin-top:10px">${pushCard(S.perm.push==='no'?'Notifications are off on this iPhone':'Turn on notifications',S.perm.push==='no'?'Push choices below arrive once you allow them in iPhone Settings.':'Push choices below need your OK first.')}</div>`:''}
   <div class="sec"><h4>What you hear about</h4></div>
   <div class="cmx"><div class="cmh"><span></span>${ch.map(x=>`<span>${x}</span>`).join('')}</div>
    ${CMT.map(([k,l,sub])=>`<div class="cmr"><span><b>${l}</b>${sub?`<i>${sub}</i>`:''}</span>${[0,1,2].map(i=>CMLOCK[k]&&CMLOCK[k][i]?`<span class="cmb lock" title="Always on">${ic('lock',12)}</span>`:`<button class="cmb ${c[k][i]?'on':''}" data-act="cmt" data-k="${k}" data-i="${i}" aria-pressed="${!!c[k][i]}" aria-label="${l} by ${ch[i]}">${c[k][i]?ic('check',13,3):''}</button>`).join('')}</div>`).join('')}</div>
@@ -2115,7 +2144,7 @@ SCR.stay=()=>{const st=stayFor();if(!st)return noStayHTML();const k=st.k,q=P[k],
  const pass=`<div style="margin:0 20px;border-radius:26px;overflow:hidden;background:linear-gradient(150deg,${q.bg},#10152A);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)">
    <div style="padding:18px 20px;display:flex;justify-content:space-between;align-items:center">${lg(k,24)}<span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7)">ROOM KEY</span></div>
    <div style="padding:0 20px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px"><div><div style="font-size:12px;color:rgba(255,255,255,.6);font-weight:600">${st.now?'Room':'Arrives'}</div><div style="font-family:var(--disp);font-weight:800;font-size:44px;letter-spacing:-.02em;color:#fff;line-height:1">${arrive}</div></div><div style="text-align:right;font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.45">${st.type}<br>${st.now?'Until '+st.until.replace(', 11:00 AM',' 11 AM'):'Key arrives at check-in, '+st.checkin}</div></div>
-   ${st.now?`<button data-act="key" style="width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15px;color:${S.keyOpen?'#0A1324':'#fff'};background:${S.keyOpen?'#5FD7A5':'rgba(255,255,255,.08)'};border-top:1px solid rgba(255,255,255,.1);transition:background .3s">${S.keyOpen?ic('check',20,2.6)+' Door unlocked':ic('nfc',20)+' Use the key in the app'}</button>`
+   ${st.now?`<button data-act="key" style="width:100%;height:64px;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:15px;color:${S.keyOpen?'#0A1324':'#fff'};background:${S.keyOpen?'#5FD7A5':'rgba(255,255,255,.08)'};border-top:1px solid rgba(255,255,255,.1);transition:background .3s">${S.keyOpen?ic('check',20,2.6)+' Door unlocked':ic('nfc',20)+' Use the key in the app'+(S.perm.bt==='on'?'':'<span style="font-size:11px;font-weight:600;opacity:.6;margin-left:4px">· uses Bluetooth</span>')}</button>`
    :`<div style="height:56px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);border-top:1px solid rgba(255,255,255,.1)">${ic('clock',16)} We’ll let you know when your room is ready</div>`}</div>`;
  const rows=st.now?[['receipt','Folio',S.folioPaid?'Paid from Resort Wallet':'$186.40 so far'],['car','Valet',t.n+' priority'],['clock','Check-out',st.until]]:[['receipt','Confirmation',st.conf],['car','Valet',t.n+' rate'],['clock','Check-in','From '+st.checkin]];
  return `<div class="body">
@@ -2191,9 +2220,9 @@ function cardSheetHTML(){const p=per(),t=TIERS[p.tier];
   <div class="csheet-hint">${ic('zap',14)} Screen brightness is turned up. The code refreshes every 30 seconds.</div>
   <span class="csheet-w">${ic('wallet',16)} Add to Apple Wallet</span></div>`}
 
-// The phone's own permission prompt (Face ID on Welcome)
-function sysAlertHTML(){const a=S.sysAlert;
- return `<div class="sysal-bg"><div class="sysal" role="alertdialog" aria-label="${a.t}"><div class="sysal-ic">${ic('face',30,1.8)}</div><b>${a.t}</b><p>${a.d}</p><div class="sysal-b"><button data-act="${a.no}">Don’t Allow</button><button data-act="${a.ok}">Allow</button></div></div></div>`}
+// The phone's own permission prompts: Face ID, location, notifications, Bluetooth
+function sysAlertHTML(){const a=S.sysAlert,btns=a.btns||[['Don’t Allow',a.no],['OK',a.ok,1]];
+ return `<div class="sysal-bg"><div class="sysal" role="alertdialog" aria-label="${a.t}">${a.map?`<div class="sysal-map"><span>${ic('pin',22,2.2)}</span></div>`:`<div class="sysal-ic">${ic(a.icon||'face',30,1.8)}</div>`}<b>${a.t}</b><p>${a.d}</p>${a.map?'<div class="sysal-prec">Precise: On</div>':''}<div class="sysal-b${a.stack?' stack':''}">${btns.map(([l,act,b],i)=>`<button data-act="${act}"${a.vals&&a.vals[i]?` data-v="${a.vals[i]}"`:''}${b?' style="font-weight:600"':''}>${l}</button>`).join('')}</div></div></div>`}
 
 // Destinations: a list or a map, with filters (BRD 4.8: move between properties)
 const GOLF=new Set(['winstar']);
@@ -2239,6 +2268,44 @@ SCR.profile=()=>{const p=per(),mob=S.newMobile[S.persona]||p.mobile,a=S.addr[S.p
   <div class="px cap" style="margin-top:10px">You also sign in with these, so you change them in Sign-in & security.</div></div>`};
 Object.assign(NOTES,{profile:{e:'Profile',t:'Who you are, apart from how you sign in',d:'Tap your name at the top of Account. Name and date of birth are shown but change only at player services, with a photo ID. The mailing address, where statements and tax forms go, changes after the guest confirms it’s them, and the old contact details are told. Email and mobile are shown here but changed in Sign-in & security, because they’re also how the guest signs in. Tap Change next to the address.',aud:['Compliance','Loyalty','IT'],src:'<b>Requirement 4.11:</b> regulated profile data isn’t editable online until Compliance/Gaming, CNIT and L&W confirm. <b>Appendix E:</b> step-up for sensitive changes. <b>4.4:</b> the signed-in account.'}});
 
+/* ================= v4 (Oct 17): terms at sign-up, and when the app asks for phone permissions ================= */
+// Phone permissions, asked only at the moment a feature needs them, never all at once on first launch:
+//  location (while using the app): guest Home (closest property, BRD 4.6), "Show where you are" on Home, and
+//    activating drawing entries on property. Never "Always" until arrival alerts ship (future phase, 4.9).
+//  notifications: the Welcome screen after sign-in, then in context (a drawing win, Messages & alerts).
+//  Bluetooth: only the first time the in-app room key is used. The Apple Wallet key needs no permission.
+// A new install starts with nothing asked; the two demo members have already answered some.
+function permNew(){return {loc:'ask',push:'ask',bt:'ask'}}
+function permFresh(){return S.persona==='A'?{loc:'while',push:'on',bt:'ask'}:{loc:'while',push:'ask',bt:'ask'}}
+const locOK=()=>S.perm&&(S.perm.loc==='while'||S.perm.loc==='once');
+// The phone's own prompts, worded as iOS shows them. The purpose strings are ours (Info.plist).
+const ALERTS={
+ loc:{map:1,t:'Allow “Club Passport” to use your location?',d:'Club Passport uses your location to show the property you’re at and what’s nearby, and to confirm you’re on property for drawings.',stack:1,btns:[['Allow Once','locallow'],['Allow While Using App','locallow'],['Don’t Allow','locdeny']],vals:['once','while']},
+ push:{icon:'bell',t:'“Club Passport” Would Like to Send You Notifications',d:'Notifications may include alerts, sounds and icon badges. These can be configured in Settings.',btns:[['Don’t Allow','pushdeny'],['Allow','pushallow',1]]},
+ bt:{icon:'nfc',t:'“Club Passport” Would Like to Use Bluetooth',d:'Club Passport uses Bluetooth to open your hotel room door with the in-app key.',btns:[['Don’t Allow','btdeny'],['OK','btok',1]]}};
+// Our own short explanation first, so a "no" doesn't use up the one-time system prompt
+const ASKS={home:['pin','Find what’s near you','Club Passport uses your location only while you’re using the app: to show the property you’re at, distances to all 11, and to activate drawing entries on property. Never in the background.'],
+ draw:['pin','Confirm you’re on property','Drawing entries activate when you’re at the property. We check your location once, when you tap Activate.']};
+function askSheetHTML(){const [i,t,d]=ASKS[S.ask.from]||ASKS.home;
+ return `<div class="asheet-bg" data-act="asknot"></div><div class="asheet" role="dialog" aria-label="${t}"><div class="asheet-ic">${ic(i,26)}</div><b>${t}</b><p>${d}</p><button class="btn" data-act="askgo" style="width:100%;height:50px">Continue</button><button data-act="asknot" style="display:block;margin:12px auto 0;font-size:14px;font-weight:700;color:var(--ink2)">Not now</button></div>`}
+const pushCard=(t,s)=>`<div class="permcard">${ic('bell',18)}<div class="grow"><b>${t}</b><span>${s}</span></div><button class="btn sm" data-act="pushask">${S.perm.push==='no'?'Settings':'Turn on'}</button></div>`;
+const permTxt=k=>{const v=S.perm[k];return k==='loc'?({while:'While using the app',once:'Allowed once',no:'Not allowed',ask:'Not asked yet · asked when a feature needs it'})[v]
+ :k==='push'?({on:'On',no:'Off',ask:'Not asked yet · offered after sign-in'})[v]:({on:'Allowed · in-app room key only',no:'Not allowed · the Apple Wallet key still works',ask:'Not asked yet · only for the in-app room key'})[v]};
+
+// Terms, privacy and program rules. Sample text: Legal and Compliance provide the real documents.
+const LEGAL={terms:['Club Passport Terms of Use',[['Who can join','You must be 21 or older. One account per person.'],['Your account','Keep your sign-in details private. We ask you to confirm it’s you before sensitive changes.'],['Offers, points and tiers','They follow the Program rules. Each property approves its own offers.'],['Bookings, room keys and the Resort Wallet','Each has its own terms, shown when you use it.'],['Changes','When these terms change, we tell you and ask you to agree again.']]],
+ privacy:['Privacy Policy',[['What we collect','Your player account, play and visit history, bookings, and the choices you make in the app and on our websites.'],['Location','Only while you use the app, to show what’s near you and confirm you’re on property. Never in the background unless you turn on arrival alerts.'],['Notifications and texts','Only with your OK. Change them anytime in Messages & alerts.'],['Sharing','With Chickasaw Nation properties and the services that run the program. We don’t sell your information.'],['Your choices','See your details in Account › Profile, or delete your mobile account.']]],
+ rules:['Program rules',[['Earning','Points and tier points at all 11 properties, on rated play, dining, stays and more.'],['Tiers','Premier from 5,000 tier points and Elite from 15,000. Chairman is by invitation.'],['Redeeming','Points, Free Play and comps work at any property. Free Play has no cash value.']]],
+ rg:['Responsible gaming',[['Play for fun','Set a budget and a time limit before you play.'],['Get help','Gambling problem? Call 1-800-522-4700, any time.'],['Take a break','Ask at any player services desk about self-exclusion and limits.']]]};
+function legalSheetHTML(){const [t,secs]=LEGAL[S.legal]||LEGAL.terms;
+ return `<div class="lsheet" role="dialog" aria-label="${t}"><div class="lsheet-top"><b>${t}</b><button data-act="legalclose" class="iconbtn" aria-label="Close">${ic('x',18,2.4)}</button></div>
+  <div class="cap" style="margin-top:4px">Version 1.0 · effective October 1, 2026</div>
+  <div class="list" style="margin:16px 0 0">${secs.map(([h,d])=>`<div class="li" style="flex-direction:column;align-items:flex-start;gap:4px"><div class="k">${h}</div><div class="v" style="line-height:1.45">${d}</div></div>`).join('')}</div>
+  <div class="cap" style="margin-top:14px;color:var(--ink3)">Sample text for this demo. Legal and Compliance provide the final documents.</div>
+  <button class="btn" data-act="legalclose" style="width:100%;height:48px;margin-top:auto">Done</button></div>`}
+// As a list ("Terms · Privacy Policy · Program rules") or inside a sentence ("Terms, Privacy Policy and Program rules")
+const legalLinks=(inSentence)=>`<button data-act="legal" data-v="terms">Terms</button>${inSentence?', ':' · '}<button data-act="legal" data-v="privacy">Privacy Policy</button>${inSentence?' and ':' · '}<button data-act="legal" data-v="rules">Program rules</button>`;
+
 /* ---------- Guest mode: the app before signing in (requirement 4.1.3), booking with a nudge to sign in (4.1.4),
    and personal pages that ask the guest to join or link their account ---------- */
 const GFAQ=[['Do my points work at every property?','Yes. Points, tier credit and Free Play work at all 11 Chickasaw Nation destinations.'],['How do I get a card?','Show a photo ID at player services at any of our casinos. It takes about five minutes.'],['I already have a card. How do I sign in?','Tap Sign in and enter the email or mobile you gave us at the casino. We’ll do the rest.'],['Can I book without an account?','Yes. Book rooms, tables, shows and spa as a guest. Sign in for member rates and to earn points.']];
@@ -2253,7 +2320,7 @@ SCR.guest=()=>{const order=['circle','select','signature','society'];
  return `<div class="body" style="padding-bottom:40px">
   <div class="topbar"><span class="wm" style="font-size:15.8px">CLUB PASSPORT</span><button class="chip" data-act="gsignin" style="height:34px">${ic('user',15)} Sign in</button></div>
   <div class="photo" style="${bg('ws-globe')};height:210px;margin:8px 20px 0;border-radius:24px;--shade:linear-gradient(180deg,rgba(5,10,20,.1),rgba(5,10,20,.88))"><div style="position:absolute;left:18px;right:18px;bottom:16px"><div style="font-size:10.5px;font-weight:800;letter-spacing:.14em;color:#E9C77B">THE CHICKASAW NATION LOYALTY PROGRAM</div><div style="font-size:26px;font-weight:800;line-height:1.1;color:#fff;margin-top:6px">One account.<br>Eleven destinations.</div></div></div>
-  <div class="px" style="margin-top:12px">${S.gProspect?`<button class="note" data-go="wallet" style="width:100%;text-align:left">${ic('card',16)}<span><b style="color:var(--ink)">You’re on the list, ${SAM.first}.</b> Show your code and a photo ID at player services to get your card. <span style="font-weight:700;color:var(--hi)">Show my code</span></span></button>`:`<div class="note">${ic('user',16)}<span>You’re browsing as a guest. <button data-act="gsignin" style="font-weight:700;color:var(--hi)">Sign in</button> for your offers and points.</span></div>`}</div>
+  <div class="px" style="margin-top:12px">${S.gProspect?`<button class="note" data-go="wallet" style="width:100%;text-align:left">${ic('card',16)}<span><b style="color:var(--ink)">You’re on the list, ${SAM.first}.</b> Show your code and a photo ID at player services to get your card. <span style="font-weight:700;color:var(--hi)">Show my code</span></span></button>`:`${S.perm.loc==='ask'&&!S.gLocNot?`<div class="permcard" style="margin-bottom:10px">${ic('pin',18)}<div class="grow"><b>Start with the closest property</b><span>Without your location, we start with WinStar.</span></div><button class="btn sm" data-act="locask" data-v="guest">Use location</button><button data-act="locnot" aria-label="Not now" style="color:var(--ink3);display:flex">${ic('x',16,2.4)}</button></div>`:''}<div class="note">${ic('user',16)}<span>You’re browsing as a guest. <button data-act="gsignin" style="font-weight:700;color:var(--hi)">Sign in</button> for your offers and points.</span></div>`}</div>
   <div class="sec"><h4>How it works</h4></div>
   <div class="list">${[['gem','Earn everywhere','Points and tier credit at all 11 properties'],['crown','One tier, recognized everywhere','Base, Premier, Elite and Chairman'],['gift','Redeem anywhere','Free Play, dining, stays and more']].map(([i,t,d])=>`<div class="li"><span style="color:var(--hi)">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${d}</div></div></div>`).join('')}</div>
   <div class="sec"><h4>Tiers & benefits</h4></div>
@@ -2386,7 +2453,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'didtype':S.door.idType=S.door.idType==='phone'?'email':'phone';S.door.idEmpty=false;S.door.idErr=false;render(true);return true;
   case 'dnotme':{const d=S.door;d.notme=true;d.perr=0;d.pinDemo='ok';d.pinHelp=false;stepTo(d,'card');return true}
   case 'dcardstart':{const d=S.door;d.who='new';d.cardFirst=true;stepTo(d,'card');return true}
-  case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m=d.who==='ret'&&d.idType!=='phone'?'email':'sms';d.sentAt=0;d.second=false;d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
+  case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m=d.who==='ret'&&d.idType!=='phone'?'email':'sms';if(!S.gm&&!S.trusted[P1])S.perm=permNew();d.sentAt=0;d.second=false;d.pwDone=false;d.err=null;stepTo(d,d.who==='new'?'played':d.who==='claim'?'pin':d.who==='ret'&&S.hasPw[P1]?'pw':'code');return true}
   case 'dpw':{const d=S.door;if(d.err==='pw'){d.err=null;render(true);return true}d.pwDone=true;d.m='sms';stepTo(d,'code');return true}
   case 'dcode':S.door.pwDone=false;S.door.m='sms';S.door.err=null;stepTo(S.door,'code');return true;
   case 'dforgot':S.rc={step:'pw',h:['menu']};go('recover');return true;
@@ -2408,7 +2475,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dskip':doorDone('Signed in to all 11 properties');return true;
   case 'daddpw':S.trusted[P1]=S.door.faceOn;S.pwf=Object.assign(pwfFresh('add'),{step:'create',back:'home'});S.door=doorFresh();go('password');return true;
   case 'dfacetg':{const d=S.door;if(!d.faceOn&&d.faceDenied){later('Allow Face ID for Club Passport in iPhone Settings');return true}
-   if(!d.faceOn&&!d.faceAsked){S.sysAlert={t:'Do you want to allow “Club Passport” to use Face ID?',d:'Club Passport uses Face ID to sign you in and confirm it’s you.',ok:'dfaceallow',no:'dfacedeny'};render(true);return true}
+   if(!d.faceOn&&!d.faceAsked){S.sysAlert={icon:'face',t:'Do you want to allow “Club Passport” to use Face ID?',d:'Club Passport uses Face ID to sign you in and confirm it’s you.',ok:'dfaceallow',no:'dfacedeny'};render(true);return true}
    d.faceOn=!d.faceOn;render(true);return true}
   case 'dfaceallow':S.door.faceAsked=true;S.door.faceOn=true;S.sysAlert=null;render(true);return true;
   case 'dfacedeny':S.door.faceAsked=true;S.door.faceDenied=true;S.sysAlert=null;render(true);later('Face ID stays off. You can sign in with a code or passkey.');return true;
@@ -2431,7 +2498,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'daddph':S.door.addPh=true;render(true);return true;
   case 'dage':S.door.age21=!S.door.age21;render(true);return true;
   case 'djerr':S.door.jerr=v==='ok'?null:v;render(true);return true;
-  case 'djoin':{const d=S.door;if(d.jerr==='email'||!d.age21){toast(d.age21?'Check the email address':'You must be 21 or older to join');return true}S.gProspect=true;stepTo(d,d.jerr==='dup'?'dup':'joined');return true}
+  case 'djoin':{const d=S.door;if(d.jerr==='email'||!d.age21){d.jtry=true;render(true);toast(d.age21?'Check the email address':'Confirm you’re 21 or older and agree to the Terms');return true}S.gProspect=true;stepTo(d,d.jerr==='dup'?'dup':'joined');return true}
   case 'dnoop':return true;
   case 'dexplore':{const n=S.gm&&S.gNext;S.door=doorFresh();S.gm=true;S.gNext=null;go(n||'guest');return true}
   case 'dreset':if(S.gm&&S.gNext){const n=S.gNext;S.door=doorFresh();S.gNext=null;go(n)}else{S.door=doorFresh();render()}return true;
@@ -2460,12 +2527,12 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'signout':S.trusted[P1]=false;S.door=doorFresh();go('login');later('Signed out. Sign in with a code, Face ID or your passkey.');return true;
   case 'notme':toast('Signed out everywhere and the new iPhone removed. Change your password or add a passkey next.');return true;
   // signed out: look around and book as a guest
-  case 'dguest':{const n=S.gm&&S.gNext;S.door=doorFresh();S.gm=true;S.gNext=null;go(n||'guest');return true}
+  case 'dguest':{const n=S.gm&&S.gNext;if(!S.gm){S.perm=permNew();S.gLoc=false}S.door=doorFresh();S.gm=true;S.gNext=null;go(n||'guest');return true}
   // from a personal page: join, link an existing player account, or sign in; then back to that page
   case 'gjoin':S.gNext=v;S.door=Object.assign(doorFresh(),{who:'new',step:'join'});go('login');return true;
   case 'glink':S.gNext=v;S.door=Object.assign(doorFresh(),{who:'claim',link:true});go('login');return true;
   case 'glogin':S.gNext=v;S.door=doorFresh();go('login');return true;
-  case 'gloc':S.gLoc=v!=='off';render(true);return true;
+  case 'gloc':S.gLoc=v!=='off';S.perm.loc=S.gLoc?'while':'no';render(true);return true;
   case 'gpref':S.gPref=a.dataset.p;S.prop=a.dataset.p;render(true);later(`${P[a.dataset.p].n} is your home property on this phone`);return true;
   case 'gcq':if(!S.gcq.includes(v))S.gcq.push(v);render(true);setTimeout(()=>{const b=document.querySelector('#stage .body');if(b)b.scrollTop=b.scrollHeight},30);return true;
   case 'gsignin':S.door=doorFresh();S.gb=null;go('login');return true;
@@ -2506,7 +2573,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   // preferred property
   case 'prefset':S.prefSel[P1]=a.dataset.p===autoPref().k?null:a.dataset.p;S.prop=a.dataset.p;S.opf=null;render(true);later(`${P[a.dataset.p].n} is your preferred property. The offers you get don’t change.`);return true;
   case 'gopref':go('preferred');return true;
-  case 'key':S.keyOpen=!S.keyOpen;render(true);if(S.keyOpen)later('Unlocked');return true;
+  case 'key':if(S.perm.bt==='ask'){S.sysAlert=ALERTS.bt;render(true);return true}if(S.perm.bt==='no'){later('The in-app key needs Bluetooth. Use Apple Wallet, or allow Bluetooth for Club Passport in iPhone Settings.');return true}S.keyOpen=!S.keyOpen;render(true);if(S.keyOpen)later('Unlocked');return true;
   case 'keywallet':S.keyWallet=true;render(true);later('Room key added to Apple Wallet · Express Mode on');return true;
   case 'payfolio':if(!S.folioPaid){S.folioPaid=true;if(typeof addTx==='function')addTx('WinStar room 1418 folio','Hotel',-186.4);render(true);later('Folio paid from your Resort Wallet')}return true;
   case 'roomorder':later('Menus from every WinStar restaurant, delivered to room 1418');return true;
@@ -2521,6 +2588,23 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dview':S.dview=v;render(true);return true;
   case 'waymeter':S.wayDest=+v;S.wayOn=true;S.prop='winstar';go('wayfind');return true;
   case 'wayacc':S.wayAcc=!S.wayAcc;render(true);return true;
+  case 'dsms':S.door.smsOk=!S.door.smsOk;render(true);return true;
+  case 'legal':S.legal=v;render(true);return true;
+  case 'legalclose':S.legal=null;render(true);return true;
+  case 'settingsapp':later('Opens iPhone Settings › Club Passport');return true;
+  case 'locask':if(S.perm.loc==='no'){later('Location is off for Club Passport. Turn it on in iPhone Settings');return true}if(v==='guest'){S.askFrom='guest';S.sysAlert=ALERTS.loc}else S.ask={from:v};render(true);return true;
+  case 'locnot':S.gLocNot=true;render(true);return true;
+  case 'askgo':S.askFrom=S.ask.from;S.ask=null;S.sysAlert=ALERTS.loc;render(true);return true;
+  case 'asknot':{const f=S.ask&&S.ask.from;S.ask=null;render(true);if(f==='draw')later('You can also activate at any kiosk or player services desk');return true}
+  case 'locallow':{S.perm.loc=v||'while';S.gLoc=true;S.sysAlert=null;const f=S.askFrom;S.askFrom=null;render(true);
+   if(f==='draw')setTimeout(()=>{const b=document.querySelector('#stage [data-act="dract"]');if(b)b.click()},300);else later(f==='guest'?`Starting with ${P[nearestProp()].n}, the closest property`:'Showing where you are');return true}
+  case 'locdeny':{S.perm.loc='no';S.gLoc=false;S.sysAlert=null;const f=S.askFrom;S.askFrom=null;render(true);later(f==='draw'?'Activate at any kiosk or player services desk instead':f==='guest'?'Starting with WinStar. Pick your property anytime.':'Location stays off');return true}
+  case 'dract':if(!locOK()){if(S.perm.loc==='no'){later('Location is off for Club Passport. Activate at a kiosk or player services, or turn location on in iPhone Settings');return true}S.ask={from:'draw'};render(true);return true}break;
+  case 'pushask':case 'dpushtg':if(S.perm.push==='on'){later('Turn notifications off in iPhone Settings › Club Passport');return true}if(S.perm.push==='no'){later('Opens iPhone Settings › Club Passport › Notifications');return true}S.sysAlert=ALERTS.push;render(true);return true;
+  case 'pushallow':S.perm.push='on';S.sysAlert=null;render(true);later('Notifications on. Choose what you get in Messages & alerts.');return true;
+  case 'pushdeny':S.perm.push='no';S.sysAlert=null;render(true);return true;
+  case 'btok':S.perm.bt='on';S.sysAlert=null;render(true);setTimeout(()=>{const b=document.querySelector('#stage [data-act="key"]');if(b)b.click()},250);return true;
+  case 'btdeny':S.perm.bt='no';S.sysAlert=null;render(true);later('The Apple Wallet key works without Bluetooth');return true;
   case 'prefpick':{const k=a.dataset.p;if(S.gm)S.gPref=k;else S.prefSel[P1]=k===autoPref().k?null:k;render(true);later(`${P[k].n} is your preferred property. It shows first everywhere; the offers you get don’t change.`);return true}
   case 'prefauto':S.prefSel[P1]=null;S.prop=autoPref().k;render(true);return true;
   case 'fav':{const f=S.favs[P1],k=a.dataset.p;f.has(k)?f.delete(k):f.add(k);render(true);return true}
@@ -2563,7 +2647,7 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
 `:''}
   <div style="padding:20px 18px 0;font-size:11.5px;color:var(--ink3)">Concept demo · sample data</div></aside>`}
 function screenHTML(scr,live,mob){const t=themeFor(scr);
- return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${live?'<div class="sbg" aria-hidden="true"><span></span></div>':''}${SB}${NOTABS.includes(scr)?(live?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.fund?fundSheetHTML():''}${S.drWin&&scr==='drawing'?drawWinHTML():''}${S.stepup&&!S.gm&&(S.stepup.f==='address'?scr==='profile':scr==='security')?stepupHTML():''}${S.pk?pkSheetHTML():''}${S.modal?modalHTML():''}${S.cardSheet?cardSheetHTML():''}${S.sysAlert?sysAlertHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
+ return `<div class="scr" style="${themeStyle(t)}${mob?`;height:${mob.h}px;margin-left:${mob.x||0}px;transform:scale(${mob.s}) translateY(-${mob.off}px)`:''}">${SCR[scr]()}${live?'<div class="sbg" aria-hidden="true"><span></span></div>':''}${SB}${NOTABS.includes(scr)?(live?`<button data-act="menu" class="menu-fab glass" aria-label="Open menu">${ic('menu',20,2.2)}</button>`:''):tabs(scr)}<span class="hi"></span>${live?`<div class="toast" id="toast"></div>${S.sheet?sheetHTML():''}${S.fund?fundSheetHTML():''}${S.drWin&&scr==='drawing'?drawWinHTML():''}${S.stepup&&!S.gm&&(S.stepup.f==='address'?scr==='profile':scr==='security')?stepupHTML():''}${S.pk?pkSheetHTML():''}${S.modal?modalHTML():''}${S.cardSheet?cardSheetHTML():''}${S.ask?askSheetHTML():''}${S.legal?legalSheetHTML():''}${S.sysAlert?sysAlertHTML():''}${S.menu?drawerHTML():''}`:''}</div>`}
 function phone(scr,live){return `<div class="phone"><span class="hw l" style="top:170px;height:34px"></span><span class="hw l" style="top:232px;height:62px"></span><span class="hw l" style="top:308px;height:62px"></span><span class="hw r" style="top:256px;height:98px"></span><div class="bezel">${screenHTML(scr,live)}</div></div>`}
 function fitBox(html,w,h,maxW,maxH,cls=''){const s=Math.min(1,maxW/w,maxH?maxH/h:1);return `<div class="fit ${cls}" style="width:${Math.round(w*s)}px;height:${Math.round(h*s)}px"><div class="inner" style="width:${w}px;height:${h}px;transform:scale(${s.toFixed(4)})">${html}</div></div>`}
 
@@ -2741,7 +2825,7 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
   ${m.err==='wrong'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code doesn’t match. 2 tries left.</div>':m.err==='expired'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code expired after 10 minutes. We sent a new one.</div>':''}
   <div class="demo" style="margin-top:14px"><span>Demo</span>${[['wrong','Wrong code'],['expired','Expired'],['locked','Too many tries']].map(([k,l])=>`<button data-act="werr" data-v="${k}" aria-pressed="${m.err===k}">${l}</button>`).join('')}</div>`;
  else if(m.step==='welcome')b=`${head(`Welcome back, ${id.first}`,`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app.`)}<div style="display:flex;justify-content:center;margin-top:16px">${kcard(id,260)}</div>
-  <button class="wprim" data-act="wdone" style="${acc}">Go to my account</button><div class="wlinks"><button data-act="waddpw">Add a password (optional)</button></div>`;
+  ${m.who==='claim'||m.sam?`<p style="font-size:12.5px;color:var(--mute);margin:16px 0 0;text-align:center;line-height:1.45">By continuing, you agree to the Club Passport <button data-act="wlegal" data-v="terms" style="color:var(--sky);font-weight:600">Terms</button>, <button data-act="wlegal" data-v="rules" style="color:var(--sky);font-weight:600">Program rules</button> and <button data-act="wlegal" data-v="privacy" style="color:var(--sky);font-weight:600">Privacy Policy</button>.</p>`:''}<button class="wprim" data-act="wdone" style="${acc}">${m.who==='claim'||m.sam?'Agree and go to my account':'Go to my account'}</button><div class="wlinks"><button data-act="waddpw">Add a password (optional)</button></div>`;
  else if(m.step==='played')b=`${head('We couldn’t find you',`No account uses ${m.idType==='phone'?SAM.typedPhone:SAM.email}. Have you played at a Chickasaw Nation casino?`)}
   ${big('wfindby','card','Yes: enter my card number')}${big('wfindby','phone',m.idType==='phone'?'Yes: try my email address':'Yes: try my mobile number')}${big('wstep','join','No, I’m new here')}${big('wstep','inperson','I don’t have my card or PIN')}`;
  else if(m.step==='card')b=`${head('Let’s find your account','Your mobile number or card number, plus your date of birth and the 4-digit PIN you use at our casinos.')}
@@ -2757,7 +2841,8 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
  else if(m.step==='addemail')b=`${head('We found your account',`Sign in with ${m.idType==='phone'?SAM.typedPhone:SAM.email} from now on? We’ll send a code to confirm it and add it to your player account.`)}
   <button class="wprim" data-act="waddemail" style="${acc}">${m.idType==='phone'?'Add my mobile number':'Add my email'}</button><button class="wsec" data-act="wstep" data-v="welcome">Skip. I’ll use my mobile number</button>`;
  else if(m.step==='inperson')b=`${head('Let’s verify you in person','Show a photo ID at player services at any Chickasaw Nation casino. Linking your account takes a few minutes.')}<div class="pc" style="background:#16233C;margin-top:16px;padding:16px;display:flex;gap:14px;align-items:center"><div style="background:#fff;padding:6px;border-radius:10px">${qr('CP-48213',21,3)}</div><div><div style="color:var(--mute);font-size:12.5px">Show this at the desk</div><div style="font-weight:800;font-size:20px">CP-48213</div><div style="color:var(--mute);font-size:12px;margin-top:2px">We’ll text you when it’s linked. No new account was created.</div></div></div><button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
- else if(m.step==='join')b=`${head('Join the list','We’ll email you an offer for your first visit.')}<div class="wf">Email<span class="v">${SAM.email}</span></div><div class="wf">First name (optional)<span class="v">Sam</span></div><div class="wchk"><i>${ic('check',12,3)}</i>Email me offers and news. I’m 21 or older.</div><button class="wprim" data-act="wstep" data-v="jthanks" style="${acc}">Join</button><p style="font-size:12px;color:var(--mute);margin:12px 0 0">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</p>`;
+ else if(m.step==='join')b=`${head('Join the list','We’ll email you an offer for your first visit.')}<div class="wf">Email<span class="v">${SAM.email}</span></div><div class="wf">First name (optional)<span class="v">Sam</span></div><div class="wchk"><i>${ic('check',12,3)}</i>Email me offers and news</div><button class="wchk${m.agree?'':' off'}" data-act="wagree" aria-pressed="${!!m.agree}" style="width:100%;text-align:left"><i>${m.agree?ic('check',12,3):''}</i>I’m 21 or older and I agree to the Terms and Privacy Policy</button><div class="wlinks" style="justify-content:flex-start;margin-top:6px;font-size:12px"><button data-act="wlegal" data-v="terms">Terms</button><button data-act="wlegal" data-v="privacy">Privacy Policy</button><button data-act="wlegal" data-v="rules">Program rules</button></div>${m.agreeErr&&!m.agree?'<div style="color:#FF9C96;font-size:13px;margin-top:8px">To join, confirm you’re 21 or older and agree to the Terms.</div>':''}<button class="wprim" data-act="${m.agree?'wstep':'wagreeerr'}" data-v="jthanks" style="${acc};${m.agree?'':'opacity:.45'}">Join</button><p style="font-size:12px;color:var(--mute);margin:12px 0 0">Joining the list doesn’t create a player account. That happens at player services, with a photo ID.</p>`;
+ else if(m.step==='legal')b=`<button class="wx" data-act="wclose" aria-label="Close">${ic('x',18,2.2)}</button><span class="wm" style="font-size:13px;display:block;margin-bottom:14px">CLUB PASSPORT</span><h3>${LEGAL[m.doc][0]}</h3><div class="sub">Version 1.0 · effective October 1, 2026</div>${LEGAL[m.doc][1].map(([h,d])=>`<div style="margin-top:12px"><b style="font-size:13.5px">${h}</b><div style="font-size:13px;color:var(--mute);line-height:1.45;margin-top:2px">${d}</div></div>`).join('')}<p style="font-size:12px;color:var(--mute);margin:14px 0 0">Sample text for this demo. Legal and Compliance provide the final documents.</p><button class="wprim" data-act="wlegalback">Back</button>`;
  else if(m.step==='jthanks')b=`${head('Check your email',`Tap the link we sent to ${SAM.email} to confirm. Your first-visit offer is in the same email.`)}<button class="wprim" data-act="wclose" style="${acc}">Done</button>`;
  else if(m.step==='qr')b=`${head('Sign in with your phone','Open the Club Passport app and scan this code. Your phone confirms it’s you, so there’s nothing to type here.')}
   <div style="display:flex;justify-content:center;margin-top:18px"><div style="background:#fff;padding:12px;border-radius:16px">${qr('CP-WEB-SIGNIN-'+(m.where||'loyalty'),29,6)}</div></div>
@@ -2871,19 +2956,19 @@ const COV=[
  ['4.6','Preferred property and availability','Preferred property from rated days (6 months, then 18 months, then latest trip); in the app, the closest property for a guest who has never visited. A property picked from the Offers filter overrides it. Favorites. Trip dates improve relevance. Expired items removed. Alternatives when something is unavailable.','First release; alternatives in a future phase',['preferred','offers','book','destinations'],'Shown'],
  ['4.7','Booking and transactions','A seamless handoff from an offer to the booking engine, with the guest, offer eligibility and dates carried over. Results lead with the selected property. Cross-property booking later. Property Operations defines which bookings, purchases and redemptions count as transactions.','First release handoff; unified booking in a future phase',['offer','book','gbook','hotels','w:book','w:winstar'],'Shown'],
  ['4.8','App','Account summary on Home, card number and benefits, biometric sign-in, property content, preferred property first, reservations, hotel booking and host contact.','First release',['home','wallet','login','destinations','property','trip'],'Shown'],
- ['4.9','Push and communications','Push for offers, events and reminders, coordinated across properties with a frequency cap. Guests manage their preferences. Location and trip-based messages later.','First release; location-based in a future phase',['lock','comms','inbox'],'Shown'],
+ ['4.9','Push and communications','Push for offers, events and reminders, coordinated across properties with a frequency cap. Guests manage their preferences. Location and trip-based messages later.','First release; location-based in a future phase',['lock','comms','inbox','drawing'],'Shown'],
  ['4.10','Analytics and reporting','Journeys, referral sources, drop-off and conversion across web and app, reservations including dining, spa and golf, cross-domain, signed in and anonymous, linked to bookings and play. Enterprise and property views.','First release',['v:analytics'],'Shown with sample data'],
  ['4.11','Data and system of record','ACSC/Engage are authoritative for identity and offers. Prospects stay separate from player records. Regulated profile fields aren’t editable online until Compliance confirms.','Decisions for CNIT and vendors',['login','profile','security'],'Shown in the flows and notes'],
  ['4.12','Migration and transition','Day one: the loyalty site, one app and unified sign-in, with a plan to retire the property apps and move users and web logins over. Nothing the property apps do today is lost: the digital room key at every property with a hotel, and wayfinding at WinStar.','First release',['moving','login','stay','wayfind'],'Shown']];
 const COVA=[['A','Authentication journey',['login','w:signin']],['B','Example login paths',['login','recover','w:signin']],['C','Known guest: recognize, verify, establish identity',['login']],['D','New guest: prospect capture in HubSpot, without a duplicate identity',['login','w:join']],['E','Returning guest: login, MFA and step-up',['login','security','password']],['F','Account recovery',['recover']]];
-const COVD=[['MVP scope','The prototype tags each screen as first release or future phase for discussion.',[]],['Event definition','Shows, drawings and promotions appear as separate content types, so either definition fits.',['shows','drawing']],['Communication preferences','Shows one combined model: topic × channel, by property, with a shared frequency cap.',['comms']],['Profile management','Shows email, phone, password and mailing address as editable with step-up; name and date of birth in person only.',['profile']],['Real-time availability','Hotel rooms shown live; dining, spa and shows route to existing systems.',['book','dining']],['Remaining data ownership','Preferences and consent are stored with the account in the prototype; the source of truth is still to be confirmed.',['comms']],['Analytics KPIs','The dashboard proposes candidate KPIs: claims, sign-ins, redemptions, bookings and attributed play.',['v:analytics']],['Elite Bonusing Suite','Live meters show how bonusing and jackpot content could appear.',['meters']],['Reel Money Gaming','Not shown in v4.',[]],['Everi Wallet','Shown as the Resort Wallet across all 11 properties; availability by property to be confirmed.',['wallet']]];
+const COVD=[['MVP scope','The prototype tags each screen as first release or future phase for discussion.',[]],['Event definition','Shows, drawings and promotions appear as separate content types, so either definition fits.',['shows','drawing']],['Communication preferences','Shows one combined model: topic × channel, by property, with a shared frequency cap.',['comms']],['Profile management','Shows email, phone, password and mailing address as editable with step-up; name and date of birth in person only.',['profile']],['Terms and consent','Not in the BRD. Joining needs one box: 21 or older and the Terms and Privacy Policy. Texts need their own consent. A card holder agrees once on Welcome, and property-app users on the move screen. Legal and Compliance supply the documents.',['login','w:join','moving']],['Phone permissions','Not in the BRD. Each is asked when a feature needs it, never on first launch: location on guest Home (4.6), “Show where you are” and drawing activation; notifications on Welcome, a drawing win and Messages & alerts; Bluetooth only for the in-app room key. “Always” location waits for arrival alerts (future, 4.9).',['guest','drawing','stay','settings']],['Real-time availability','Hotel rooms shown live; dining, spa and shows route to existing systems.',['book','dining']],['Remaining data ownership','Preferences and consent are stored with the account in the prototype; the source of truth is still to be confirmed.',['comms']],['Analytics KPIs','The dashboard proposes candidate KPIs: claims, sign-ins, redemptions, bookings and attributed play.',['v:analytics']],['Elite Bonusing Suite','Live meters show how bonusing and jackpot content could appear.',['meters']],['Reel Money Gaming','Not shown in v4.',[]],['Everi Wallet','Shown as the Resort Wallet across all 11 properties; availability by property to be confirmed.',['wallet']]];
 function covChip(id){if(id.startsWith('w:')){const k=id.slice(2),l={loyalty:'Loyalty site',account:'Account hub',winstar:'WinStar site',artesian:'The Artesian site',signin:'Website sign-in',offers:'Website offers',book:'Website booking',join:'Website join'}[k];return `<button class="w" data-act="covgo" data-v="${id}">${ic('globe',12)} ${l}</button>`}
  if(id==='v:analytics')return `<button class="w" data-act="covgo" data-v="${id}">${ic('chart',12)} Analytics</button>`;
  const s=SCREENS.find(x=>x[0]===id);return s?`<button data-act="covgo" data-v="${id}">${ic(SICON[id]||'right',12)} ${s[1]}</button>`:''}
 function coverageView(){const n=SCREENS.length,fut=Object.values(SPHASE).filter(x=>x.includes('f')).length;
  const st=s=>`<span class="st" style="color:${s==='Shown'?'#7FE3B8':'#F5C46B'}">${ic(s==='Shown'?'check':'info',13,2.4)} ${s}</span>`;
  return `<div class="cov"><h1>Requirements coverage</h1><p class="lede">Every requirement area in the CNDC Website / App Business Requirements (v7), and where this prototype shows it. Click a screen to open it.</p>
-  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li><li><b>UX pass:</b> one demo date (Wed, Oct 7), so no past shows or drawings. One smart sign-in field with a passkey suggestion, a typo check, a resend countdown, Open Mail, a PIN you can show, and Face ID asked for with the phone’s own prompt. “Continue as a guest” is a real button. Home: the card is one tap from scanning, tier progress, offers as a short list, and “Right now” ordered by where the guest is. One set of words for offers (Add, In Passport, On card, Book). Profile (name, date of birth, mailing address) has its own page from Account, apart from Sign-in & security. A sticky offer button, an auto-continuing hotel handoff, Apple Wallet first for the room key, “Take me there” from Live meters, restrooms, an ATM and a step-free route on the WinStar map, and a Destinations map with filters. The menu shows the product; demo screens and the dashed DEMO rows sit behind presenter switches. Stronger text contrast and labels for icon-only buttons.</li></ul></div>
+  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li><li><b>UX pass:</b> one demo date (Wed, Oct 7), so no past shows or drawings. One smart sign-in field with a passkey suggestion, a typo check, a resend countdown, Open Mail, a PIN you can show, and Face ID asked for with the phone’s own prompt. “Continue as a guest” is a real button. Home: the card is one tap from scanning, tier progress, offers as a short list, and “Right now” ordered by where the guest is. One set of words for offers (Add, In Passport, On card, Book). Profile (name, date of birth, mailing address) has its own page from Account, apart from Sign-in & security. Terms at sign-up, and phone permissions asked in context (location, notifications, Bluetooth). A sticky offer button, an auto-continuing hotel handoff, Apple Wallet first for the room key, “Take me there” from Live meters, restrooms, an ATM and a step-free route on the WinStar map, and a Destinations map with filters. The menu shows the product; demo screens and the dashed DEMO rows sit behind presenter switches. Stronger text contrast and labels for icon-only buttons.</li></ul></div>
   <div class="cov-sum"><div><b>${SCN.length}</b><span>sign-in and join paths, all shown</span></div><div><b>12 of 12</b><span>requirement areas shown</span></div><div><b>6 of 6</b><span>authentication appendices</span></div><div><b>${n}</b><span>app screens</span></div><div><b>3</b><span>websites: loyalty, account, property</span></div><div><b>${fut}</b><span>screens with a future-phase part</span></div><div><b>10</b><span>open decisions with an option shown</span></div></div>
   <table class="ctab"><thead><tr><th>Req</th><th>Area and what it asks for</th><th>Phase</th><th>Shown in</th><th>Status</th></tr></thead><tbody>
   ${COV.map(([id,a,d,ph,ids,s])=>`<tr><td class="n">${id}</td><td style="max-width:520px"><b>${a}</b><span class="m">${d}</span></td><td class="m" style="max-width:170px">${ph}</td><td><div class="scr-chips">${ids.map(covChip).join('')}</div></td><td>${st(s)}</td></tr>`).join('')}</tbody></table>
@@ -2917,6 +3002,10 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wexpdone':S.webModal.member=true;S.webModal.step='expdone';render(true);return true;
   case 'wtype':S.webModal.idType=S.webModal.idType==='phone'?'email':'phone';render(true);return true;
   case 'wtypeset':S.webModal.idType=v;render(true);return true;
+  case 'wagree':S.webModal.agree=!S.webModal.agree;render(true);return true;
+  case 'wagreeerr':S.webModal.agreeErr=true;render(true);return true;
+  case 'wlegal':{const m=S.webModal;m.back=m.step;m.doc=v;m.step='legal';render(true);return true}
+  case 'wlegalback':{const m=S.webModal;m.step=m.back||'start';render(true);return true}
   case 'wcardstart':{const m=S.webModal;m.who='new';m.by='card';m.cardFirst=true;m.step='card';render(true);return true}
   case 'wpinhelp':toast('PINs are reset at any player services desk or kiosk, with a photo ID');return true;
   case 'wcard':{const m=S.webModal;if(m.lost){m.step='newph';render(true);return true}m.who='claim';m.sam=true;m.email=0;m.step='code';render(true);return true}
@@ -3014,6 +3103,12 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['pwadd','Add a password: the phone’s strong password first, or the guest’s own, checked for length and breaches','App. E','App'],
  ['pwchange','Change a password and sign out other devices','App. E','App'],
  ['pwremove','Remove a password and go passwordless','App. E','App'],
+ ['terms','Join the list: one required box for age and the Terms, links to read them, texts only with consent','4.1, App. D','App'],
+ ['termsclaim','First time online: agree to the Terms once, on Welcome','4.3, App. C','App'],
+ ['permloc','Guest: location asked on Home to start with the closest property, WinStar if declined','4.6','App'],
+ ['permpush','After sign-in: notifications offered on Welcome with the phone’s own prompt','4.9','App'],
+ ['permdraw','Activating drawing entries: location checked once, then notifications for a win','4.4, 4.9','App'],
+ ['permbt','Room key in the app: Bluetooth asked the first time, Apple Wallet needs nothing','4.12','App'],
  ['stepup','Change the mobile number: confirm it’s you, then notify the old contacts','App. E','App'],
  ['address','Profile: change the mailing address after confirming it’s you; name and date of birth stay with player services','4.11, App. E','App'],
  ['devices','Trusted devices, recent sign-ins, “Not you?” and sign out everywhere','App. E','App'],
@@ -3083,6 +3178,12 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'stepup':return app('security',()=>{as('A');S.stepup={f:'mobile',step:'confirm',fill:false}});
   case 'devices':return app('security',()=>{as('A');S.trusted.A=true});
   case 'signout':return app('settings',()=>{as('A');S.trusted.A=true});
+  case 'terms':return login('B',false,{who:'new',step:'join',h:['start','played'],addPh:true});
+  case 'termsclaim':return login('B',false,{who:'claim',sam:true,step:'welcome',h:['start','pin','code']});
+  case 'permloc':return app('guest',()=>{as('B');S.gm=true;S.perm=permNew();S.gLoc=false;S.gLocNot=false});
+  case 'permpush':return login('B',false,{step:'welcome',h:['start','code']},()=>{S.perm=permNew()});
+  case 'permdraw':return app('drawing',()=>{as('B');S.perm=permNew();S.dr.B.act=false});
+  case 'permbt':return app('stay',()=>{as('A');S.perm.bt='ask';S.keyOpen=false});
   case 'address':return app('profile',()=>{as('A');S.stepup={f:'address',step:'confirm',fill:false}});
   case 'web':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'start',who:'ret',where:null}});
   case 'weblock':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'locked',who:'ret',where:null}});
@@ -3222,7 +3323,7 @@ function uxAfter(){const scr=document.querySelector('#stage .scr'),b=scr&&scr.qu
  else if(S.bkAutoT){clearTimeout(S.bkAutoT);S.bkAutoT=null}}
 render=(f=>function(k){f(k);uxAfter()})(render);
 // Overlays close when the screen changes
-go=(f=>function(scr){S.sysAlert=null;S.cardSheet=false;return f(scr)})(go);
+go=(f=>function(scr){S.sysAlert=null;S.cardSheet=false;S.ask=null;S.legal=null;return f(scr)})(go);
 
 // Presenter switch: hide the dashed DEMO rows so the screens look like production
 function setDemoRows(on){document.documentElement.classList.toggle('nodemo',!on);try{localStorage.setItem('cp-demo-rows',on?'on':'off')}catch(e){}
