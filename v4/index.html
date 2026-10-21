@@ -873,7 +873,7 @@ const SCREENS=FLOW.flatMap(g=>g[1]);
 const NOTES={
  drawing:{e:'Live drawing',t:'Watch the drawing live, win from the app',d:'This week’s Club Passport drawing streams live from WinStar. Entries earned at any of the 11 properties count. Players activate them in the app when they’re on property, with no kiosk line, and winners get 5 minutes to claim in the app. Below it, this week’s real drawings at Riverwind and Riverstar. Tap Activate, then Draw next winner to see a win.',aud:['Exec','Marketing','Loyalty'],src:'<b>Sample values:</b> the Club Passport drawing, its prizes and entries. <b>From property websites (Sep 27, 2026):</b> Wild Card Blitz, Trick or Treasure, Witches and Riches, Battle of the Bridge and Moonlight Money Madness. <b>Compliance:</b> drawing rules and in-app claiming need review.'},
  homeUmb:{e:'Parent-led',t:'One app, eleven looks',d:'Swipe the photo at the top, or tap the arrows or dots. The whole app changes over to that property: colors, photos and logo, and Home fills with its offers, shows, promotions and dining. Club Passport stays at the top, and the tier, points and wallet stay the same everywhere.',aud:['Exec','GM','Brand'],src:'<b>Content:</b> dining, shows and promotions from each property website, captured Sep 26, 2026.'},
- login:{e:'Sign in',t:'Verify first, then find the account',d:'Everyone starts the same way: their email or mobile number, the agreement above Continue, and a code to what they typed. Only after the code does the app look for an account, so nobody can type someone else’s email and learn whether they play here. Online account: the casino PIN after the code, unless Face ID is on or they use a passkey (Jordan can use his password instead of the code). “Remember this iPhone” skips the code for 30 days, never the PIN, and never from a new location. Card holder, first time online: date of birth and casino PIN, then Welcome, and the verified email becomes the sign-in. Nothing found: the card number with date of birth, PIN and a code to the phone on file, a different email or mobile, joining the list, or (without the card or PIN) signing in now and linking the card later, in the app or at player services. The Lookup switch sets what the app finds. After a sign-in on a new phone, Welcome back offers Face ID, notifications and a passkey.',aud:['Exec','Loyalty','IT'],src:'<b>Appendices A–E (v7).</b> Prospects who join go to HubSpot, not ACSC/Engage. The casino PIN helps claim an account but is never the sign-in afterwards (the Appendix A guardrail); 3 wrong tries pause online claiming for 24 hours. Verifying the email or mobile before the ACSC/Engage lookup reverses the illustrative order in Appendix C (locate, verify owner, then the code); CNIT and the authentication vendor should agree (6-08). ACSC/Engage still decides whether a player record exists and checks the date of birth and PIN (4.3). The card number only finds a player record and is never a way to sign in. Codes go out only after the agreement to the Terms, Privacy Policy and texted code, as SMS providers require. Passwords are optional; passkeys stay on the roadmap.'},
+ login:{e:'Sign in',t:'Verify first, then find the account',d:'Everyone starts the same way: their email or mobile number, the agreement above Continue, and a code to what they typed. Only after the code does the app look for an account, so nobody can type someone else’s email and learn whether they play here. Online account: the casino PIN after the code, or the password if they set one (Jordan has), unless Face ID is on or they use a passkey. “Remember this iPhone” skips the code for 30 days, never the PIN or password, and never from a new location. Forgot password: a new code, then the PIN, then a new password. Reset sign-in (presenter bar or menu) starts this persona over as a fresh install. Card holder, first time online: date of birth and casino PIN, then Welcome, and the verified email becomes the sign-in. Nothing found: the card number with date of birth, PIN and a code to the phone on file, a different email or mobile, joining the list, or (without the card or PIN) signing in now and linking the card later, in the app or at player services. The Lookup switch sets what the app finds. After a sign-in on a new phone, Welcome back offers Face ID, notifications and a passkey.',aud:['Exec','Loyalty','IT'],src:'<b>Appendices A–E (v7).</b> Prospects who join go to HubSpot, not ACSC/Engage. The casino PIN helps claim an account but is never the sign-in afterwards (the Appendix A guardrail); 3 wrong tries pause online claiming for 24 hours. Verifying the email or mobile before the ACSC/Engage lookup reverses the illustrative order in Appendix C (locate, verify owner, then the code); CNIT and the authentication vendor should agree (6-08). ACSC/Engage still decides whether a player record exists and checks the date of birth and PIN (4.3). The card number only finds a player record and is never a way to sign in. Codes go out only after the agreement to the Terms, Privacy Policy and texted code, as SMS providers require. Passwords are optional; passkeys stay on the roadmap.'},
  home:{e:'Personalized home',t:'Account summary first, then offers',d:'Home opens with the account summary the requirements ask for: tier, tier points, reward points, progress to the next tier, drawing entries and card number. Offers come straight after, featured first and then ending soonest, followed by the “Right now” stack and upcoming reservations. The greeting shows the preferred property. Switch the brand model above to compare the three options.',aud:['Exec','GM','Loyalty'],src:'<b>Requirements:</b> the default view after sign-in (4.8) and offers prominent after sign-in (4.5). Balances and offers would come from ACSC/Engage.'},
  destinations:{e:'House of brands',t:'Eleven brands, each shown as itself',d:'Every property appears with its own logo, photography and colors. Cards are sorted by distance and show which services each property offers.',aud:['GM','Exec'],src:'<b>Roadmap:</b> Multi-Property Continuity, with property-aware entitlements and geo context.'},
  property:{e:'Home property',t:'One tap to your home property',d:'The bottom bar has a tab for the guest’s preferred property, in that property’s colors: WinStar for Winnie, The Artesian for Jordan. It opens the property page with dining, shows, the hotel, offers and the tier perks that apply there. Change the preferred property and the tab follows. Destinations and the switcher move between all 11.',aud:['GM','Loyalty','Exec'],src:'<b>Requirements 4.8 and 4.6:</b> property content with the preferred property first, and moving between properties. The preferred property changes what shows first, never which offers the guest gets.'},
@@ -1070,7 +1070,7 @@ SCR.property=()=>{const p=per(),k=S.prop,q=P[k],t=TIERS[p.tier];
  return `<div class="body">
   <div class="photo" style="${bg(q.hero)};height:360px;--shade:linear-gradient(180deg,rgba(5,10,20,.55) 0,rgba(5,10,20,.05) 30%,rgba(5,10,20,.45) 64%,#0A1324 100%)">
    <div style="position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between"><button data-go="destinations" class="glass iconbtn" aria-label="Back" style="color:#fff">${ic('back',20,2.2)}</button><${S.gm?'button data-act="gsignin"':'span'} class="glass" style="display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:99px;color:#fff"><span class="wm" style="font-size:10px">CLUB PASSPORT</span><span style="font-size:12.5px;font-weight:600">${S.gm?'Sign in':t.n}</span></${S.gm?'button':'span'}></div>
-   <div style="position:absolute;left:20px;right:20px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">${lg(k,54)}<div style="font-size:15px;color:#fff;font-weight:600">${q.tag}</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">${q.city}, OK · ${mi(p.dist[k])}</div></div></div>
+   <div style="position:absolute;left:20px;right:20px;bottom:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><button data-act="sheet" aria-label="Switch property, now ${q.n}" style="display:flex;align-items:center;gap:10px;color:#fff">${lg(k,54)}<span class="glass" style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none">${ic('down',16,2.4)}</span></button><div style="font-size:15px;color:#fff;font-weight:600">${q.tag}</div><div style="font-size:12.5px;color:rgba(255,255,255,.75)">${q.city}, OK · ${mi(p.dist[k])}</div></div></div>
   <div style="display:grid;grid-template-columns:repeat(${acts.length},1fr);gap:8px;margin:4px 20px 0">${acts.map(a=>`<button ${a[3]?`data-go="${a[3]}"`:''} style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px;border-radius:18px;background:var(--el);font-size:12px;font-weight:600"><span style="color:${q.hi}">${ic(a[0],22)}</span>${a[1]}</button>`).join('')}</div>
   ${(()=>{const st=stayFor(),r=[];if(q.f.hotel&&st&&st.k===k&&!S.gm)r.push(['key',st.now?'Room key · Room '+st.room:'Room key','stay',st.now?'Hold your phone near the lock':'Arrives at check-in, '+st.checkin]);if(k==='winstar')r.push(['map','Find your way','wayfind','Machines, restaurants, the cage and valet']);return r.length?`<div class="list" style="margin-top:12px">${r.map(([i,t,g,sb])=>`<button class="li" data-go="${g}" style="width:100%;text-align:left"><span style="color:${q.hi}">${ic(i,20)}</span><div class="grow"><div class="k">${t}</div><div class="v">${sb}</div></div>${ic('right',16)}</button>`).join('')}</div>`:''})()}
   ${S.gm?`<div style="margin:14px 20px 0;padding:16px;border-radius:20px;background:var(--el);display:flex;gap:14px;align-items:center">${kcard({tier:'circle'},86)}<div style="flex:1"><div style="font-weight:700">Members get more here</div><div style="display:flex;flex-direction:column;gap:3px;margin-top:6px">${['Member pricing at restaurants','Points on play, dining and stays','Offers picked for you'].map(x=>`<div style="display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--ink2)"><span style="color:#5FD7A5">${ic('check',14,2.4)}</span>${x}</div>`).join('')}</div><div style="display:flex;gap:14px;margin-top:10px;font-size:13px;font-weight:700"><button data-act="gjoin" data-v="property" style="color:var(--hi)">Join, it’s free</button><button data-act="glink" data-v="property" style="color:var(--hi)">Link my account</button></div></div></div>`:''}
@@ -1681,13 +1681,17 @@ function doorVerified(){const d=S.door;d.fill=false;d.methods=false;d.err=null;
  // An online account: signed in, with a text to the phone on file after an email code from a new location (Appendix E)
  if(d.who==='ret'){if(d.risk&&d.m==='email'&&!d.second){d.second=true;d.m='sms';d.sentAt=Date.now();stepTo(d,'code');return}
   if(d.remember)S.remember[S.persona]=true;
-  // A linked account takes a second step: Face ID on this iPhone, a passkey, or the casino PIN
+  // A linked account takes a second step: Face ID on this iPhone, a passkey, the password if they set one, or the casino PIN
   if(S.trusted[S.persona]&&!d.faceFail){doorDone('Confirmed with Face ID. Signed in.');return}
-  d.perr=0;d.pinDemo='ok';d.pinHelp=false;stepTo(d,'upin');return}
+  d.perr=0;d.pinDemo='ok';d.pinHelp=false;d.err=null;stepTo(d,(S.hasPw[S.persona]?'pw':'upin'));return}
  // Only now, with the email or mobile verified, does the lookup in ACSC/Engage happen
  if(first&&!d.onfile){stepTo(d,d.who==='claim'?'pin':'played');return}
  // The code to the contact on the player account (card path) or to a new number
  stepTo(d,'welcome')}
+function resetSignin(){const k=S.persona,web=S.view==='web';clearTimeout(S.fidT);S.fidT=null;
+ Object.assign(S,{door:doorFresh(),perm:permNew(),ask:null,legal:null,sysAlert:null,pk:null,pwf:null,rc:{step:'menu',h:[]},stepup:null,gm:false,gNext:null,gProspect:false,gUnlinked:null,webIn:false,webTrusted:false,webModal:null,webUnlinked:null,fromOld:false});
+ S.trusted[k]=false;S.remember[k]=false;S.hasPw[k]=k==='B';S.passkeys[k]=k==='A'?[{where:'iCloud Keychain',made:'Sep 30',used:'Oct 5'}]:[];S.newMobile[k]=null;
+ if(web)render();else go('login');setTimeout(()=>toast(`Sign-in reset: a fresh install for ${PERS[k].first}`),40)}
 function doorDone(msg){S.door=doorFresh();go(gOut());setTimeout(()=>toast(msg),40)}
 const demoRow=(act,cur,opts)=>`<div class="demo"><span>Demo</span>${opts.map(([v,l])=>`<button data-act="${act}" data-v="${v}" aria-pressed="${cur===v}">${l}</button>`).join('')}</div>`;
 const errT=t=>`<div class="errt">${ic('info',15)}<span>${t}</span></div>`;
@@ -1707,9 +1711,9 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
  if(S.trusted[S.persona]&&st==='start'&&!S.gm)return `<div class="body" style="padding-bottom:0;display:flex;flex-direction:column">${hero(400)}
   <div style="padding:14px 24px 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px">
    <div class="faceid${d.fid?' bad':''}" style="width:84px;height:84px;margin:4px auto 6px">${ic('face',46,1.6)}</div>
-   ${d.fid?`<div style="font-size:21px;font-weight:800;letter-spacing:-.02em">Face ID didn’t recognize you</div><div class="cap" style="font-size:13.5px">Try again, or enter your casino PIN.</div>
+   ${d.fid?`<div style="font-size:21px;font-weight:800;letter-spacing:-.02em">Face ID didn’t recognize you</div><div class="cap" style="font-size:13.5px">Try again, or enter your ${S.hasPw[S.persona]?'password':'casino PIN'}.</div>
    <button class="btn" data-act="dfidretry" style="width:100%;height:50px;margin-top:12px">${ic('face',18)} Try Face ID again</button>
-   <button class="btn line" data-act="dfidpin" style="width:100%;height:46px;margin-top:8px">${ic('lock',16)} Enter my PIN</button>`
+   <button class="btn line" data-act="dfidpin" style="width:100%;height:46px;margin-top:8px">${ic('lock',16)} Enter my ${S.hasPw[S.persona]?'password':'PIN'}</button>`
    :`<div style="font-size:23px;font-weight:800;letter-spacing:-.02em">Welcome back, ${p.first}</div><div class="cap" style="font-size:13.5px">Face ID is signing you in</div>`}
    <button data-act="dother" style="margin-top:12px;font-size:13.5px;font-weight:700;color:var(--hi)">Not ${p.first}? Use another account</button></div>
   <div style="margin-top:auto;padding:0 0 26px">${logos}</div></div>`;
@@ -1728,14 +1732,15 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   ${d.link||pkHint?'':`<button data-act="dpasskey" style="display:flex;align-items:center;gap:6px;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">${ic('key',15)}Use a passkey</button>`}
   <button class="btn line" data-act="dguest" style="width:100%;height:48px;margin-top:14px">${S.gm?'Not now':'Continue as a guest'}</button>
   <button data-go="recover" style="display:block;margin:16px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">Trouble signing in?</button>
-  ${d.link||!S.fromOld?'':`<button data-go="moving" class="note" style="margin-top:14px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}`} else if(st==='pw')b=`${h1('Enter your password',`Signing in as ${typedId(d)}`)}
+  ${d.link||!S.fromOld?'':`<button data-go="moving" class="note" style="margin-top:14px;width:100%;text-align:left">${ic('swap',16)}<span>Coming from the WinStar or Riverwind app? Your account, card and points move over.</span></button>`}`} else if(st==='pw')b=`${h1(`Welcome back, ${p.first}`,'Enter your password.')}
+  <div class="why">${d.faceFail?`${ic('face',16)}<span><b>Face ID didn’t work.</b> Your password signs you in instead.</span>`:d.remembered?`${ic('shield',16)}<span><b>Remembered iPhone.</b> No code until Nov 6. Your password confirms it’s you.</span>`:`${ic('shield',16)}<span><b>Code checked.</b> You set a password, so it’s asked instead of your casino PIN.</span>`}</div>
   <div class="fld"><span>Password</span><span class="fv${d.err==='pw'?' bad':''}"><span style="flex:1">••••••••••••</span><i class="caret"></i></span></div>
-  ${d.err==='pw'?errT('That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.'):d.err==='nopw'?errT('That password doesn’t match. Use the code we sent instead.'):''}
+  ${d.err==='pw'?errT('That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.'):''}
   <button class="btn" data-act="dpw" style="width:100%;height:52px;margin-top:16px">Sign in</button>
-  <button class="btn line" data-act="dcode" style="width:100%;height:48px;margin-top:10px">${ic(d.idType==='phone'?'msg':'mail',16)} Use the code instead</button>
+  ${hasPk?`<button data-act="dpasskey" style="display:flex;align-items:center;gap:6px;margin:14px auto 0;font-size:13.5px;font-weight:700;color:var(--hi)">${ic('key',15)}Use a passkey instead</button>`:''}
   <div style="display:flex;justify-content:center;margin-top:16px"><button data-act="dforgot" style="font-size:13px;font-weight:700;color:var(--hi)">Forgot password?</button></div>
-  ${demoRow('derr',d.err,[['pw','Wrong password'],['locked','Too many tries']])}`;
- else if(st==='code'){const first=!d.verified&&!d.pwDone,typed=typedId(d),to=d.newph?'(580) ***-**77':first?typed:d.m==='email'?maskEm(id):maskPh(id);
+  ${S.trusted[S.persona]?'':`<div class="cap" style="text-align:center;margin-top:12px;color:var(--ink3)">Turn on Face ID and this iPhone won’t ask for your password.</div>`}
+  ${demoRow('derr',d.err,[['pw','Wrong password'],['locked','Too many tries']])}`; else if(st==='code'){const first=!d.verified&&!d.pwDone,typed=typedId(d),to=d.newph?'(580) ***-**77':first?typed:d.m==='email'?maskEm(id):maskPh(id);
   const meth=[['sms','msg',`Text ${maskPh(id)}`],['email','mail',`Email ${maskEm(id)}`]].concat(d.onfile?[]:[['app','shield','Authenticator app']]);
   b=`${h1('Enter the code',d.m==='app'?'Open your authenticator app for the 6-digit code.':`We sent a 6-digit code to ${to}${d.onfile&&d.m==='sms'&&!d.newph?', the mobile number on your player account':''}.`)}
   ${d.pwDone?`<div class="why">${ic('shield',16)}<span><b>New iPhone.</b> Your password was right. A code to the phone on your account confirms this phone is yours.</span></div>`:''}
@@ -1746,9 +1751,9 @@ SCR.login=()=>{const p=per(),d=S.door,st=d.step,id=doorId(),hasPk=S.passkeys[S.p
   ${d.err==='wrong'?errT('That code doesn’t match. 2 tries left.'):d.err==='expired'?errT('That code expired after 10 minutes. We sent a new one.'):''}
   ${d.typo&&first?'':d.fill?`<div class="cap" style="text-align:center;margin-top:14px;color:#7FE3B8;font-weight:600">${ic('check',13,2.6)} Verifying</div>`:`<button class="autofill" data-act="dfill">${ic(d.m==='email'?'mail':d.m==='app'?'shield':'msg',15)} ${d.m==='email'?'From Mail':d.m==='app'?'Paste':'From Messages'}: <b>${d.err==='expired'?'607 254':'482 913'}</b></button>`}
   ${d.m==='email'&&!d.fill&&!(d.typo&&first)?`<button class="btn line" data-act="dopenmail" style="width:100%;height:44px;margin-top:10px">${ic('mail',16)} Open Mail</button><div class="cap" style="text-align:center;margin-top:8px">Or tap the sign-in link in the email. It opens the app and signs you in.</div>`:''}
-  ${first||d.pwDone?`<div style="margin-top:14px">${chkrow(d.remember,'Remember this iPhone for 30 days','dremtg')}</div><div class="cap" style="margin:2px 0 0 32px;color:var(--ink3)">No code on this iPhone until Nov 6. Card holders still enter their PIN or use Face ID.</div>`:''}
+  ${first||d.pwDone?`<div style="margin-top:14px">${chkrow(d.remember,'Remember this iPhone for 30 days','dremtg')}</div><div class="cap" style="margin:2px 0 0 32px;color:var(--ink3)">No code on this iPhone until Nov 6. Card holders still enter their PIN or password, or use Face ID.</div>`:''}
   ${d.methods?`<div class="opts">${meth.map(([k,i,t])=>`<button class="opt" data-act="dm" data-v="${k}" aria-pressed="${d.m===k}"><span class="rad"></span><span class="oi">${ic(i,18)}</span><span class="grow"><b>${t}</b></span></button>`).join('')}</div>`:''}
-  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" data-until="${d.sentAt||(d.sentAt=Date.now())}" style="color:var(--hi)">Resend code</button>${first?'<span style="color:var(--ink3)">|</span><button data-act="dusepw" style="color:var(--hi)">Use my password instead</button>':d.second||d.onfile?'<span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button>':''}</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:16px;font-size:13px;font-weight:600"><button data-act="dresend" data-until="${d.sentAt||(d.sentAt=Date.now())}" style="color:var(--hi)">Resend code</button>${first?'':d.second||d.onfile?'<span style="color:var(--ink3)">|</span><button data-act="dmethods" style="color:var(--hi)">Use a different method</button>':''}</div>
   ${first?`<button data-act="dchange" style="display:block;margin:12px auto 0;font-size:13px;font-weight:700;color:var(--hi)">Wrong ${d.idType==='phone'?'number':'email'}? Change it</button>`:''}
   ${d.onfile&&!d.newph&&d.m==='sms'?`<button data-act="dnophone" style="display:block;margin:12px auto 0;font-size:13px;font-weight:700;color:var(--hi)">I don’t have this phone anymore</button>`:''}
   <div class="cap" style="text-align:center;margin-top:14px;color:var(--ink3)">${first?'We look for your account once this code checks out. ':''}The code fills in and checks itself. Codes last 10 minutes.</div>
@@ -1945,14 +1950,18 @@ SCR.recover=()=>{const p=per(),r=S.rc,st=r.step;
  if(st==='menu')b=`${h1('Trouble signing in?','Choose what’s going on.')}
   ${[['lost','device','I can’t get my code','New phone or number, or no access to my email'],['match','user','I can’t find my account','We’ll look further, or help you in person'],['pw','pwd','I forgot my password','Sign in with a code instead, then set a new one if you like']].map(([k,i,t,s])=>`<button class="bigopt" data-act="rcnext" data-v="${k}"><span class="oi">${ic(i,20)}</span><span class="grow"><b>${t}</b><span>${s}</span></span>${ic('right',16)}</button>`).join('')}
   <div class="note" style="margin-top:16px">${ic('pin',16)}<span>Player services at any of our casinos can always help in person, with a photo ID.</span></div>`;
- else if(st==='pw')b=`${h1('Forgot your password?','No problem. We’ll send a code so you can sign in, then you can set a new password or skip it.')}
+ else if(st==='pw')b=`${h1('Forgot your password?','We’ll send a new code, then ask for your casino PIN. Then you set a new password.')}
   ${fld('Email or mobile number',p.email)}
   <button class="btn" data-act="rcnext" data-v="pwcode" style="width:100%;height:50px;margin-top:16px">Send me a code</button>
   <button class="btn line" data-act="rcnext" data-v="lost" style="width:100%;height:46px;margin-top:10px">Try another recovery method</button>
   <div class="note" style="margin-top:14px">${ic('info',16)}<span>For your security, we never say whether an account exists.</span></div>`;
  else if(st==='pwcode'||st==='ecode'||st==='ncode'){const to=st==='ncode'?'(580) ***-**77':st==='ecode'?maskEm(p):maskPh(p);
   b=`${h1('Enter the code',`We sent a 6-digit code to ${to}.`)}${otpBox(r.fill)}${r.fill?'':`<button class="autofill" data-act="rcfill">${ic(st==='ecode'?'mail':'msg',15)} ${st==='ecode'?'From Mail':'From Messages'}: <b>482 913</b></button>`}
-  <button class="btn" data-act="rcnext" data-v="${st==='pwcode'?'newpw':st==='ecode'?'newph':'restored'}" style="width:100%;height:50px;margin-top:16px">Verify</button>`}
+  <button class="btn" data-act="rcnext" data-v="${st==='pwcode'?'pwpin':st==='ecode'?'newph':'restored'}" style="width:100%;height:50px;margin-top:16px">Verify</button>`}
+ else if(st==='pwpin')b=`${h1('Enter your casino PIN','The 4-digit PIN you use at our casinos. With the code, it confirms it’s you before you set a new password.')}
+  <div class="fld"><span>Casino PIN</span></div>${pinBox(false,false)}
+  <button class="btn" data-act="rcnext" data-v="newpw" style="width:100%;height:50px;margin-top:16px">Continue</button>
+  <div class="note" style="margin-top:14px">${ic('info',16)}<span>Forgot your PIN as well? Player services at any of our casinos can reset it, with a photo ID.</span></div>`;
  else if(st==='newpw')b=`${h1('Set a new password')}${fld('New password','••••••••••••••',{caret:1})}<div class="strength"><i></i><i></i><i></i><i></i></div>${fld('Confirm new password','••••••••••••••')}
   <div class="list" style="margin:16px 0 0">${['At least 12 characters','Not one you’ve used before'].map(x=>`<div class="li"><span style="color:#5FD7A5">${ic('check',16,2.6)}</span><div class="grow v" style="color:var(--ink)">${x}</div></div>`).join('')}</div>
   <button class="btn" data-act="rcnext" data-v="pwdone" style="width:100%;height:50px;margin-top:16px">Save and sign in</button>
@@ -2064,7 +2073,7 @@ SCR.security=()=>{const p=per(),mob=S.newMobile[S.persona]||p.mobile,A1=S.person
  const tg=(k,l,s)=>`<div class="tgr"><div class="grow"><div class="k">${l}</div>${s?`<div class="v">${s}</div>`:''}</div><button class="tg" role="switch" aria-checked="${!!S[k]}" data-act="sectg" data-k="${k}" aria-label="${l.replace(/<[^>]+>/g,'')}"></button></div>`;
  return `<div class="body">${head('Sign-in & security','settings')}
   <div class="sec" style="margin-top:12px"><h4>How you sign in</h4></div>
-  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}<div class="li"><span style="color:var(--ink2)">${ic('pwd',19)}</span><div class="grow"><div class="v">Password</div><div class="k">${S.hasPw[S.persona]?'Changed 3 months ago':'Not set · optional'}</div></div>${S.hasPw[S.persona]?'<button class="rowbtn" data-act="pwopen" data-v="remove" style="color:var(--ink2)">Remove</button><button class="rowbtn" data-act="pwopen" data-v="change" style="margin-left:12px">Change</button>':'<button class="rowbtn" data-act="pwopen" data-v="add">Add</button>'}</div></div>
+  <div class="list">${row('mail','Email',p.email,'email')}${row('phone','Mobile',mob,'mobile')}<div class="li"><span style="color:var(--ink2)">${ic('pwd',19)}</span><div class="grow"><div class="v">Password</div><div class="k">${S.hasPw[S.persona]?'Asked instead of your PIN · changed 3 months ago':'Not set · optional, replaces your PIN at sign-in'}</div></div>${S.hasPw[S.persona]?'<button class="rowbtn" data-act="pwopen" data-v="remove" style="color:var(--ink2)">Remove</button><button class="rowbtn" data-act="pwopen" data-v="change" style="margin-left:12px">Change</button>':'<button class="rowbtn" data-act="pwopen" data-v="add">Add</button>'}</div></div>
   <div class="list" style="margin-top:10px">${tg('secFace','Face ID','Open the app with a glance on this iPhone')}</div>
   <div class="sec"><h4>Passkeys</h4><button data-act="pkcreate">Create a passkey</button></div>
   <div class="list">${S.passkeys[S.persona].length?S.passkeys[S.persona].map((k,i)=>`<div class="li"><span style="color:var(--hi)">${ic('key',19)}</span><div class="grow"><div class="k">${k.where}</div><div class="v">Created ${k.made} · last used ${k.used}</div></div><button class="rowbtn" data-act="pkrm" data-i="${i}" style="color:#FF8A84">Remove</button></div>`).join(''):`<div class="li"><div class="grow v">No passkeys yet. A passkey signs you in with Face ID, here and on our websites, with no code or password.</div></div>`}</div>
@@ -2072,7 +2081,7 @@ SCR.security=()=>{const p=per(),mob=S.newMobile[S.persona]||p.mobile,A1=S.person
   <div class="list">${[['msg','Text message',`···· ${mob.slice(-4)} · default`],['mail','Email',maskEm(p)],['shield','Authenticator app','Not set up']].map(([i,l,v],j)=>`<div class="li"><span style="color:var(--ink2)">${ic(i,19)}</span><div class="grow"><div class="k">${l}</div><div class="v">${v}</div></div>${j===2?'<button class="rowbtn" data-act="secauth">Set up</button>':''}</div>`).join('')}</div>
   <div class="sec"><h4>Remembered devices</h4><button data-act="signoutall">Sign out everywhere</button></div>
   <div class="list">${[['device','iPhone 15 Pro','This iPhone · no code until Nov 6',0],['laptop','Chrome on Mac',`Club Passport and winstar.com · no code until Oct 30`,1],['device','iPad','Last used Aug 2',1]].map(([i,l,v,rm])=>`<div class="li"><span style="color:var(--ink2)">${ic(i,19)}</span><div class="grow"><div class="k">${l}</div><div class="v">${v}</div></div>${rm?'<button class="rowbtn" data-act="secrm" style="color:#FF8A84">Remove</button>':''}</div>`).join('')}</div>
-  <div class="px cap" style="margin-top:8px;color:var(--ink3)">A remembered device skips the code for 30 days. Your PIN, Face ID or a passkey is still needed.</div>
+  <div class="px cap" style="margin-top:8px;color:var(--ink3)">A remembered device skips the code for 30 days. Your PIN or password, Face ID or a passkey is still needed.</div>
   <div class="sec"><h4>Recent sign-ins</h4></div>
   <div class="list">${[['check','#5FD7A5','New iPhone · Norman, OK','Text code and casino PIN · today 9:41 AM',1],['check','#5FD7A5','winstar.com · Chrome on Mac','Remembered browser and PIN · Oct 5',0],['x','#FF8A84','Blocked · Dallas, TX','5 wrong passwords · paused for 15 minutes · Sep 28',0]].map(([i,c,l,v,nm])=>`<div class="li"><span style="color:${c}">${ic(i,18,2.6)}</span><div class="grow"><div class="k">${l}</div><div class="v">${v}</div></div>${nm?'<button class="rowbtn" data-act="notme" style="color:#FF8A84">Not you?</button>':''}</div>`).join('')}</div></div>`};
 const SUF={mobile:['mobile number','New mobile number','(580) 555-0177'],email:['email','New email','winnie.day@mail.example'],password:['password','New password','••••••••••••••'],address:['mailing address','New address','88 Lakeview Drive, Ardmore, OK 73401']};
@@ -2579,7 +2588,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dnotme':{const d=S.door;d.notme=true;d.perr=0;d.pinDemo='ok';d.pinHelp=false;stepTo(d,'card');return true}
   case 'dcardstart':{const d=S.door;d.who='new';d.cardFirst=true;stepTo(d,'card');return true}
   case 'dgo':{const d=S.door;if(d.idEmpty){d.idErr=true;render(true);return true}d.m=d.idType==='phone'?'sms':'email';if(!S.gm&&!S.trusted[P1])S.perm=permNew();d.sentAt=0;d.second=false;d.pwDone=false;d.err=null;d.verified=false;d.onfile=false;d.remembered=false;d.faceFail=false;d.perr=0;d.pinDemo='ok';d.pinHelp=false;
-   if(d.who==='ret'&&!d.sam&&!d.typo&&S.remember[S.persona]&&!d.risk){d.remembered=true;d.verified=true;stepTo(d,'upin');return true}
+   if(d.who==='ret'&&!d.sam&&!d.typo&&S.remember[S.persona]&&!d.risk){d.remembered=true;d.verified=true;stepTo(d,(S.hasPw[S.persona]?'pw':'upin'));return true}
    stepTo(d,'code');return true}
   case 'dusepw':S.door.err=null;stepTo(S.door,'pw');return true;
   case 'dlinklater':stepTo(S.door,'later');return true;
@@ -2587,7 +2596,7 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'glinkcard':S.gNext=v||'home';S.door=Object.assign(doorFresh(),{who:'new',step:'card',verified:true,link:true});go('login');return true;
   case 'glinkdesk':S.gNext=v||'home';S.door=Object.assign(doorFresh(),{who:'new',step:'inperson',verified:true});go('login');return true;
   case 'gsignout':S.gUnlinked=null;S.gm=false;S.gNext=null;S.door=doorFresh();go('login');later('Signed out');return true;
-  case 'dpw':{const d=S.door;if(d.err==='pw'||d.err==='nopw'){d.err=null;render(true);return true}if(d.who!=='ret'||!S.hasPw[P1]){d.err='nopw';render(true);return true}d.pwDone=true;d.m='sms';stepTo(d,'code');return true}
+  case 'dpw':{const d=S.door;if(d.err==='pw'){d.err=null;render(true);return true}d.err=null;if(d.remembered||d.faceFail){doorDone('Signed in');return true}stepTo(d,'welcome');return true}
   case 'dcode':{const d=S.door;d.pwDone=false;d.m=d.idType==='phone'?'sms':'email';d.err=null;stepTo(d,'code');return true}
   case 'dforgot':S.rc={step:'pw',h:['menu']};go('recover');return true;
   case 'derr':{const d=S.door;if(v==='locked'){d.err=null;stepTo(d,'locked');return true}d.err=d.err===v?null:v;d.fill=false;render(true);return true}
@@ -2601,10 +2610,11 @@ function v3Act(act,a){const v=a.dataset.v,P1=S.persona;
   case 'dfixtypo':{const d=S.door;d.typo=false;d.who='claim';d.sam=true;d.idType='email';d.err=null;if(d.step==='code'){d.sentAt=Date.now();d.fill=false;render(true);later('Code sent to sam.carter@example.com');return true}render(true);later('Changed to sam.carter@example.com');return true}
   case 'drem':S.remember[S.persona]=v==='rem';render(true);return true;
   case 'dremtg':S.door.remember=!S.door.remember;render(true);return true;
-  case 'dfidpin':{const d=S.door;clearTimeout(S.fidT);S.fidT=null;d.fid=null;d.faceFail=true;d.verified=true;d.perr=0;d.pinDemo='ok';d.h=['start'];d.step='upin';render();return true}
+  case 'dfidpin':{const d=S.door;clearTimeout(S.fidT);S.fidT=null;d.fid=null;d.faceFail=true;d.verified=true;d.perr=0;d.pinDemo='ok';d.err=null;d.h=['start'];d.step=(S.hasPw[S.persona]?'pw':'upin');render();return true}
   case 'dupinerr':{const d=S.door;d.pinDemo=v;if(v==='lock'){d.perr=0;stepTo(d,'upinlock');return true}d.perr=v==='wrong'?1:0;render(true);return true}
   case 'dupin':{const d=S.door;if(d.pinDemo==='wrong'){d.perr++;if(d.perr>=3){d.perr=0;stepTo(d,'upinlock')}else render(true);return true}
    d.perr=0;if(d.remembered||d.faceFail){doorDone('Signed in');return true}stepTo(d,'welcome');return true}
+  case 'resetsignin':S.menu=false;resetSignin();return true;
   case 'dpinshow':S.door.pinShow=!S.door.pinShow;render(true);return true;
   case 'dnophone':stepTo(S.door,'find');return true;
   case 'dnewph':S.door.newph=true;S.door.m='sms';stepTo(S.door,'code');return true;
@@ -2785,6 +2795,7 @@ function drawerHTML(){const p=per(),t=TIERS[p.tier],an=S.menuAnim?' anim':'';
   ${menuRows()}
   <div class="dlab" style="padding:22px 18px 6px">Presenter</div>
   <button data-act="demomenu" class="drow" aria-expanded="${!!S.demoMenu}"><span>${ic('sliders',19)}</span>${S.demoMenu?'Hide demo screens':'Show demo screens'}</button>
+  <button data-act="resetsignin" class="drow"><span>${ic('refresh',19)}</span>Reset sign-in</button>
   ${S.demoMenu?`  <div style="padding:18px 18px 2px"><div class="dlab">Demo controls</div>
    <div class="dseg">${[['A','Winnie · Elite'],['B','Jordan · Premier']].map(([v,l])=>`<button data-set="persona" data-v="${v}" aria-pressed="${S.persona===v}">${l}</button>`).join('')}</div>
    <div class="dseg" style="margin-top:6px">${[['umbrella','Parent-led'],['endorsed','Endorsed'],['property','Property-first']].map(([v,l])=>`<button data-set="model" data-v="${v}" aria-pressed="${S.model===v}">${l}</button>`).join('')}</div></div>
@@ -2965,12 +2976,14 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
   ${codeConsent('Continue',1)}<button class="wprim" data-act="wgo" style="${acc};margin-top:10px">Continue</button><div class="ordiv"><span>or</span></div>
   <button class="wsec" data-act="wqr">${ic('qr',15)} Sign in with your phone</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey</button>
   <div class="wlinks"><button data-act="wstep" data-v="trouble">Trouble signing in?</button></div>`;
- else if(m.step==='pw')b=`${head('Enter your password',`Signing in as ${m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)}`)}<div class="wf">Password<span class="v">••••••••••••</span></div>${m.err==='nopw'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That password doesn’t match. Use the code we sent instead.</div>':''}
-  <button class="wprim" data-act="wpw" style="${acc}">Sign in</button><button class="wsec" data-act="wcode">Use the code instead</button><div class="wlinks"><button data-act="wstep" data-v="trouble">Forgot password?</button></div>`;
- else if(m.step==='code')b=`${head('Enter the code',`We sent a 6-digit code to ${m.newph?'(580) ***-**77':!m.verified&&!m.pwDone?(m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)):m.email?maskEm(id):ph}${m.onfile&&!m.email?', the mobile number on your player account':''}.`)}
-  ${m.pwDone?`<div class="why">${ic('shield',16)}<span><b>New browser.</b> Your password was right. A code confirms it’s you.</span></div>`:''}
+ else if(m.step==='pw')b=`${head(`Welcome back, ${p.first}`,'Enter your password.')}
+  <div class="why" style="margin-top:12px">${ic('shield',16)}<span>${m.remembered?'<b>Remembered browser.</b> No code until Oct 30. Your password confirms it’s you.':'<b>Code checked.</b> You set a password, so it’s asked instead of your casino PIN.'}</span></div>
+  <div class="wf">Password<span class="v">••••••••••••</span></div>${m.err==='pw'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That password isn’t right. 4 tries left before sign-in pauses for 15 minutes.</div>':''}
+  <button class="wprim" data-act="wpw" style="${acc}">Sign in</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey instead</button><div class="wlinks"><button data-act="wforgot">Forgot password?</button></div>
+  <div class="demo" style="margin-top:14px"><span>Demo</span>${[['ok','Matches'],['pw','Wrong password']].map(([k,l])=>`<button data-act="wpwerr" data-v="${k}" aria-pressed="${(m.err==='pw'?'pw':'ok')===k}">${l}</button>`).join('')}</div>`; else if(m.step==='code')b=`${head('Enter the code',`We sent a 6-digit code to ${m.newph?'(580) ***-**77':!m.verified&&!m.pwDone?(m.who==='new'||m.sam?(m.idType==='phone'?SAM.typedPhone:SAM.email):(m.idType==='phone'?p.mobile:p.email)):m.email?maskEm(id):ph}${m.onfile&&!m.email?', the mobile number on your player account':''}.`)}
+  ${m.forgot?`<div class="why">${ic('shield',16)}<span><b>Reset your password.</b> A new code, then your casino PIN, confirm it’s you.</span></div>`:''}
   <div class="wotp">${[...'482913'].map(c=>`<span>${c}</span>`).join('')}</div>${!m.verified||m.pwDone?`<button class="wchk" data-act="wremtg" aria-pressed="${!!m.remember}"><i>${m.remember?ic('check',12,3):''}</i>Remember this browser for 30 days</button>`:''}
-  <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend" data-until="${m.sentAt||(m.sentAt=Date.now())}">Resend code</button><span style="color:var(--faint)">|</span>${!m.verified&&!m.pwDone?'<button data-act="wusepw">Use my password instead</button><span style="color:var(--faint)">|</span><button data-act="wstep" data-v="start">Change '+(m.idType==='phone'?'number':'email')+'</button>':m.email?'<button data-act="wtext">Text me instead</button>':'<button data-act="wemail">Email me instead</button>'}</div>
+  <button class="wprim" data-act="wverify" style="${acc}">Verify</button><div class="wlinks"><button data-act="wresend" data-until="${m.sentAt||(m.sentAt=Date.now())}">Resend code</button><span style="color:var(--faint)">|</span>${!m.verified&&!m.pwDone?'<button data-act="wstep" data-v="start">Change '+(m.idType==='phone'?'number':'email')+'</button>':m.email?'<button data-act="wtext">Text me instead</button>':'<button data-act="wemail">Email me instead</button>'}</div>
   ${m.err==='wrong'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code doesn’t match. 2 tries left.</div>':m.err==='expired'?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That code expired after 10 minutes. We sent a new one.</div>':''}
   <div class="demo" style="margin-top:14px"><span>Demo</span>${[['wrong','Wrong code'],['expired','Expired'],['locked','Too many tries']].map(([k,l])=>`<button data-act="werr" data-v="${k}" aria-pressed="${m.err===k}">${l}</button>`).join('')}</div>`;
  else if(m.step==='welcome')b=`${head(`${m.who==='claim'||m.sam?'Welcome':'Welcome back'}, ${id.first}`,m.who==='claim'||m.sam?`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app. You’ll sign in with ${m.idType==='phone'?SAM.typedPhone:SAM.email}.`:`Your ${TIERS[id.tier].n} Club Passport now works on every Chickasaw Nation site and in the app.`)}<div style="display:flex;justify-content:center;margin-top:16px">${kcard(id,260)}</div>
@@ -2984,13 +2997,14 @@ function webModalHTML(){const m=S.webModal,p=per(),k=m.where&&P[m.where]?m.where
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">Date of birth<span class="v">${SAM.dobFull}</span></div><div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div></div>
   <button class="wprim" data-act="wcard" style="${acc}">Continue</button>${big('wstep','inperson','I don’t have my card or PIN')}
   <div class="wlinks"><button data-act="wpinhelp">Forgot your PIN?</button></div>`;
- else if(m.step==='upin')b=`${head(`Welcome back, ${p.first}`,'Enter the 4-digit PIN you use at our casinos.')}
-  <div class="why" style="margin-top:12px">${ic('shield',16)}<span>${m.remembered?'<b>Remembered browser.</b> No code until Oct 30. Your PIN confirms it’s you.':'<b>Code checked.</b> Your PIN confirms it’s you, so a code alone can’t open your account.'}</span></div>
+ else if(m.step==='upin')b=`${head(m.forgot?'Enter your casino PIN':`Welcome back, ${p.first}`,'Enter the 4-digit PIN you use at our casinos.')}
+  ${m.forgot?`<div class="why" style="margin-top:12px">${ic('shield',16)}<span><b>Code checked.</b> Your PIN confirms it’s you before you set a new password.</span></div>`:`<div class="why" style="margin-top:12px">${ic('shield',16)}<span>${m.remembered?'<b>Remembered browser.</b> No code until Oct 30. Your PIN confirms it’s you.':'<b>Code checked.</b> Your PIN confirms it’s you, so a code alone can’t open your account.'}</span></div>`}
   <div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div>
   ${m.perr?'<div style="color:#FF9C96;font-size:13px;margin-top:10px">That PIN doesn’t match. 2 tries left.</div>':''}
-  <button class="wprim" data-act="wupin" style="${acc}">Sign in</button><button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey instead</button>
+  <button class="wprim" data-act="wupin" style="${acc}">${m.forgot?'Continue':'Sign in'}</button>${m.forgot?'':`<button class="wsec" data-act="wpasskey">${ic('key',15)} Use a passkey instead</button>`}
   <div class="wlinks"><button data-act="wpinhelp">Forgot your PIN?</button></div>
   <div class="demo" style="margin-top:14px"><span>Demo</span>${[['ok','Matches'],['wrong','No match']].map(([k,l])=>`<button data-act="wupinerr" data-v="${k}" aria-pressed="${(m.pinDemo||'ok')===k}">${l}</button>`).join('')}</div>`;
+ else if(m.step==='newpw')b=`${head('Set a new password','At least 12 characters, and not one you’ve used before.')}<div class="wf">New password<span class="v">••••••••••••••</span></div><div class="wf">Confirm new password<span class="v">••••••••••••••</span></div><button class="wprim" data-act="wpwsave" style="${acc}">Save and sign in</button>`;
  else if(m.step==='pin')b=`${head('Confirm it’s you','Enter your date of birth and the 4-digit PIN you use at our casinos.')}
   <div class="acct">${ic('card',18)}<span>We found <b>account ending in ${last4(id)}</b>. Confirm it’s yours.</span></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="wf">Date of birth<span class="v">${id.dobFull}</span></div><div class="wf">Casino PIN<span class="v" style="letter-spacing:.3em">••••</span></div></div>
@@ -3125,7 +3139,7 @@ function covChip(id){if(id.startsWith('w:')){const k=id.slice(2),l={loyalty:'Loy
 function coverageView(){const n=SCREENS.length,fut=Object.values(SPHASE).filter(x=>x.includes('f')).length;
  const st=s=>`<span class="st" style="color:${s==='Shown'?'#7FE3B8':'#F5C46B'}">${ic(s==='Shown'?'check':'info',13,2.4)} ${s}</span>`;
  return `<div class="cov"><h1>Requirements coverage</h1><p class="lede">Every requirement area in the CNDC Website / App Business Requirements (v7), and where this prototype shows it. Click a screen to open it.</p>
-  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li><li><b>UX pass:</b> one demo date (Wed, Oct 7), so no past shows or drawings. One smart sign-in field with a passkey suggestion, a typo check, a resend countdown, Open Mail, a PIN you can show, and Face ID asked for with the phone’s own prompt. “Continue as a guest” is a real button. Home: the card is one tap from scanning, tier progress, offers as a short list, and “Right now” ordered by where the guest is. One set of words for offers (Add, In Passport, On card, Book). Profile (name, date of birth, mailing address) has its own page from Account, apart from Sign-in & security. Terms at sign-up, and phone permissions asked in context (location, notifications, Bluetooth). Sign in verifies the email or mobile with a code before looking for the account, with the agreement to the Terms and the texted code above Continue; the card number moved off the Sign in screen. Casino promotions sit beside offers: a “For you · Promotions” switch in Offers, each property page, Home when one is on today nearby, entries on Passport, and the loyalty website. A linked account always takes a second step: Face ID, a passkey, or the casino PIN after the code; “Remember this iPhone” (or browser) skips the code for 30 days, never the PIN. A sticky offer button, an auto-continuing hotel handoff, Apple Wallet first for the room key, “Take me there” from Live meters, restrooms, an ATM and a step-free route on the WinStar map, and a Destinations map with filters. The menu shows the product; demo screens and the dashed DEMO rows sit behind presenter switches. Stronger text contrast and labels for icon-only buttons.</li></ul></div>
+  <div class="cov-new"><b>New in v4</b><ul><li><b>BRD v7:</b> “Sign in” is the entry (Appendix A). Prospects go to HubSpot (Appendices A and D). In the app, a guest who has never visited starts with the closest property, and a property picked in the Offers filter can become the preferred one (4.6). Referral sources in Analytics (4.10). Property Operations defines transactions (4.7).</li><li><b>Sign-in map:</b> one “We couldn’t find you” screen with every option, “Not your account? Use your card number” on Confirm it’s you, and the same changes in the websites’ sign-in window.</li><li><b>BRD v7 line-by-line check:</b> a returning member’s code goes to what they typed (email or text), with a text to the phone on file after an email code from a new location (Appendix E). The websites now match the app for wrong and expired codes, the 15-minute pause, Forgot password and a lost phone (4.3). Points earned and redeemed at every property (3.3). Reservations linked to journeys, including dining, spa and golf (4.10).</li><li><b>Kept from the property apps (4.12):</b> the digital room key at every property with a hotel, and wayfinding at WinStar.</li><li><b>UX pass:</b> one demo date (Wed, Oct 7), so no past shows or drawings. One smart sign-in field with a passkey suggestion, a typo check, a resend countdown, Open Mail, a PIN you can show, and Face ID asked for with the phone’s own prompt. “Continue as a guest” is a real button. Home: the card is one tap from scanning, tier progress, offers as a short list, and “Right now” ordered by where the guest is. One set of words for offers (Add, In Passport, On card, Book). Profile (name, date of birth, mailing address) has its own page from Account, apart from Sign-in & security. Terms at sign-up, and phone permissions asked in context (location, notifications, Bluetooth). Sign in verifies the email or mobile with a code before looking for the account, with the agreement to the Terms and the texted code above Continue; the card number moved off the Sign in screen. Casino promotions sit beside offers: a “For you · Promotions” switch in Offers, each property page, Home when one is on today nearby, entries on Passport, and the loyalty website. A linked account always takes a second step: Face ID, a passkey, or after the code the casino PIN (or the password, which replaces it); “Remember this iPhone” (or browser) skips the code for 30 days, never the second step. Forgot password takes a new code and the PIN. A sticky offer button, an auto-continuing hotel handoff, Apple Wallet first for the room key, “Take me there” from Live meters, restrooms, an ATM and a step-free route on the WinStar map, and a Destinations map with filters. The menu shows the product; demo screens and the dashed DEMO rows sit behind presenter switches. Stronger text contrast and labels for icon-only buttons.</li></ul></div>
   <div class="cov-sum"><div><b>${SCN.length}</b><span>sign-in and join paths, all shown</span></div><div><b>12 of 12</b><span>requirement areas shown</span></div><div><b>6 of 6</b><span>authentication appendices</span></div><div><b>${n}</b><span>app screens</span></div><div><b>3</b><span>websites: loyalty, account, property</span></div><div><b>${fut}</b><span>screens with a future-phase part</span></div><div><b>10</b><span>open decisions with an option shown</span></div></div>
   <table class="ctab"><thead><tr><th>Req</th><th>Area and what it asks for</th><th>Phase</th><th>Shown in</th><th>Status</th></tr></thead><tbody>
   ${COV.map(([id,a,d,ph,ids,s])=>`<tr><td class="n">${id}</td><td style="max-width:520px"><b>${a}</b><span class="m">${d}</span></td><td class="m" style="max-width:170px">${ph}</td><td><div class="scr-chips">${ids.map(covChip).join('')}</div></td><td>${st(s)}</td></tr>`).join('')}</tbody></table>
@@ -3146,14 +3160,14 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wjoin':S.webModal={step:'start',who:'new',where:null};render(true);return true;
   case 'wqr':S.webModal={step:'qr',who:'ret',where:S.webModal?S.webModal.where:(S.site==='property'?S.psite:null)};render(true);return true;
   case 'wwho':S.webModal.who=v;S.webModal.sam=false;render(true);return true;
-  case 'wgo':{const m=S.webModal;m.pwDone=false;m.err=null;m.email=m.idType!=='phone'?1:0;m.verified=false;m.onfile=false;if(m.who==='ret'&&S.webTrusted){m.remembered=true;m.verified=true;m.perr=0;m.pinDemo='ok';m.step='upin';render(true);return true}m.step='code';render(true);return true}
+  case 'wgo':{const m=S.webModal;m.pwDone=false;m.err=null;m.email=m.idType!=='phone'?1:0;m.verified=false;m.onfile=false;if(m.who==='ret'&&S.webTrusted){m.remembered=true;m.verified=true;m.perr=0;m.pinDemo='ok';m.err=null;m.step=(S.hasPw[S.persona]?'pw':'upin');render(true);return true}m.step='code';render(true);return true}
   case 'wusepw':S.webModal.err=null;S.webModal.step='pw';render(true);return true;
   case 'wlaterdone':{const m=S.webModal;S.webUnlinked=m.idType==='phone'?SAM.typedPhone:SAM.email;S.webModal=null;render();later('Signed in. Link your card anytime.');return true}
   case 'wunsignout':S.webUnlinked=null;S.webModal=null;render();later('Signed out');return true;
-  case 'wpw':{const m=S.webModal;if(m.who!=='ret'||!S.hasPw[S.persona]){m.err='nopw';render(true);return true}m.err=null;m.pwDone=true;m.email=0;m.step='code';render(true);return true}
+  case 'wpw':{const m=S.webModal;if(m.err==='pw'){m.err=null;render(true);return true}webSignedIn();return true}
   case 'wcode':{const m=S.webModal;m.pwDone=false;m.err=null;m.email=m.idType!=='phone'?1:0;m.step='code';render(true);return true}
   case 'wemail':S.webModal.email=1;render(true);toast('Code sent by email');return true;
-  case 'wverify':{const m=S.webModal,first=!m.verified;m.verified=true;if(m.who==='ret'){if(m.remember)S.webTrusted=true;m.perr=0;m.pinDemo='ok';m.step='upin';render(true);return true}
+  case 'wverify':{const m=S.webModal,first=!m.verified;m.verified=true;if(m.forgot){m.perr=0;m.pinDemo='ok';m.step='upin';render(true);return true}if(m.who==='ret'){if(m.remember)S.webTrusted=true;m.perr=0;m.pinDemo='ok';m.err=null;m.step=(S.hasPw[S.persona]?'pw':'upin');render(true);return true}
    // only now, with the email or mobile verified, does the lookup in ACSC/Engage happen
    if(first&&!m.onfile&&!m.newph){m.step=m.who==='claim'?'pin':'played';render(true);return true}if(m.remember)S.webTrusted=true;m.step='welcome';render(true);return true}
   case 'waddemail':{const m=S.webModal;m.confirmEmail=true;m.email=m.idType==='phone'?0:1;m.step='code';render(true);return true}
@@ -3171,8 +3185,11 @@ function webAct(act,a){const v=a.dataset.v,later=m=>setTimeout(()=>toast(m),40);
   case 'wcardstart':{const m=S.webModal;m.who='new';m.by='card';m.cardFirst=true;m.step='card';render(true);return true}
   case 'wremtg':S.webModal.remember=!S.webModal.remember;render(true);return true;
   case 'wremset':S.webTrusted=v==='rem';render(true);return true;
+  case 'wpwerr':S.webModal.err=v==='pw'?'pw':null;render(true);return true;
+  case 'wforgot':{const m=S.webModal;m.forgot=true;m.err=null;m.email=m.idType!=='phone'?1:0;m.sentAt=Date.now();m.step='code';render(true);toast('New code sent');return true}
+  case 'wpwsave':S.webModal.forgot=false;webSignedIn();setTimeout(()=>toast('Password updated. We let you know by email and text.'),1800);return true;
   case 'wupinerr':S.webModal.pinDemo=v;S.webModal.perr=v==='wrong'?1:0;render(true);return true;
-  case 'wupin':{const m=S.webModal;if(m.pinDemo==='wrong'){m.perr=1;render(true);return true}webSignedIn();return true}
+  case 'wupin':{const m=S.webModal;if(m.pinDemo==='wrong'){m.perr=1;render(true);return true}if(m.forgot){m.step='newpw';render(true);return true}webSignedIn();return true}
   case 'wpinhelp':toast('PINs are reset at any player services desk or kiosk, with a photo ID');return true;
   case 'wcard':{const m=S.webModal;if(m.lost){m.step='newph';render(true);return true}m.who='claim';m.sam=true;m.onfile=true;m.email=0;m.step='code';render(true);return true}
   case 'wtrouble':{const m=S.webModal;if(v==='code'){m.who='ret';m.email=1;m.pwDone=false;m.step='code'}else if(v==='lost'){m.who='ret';m.lost=true;m.by='card';m.step='card'}else{m.who='new';m.by='card';m.verified=true;m.step='card'}render(true);return true}
@@ -3231,14 +3248,15 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['glink','Guest links their player account from Passport, then lands back on Passport','App. C','App'],
  ['gjoin','Guest joins from a personal page: on the list, card at player services','App. D','App'],
  ['trusted','Returning guest on a trusted iPhone: Face ID signs in by itself','App. E','App'],
- ['fidfail','Face ID doesn’t recognize the guest: try again, or enter the casino PIN','App. E','App'],
+ ['fidfail','Face ID doesn’t recognize the guest: try again, or enter the casino PIN (or password)','App. E','App'],
  ['code','Returning guest on a new phone: a code that fills in and checks itself','App. B, E','App'],
  ['retpin','Returning member on a new iPhone: the code, then the casino PIN, then Welcome back','App. E, 4.3','App'],
  ['remembered','Remembered iPhone: no code for 30 days; the casino PIN is still asked','App. E','App'],
+ ['pwrem','Remembered iPhone with a password: no code, just the password','App. E','App'],
  ['retpinlock','Wrong PIN three times: PIN sign-in pauses for 24 hours; a passkey or player services','App. E, F','App'],
  ['methods','Code to an email: Open Mail, or tap the sign-in link in the email','App. B','App'],
- ['pw','Has a password: “Use my password instead” on the code screen, then a text to the phone on file on a new phone, then the PIN','App. B, E','App'],
- ['pwwrong','Wrong password, with tries left before a pause','App. E','App'],
+ ['pw','Has a password: the code, then the password instead of the casino PIN','App. B, E','App'],
+ ['pwwrong','Wrong password after the code, with tries left before a pause','App. E','App'],
  ['wrong','Wrong code, with tries left','App. E','App'],
  ['expired','Expired code: a new one is sent','App. E','App'],
  ['locked','Too many tries: sign-in paused for 15 minutes','App. E','App'],
@@ -3263,7 +3281,7 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['later','New guest gets a card later and signs in with the same email','App. D','App'],
  ['rcmenu','Trouble signing in?: one help link','App. F','App'],
  ['rclost','Can’t get a code: email, authenticator, or card number with date of birth and PIN, then a new number','App. F','App'],
- ['rcpw','Forgot password: sign in with a code, then set a new one or skip','App. F','App'],
+ ['rcpw','Forgot password: a new code, then the casino PIN, then a new password','App. F','App'],
  ['pwadd','Add a password: the phone’s strong password first, or the guest’s own, checked for length and breaches','App. E','App'],
  ['pwchange','Change a password and sign out other devices','App. E','App'],
  ['pwremove','Remove a password and go passwordless','App. E','App'],
@@ -3276,6 +3294,7 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['promos','Offers › Promotions: drawings, hot seats and bonus play at every property, today’s first','4.4, 4.6','App'],
  ['promo','A promotion: what you can win, how to take part, your entries, a reminder and the official rules','4.4, 4.9','App'],
  ['promoentries','Passport: entries across every promotion','4.4','App'],
+ ['propswitch','Property page: tap the logo to switch to any of the 11 properties','4.6, 4.8','App'],
  ['webpromos','Website: promotions at every property on the loyalty site','4.1, 4.4','Web'],
  ['permloc','Guest: location asked on Home to start with the closest property, WinStar if declined','4.6','App'],
  ['permpush','After sign-in: notifications offered on Welcome with the phone’s own prompt','4.9','App'],
@@ -3292,6 +3311,7 @@ const SCN=[['mig','Moving from the WinStar app: account, card and Face ID carrie
  ['webqr','Website: sign in with your phone (QR code)','4.3','Web'],
  ['webpk','Website: sign in with a passkey','App. E','Web'],
  ['webremember','Website: remembered browser: no code for 30 days; the casino PIN is still asked','App. E','Web'],
+ ['webforgot','Website: forgot password: a new code, then the casino PIN, then a new password','App. E, F','Web'],
  ['websso','Signed in once, recognized on every property website','4.2, 4.3','Web'],
  ['webnomatch','Website: no player account for the verified email: card number, a different email or mobile, join, or help in person','4.3, App. C','Web'],
  ['webjoin','Website: join the list','App. D','Web'],
@@ -3314,10 +3334,11 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'code':return login('A',false,{step:'code',h:['start']});
   case 'retpin':return login('A',false,{step:'upin',verified:true,h:['start','code']});
   case 'remembered':return login('A',false,{},()=>{S.remember.A=true});
+  case 'pwrem':return login('B',false,{},()=>{S.remember.B=true});
   case 'retpinlock':return login('A',false,{step:'upinlock',verified:true,h:['start','code','upin']});
   case 'methods':return login('A',false,{step:'code',h:['start'],m:'email'});
-  case 'pw':return login('B',false,{step:'pw',h:['start','code']});
-  case 'pwwrong':return login('B',false,{step:'pw',h:['start','code'],err:'pw'});
+  case 'pw':return login('B',false,{step:'pw',verified:true,h:['start','code']});
+  case 'pwwrong':return login('B',false,{step:'pw',verified:true,h:['start','code'],err:'pw'});
   case 'wrong':return login('A',false,{step:'code',h:['start'],err:'wrong'});
   case 'expired':return login('A',false,{step:'code',h:['start'],err:'expired'});
   case 'locked':return login('A',false,{step:'locked',h:['start','code']});
@@ -3359,6 +3380,7 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'promos':return app('offers',()=>{as('B');S.oseg='promos';S.ppf='all'});
   case 'promo':return app('promo',()=>{as('A');S.promo='bob';S.promoFrom='offers';S.oseg='promos'});
   case 'promoentries':return app('wallet',()=>{as('A')});
+  case 'propswitch':app('property',()=>{as('B');S.prop='artesian'});S.sheet=true;return render(true);
   case 'webpromos':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal=null});
   case 'linklater':return login('B',false,{who:'new',step:'played',verified:true,h:['start','code']});
   case 'unlinked':return app('wallet',()=>{as('B');S.gm=true;S.gUnlinked=SAM.email;S.gProspect=false});
@@ -3375,6 +3397,7 @@ function runScn(id){const fresh=o=>Object.assign(doorFresh(),o||{});
   case 'webclaim':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'start',who:'claim',where:null}});
   case 'webqr':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'qr',who:'ret',where:null}});
   case 'webremember':return web(()=>{S.site='loyalty';S.webIn=false;S.webTrusted=true;S.webModal={step:'start',who:'ret',where:null}});
+  case 'webforgot':return web(()=>{as('B');S.site='loyalty';S.webIn=false;S.webModal={step:'pw',who:'ret',verified:true,where:null}});
   case 'webpk':return web(()=>{S.site='loyalty';S.webIn=false;S.webModal={step:'passkey',who:'ret',where:null}});
   case 'websso':return web(()=>{S.webIn=true;S.site='property';S.psite='winstar';S.pPanel=true});
   case 'webexp':return web(()=>{S.site='property';S.psite='winstar';S.webIn=false;S.webModal={step:'exp',kind:'dining',where:'winstar'}});
@@ -3525,6 +3548,10 @@ function setDemoRows(on){document.documentElement.classList.toggle('nodemo',!on)
 // The account hub on the websites: promotions under the offers
 wOffersTab=(f=>function(){return f()+wPromosHTML()})(wOffersTab);
 
+// Presenter bar: Reset sign-in puts this persona back to a fresh install (signed out, Face ID off, nothing remembered)
+(()=>{const sb=document.querySelector('.sub-bar');if(!sb||document.getElementById('c-reset'))return;
+ const g=document.createElement('div');g.className='grp';g.innerHTML='<label>Sign-in</label><div class="seg"><button id="c-reset" title="Signed out, Face ID off, nothing remembered">Reset</button></div>';sb.appendChild(g);
+ g.querySelector('#c-reset').addEventListener('click',()=>resetSignin())})();
 render();
 </script>
 
